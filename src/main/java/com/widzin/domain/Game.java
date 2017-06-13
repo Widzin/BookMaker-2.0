@@ -23,6 +23,23 @@ public class Game {
 	private Integer awayScore;
 	private Date date;
 
+	public Game () {
+	}
+
+	public Game (Club home, Club away, Date date) {
+		this.home = home;
+		this.away = away;
+		this.date = date;
+	}
+
+	public Game (Club home, Club away, Integer homeScore, Integer awayScore, Date date) {
+		this.home = home;
+		this.away = away;
+		this.homeScore = homeScore;
+		this.awayScore = awayScore;
+		this.date = date;
+	}
+
 	public Integer getId () {
 		return id;
 	}
@@ -77,5 +94,27 @@ public class Game {
 
 	public void setAway (Club away) {
 		this.away = away;
+	}
+
+	public void setScore(int homeScore, int awayScore){
+		this.homeScore = homeScore;
+		this.awayScore = awayScore;
+	}
+
+	public void updateClubStats(){
+		if (homeScore > awayScore){
+			home.addWins();
+			away.addLoses();
+		} else if (homeScore < awayScore){
+			home.addLoses();
+			away.addWins();
+		} else {
+			home.addDraws();
+			away.addDraws();
+		}
+		home.addScoredGoals(homeScore);
+		home.addLostGoals(awayScore);
+		away.addScoredGoals(awayScore);
+		away.addLostGoals(homeScore);
 	}
 }

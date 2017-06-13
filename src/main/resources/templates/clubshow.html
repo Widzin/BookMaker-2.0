@@ -13,53 +13,82 @@
         </div>
         <div>
             <form class="form-horizontal">
-                <div class="col-lg-offset-1 col-lg-7">
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">Matches:</label>
-                        <div class="col-sm-8">
-                            <p class="form-control-static" th:text="${club.matches}">Matches</p>
+                <div>
+                    <div class="col-lg-offset-1 col-lg-7">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Matches:</label>
+                            <div class="col-sm-8">
+                                <p class="form-control-static" th:text="${club.matches}">Matches</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">Points:</label>
-                        <div class="col-sm-8">
-                            <p class="form-control-static" th:text="${club.points}">Points</p>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Points:</label>
+                            <div class="col-sm-8">
+                                <p class="form-control-static" th:text="${club.points}">Points</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">Bilans: (Win-Draw-Lost)</label>
-                        <div class="col-sm-8">
-                            <p class="form-control-static" th:text="${club.wins} + '-' + ${club.draws} + '-' + ${club.loses}">Bilans</p>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Bilans: (Win-Draw-Lost)</label>
+                            <div class="col-sm-8">
+                                <p class="form-control-static" th:text="${club.wins} + '-' + ${club.draws} + '-' + ${club.loses}">Bilans</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">Goals:</label>
-                        <div class="col-sm-8">
-                            <p class="form-control-static" th:text="${club.bilans} + '  (' + ${club.scoredGoals} + ' - ' + ${club.lostGoals} + ')'">Goals</p>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Goals:</label>
+                            <div class="col-sm-8">
+                                <p class="form-control-static" th:text="${club.bilans} + '  (' + ${club.scoredGoals} + ' - ' + ${club.lostGoals} + ')'">Goals</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">Value: (mln €)</label>
-                        <div class="col-sm-8">
-                            <p class="form-control-static" th:text="${club.valueOfPlayers}">Value</p>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Value: (mln €)</label>
+                            <div class="col-sm-8">
+                                <p class="form-control-static" th:text="${club.valueOfPlayers}">Value</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">Players:</label>
-                        <div class="col-sm-8">
-                            <p class="form-control-static" th:text="${club.numberOfPlayers}">Players</p>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Players:</label>
+                            <div class="col-sm-8">
+                                <p class="form-control-static" th:text="${club.numberOfPlayers}">Players</p>
+                            </div>
                         </div>
+                        <!--<div class="form-group">
+                            <label class="col-sm-4 control-label">Number of matches:</label>
+                            <div class="col-sm-8">
+                                <p class="form-control-static" th:text="${club.numberOfGames}">Number</p>
+                            </div>
+                        </div>-->
                     </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="form-group">
-                        <div class="row text-center">
-                            <h3>Logo:</h3>
-                            <img th:src="${club.imgUrl}" width="200" alt="No logo available"/>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <div class="row text-center">
+                                <h3>Logo:</h3>
+                                <img th:src="${club.imgUrl}" width="200" alt="No logo available"/>
+                            </div>
                         </div>
                     </div>
                 </div>
             </form>
+            <br />
+            <br />
+            <div class="col-lg-12" th:if="${not #lists.isEmpty(games)}">
+                <div class="row text-center">
+                    <h3>Last five matches</h3>
+                </div>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Date</th>
+                        <th>Home club</th>
+                        <th>Away club</th>
+                        <th>Score</th>
+                    </tr>
+                    <tr th:each="game : ${games}">
+                        <td th:text="${#dates.format(game.date, 'dd-MM-yyyy')}">Date</td>
+                        <td th:text="${game.home.name}">Home club</td>
+                        <td th:text="${game.away.name}">Away club</td>
+                        <td th:text="${game.homeScore} + ':' + ${game.awayScore}">Score</td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 </body>

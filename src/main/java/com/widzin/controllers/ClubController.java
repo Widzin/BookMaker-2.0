@@ -1,6 +1,7 @@
 package com.widzin.controllers;
 
 import com.widzin.domain.Club;
+import com.widzin.domain.Game;
 import com.widzin.services.ClubService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -30,7 +32,10 @@ public class ClubController {
 
 	@RequestMapping("/club/show/{id}")
 	public String showClub(@PathVariable Integer id, Model model) {
-		model.addAttribute("club", clubService.getClubById(id));
+		Club club = clubService.getClubById(id);
+		club.setNumberOfGames();
+		model.addAttribute("club", club);
+		model.addAttribute("games", clubService.getLastFiveMatches(club));
 		return "clubshow";
 	}
 
@@ -59,32 +64,31 @@ public class ClubController {
 	}
 
 	private Iterable<Club> doNotSort(ClubService clubService) {
-		Iterable<Club> iterable = clubService.listAllClubs();
-		List<Club> list = new ArrayList<>();
-		for (Club club: iterable) {
-			if (club.isBundesliga())
-				list.add(club);
-		}
-		Iterable<Club> newIterable = list;
+		Iterable<Club> newIterable = getListOfCurrentClubs(clubService);
 		return newIterable;
 	}
 
 	private Iterable<Club> sortForTable(ClubService clubService) {
-		Iterable<Club> iterable = clubService.listAllClubs();
-		List<Club> list = new ArrayList<>();
+		List<Club> list = getListOfCurrentClubs(clubService);
 
-		for (Club club: iterable) {
-			//if (club.isBundesliga() && club.getSeason().equals(season))
-				list.add(club);
-		}
-
-		/*Comparator<Club> c = (p, o) -> (-1)*p.getPoints().compareTo(o.getPoints());
+		Comparator<Club> c = (p, o) -> (-1)*p.getPoints().compareTo(o.getPoints());
 		c = c.thenComparing((p, o) -> (-1)*p.getBilans().compareTo(o.getBilans()));
 		c = c.thenComparing((p, o) -> (-1)*p.getScoredGoals().compareTo(o.getScoredGoals()));
 		c = c.thenComparing((p, o) -> (-1)*p.getWins().compareTo(o.getWins()));
 
-		list.sort(c);*/
+		list.sort(c);
 		Iterable<Club> newIterable = list;
 		return newIterable;
+	}
+
+	private List<Club> getListOfCurrentClubs(ClubService clubService){
+		Iterable<Club> iterable = clubService.listAllClubs();
+		List<Club> list = new ArrayList<>();
+
+		for (Club club: iterable) {
+			if (club.isBundesliga())
+				list.add(club);
+		}
+		return list;
 	}
 }

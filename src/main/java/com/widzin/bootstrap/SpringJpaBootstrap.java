@@ -94,8 +94,6 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 		}
 	}
 
-	private int iloscMeczow = 1;
-
 	private void addMatchToJavaClass(String[] strings) {
 		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
@@ -120,15 +118,9 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 					String[] score = details[3].split(":");
 					int homeScore = Integer.parseInt(score[0]);
 					int awayScore = Integer.parseInt(score[1]);
-					Game match = new Game();
-					match.setHome(home);
-					match.setAway(away);
-					match.setHomeScore(homeScore);
-					match.setAwayScore(awayScore);
-					match.setDate(date);
+					Game match = new Game(home, away, homeScore, awayScore, date);
 					gameRepository.save(match);
-					log.info("Saved match nr. " + iloscMeczow);
-					iloscMeczow++;
+					log.info("Saved match nr. " + match.getId());
 					updateClubs(match);
 				}
 			}
