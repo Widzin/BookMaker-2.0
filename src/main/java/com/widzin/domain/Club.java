@@ -29,10 +29,10 @@ public class Club {
 
 	//@ManyToMany(cascade = CascadeType.ALL)
 	//@JoinTable(name = "MATCH_GAME", joinColumns = @JoinColumn(name = "game_id"), inverseJoinColumns = @JoinColumn(name = "match_id"))
-	@OneToMany(mappedBy = "home", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Game> gamesAsOwner;
-	@OneToMany(mappedBy = "away", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Game> gamesAsGuest;
+	@OneToMany(mappedBy = "home", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Game> gamesAtHome;
+	@OneToMany(mappedBy = "away", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Game> gamesAway;
 
 	public Club() {
 		points = 0;
@@ -43,8 +43,8 @@ public class Club {
 		scoredGoals = 0;
 		lostGoals = 0;
 		bilans = 0;
-		gamesAsOwner = new ArrayList<>();
-		gamesAsGuest = new ArrayList<>();
+		gamesAtHome = new ArrayList<>();
+		gamesAway = new ArrayList<>();
 	}
 
 	public Integer getId () {
@@ -165,27 +165,27 @@ public class Club {
 		this.bundesliga = bundesliga;
 	}
 
-	public List<Game> getGamesAsOwner () {
-		return gamesAsOwner;
+	public List<Game> getGamesAtHome () {
+		return gamesAtHome;
 	}
 
-	public void addGameAsOwner(Game game){
-		gamesAsOwner.add(game);
+	public void addGameAtHome(Game game){
+		gamesAtHome.add(game);
 	}
 
-	public void setGamesAsOwner (List<Game> gamesAsOwner) {
-		this.gamesAsOwner = gamesAsOwner;
+	public void setGamesAtHome (List<Game> gamesAsOwner) {
+		this.gamesAtHome = gamesAsOwner;
 	}
 
-	public List<Game> getGamesAsGuest () {
-		return gamesAsGuest;
+	public List<Game> getGamesAway () {
+		return gamesAway;
 	}
 
-	public void addGameAsGuest(Game game){
-		gamesAsGuest.add(game);
+	public void addGameAway(Game game){
+		gamesAway.add(game);
 	}
 
-	public void setGamesAsGuest (List<Game> gamesAsGuest) {
-		this.gamesAsGuest = gamesAsGuest;
+	public void setGamesAway (List<Game> gamesAsGuest) {
+		this.gamesAway = gamesAsGuest;
 	}
 }

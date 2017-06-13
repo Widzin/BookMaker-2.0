@@ -13,10 +13,10 @@ public class Game {
 	@Version
 	private Integer version;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Club home;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Club away;
 
 	private Integer homeScore;

@@ -1,9 +1,11 @@
 package com.widzin.bootstrap;
 
+import com.widzin.domain.Game;
 import com.widzin.domain.Role;
 import com.widzin.repositories.ClubRepository;
 import com.widzin.domain.Club;
 import com.widzin.domain.User;
+import com.widzin.repositories.GameRepository;
 import com.widzin.services.RoleService;
 import com.widzin.services.UserService;
 import org.apache.log4j.Logger;
@@ -13,6 +15,11 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -21,6 +28,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     private ClubRepository clubRepository;
     private UserService userService;
     private RoleService roleService;
+    private GameRepository gameRepository;
 
     private Logger log = Logger.getLogger(SpringJpaBootstrap.class);
 
@@ -39,26 +47,28 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         this.roleService = roleService;
     }
 
+    @Autowired
+	public void setGameRepository (GameRepository gameRepository) {
+		this.gameRepository = gameRepository;
+	}
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-		//loadScoresFrom(2015, 2016);
         loadClubs();
-
+		loadMatches(2015, 2016);
         loadUsers();
         loadRoles();
         assignUsersToUserRole();
         assignUsersToAdminRole();
     }
 
-    private void loadScoresFrom(int from, int to){
-
+    private void loadMatches(int from, int to){
 		String path = "static/txt/Terminarz_" + from + "_" + to + ".txt";
 		ClassLoader classLoader = new SpringJpaBootstrap().getClass().getClassLoader();
-		File file = new File(classLoader.getResource(path).getFile());
-
-		/*String content = null;
 		try {
-			content = new String(Files.readAllBytes(file.toPath()));
+			File file = new File(classLoader.getResource(path).getFile());
+
+			String content = new String(Files.readAllBytes(file.toPath()));
 			String[] matchdays = content.split("Kolejka");
 			String[] newMatchdays = new String[matchdays.length - 1];
 
@@ -79,11 +89,13 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 				addMatchToJavaClass(newEnters);
 			}
 		} catch (IOException e) {
-			System.out.println("Cannot find file");
-		}*/
+			log.info("Cannot find file");
+		} catch (NullPointerException e) {
+			log.info("Cannot find file");
+		}
 	}
 
-	/*public void addMatchToJavaClass(String[] strings) {
+	public void addMatchToJavaClass(String[] strings) {
 		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 
@@ -107,8 +119,14 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 					String[] score = details[3].split(":");
 					int homeScore = Integer.parseInt(score[0]);
 					int awayScore = Integer.parseInt(score[1]);
-					Game match = new Game(home, away, homeScore, awayScore, date);
-					match.addStatistics();
+					Game match = new Game();
+					match.setHome(home);
+					match.setAway(away);
+					match.setHomeScore(homeScore);
+					match.setAwayScore(awayScore);
+					match.setDate(date);
+					gameRepository.save(match);
+					log.info("Saved match " + match.getHome().getName() + " - " + match.getAway().getName());
 					updateClubs(match);
 				}
 			}
@@ -127,15 +145,12 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 	private void updateClubs(Game match) {
 		for (Club c: clubRepository.findAll()) {
 			if (c.getName().equals(match.getHome().getName())) {
-				c = match.getHome();
+				c.addGameAtHome(match);
+			} else if (c.getName().equals(match.getAway().getName())) {
+				c.addGameAway(match);
 			}
 		}
-		for (Club c: clubRepository.findAll()) {
-			if (c.getName().equals(match.getAway().getName())) {
-				c = match.getHome();
-			}
-		}
-	}*/
+    }
 
     private void loadClubs(){
 		Club club01 = new Club();
