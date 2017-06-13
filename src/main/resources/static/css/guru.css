@@ -1,0 +1,14 @@
+input[type=submit] {
+     background:none!important;
+     border:none;
+     padding:0!important;
+     color: blue;
+     text-decoration: underline;
+     cursor:pointer;
+}
+
+.centered {
+    align-content: center;
+    margin-left: 14%;
+    margin-right: 15%;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head lang="en">
+
+    <title>Clubs</title>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+    <div class="container">
+        <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+        <div th:if="${not #lists.isEmpty(clubs)}">
+            <div class="row text-center">
+                <h2>Club Listing</h2>
+            </div>
+            <table class="table table-striped">
+                <tr>
+                    <th>Nr</th>
+                    <th>Name</th>
+                    <th>Matches</th>
+                    <th>Points</th>
+                    <th sec:authorize="hasAnyAuthority('USER', 'ADMIN')">View</th>
+                    <th sec:authorize="hasAuthority('ADMIN')">Edit</th>
+                    <th sec:authorize="hasAuthority('ADMIN')">Delete</th>
+                </tr>
+                <tr th:each="club, iterStat : ${clubs}" th:class="${iterStat.odd}? 'odd'">
+                    <td th:text="${iterStat.count}"><a href="/club/@{club.id}">Nr</a></td>
+                    <td th:text="${club.name}">Name</td>
+                    <td th:text="${club.matches}">Matches</td>
+                    <td th:text="${club.points}">Points</td>
+                    <td sec:authorize="hasAnyAuthority('USER', 'ADMIN')">
+                        <a th:href="${'/club/show/' + club.id}">View</a>
+                    </td>
+                    <td sec:authorize="hasAuthority('ADMIN')">
+                        <a th:href="${'/club/edit/' + club.id}">Edit</a>
+                    </td>
+                    <td sec:authorize="hasAuthority('ADMIN')">
+                        <a th:href="${'/club/delete/' + club.id}">Delete</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

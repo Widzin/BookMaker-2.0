@@ -1,0 +1,468 @@
+Kolejka 1:
+	14.08.2015:
+		Bayern - Hamburger 5:0
+	15.08.2015:
+		Mainz - Ingolstadt 0:1
+		Leverkusen - Hoffenheim 2:1
+		Darmstadt - Hannover 2:2
+		Bremen - Schalke 0:3
+		Augsburg - Hertha 0:1
+		Dortmund - Monchengladbach 4:0
+	16.08.2015:
+		Wolfsburg - Frankfurt 2:1
+		Stuttgart - Koeln 1:3
+		
+Kolejka 2:
+	21.08.2015:
+		Hertha - Bremen 1:1
+	22.08.2015:
+		Schalke - Darmstadt 1:1
+		Hoffenheim - Bayern 1:2
+		Hannover - Leverkusen 0:1
+		Frankfurt - Augsburg 1:1
+		Koeln - Wolfsburg 1:1
+		Hamburger - Stuttgart 3:2
+	23.08.2015:
+		Ingolstadt - Dortmund 0:4
+		Monchengladbach - Mainz 1:2
+		
+Kolejka 3:
+	28.08.2015:
+		Wolfsburg - Schalke 3:0
+	29.08.2015:
+		Stuttgart - Frankfurt 1:4
+		Mainz - Hannover 3:0
+		Koeln - Hamburger 2:1
+		Darmstadt - Hoffenheim 0:0
+		Augsburg - Ingolstadt 0:1
+		Bayern - Leverkusen 3:0
+	30.08.2015:
+		Dortmund - Hertha 3:1
+		Bremen - Monchengladbach 2:1
+
+Kolejka 4:
+	11.09.2015:
+		Monchengladbach - Hamburger 0:3
+	12.09.2015:
+		Leverkusen - Darmstadt 0:1
+		Ingolstadt - Wolfsburg 0:0
+		Hertha - Stuttgart 2:1
+		Hannover - Dortmund 2:4
+		Bayern - Augsburg 2:1
+		Frankfurt - Koeln 6:2
+	13.09.2015:
+		Hoffenheim - Bremen 1:3
+		Schalke - Mainz 2:1
+	
+Kolejka 5:
+	18.09.2015:
+		Mainz - Hoffenheim 3:1
+	19.09.2015:
+		Wolfsburg - Hertha 2:0
+		Hamburger - Frankfurt 0:0
+		Koeln - Monchengladbach 1:0
+		Darmstadt - Bayern 0:3
+		Bremen - Ingolstadt 0:1
+	20.09.2015:
+		Stuttgart - Schalke 0:1
+		Dortmund - Leverkusen 3:0
+		Augsburg - Hannover 2:0
+
+Kolejka 6:
+	22.09.2015:
+		Ingolstadt - Hamburger 0:1
+		Hertha - Koeln 2:0
+		Darmstadt - Bremen 2:1
+		Bayern - Wolfsburg 5:1
+	23.09.2015:
+		Schalke - Frankfurt 2:0
+		Monchengladbach - Augsburg 4:2
+		Leverkusen - Mainz 1:0
+		Hoffenheim - Dortmund 1:1
+		Hannover - Stuttgart 1:3
+
+Kolejka 7:
+	25.09.2015:
+		Koeln - Ingolstadt 1:1
+	26.09.2015:
+		Wolfsburg - Hannover 1:1
+		Stuttgart - Monchengladbach 1:3
+		Mainz - Bayern 0:3
+		Bremen - Leverkusen 0:3
+		Augsburg - Hoffenheim 1:3
+		Hamburger - Schalke 0:1
+	27.09.2015:
+		Frankfurt - Hertha 1:1
+		Dortmund - Darmstadt 2:2
+
+Kolejka 8:
+	02.10.2015:
+		Darmstadt - Mainz 2:3
+	03.10.2015:
+		Monchengladbach - Wolfsburg 2:0
+		Ingolstadt - Frankfurt 2:0
+		Hoffenheim - Stuttgart 2:2
+		Hertha - Hamburger 3:0
+		Hannover - Bremen 1:0
+	04.10.2015:
+		Schalke - Koeln 0:3
+		Leverkusen - Augsburg 1:1
+		Bayern - Dortmund 5:1
+
+Kolejka 9:
+	16.10.2015:
+		Mainz - Dortmund 0:2
+	17.10.2015:
+		Wolfsburg - Hoffenheim 4:2
+		Schalke - Hertha 2:1
+		Hamburger - Leverkusen 0:0
+		Bremen - Bayern 0:1
+		Augsburg - Darmstadt 0:2
+		Frankfurt - Monchengladbach 1:5
+	18.10.2015:
+		Koeln - Hannover 0:1
+		Stuttgart - Ingolstadt 1:0
+
+Kolejka 10:
+	23.10.2015:
+		Hoffenheim - Hamburger 0:1
+	24.10.2015:
+		Mainz - Bremen 1:3
+		Leverkusen - Stuttgart 4:3
+		Hannover - Frankfurt 1:2
+		Darmstadt - Wolfsburg 0:1
+		Bayern - Koeln 4:0
+		Ingolstadt - Hertha 0:1
+	25.10.2015:
+		Dortmund - Augsburg 5:1
+		Monchengladbach - Schalke 3:1
+
+Kolejka 11:
+	30.10.2015:
+		Frankfurt - Bayern 0:0
+	31.10.2015:
+		Schalke - Ingolstadt 1:1
+		Hertha - Monchengladbach 1:4
+		Koeln - Hoffenheim 0:0
+		Bremen - Dortmund 1:3
+		Augsburg - Mainz 3:3
+		Wolfsburg - Leverkusen 2:1
+	01.11.2015:
+		Stuttgart - Darmstadt 2:0
+		Hamburger - Hannover 1:2
+
+Kolejka 12:
+	06.11.2015:
+		Hannover - Hertha 1:3
+	07.11.2015:
+		Monchengladbach - Ingolstadt 0:0
+		Mainz - Wolfsburg 2:0
+		Leverkusen - Koeln 1:2
+		Hoffenheim - Frankfurt 0:0
+		Bayern - Stuttgart 4:0
+		Darmstadt - Hamburger 1:1
+	08.11.2015:
+		Dortmund - Schalke 3:2
+		Augsburg - Bremen 1:2
+
+Kolejka 13:
+	20.11.2015:
+		Hamburger - Dortmund 3:1
+	21.11.2015:
+		Wolfsburg - Bremen 6:0
+		Stuttgart - Augsburg 0:4
+		Monchengladbach - Hannover 2:1
+		Frankfurt - Leverkusen 1:3
+		Koeln - Mainz 0:0
+		Schalke - Bayern 1:3
+	22.11.2015:
+		Hertha - Hoffenheim 1:0
+		Ingolstadt - Darmstadt 3:1
+
+Kolejka 14:
+	27.11.2015:
+		Darmstadt - Koeln 0:0
+	28.11.2015:
+		Hoffenheim - Monchengladbach 3:3
+		Hannover - Ingolstadt 4:0
+		Bremen - Hamburger 1:3
+		Bayern - Hertha 2:0
+		Mainz - Frankfurt 2:1
+	29.11.2015:
+		Dortmund - Stuttgart 4:1
+		Leverkusen - Schalke 1:1
+		Augsburg - Wolfsburg 0:0
+
+Kolejka 15:
+	04.12.2015:
+		Schalke - Hannover 3:1
+	05.12.2015:
+		Monchengladbach - Bayern 3:1
+		Ingolstadt - Hoffenheim 1:1
+		Hertha - Leverkusen 2:1
+		Hamburger - Mainz 1:3
+		Koeln - Augsburg 0:1
+		Wolfsburg - Dortmund 1:2
+	06.12.2015:
+		Stuttgart - Bremen 1:1
+		Frankfurt - Darmstadt 0:1
+
+Kolejka 16:
+	11.12.2015:
+		Mainz - Stuttgart 0:0
+	12.12.2015:
+		Wolfsburg - Hamburger 1:1
+		Hoffenheim - Hannover 1:0
+		Darmstadt - Hertha 0:4
+		Bremen - Koeln 1:1
+		Bayern - Ingolstadt 2:0
+		Leverkusen - Monchengladbach 5:0
+	13.12.2015:
+		Augsburg - Schalke 2:1
+		Dortmund - Frankfurt 4:1
+
+Kolejka 17:
+	18.12.2015:
+		Schalke - Hoffenheim 1:0
+	19.12.2015:
+		Ingolstadt - Leverkusen 0:1
+		Hannover - Bayern 0:1
+		Hamburger - Augsburg 0:1
+		Frankfurt - Bremen 2:1
+		Koeln - Dortmund 2:1
+		Stuttgart - Wolfsburg 3:1
+	20.12.2015:
+		Hertha - Mainz 2:0
+		Monchengladbach - Darmstadt 3:2
+
+Kolejka 18:
+	22.01.2016:
+		Hamburger - Bayern 1:2
+	23.01.2016:
+		Ingolstadt - Mainz 1:0
+		Hoffenheim - Leverkusen 1:1
+		Hertha - Augsburg 0:0
+		Hannover - Darmstadt 1:2
+		Koeln - Stuttgart 1:3
+		Monchengladbach - Dortmund 1:3
+	24.01.2016:
+		Frankfurt - Wolfsburg 3:2
+		Schalke - Bremen 1:3
+
+Kolejka 19:
+	29.01.2016:
+		Mainz - Monchengladbach 1:0
+	30.01.2016:
+		Leverkusen - Hannover 3:0
+		Dortmund - Ingolstadt 2:0
+		Darmstadt - Schalke 0:2
+		Bremen - Hertha 3:3
+		Augsburg - Frankfurt 0:0
+		Stuttgart - Hamburger 2:1
+	31.01.2016:
+		Wolfsburg - Koeln 1:1
+		Bayern - Hoffenheim 2:0
+
+Kolejka 20:
+	05.02.2016:
+		Monchengladbach - Bremen 5:1
+	06.02.2016:
+		Schalke - Wolfsburg 3:0
+		Ingolstadt - Augsburg 2:1
+		Hertha - Dortmund 0:0
+		Hannover - Mainz 0:1
+		Frankfurt - Stuttgart 2:4
+		Leverkusen - Bayern 0:0
+	07.02.2016:
+		Hamburger - Koeln 1:1
+		Hoffenheim - Darmstadt 0:2
+
+Kolejka 21:
+	12.02.2016:
+		Mainz - Schalke 2:1
+	13.02.2016:
+		Wolfsburg - Ingolstadt 2:0
+		Stuttgart - Hertha 2:0
+		Dortmund - Hannover 1:0
+		Darmstadt - Leverkusen 1:2
+		Bremen - Hoffenheim 1:1
+		Koeln - Frankfurt 3:1
+	14.02.2016:
+		Hamburger - Monchengladbach 3:2
+		Augsburg - Bayern 1:3
+
+Kolejka 22:
+	19.02.2016:
+		Frankfurt - Hamburger 0:0
+	20.02.2016:
+		Monchengladbach - Koeln 1:0
+		Ingolstadt - Bremen 2:0
+		Hoffenheim - Mainz 3:2
+		Hertha - Wolfsburg 1:1
+		Bayern - Darmstadt 3:1
+	21.02.2016:
+		Leverkusen - Dortmund 0:1
+		Schalke - Stuttgart 1:1
+		Hannover - Augsburg 0:1
+
+Kolejka 23:
+	26.02.2016:
+		Koeln - Hertha 0:1
+	27.02.2016:
+		Wolfsburg - Bayern 0:2
+		Stuttgart - Hannover 1:2
+		Hamburger - Ingolstadt 1:1
+		Bremen - Darmstadt 2:2
+	28.02.2016:
+		Augsburg - Monchengladbach 2:2
+		Mainz - Leverkusen 3:1
+		Dortmund - Hoffenheim 3:1
+		Frankfurt - Schalke 0:0
+
+Kolejka 24:
+	01.03.2016:
+		Ingolstadt - Koeln 1:1
+		Hannover - Wolfsburg 0:4
+	02.03.2016:
+		Schalke - Hamburger 3:2
+		Monchengladbach - Stuttgart 4:0
+		Leverkusen - Bremen 1:4
+		Hoffenheim - Augsburg 2:1
+		Hertha - Frankfurt 2:0
+		Darmstadt - Dortmund 0:2
+		Bayern - Mainz 1:2
+
+Kolejka 25:
+	05.03.2016:
+		Wolfsburg - Monchengladbach 2:1
+		Stuttgart - Hoffenheim 5:1
+		Frankfurt - Ingolstadt 1:1
+		Koeln - Schalke 1:3
+		Bremen - Hannover 4:1
+		Augsburg - Leverkusen 3:3
+		Dortmund - Bayern 0:0
+	06.03.2016:
+		Mainz - Darmstadt 0:0
+		Hamburger - Hertha 2:0
+
+Kolejka 26:
+	11.03.2016:
+		Hertha - Schalke 2:0
+	12.03.2016:
+		Monchengladbach - Frankfurt 3:0
+		Ingolstadt - Stuttgart 3:3
+		Hoffenheim - Wolfsburg 1:0
+		Hannover - Koeln 0:2
+		Darmstadt - Augsburg 2:2
+		Bayern - Bremen 5:0
+	13.03.2016:
+		Leverkusen - Hamburger 1:0
+		Dortmund - Mainz 2:0
+
+Kolejka 27:
+	18.03.2016:
+		Schalke - Monchengladbach 2:1
+	19.03.2016:
+		Wolfsburg - Darmstadt 1:1
+		Hertha - Ingolstadt 2:1
+		Hamburger - Hoffenheim 1:3
+		Koeln - Bayern 0:1
+		Bremen - Mainz 1:1
+		Frankfurt - Hannover 1:0
+	20.03.2016:
+		Stuttgart - Leverkusen 0:2
+		Augsburg - Dortmund 1:3
+
+Kolejka 28:
+	01.04.2016:
+		Leverkusen - Wolfsburg 3:0
+	02.04.2016:
+		Mainz - Augsburg 4:2
+		Ingolstadt - Schalke 3:0
+		Hannover - Hamburger 0:3
+		Darmstadt - Stuttgart 2:2
+		Bayern - Frankfurt 1:0
+		Dortmund - Bremen 3:2
+	03.04.2016:
+		Monchengladbach - Hertha 5:0
+		Hoffenheim - Koeln 1:1
+
+Kolejka 29:
+	08.04.2016:
+		Hertha - Hannover 2:2
+	09.04.2016:
+		Stuttgart - Bayern 1:3
+		Ingolstadt - Monchengladbach 1:0
+		Hamburger - Darmstadt 1:2
+		Frankfurt - Hoffenheim 0:2
+		Bremen - Augsburg 1:2
+		Wolfsburg - Mainz 1:1
+	10.04.2016:
+		Schalke - Dortmund 2:2
+		Koeln - Leverkusen 0:2
+
+Kolejka 30:
+	15.04.2016:
+		Hannover - Monchengladbach 2:0
+	16.04.2016:
+		Leverkusen - Frankfurt 3:0
+		Hoffenheim - Hertha 2:1
+		Darmstadt - Ingolstadt 2:0
+		Bremen - Wolfsburg 3:2
+		Augsburg - Stuttgart 1:0
+		Bayern - Schalke 3:0
+	17.04.2016:
+		Dortmund - Hamburger 3:0
+		Mainz - Koeln 2:3
+
+Kolejka 31:
+	22.04.2016:
+		Hamburger - Bremen 2:1
+	23.04.2016:
+		Wolfsburg - Augsburg 0:2
+		Stuttgart - Dortmund 0:3
+		Ingolstadt - Hannover 2:2
+		Hertha - Bayern 0:2
+		Koeln - Darmstadt 4:1
+		Schalke - Leverkusen 2:3
+	24.04.2016:
+		Monchengladbach - Hoffenheim 3:1
+		Frankfurt - Mainz 2:1
+
+Kolejka 32:
+	29.04.2016:
+		Augsburg - Koeln 0:0
+	30.04.2016:
+		Mainz - Hamburger 0:0
+		Hoffenheim - Ingolstadt 2:1
+		Hannover - Schalke 1:3
+		Dortmund - Wolfsburg 5:1
+		Darmstadt - Frankfurt 1:2
+		Bayern - Monchengladbach 1:1
+		Leverkusen - Hertha 2:1
+	02.04.2016:
+		Bremen - Stuttgart 6:2
+
+Kolejka 33:
+	07.05.2016:
+		Stuttgart - Mainz 1:3
+		Schalke - Augsburg 1:1
+		Monchengladbach - Leverkusen 2:1
+		Ingolstadt - Bayern 1:2
+		Hertha - Darmstadt 1:2
+		Hannover - Hoffenheim 1:0
+		Hamburger - Wolfsburg 0:1
+		Frankfurt - Dortmund 1:0
+		Koeln - Bremen 0:0
+
+Kolejka 34:
+	14.05.2016:
+		Wolfsburg - Stuttgart 3:1
+		Mainz - Hertha 0:0
+		Leverkusen - Ingolstadt 3:2
+		Hoffenheim - Schalke 1:4
+		Dortmund - Koeln 2:2
+		Darmstadt - Monchengladbach 0:2
+		Bremen - Frankfurt 1:0
+		Bayern - Hannover 3:1
+		Augsburg - Hamburger 1:3

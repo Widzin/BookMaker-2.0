@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head lang="en">
+
+    <title>Bundesliga Bookmaker</title>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+    <div class="container">
+        <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+        <div class="row text-center">
+            <h2><span th:text="${club.name}"></span></h2>
+        </div>
+        <div>
+            <form class="form-horizontal">
+                <div class="col-lg-offset-1 col-lg-7">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Matches:</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static" th:text="${club.matches}">Matches</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Points:</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static" th:text="${club.points}">Points</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Bilans: (Win-Draw-Lost)</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static" th:text="${club.wins} + '-' + ${club.draws} + '-' + ${club.loses}">Bilans</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Goals:</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static" th:text="${club.bilans} + '  (' + ${club.scoredGoals} + ' - ' + ${club.lostGoals} + ')'">Goals</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Value: (mln €)</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static" th:text="${club.valueOfPlayers}">Value</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Players:</label>
+                        <div class="col-sm-8">
+                            <p class="form-control-static" th:text="${club.numberOfPlayers}">Players</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <div class="row text-center">
+                            <h3>Logo:</h3>
+                            <img th:src="${club.imgUrl}" width="200" alt="No logo available"/>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
