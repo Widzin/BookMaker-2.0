@@ -41,12 +41,28 @@ public class ClubServiceImpl implements ClubService{
 
 	@Override
 	public Iterable<Game> getLastFiveMatches (Club club) {
+		List<Game> lastFiveList = gteAllPlayedGames(club).subList(0, 5);
+		Iterable<Game> lastFive = lastFiveList;
+		return lastFive;
+	}
+
+	private List<Game> getAllGames(Club club) {
 		List<Game> allGames = clubRepository.findOne(club.getId()).getGamesAtHome();
 		allGames.addAll(clubRepository.findOne(club.getId()).getGamesAway());
 		Comparator<Game> byDate = (p, o) -> (-1)*p.getDate().compareTo(o.getDate());
 		allGames.sort(byDate);
-		List<Game> lastFiveList = allGames.subList(0, 5);
-		Iterable<Game> lastFive = lastFiveList;
-		return lastFive;
+		return allGames;
+	}
+
+	private List<Game> gteAllPlayedGames(Club club) {
+		List<Game> allGames = clubRepository.findOne(club.getId()).getGamesAtHome();
+		allGames.addAll(clubRepository.findOne(club.getId()).getGamesAway());
+		for (Game g: allGames){
+			if (!g.isPlayed())
+				allGames.remove(g);
+		}
+		Comparator<Game> byDate = (p, o) -> (-1)*p.getDate().compareTo(o.getDate());
+		allGames.sort(byDate);
+		return allGames;
 	}
 }

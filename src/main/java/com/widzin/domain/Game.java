@@ -22,14 +22,17 @@ public class Game {
 	private Integer homeScore;
 	private Integer awayScore;
 	private Date date;
+	private boolean played;
 
 	public Game () {
+		this.played = false;
 	}
 
 	public Game (Club home, Club away, Date date) {
 		this.home = home;
 		this.away = away;
 		this.date = date;
+		this.played = false;
 	}
 
 	public Game (Club home, Club away, Integer homeScore, Integer awayScore, Date date) {
@@ -38,6 +41,7 @@ public class Game {
 		this.homeScore = homeScore;
 		this.awayScore = awayScore;
 		this.date = date;
+		this.played = true;
 	}
 
 	public Integer getId () {
@@ -96,25 +100,21 @@ public class Game {
 		this.away = away;
 	}
 
+	public boolean isPlayed () {
+		return played;
+	}
+
+	public void setPlayed (boolean played) {
+		this.played = played;
+	}
+
 	public void setScore(int homeScore, int awayScore){
 		this.homeScore = homeScore;
 		this.awayScore = awayScore;
 	}
 
-	public void updateClubStats(){
-		if (homeScore > awayScore){
-			home.addWins();
-			away.addLoses();
-		} else if (homeScore < awayScore){
-			home.addLoses();
-			away.addWins();
-		} else {
-			home.addDraws();
-			away.addDraws();
-		}
-		home.addScoredGoals(homeScore);
-		home.addLostGoals(awayScore);
-		away.addScoredGoals(awayScore);
-		away.addLostGoals(homeScore);
+	@Override
+	public String toString() {
+		return home.getName() + " - " + away.getName() + " " + homeScore + ":" + awayScore;
 	}
 }

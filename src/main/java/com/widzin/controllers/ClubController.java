@@ -32,10 +32,8 @@ public class ClubController {
 
 	@RequestMapping("/club/show/{id}")
 	public String showClub(@PathVariable Integer id, Model model) {
-		Club club = clubService.getClubById(id);
-		club.setNumberOfGames();
-		model.addAttribute("club", club);
-		model.addAttribute("games", clubService.getLastFiveMatches(club));
+		model.addAttribute("club", clubService.getClubById(id));
+		model.addAttribute("games", clubService.getLastFiveMatches(clubService.getClubById(id)));
 		return "clubshow";
 	}
 

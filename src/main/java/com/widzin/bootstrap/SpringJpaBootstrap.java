@@ -119,6 +119,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 					int homeScore = Integer.parseInt(score[0]);
 					int awayScore = Integer.parseInt(score[1]);
 					Game match = new Game(home, away, homeScore, awayScore, date);
+
 					gameRepository.save(match);
 					log.info("Saved match nr. " + match.getId());
 					updateClubs(match);
