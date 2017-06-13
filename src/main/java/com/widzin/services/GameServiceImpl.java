@@ -2,6 +2,7 @@ package com.widzin.services;
 
 import com.widzin.domain.Club;
 import com.widzin.domain.Game;
+import com.widzin.repositories.ClubRepository;
 import com.widzin.repositories.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

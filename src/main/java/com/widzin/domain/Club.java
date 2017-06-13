@@ -207,4 +207,10 @@ public class Club {
 		setPoints();
 		setBilans();
 	}
+
+	public void updateStats() {
+		setMatches();
+		setPoints();
+		setBilans();
+	}
 }

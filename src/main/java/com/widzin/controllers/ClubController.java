@@ -26,7 +26,7 @@ public class ClubController {
 
 	@RequestMapping(value = "/clubs", method = RequestMethod.GET)
 	public String list(Model model){
-		model.addAttribute("clubs", doNotSort(clubService));
+		model.addAttribute("clubs", getForTableAllSeasons(clubService));
 		return "clubs";
 	}
 
@@ -61,21 +61,14 @@ public class ClubController {
 		return "redirect:/clubs";
 	}
 
-	private Iterable<Club> doNotSort(ClubService clubService) {
-		Iterable<Club> newIterable = getListOfCurrentClubs(clubService);
-		return newIterable;
+	@RequestMapping("/table")
+	public String showTable(Model model){
+		model.addAttribute("clubs", getForTableThisSeason(clubService));
+		return "table";
 	}
 
-	private Iterable<Club> sortForTable(ClubService clubService) {
-		List<Club> list = getListOfCurrentClubs(clubService);
-
-		Comparator<Club> c = (p, o) -> (-1)*p.getPoints().compareTo(o.getPoints());
-		c = c.thenComparing((p, o) -> (-1)*p.getBilans().compareTo(o.getBilans()));
-		c = c.thenComparing((p, o) -> (-1)*p.getScoredGoals().compareTo(o.getScoredGoals()));
-		c = c.thenComparing((p, o) -> (-1)*p.getWins().compareTo(o.getWins()));
-
-		list.sort(c);
-		Iterable<Club> newIterable = list;
+	private Iterable<Club> getForTableThisSeason(ClubService clubService) {
+		Iterable<Club> newIterable = sortListForTable(getListOfCurrentClubs(clubService));
 		return newIterable;
 	}
 
@@ -87,6 +80,27 @@ public class ClubController {
 			if (club.isBundesliga())
 				list.add(club);
 		}
+		return list;
+	}
+
+	private Iterable<Club> getForTableAllSeasons(ClubService clubService) {
+		Iterable<Club> iterable = clubService.listAllClubs();
+		List<Club> list = new ArrayList<>();
+		for (Club club: iterable) {
+			list.add(club);
+		}
+		list = sortListForTable(list);
+		Iterable<Club> newIterable = list;
+		return newIterable;
+	}
+
+	private List<Club> sortListForTable(List<Club> list) {
+		Comparator<Club> c = (p, o) -> (-1)*p.getPoints().compareTo(o.getPoints());
+		c = c.thenComparing((p, o) -> (-1)*p.getBilans().compareTo(o.getBilans()));
+		c = c.thenComparing((p, o) -> (-1)*p.getScoredGoals().compareTo(o.getScoredGoals()));
+		c = c.thenComparing((p, o) -> (-1)*p.getWins().compareTo(o.getWins()));
+
+		list.sort(c);
 		return list;
 	}
 }
