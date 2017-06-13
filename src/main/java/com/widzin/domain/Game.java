@@ -8,18 +8,16 @@ import java.util.Set;
 public class Game {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	Integer id;
+	private Integer id;
 
 	@Version
 	private Integer version;
 
-	//@ManyToMany(mappedBy = "games")
-	//private Set<Club> clubs;
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Club home;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	private Club away_tempdasdhgasdhgjsad;
+	private Club away;
 
 	private Integer homeScore;
 	private Integer awayScore;
@@ -63,5 +61,21 @@ public class Game {
 
 	public void setDate (Date date) {
 		this.date = date;
+	}
+
+	public Club getHome () {
+		return home;
+	}
+
+	public void setHome (Club home) {
+		this.home = home;
+	}
+
+	public Club getAway () {
+		return away;
+	}
+
+	public void setAway (Club away) {
+		this.away = away;
 	}
 }

@@ -43,8 +43,8 @@ public class Club {
 		scoredGoals = 0;
 		lostGoals = 0;
 		bilans = 0;
-		gamesAsOwner = new ArrayList<Game>();
-		gamesAsGuest = new ArrayList<Game>();
+		gamesAsOwner = new ArrayList<>();
+		gamesAsGuest = new ArrayList<>();
 	}
 
 	public Integer getId () {
@@ -84,7 +84,7 @@ public class Club {
 	}
 
 	public void setPoints () {
-		points = 3*wins + 1*draws;
+		points = 3*wins + draws;
 	}
 
 	public Integer getMatches () {
@@ -163,5 +163,29 @@ public class Club {
 
 	public void setBundesliga (boolean bundesliga) {
 		this.bundesliga = bundesliga;
+	}
+
+	public List<Game> getGamesAsOwner () {
+		return gamesAsOwner;
+	}
+
+	public void addGameAsOwner(Game game){
+		gamesAsOwner.add(game);
+	}
+
+	public void setGamesAsOwner (List<Game> gamesAsOwner) {
+		this.gamesAsOwner = gamesAsOwner;
+	}
+
+	public List<Game> getGamesAsGuest () {
+		return gamesAsGuest;
+	}
+
+	public void addGameAsGuest(Game game){
+		gamesAsGuest.add(game);
+	}
+
+	public void setGamesAsGuest (List<Game> gamesAsGuest) {
+		this.gamesAsGuest = gamesAsGuest;
 	}
 }
