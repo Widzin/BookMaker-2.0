@@ -19,7 +19,7 @@ public class Game {
 	private Club home;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	private Club away;
+	private Club away_tempdasdhgasdhgjsad;
 
 	private Integer homeScore;
 	private Integer awayScore;
