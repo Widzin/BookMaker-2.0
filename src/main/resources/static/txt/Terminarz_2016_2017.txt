@@ -1,34 +1,467 @@
 Kolejka 1:
+	26.08.2016:
+		Bayern - Bremen 6:0
+	27.08.2016:
+		Hamburger - Ingolstadt 1:1
+		Frankfurt - Schalke 1:0
+		Koeln - Darmstadt 2:0
+		Dortmund - Mainz 2:1
+		Augsburg - Wolfsburg 0:2
+		Monchengladbach - Leverkusen 2:1
+	28.08.2016:
+		Hertha - Freiburg 2:1
+		Hoffenheim - Lipsk 2:2
+		
 Kolejka 2:
+	09.09.2016:
+		Schalke - Bayern 0:2
+	10.09.2016:
+		Wolfsburg - Koeln 0:0
+		Leverkusen - Hamburger 3:1
+		Ingolstadt - Hertha 0:2
+		Freiburg - Monchengladbach 3:1
+		Darmstadt - Frankfurt 1:0
+		Lipsk - Dortmund 1:0
+	11.09.2016:
+		Bremen - Augsburg 1:2
+		Mainz - Hoffenheim 4:4
+	
 Kolejka 3:
+	16.09.2016:
+		Koeln - Freiburg 3:0
+	17.09.2016:
+		Hoffenheim - Wolfsburg 0:0
+		Hamburger - Lipsk 0:4
+		Frankfurt - Leverkusen 2:1
+		Dortmund - Darmstadt 6:0
+		Bayern - Ingolstadt 3:1
+		Monchengladbach - Bremen 4:1
+	18.09.2016:
+		Augsburg - Mainz 1:3
+		Hertha - Schalke 2:0
+	
 Kolejka 4:
+	20.09.2016:
+		Wolfsburg - Dortmund 1:5
+		Ingolstadt - Frankfurt 0:2
+		Freiburg - Hamburger 1:0
+		Darmstadt - Hoffenheim 1:1
+	21.09.2016:
+		Schalke - Koeln 1:3
+		Lipsk - Monchengladbach 1:1
+		Leverkusen - Augsburg 0:0
+		Bremen - Mainz 1:2
+		Bayern - Hertha 3:0
+	
 Kolejka 5:
+	23.09.2016:
+		Dortmund - Freiburg 3:1
+	24.09.2016:
+		Monchengladbach - Ingolstadt 2:0
+		Mainz - Leverkusen 2:3
+		Hamburger - Bayern 0:1
+		Frankfurt - Hertha 3:3
+		Augsburg - Darmstadt 1:0
+		Bremen - Wolfsburg 2:1
+	25.09.2016:
+		Hoffenheim - Schalke 2:1
+		Koeln - Lipsk 1:1
+	
 Kolejka 6:
+	30.09.2016:
+		Lipsk - Augsburg 2:1
+	01.10.2016:
+		Ingolstadt - Hoffenheim 1:2
+		Hertha - Hamburger 2:0
+		Freiburg - Frankfurt 1:0
+		Darmstadt - Bremen 2:2
+		Bayern - Koeln 1:1
+		Leverkusen - Dortmund 2:0
+	02.10.2016:
+		Wolfsburg - Mainz 0:0
+		Schalke - Monchengladbach 4:0
+	
 Kolejka 7:
+	14.10.2016:
+		Dortmund - Hertha 1:1
+	15.10.2016:
+		Monchengladbach - Hamburger 0:0
+		Hoffenheim - Freiburg 2:1
+		Frankfurt - Bayern 2:2
+		Koeln - Ingolstadt 2:1
+		Augsburg - Schalke 1:1
+		Bremen - Leverkusen 2:1
+	16.10.2016:
+		Mainz - Darmstadt 2:1
+		Wolfsburg - Lipsk 0:1
+	
 Kolejka 8:
+	21.10.2016:
+		Hamburger - Frankfurt 0:3
+	22.10.2016:
+		Leverkusen - Hoffenheim 0:3
+		Ingolstadt - Dortmund 3:3
+		Hertha - Koeln 2:1
+		Freiburg - Augsburg 2:1
+		Darmstadt - Wolfsburg 3:1
+		Bayern - Monchengladbach 2:0
+	23.10.2016:
+		Lipsk - Bremen 3:1
+		Schalke - Mainz 3:0
+	
 Kolejka 9:
+	28.10.2016:
+		Monchengladbach - Frankfurt 0:0
+	29.10.2016:
+		Wolfsburg - Leverkusen 1:2
+		Mainz - Ingolstadt 2:0
+		Darmstadt - Lipsk 0:2
+		Bremen - Freiburg 1:3
+		Augsburg - Bayern 1:3
+		Dortmund - Schalke 0:0
+	30.10.2016:
+		Hoffenheim - Hertha 1:0
+		Koeln - Hamburger 3:0
+	
 Kolejka 10:
+	04.11.2016:
+		Hertha - Monchengladbach 3:0
+	05.11.2016:
+		Leverkusen - Darmstadt 3:2
+		Ingolstadt - Augsburg 0:2
+		Hamburger - Dortmund 2:5
+		Freiburg - Wolfsburg 0:3
+		Bayern - Hoffenheim 1:1
+		Frankfurt - Koeln 1:0
+	06.11.2016:
+		Lipsk - Mainz 3:1
+		Schalke - Bremen 3:1
+	
 Kolejka 11:
+	18.11.2016:
+		Leverkusen - Lipsk 2:3
+	19.11.2016:
+		Wolfsburg - Schalke 0:1
+		Monchengladbach - Koeln 1:2
+		Mainz - Freiburg 4:2
+		Darmstadt - Ingolstadt 0:1
+		Augsburg - Hertha 0:0
+		Dortmund - Bayern 1:0
+	20.11.2016:
+		Hoffenheim - Hamburger 2:2
+		Bremen - Frankfurt 1:2
+		
 Kolejka 12:
+	25.11.2016:
+		Freiburg - Lipsk 1:4
+	26.11.2016:
+		Monchengladbach - Hoffenheim 1:1
+		Ingolstadt - Wolfsburg 1:1
+		Hamburger - Bremen 2:2
+		Frankfurt - Dortmund 2:1
+		Koeln - Augsburg 0:0
+		Bayern - Leverkusen 2:1
+	27.11.2016:
+		Schalke - Darmstadt 3:1
+		Hertha - Mainz 2:1
+	
 Kolejka 13:
+	02.12.2016:
+		Mainz - Bayern 1:3
+	03.12.2016:
+		Wolfsburg - Hertha 2:3
+		Leverkusen - Freiburg 1:1
+		Hoffenheim - Koeln 4:0
+		Dortmund - Monchengladbach 4:1
+		Bremen - Ingolstadt 2:1
+		Lipsk - Schalke 2:1
+	04.12.2016:
+		Darmstadt - Hamburger 0:2
+		Augsburg - Frankfurt 1:1
+	
 Kolejka 14:
+	09.12.2016:
+		Frankfurt - Hoffenheim 0:0
+	10.12.2016:
+		Ingolstadt - Lipsk 1:0
+		Hamburger - Augsburg 1:0
+		Freiburg - Darmstadt 1:0
+		Koeln - Dortmund 1:1
+		Bayern - Wolfsburg 5:0
+		Hertha - Bremen 0:1
+	11.12.2016:
+		Monchengladbach - Mainz 1:0
+		Schalke - Leverkusen 0:1
+	
 Kolejka 15:
+	16.12.2016:
+		Hoffenheim - Dortmund 2:2
+	17.12.2016:
+		Schalke - Freiburg 1:1
+		Lipsk - Hertha 2:0
+		Mainz - Hamburger 3:1
+		Bremen - Koeln 1:1
+		Augsburg - Monchengladbach 1:0
+		Wolfsburg - Frankfurt 1:0
+	18.12.2016:
+		Darmstadt - Bayern 0:1
+		Leverkusen - Ingolstadt 1:2
+	
 Kolejka 16:
+	20.12.2016:
+		Monchengladbach - Wolfsburg 1:2
+		Hamburger - Schalke 2:1
+		Frankfurt - Mainz 3:0
+		Dortmund - Augsburg 1:1
+	21.12.2016:
+		Ingolstadt - Freiburg 1:2
+		Hoffenheim - Bremen 1:1
+		Hertha - Darmstadt 2:0
+		Koeln - Leverkusen 1:1
+		Bayern - Lipsk 3:0
+	
 Kolejka 17:
+	20.01.2017:
+		Freiburg - Bayern 1:2
+	21.01.2017:
+		Wolfsburg - Hamburger 1:0
+		Schalke - Ingolstadt 1:0
+		Darmstadt - Monchengladbach 0:0
+		Bremen - Dortmund 1:2
+		Augsburg - Hoffenheim 0:2
+		Lipsk - Frankfurt 3:0
+	22.01.2017:
+		Leverkusen - Hertha 3:1
+		Mainz - Koeln 0:0
+	
 Kolejka 18:
+	27.01.2017:
+		Schalke - Frankfurt 0:1
+	28.01.2017:
+		Wolfsburg - Augsburg 1:2
+		Lipsk - Hoffenheim 2:1
+		Ingolstadt - Hamburger 3:1
+		Darmstadt - Koeln 1:6
+		Bremen - Bayern 1:2
+		Leverkusen - Monchengladbach 2:3
+	29.01.2017:
+		Freiburg - Hertha 2:1
+		Mainz - Dortmund 1:1
+	
 Kolejka 19:
+	03.02.2017:
+		Hamburger - Leverkusen 1:0
+	04.02.2017:
+		Monchengladbach - Freiburg 3:0
+		Hoffenheim - Mainz 4:0
+		Hertha - Ingolstadt 1:0
+		Koeln - Wolfsburg 1:0
+		Bayern - Schalke 1:1
+		Dortmund - Lipsk 1:0
+	05.02.2017:
+		Augsburg - Bremen 3:2
+		Frankfurt - Darmstadt 2:0
+	
 Kolejka 20:
+	10.02.2017:
+		Mainz - Augsburg 2:0
+	11.02.2017:
+		Lipsk - Hamburger 0:3
+		Leverkusen - Frankfurt 3:0
+		Ingolstadt - Bayern 0:2
+		Darmstadt - Dortmund 2:1
+		Bremen - Monchengladbach 0:1
+		Schalke - Hertha 2:0
+	12.02.2017:
+		Wolfsburg - Hoffenheim 2:1
+		Freiburg - Koeln 2:1
+	
 Kolejka 21:
+	17.02.2017:
+		Augsburg - Leverkusen 1:3
+	18.02.2017:
+		Mainz - Bremen 0:2
+		Hoffenheim - Darmstadt 2:0
+		Hertha - Bayern 1:1
+		Frankfurt - Ingolstadt 0:2
+		Dortmund - Wolfsburg 3:0
+		Hamburger - Freiburg 2:2
+	19.02.2017:
+		Monchengladbach - Lipsk 1:2
+		Koeln - Schalke 1:1
+	
 Kolejka 22:
+	24.02.2017:
+		Wolfsburg - Bremen 1:2
+	25.02.2017:
+		Lipsk - Koeln 3:1
+		Leverkusen - Mainz 0:2
+		Freiburg - Dortmund 0:3
+		Darmstadt - Augsburg 1:2
+		Bayern - Hamburger 8:0
+		Hertha - Frankfurt 2:0
+	26.02.2017:
+		Ingolstadt - Monchengladbach 0:2
+		Schalke - Hoffenheim 1:1
+	
 Kolejka 23:
+	03.03.2017:
+		Augsburg - Lipsk 2:2
+	04.03.2017:
+		Mainz - Wolfsburg 1:1
+		Hoffenheim - Ingolstadt 5:2
+		Koeln - Bayern 0:3
+		Dortmund - Leverkusen 6:2
+		Bremen - Darmstadt 2:0
+		Monchengladbach - Schalke 4:2
+	05.03.2017:
+		Frankfurt - Freiburg 1:2
+		Hamburger - Hertha 1:0
+	
 Kolejka 24:
+	10.03.2017:
+		Leverkusen - Bremen 1:1
+	11.03.2017:
+		Lipsk - Wolfsburg 0:1
+		Hertha - Dortmund 2:1
+		Freiburg - Hoffenheim 1:1
+		Darmstadt - Mainz 2:1
+		Bayern - Frankfurt 3:0
+		Ingolstadt - Koeln 2:2
+	12.03.2017:
+		Schalke - Augsburg 3:0
+		Hamburger - Monchengladbach 2:1
+	
 Kolejka 25:
+	17.03.2017:
+		Dortmund - Ingolstadt 1:0
+	18.03.2017:
+		Wolfsburg - Darmstadt 1:0
+		Hoffenheim - Leverkusen 1:0
+		Koeln - Hertha 4:2
+		Bremen - Lipsk 3:0
+		Augsburg - Freiburg 1:1
+		Frankfurt - Hamburger 0:0
+	19.03.2017:
+		Mainz - Schalke 0:1
+		Monchengladbach - Bayern 0:1
+	
 Kolejka 26:
+	31.03.2017:
+		Hertha - Hoffenheim 1:3
+	01.04.2017:
+		Schalke - Dortmund 1:1
+		Lipsk - Darmstadt 4:0
+		Hamburger - Koeln 2:1
+		Freiburg - Bremen 2:5
+		Bayern - Augsburg 6:0
+		Frankfurt - Monchengladbach 0:0
+	02.04.2017:
+		Ingolstadt - Mainz 2:1
+		Leverkusen - Wolfsburg 3:3
+	
 Kolejka 27:
+	04.04.2017:
+		Hoffenheim - Bayern 1:0
+		Koeln - Frankfurt 1:0
+		Dortmund - Hamburger 3:0
+		Bremen - Schalke 3:0
+	05.04.2017:
+		Wolfsburg - Freiburg 0:1
+		Monchengladbach - Hertha 1:0
+		Mainz - Lipsk 2:3
+		Darmstadt - Leverkusen 0:2
+		Augsburg - Ingolstadt 2:3
+	
 Kolejka 28:
+	07.04.2017:
+		Frankfurt - Bremen 2:2
+	08.04.2017:
+		Schalke - Wolfsburg 4:1
+		Lipsk - Leverkusen 1:0
+		Hamburger - Hoffenheim 2:1
+		Freiburg - Mainz 1:0
+		Koeln - Monchengladbach 2:3
+		Bayern - Dortmund 4:1
+	09.04.2017:
+		Hertha - Augsburg 2:0
+		Ingolstadt - Darmstadt 3:2
+	
 Kolejka 29:
+	15.04.2017:
+		Wolfsburg - Ingolstadt 3:0
+		Lipsk - Freiburg 4:0
+		Mainz - Hertha 1:0
+		Hoffenheim - Monchengladbach 5:3
+		Dortmund - Frankfurt 3:1
+		Augsburg - Koeln 2:1
+		Leverkusen - Bayern 0:0
+	16.04.2017:
+		Bremen - Hamburger 2:1
+		Darmstadt - Schalke 2:1
+	
 Kolejka 30:
+	21.04.2017:
+		Koeln - Hoffenheim 1:1
+	22.04.2017:
+		Ingolstadt - Bremen 2:4
+		Hertha - Wolfsburg 1:0
+		Hamburger - Darmstadt 1:2
+		Frankfurt - Augsburg 3:1
+		Bayern - Mainz 2:2
+		Monchengladbach - Dortmund 2:3
+	23.04.2017:
+		Freiburg - Leverkusen 2:1
+		Schalke - Lipsk 1:1
+	
 Kolejka 31:
+	28.04.2017:
+		Leverkusen - Schalke 1:4
+	29.04.2017:
+		Lipsk - Ingolstadt 0:0
+		Mainz - Monchengladbach 1:2
+		Dortmund - Koeln 0:0
+		Darmstadt - Freiburg 3:0
+		Bremen - Hertha 2:0
+		Wolfsburg - Bayern 0:6
+	30.04.2017:
+		Augsburg - Hamburger 4:0
+		Hoffenheim - Frankfurt 1:0
+	
 Kolejka 32:
+	05.05.2017:
+		Koeln - Bremen 4:3
+	06.05.2017:
+		Monchengladbach - Augsburg 1:1
+		Ingolstadt - Leverkusen 1:1
+		Frankfurt - Wolfsburg 0:2
+		Dortmund - Hoffenheim 2:1
+		Bayern - Darmstadt 1:0
+		Hertha - Lipsk 1:4
+	07.05.2017:
+		Hamburger - Mainz 0:0
+		Freiburg - Schalke 2:0
+	
 Kolejka 33:
+	13.05.2017:
+		Wolfsburg - Monchengladbach 1:1
+		Schalke - Hamburger 1:1
+		Lipsk - Bayern 4:5
+		Mainz - Frankfurt 4:2
+		Leverkusen - Koeln 2:2
+		Freiburg - Ingolstadt 1:1
+		Darmstadt - Hertha 0:2
+		Bremen - Hoffenheim 3:5
+		Augsburg - Dortmund 1:1
+	
 Kolejka 34:
+	20.05.2017:
+		Monchengladbach - Darmstadt 2:2
+		Ingolstadt - Schalke 1:1
+		Hoffenheim - Augsburg 0:0
+		Hertha - Leverkusen 2:6
+		Hamburger - Wolfsburg 2:1
+		Frankfurt - Lipsk 2:2
+		Koeln - Mainz 2:0
+		Dortmund - Bremen 4:3
+		Bayern - Freiburg 4:1	

@@ -56,6 +56,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     public void onApplicationEvent(ContextRefreshedEvent event) {
         loadClubs();
 		loadMatches(2015, 2016);
+		loadMatches(2016, 2017);
         loadUsers();
         loadRoles();
         assignUsersToUserRole();
@@ -88,14 +89,14 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 				}
 				addMatchToJavaClass(newEnters);
 			}
-		} catch (IOException e) {
-			log.info("Cannot find file");
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			log.info("Cannot find file");
 		}
 	}
 
-	public void addMatchToJavaClass(String[] strings) {
+	private int iloscMeczow = 1;
+
+	private void addMatchToJavaClass(String[] strings) {
 		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 
@@ -126,7 +127,8 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 					match.setAwayScore(awayScore);
 					match.setDate(date);
 					gameRepository.save(match);
-					log.info("Saved match " + match.getHome().getName() + " - " + match.getAway().getName());
+					log.info("Saved match nr. " + iloscMeczow);
+					iloscMeczow++;
 					updateClubs(match);
 				}
 			}
