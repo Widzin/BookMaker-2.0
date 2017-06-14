@@ -8,9 +8,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class ClubServiceImpl implements ClubService{
@@ -118,20 +116,23 @@ public class ClubServiceImpl implements ClubService{
 	public Iterable<Game> getNextMatches (Club club) {
 		List<Game> allGames = clubRepository.findOne(club.getId()).getGamesAtHome();
 		allGames.addAll(clubRepository.findOne(club.getId()).getGamesAway());
-		List<Game> nextGames = new ArrayList<>();
+		Set<Game> nextGames = new HashSet<>();
 		for (Game g: allGames){
 			if (!g.isPlayed()) {
 				nextGames.add(g);
 			}
 		}
+
+		List<Game> nextGamesList = new ArrayList<>();
+		nextGamesList.addAll(nextGames);
 		Comparator<Game> byDate = (p, o) -> p.getDate().compareTo(o.getDate());
-		nextGames.sort(byDate);
+		nextGamesList.sort(byDate);
 		Iterable<Game> newIterable;
 		if (nextGames.size() > 3)
-			newIterable = nextGames.subList(0, 3);
+			newIterable = nextGamesList.subList(0, 3);
 		else
-			newIterable = nextGames;
-		log.info("Rozmiar tej tablicy: " + nextGames.size());
+			newIterable = nextGamesList;
+		log.info("Rozmiar tej tablicy: " + nextGamesList.size());
 		return newIterable;
 	}
 }
