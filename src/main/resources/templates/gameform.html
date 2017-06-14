@@ -15,22 +15,37 @@
             <form class="form-horizontal" th:object="${game}" th:action="@{/createGame}" method="POST">
                 <input type="hidden" th:field="*{id}"/>
                 <input type="hidden" th:field="*{version}"/>
-                <div class="col-sm-6 row text-center">
-                    <h3>Choose home club</h3>
-                    <select th:field="*{home}" name="home">
-                        <option th:each="club : ${clubs}"
-                                th:value="${club.id}" th:text="${club.name}">Home teams</option>
-                    </select>
+                <div class="col-sm-12">
+                    <div class="col-sm-6 row text-center">
+                        <h3>Choose home club</h3>
+                        <select th:field="*{home}" name="home">
+                            <option th:each="club : ${clubs}"
+                                    th:value="${club.id}" th:text="${club.name}">Home teams</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6 row text-center">
+                        <h3>Choose guest club</h3>
+                        <select th:field="*{away}" name="away">
+                            <option th:each="club : ${clubs}"
+                                    th:value="${club.id}" th:text="${club.name}">Guest teams</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="col-sm-6 row text-center">
-                    <h3>Choose guest club</h3>
-                    <select th:field="*{away}" name="away">
-                        <option th:each="club : ${clubs}"
-                                th:value="${club.id}" th:text="${club.name}">Guest teams</option>
-                    </select>
-                </div>
-                <div class="row text-center">
-                    <button type="submit" class="btn btn-default">Create Match</button>
+                <div class="col-sm-12">
+                    <div class="col-sm-6 row text-center">
+                        <h3>Write date</h3>
+                        <input type="text" th:field="*{date}" name = "date"/>
+                        <br />
+                        <br />
+                        <label>
+                            Please write date like this pattern: yyyy/mm/dd
+                        </label>
+                    </div>
+                    <div class="col-sm-6 row text-center">
+                        <br />
+                        <br />
+                        <button type="submit" class="btn btn-default">Create Match</button>
+                    </div>
                 </div>
             </form>
         </div>

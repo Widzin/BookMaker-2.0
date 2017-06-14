@@ -39,7 +39,7 @@ public class GameController {
 		if (game.getHome().getId() == game.getAway().getId()){
 			return "redirect:/game/new";
 		} else {
-			//gameService.saveMatch(game);
+			gameService.saveMatch(game);
 			return "redirect:/";
 		}
 	}

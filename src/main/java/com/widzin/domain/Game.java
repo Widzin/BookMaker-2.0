@@ -1,5 +1,7 @@
 package com.widzin.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
@@ -21,6 +23,7 @@ public class Game {
 
 	private Integer homeScore;
 	private Integer awayScore;
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private Date date;
 	private boolean played;
 
