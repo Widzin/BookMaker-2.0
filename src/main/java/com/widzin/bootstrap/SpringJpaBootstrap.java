@@ -328,7 +328,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 				c.addGameAway(match);
 			}
 		}
-		Club home = clubService.getClubById(match.getHome().getId());
+		/*Club home = clubService.getClubById(match.getHome().getId());
 		Club away = clubService.getClubById(match.getAway().getId());
 		if (match.getHomeScore() > match.getAwayScore()){
 			home.addWins();
@@ -347,7 +347,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 		home.updateStats();
 		away.updateStats();
 		clubService.saveClub(home);
-		clubService.saveClub(away);
+		clubService.saveClub(away);*/
     }
 
     private void loadUsers() {
