@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head lang="en">
 
-    <title>Bundesliga Bookmaker</title>
+    <title><span th:text="${club.name}"> details</span></title>
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
@@ -10,7 +10,7 @@
         <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
         <div class="row text-center">
             <h2><span th:text="${club.name}"></span></h2>
-            <h4>(from 2015/2016 season)</h4>
+            <h4>(for 2017/2018 season)</h4>
         </div>
         <div>
             <form class="form-horizontal">

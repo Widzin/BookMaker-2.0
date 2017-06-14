@@ -2,10 +2,8 @@ package com.widzin.bootstrap;
 
 import com.widzin.domain.Game;
 import com.widzin.domain.Role;
-import com.widzin.repositories.ClubRepository;
 import com.widzin.domain.Club;
 import com.widzin.domain.User;
-import com.widzin.repositories.GameRepository;
 import com.widzin.services.ClubService;
 import com.widzin.services.GameService;
 import com.widzin.services.RoleService;
@@ -17,7 +15,6 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -56,13 +53,13 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        loadClubs();
+        /*loadClubs();
 		loadMatches(2015, 2016);
 		loadMatches(2016, 2017);
         loadUsers();
         loadRoles();
         assignUsersToUserRole();
-        assignUsersToAdminRole();
+        assignUsersToAdminRole();*/
     }
 
 	private void loadClubs(){

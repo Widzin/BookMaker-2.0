@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head lang="en">
+
+    <title>Bundesliga Bookmaker</title>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+    <div class="container">
+        <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+        <div class="row text-center">
+            <h2>Match Details</h2>
+        </div>
+        <div class="form-group">
+            <form class="form-horizontal" th:object="${game}" th:action="@{/createGame}" method="POST">
+                <input type="hidden" th:field="*{id}"/>
+                <input type="hidden" th:field="*{version}"/>
+                <div class="col-sm-6 row text-center">
+                    <h3>Choose home club</h3>
+                    <select th:field="*{home}" name="home">
+                        <option th:each="club : ${clubs}"
+                                th:value="${club.id}" th:text="${club.name}">Home teams</option>
+                    </select>
+                </div>
+                <div class="col-sm-6 row text-center">
+                    <h3>Choose guest club</h3>
+                    <select th:field="*{away}" name="away">
+                        <option th:each="club : ${clubs}"
+                                th:value="${club.id}" th:text="${club.name}">Guest teams</option>
+                    </select>
+                </div>
+                <div class="row text-center">
+                    <button type="submit" class="btn btn-default">Create Match</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

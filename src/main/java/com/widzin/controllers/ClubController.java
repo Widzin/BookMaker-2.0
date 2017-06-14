@@ -26,7 +26,7 @@ public class ClubController {
 
 	@RequestMapping(value = "/clubs", method = RequestMethod.GET)
 	public String list(Model model){
-		model.addAttribute("clubs", getForTableAllSeasons(clubService));
+		model.addAttribute("clubs", clubService.getForTableAllSeasons());
 		return "clubs";
 	}
 
@@ -63,10 +63,10 @@ public class ClubController {
 
 	@RequestMapping("/table")
 	public String showTable(Model model){
-		model.addAttribute("clubs", getForTableThisSeason(clubService));
+		model.addAttribute("clubs", clubService.getForTableThisSeason());
 		return "table";
 	}
-
+/*
 	private Iterable<Club> getForTableThisSeason(ClubService clubService) {
 		Iterable<Club> newIterable = sortListForTable(getListOfCurrentClubs(clubService));
 		return newIterable;
@@ -102,5 +102,5 @@ public class ClubController {
 
 		list.sort(c);
 		return list;
-	}
+	}*/
 }
