@@ -1,7 +1,6 @@
 package com.widzin.controllers;
 
 import com.widzin.domain.Club;
-import com.widzin.domain.Game;
 import com.widzin.services.ClubService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,10 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
 
 @Controller
 public class ClubController {
@@ -33,7 +28,8 @@ public class ClubController {
 	@RequestMapping("/club/show/{id}")
 	public String showClub(@PathVariable Integer id, Model model) {
 		model.addAttribute("club", clubService.getClubById(id));
-		model.addAttribute("games", clubService.getLastFiveMatches(clubService.getClubById(id)));
+		model.addAttribute("lastGames", clubService.getLastFiveMatches(clubService.getClubById(id)));
+		model.addAttribute("nextGames", clubService.getNextMatches(clubService.getClubById(id)));
 		return "clubshow";
 	}
 
@@ -66,41 +62,4 @@ public class ClubController {
 		model.addAttribute("clubs", clubService.getForTableThisSeason());
 		return "table";
 	}
-/*
-	private Iterable<Club> getForTableThisSeason(ClubService clubService) {
-		Iterable<Club> newIterable = sortListForTable(getListOfCurrentClubs(clubService));
-		return newIterable;
-	}
-
-	private List<Club> getListOfCurrentClubs(ClubService clubService){
-		Iterable<Club> iterable = clubService.listAllClubs();
-		List<Club> list = new ArrayList<>();
-
-		for (Club club: iterable) {
-			if (club.isBundesliga())
-				list.add(club);
-		}
-		return list;
-	}
-
-	private Iterable<Club> getForTableAllSeasons(ClubService clubService) {
-		Iterable<Club> iterable = clubService.listAllClubs();
-		List<Club> list = new ArrayList<>();
-		for (Club club: iterable) {
-			list.add(club);
-		}
-		list = sortListForTable(list);
-		Iterable<Club> newIterable = list;
-		return newIterable;
-	}
-
-	private List<Club> sortListForTable(List<Club> list) {
-		Comparator<Club> c = (p, o) -> (-1)*p.getPoints().compareTo(o.getPoints());
-		c = c.thenComparing((p, o) -> (-1)*p.getBilans().compareTo(o.getBilans()));
-		c = c.thenComparing((p, o) -> (-1)*p.getScoredGoals().compareTo(o.getScoredGoals()));
-		c = c.thenComparing((p, o) -> (-1)*p.getWins().compareTo(o.getWins()));
-
-		list.sort(c);
-		return list;
-	}*/
 }

@@ -17,4 +17,5 @@ public interface ClubService {
 	List<Club> getListOfCurrentClubs();
 	Iterable<Club> getForTableAllSeasons();
 	List<Club> sortListForTable(List<Club> list);
+	Iterable<Game> getNextMatches (Club club);
 }

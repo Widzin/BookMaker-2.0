@@ -4,6 +4,7 @@ import com.widzin.domain.Game;
 import com.widzin.repositories.ClubRepository;
 import com.widzin.domain.Club;
 import com.widzin.repositories.GameRepository;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -60,13 +61,14 @@ public class ClubServiceImpl implements ClubService{
 	public List<Game> getAllPlayedGames (Club club) {
 		List<Game> allGames = clubRepository.findOne(club.getId()).getGamesAtHome();
 		allGames.addAll(clubRepository.findOne(club.getId()).getGamesAway());
+		List<Game> list = new ArrayList<>();
 		for (Game g: allGames){
-			if (!g.isPlayed())
-				allGames.remove(g);
+			if (g.isPlayed())
+				list.add(g);
 		}
 		Comparator<Game> byDate = (p, o) -> (-1)*p.getDate().compareTo(o.getDate());
-		allGames.sort(byDate);
-		return allGames;
+		list.sort(byDate);
+		return list;
 	}
 
 	@Override
@@ -108,5 +110,28 @@ public class ClubServiceImpl implements ClubService{
 
 		list.sort(c);
 		return list;
+	}
+
+	private Logger log = Logger.getLogger(ClubServiceImpl.class);
+
+	@Override
+	public Iterable<Game> getNextMatches (Club club) {
+		List<Game> allGames = clubRepository.findOne(club.getId()).getGamesAtHome();
+		allGames.addAll(clubRepository.findOne(club.getId()).getGamesAway());
+		List<Game> nextGames = new ArrayList<>();
+		for (Game g: allGames){
+			if (!g.isPlayed()) {
+				nextGames.add(g);
+			}
+		}
+		Comparator<Game> byDate = (p, o) -> p.getDate().compareTo(o.getDate());
+		nextGames.sort(byDate);
+		Iterable<Game> newIterable;
+		if (nextGames.size() > 3)
+			newIterable = nextGames.subList(0, 3);
+		else
+			newIterable = nextGames;
+		log.info("Rozmiar tej tablicy: " + nextGames.size());
+		return newIterable;
 	}
 }

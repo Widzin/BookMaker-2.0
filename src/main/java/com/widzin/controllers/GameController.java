@@ -40,6 +40,12 @@ public class GameController {
 			return "redirect:/game/new";
 		} else {
 			gameService.saveMatch(game);
+			Club home = clubService.getClubById(game.getHome().getId());
+			Club away = clubService.getClubById(game.getAway().getId());
+			home.addGameAtHome(game);
+			away.addGameAway(game);
+			clubService.saveClub(home);
+			clubService.saveClub(away);
 			return "redirect:/";
 		}
 	}

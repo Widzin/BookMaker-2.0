@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head lang="en">
 
-    <title><span th:text="${club.name}"> details</span></title>
+    <title>Club details</title>
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
@@ -71,7 +71,26 @@
             </form>
             <br />
             <br />
-            <div class="col-lg-12" th:if="${not #lists.isEmpty(games)}">
+            <div class="col-lg-12" th:if="${not #lists.isEmpty(nextGames)}">
+                <div class="row text-center">
+                    <h3>Next matches</h3>
+                </div>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Date</th>
+                        <th>Home club</th>
+                        <th>Away club</th>
+                    </tr>
+                    <tr th:each="game : ${nextGames}">
+                        <td th:text="${#dates.format(game.date, 'dd-MM-yyyy')}">Date</td>
+                        <td th:text="${game.home.name}">Home club</td>
+                        <td th:text="${game.away.name}">Away club</td>
+                    </tr>
+                </table>
+            </div>
+            <br />
+            <br />
+            <div class="col-lg-12" th:if="${not #lists.isEmpty(lastGames)}">
                 <div class="row text-center">
                     <h3>Last five matches</h3>
                 </div>
@@ -82,7 +101,7 @@
                         <th>Away club</th>
                         <th>Score</th>
                     </tr>
-                    <tr th:each="game : ${games}">
+                    <tr th:each="game : ${lastGames}">
                         <td th:text="${#dates.format(game.date, 'dd-MM-yyyy')}">Date</td>
                         <td th:text="${game.home.name}">Home club</td>
                         <td th:text="${game.away.name}">Away club</td>
