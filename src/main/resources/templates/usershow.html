@@ -8,6 +8,9 @@
 <body>
     <div class="container">
         <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+        <div th:if="${param.wrongInput}" class="row text-center">
+            <label style="color:red">Cannot add that amount of money.</label>
+        </div>
         <div class="row text-center">
             <h2><span th:text="${user.username}"></span></h2>
         </div>

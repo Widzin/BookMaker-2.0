@@ -55,11 +55,11 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     public void onApplicationEvent(ContextRefreshedEvent event) {
         /*loadClubs();
 		loadMatches(2015, 2016);
-		loadMatches(2016, 2017);
+		loadMatches(2016, 2017);*/
         loadUsers();
         loadRoles();
         assignUsersToUserRole();
-        assignUsersToAdminRole();*/
+        assignUsersToAdminRole();
     }
 
 	private void loadClubs(){

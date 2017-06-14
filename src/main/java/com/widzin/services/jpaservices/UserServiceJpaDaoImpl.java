@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.Optional;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -66,19 +68,9 @@ public class UserServiceJpaDaoImpl extends AbstractJpaDaoService implements User
     }
 
     @Override
-    public User findByUsername(String userName) {
+    public Optional<User> findByUsername(String userName) {
         EntityManager em = emf.createEntityManager();
 
-        return em.createQuery("from User where userName = :userName", User.class).setParameter("userName", userName).getSingleResult();
+        return Optional.of(em.createQuery("from User where userName = :userName", User.class).setParameter("userName", userName).setMaxResults(1).getSingleResult());
     }
-/*
-    @Override
-	public User saveUser (User user) {
-    	EntityManager em = emf.createEntityManager();
-
-    	em.getTransaction().begin();
-		em.merge(u)
-    	em.getTransaction().commit();
-
-	}*/
 }

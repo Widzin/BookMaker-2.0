@@ -8,9 +8,12 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
+import java.text.ParseException;
 
 @Controller
 public class UserController {
@@ -47,12 +50,19 @@ public class UserController {
 		return "register";
 	}
 
-	@RequestMapping(value = "/newUser", method = RequestMethod.POST)
-	public String saveUser(User user){
-		user.addRole(roleService.getById(2));
-		user.setMainRole(roleService.getById(2).getRole());
-		userService.saveOrUpdate(user);
-		return "redirect:/";
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public ModelAndView saveUser(User user, BindingResult result){
+		ModelAndView model = new ModelAndView("register");
+		if (userService.findByUsername(user.getUsername()).isPresent()){
+			result.rejectValue("username", "error");
+			model.addObject("user", user);
+			return model;
+		} else {
+			user.addRole(roleService.getById(2));
+			user.setMainRole(roleService.getById(2).getRole());
+			userService.saveOrUpdate(user);
+			return new ModelAndView("redirect:/");
+		}
 	}
 
 	@RequestMapping("/user/show/{id}")
@@ -63,7 +73,7 @@ public class UserController {
 
 	@RequestMapping("/profile")
 	public String showProfile(Principal principal, Model model) {
-		model.addAttribute("user", userService.findByUsername(principal.getName()));
+		model.addAttribute("user", userService.findByUsername(principal.getName()).get());
 		return "usershow";
 	}
 
@@ -86,11 +96,19 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/insertMoney/{id}", method = RequestMethod.POST)
-	public String insertMoney(@RequestParam("insert") double money, @PathVariable Integer id){
-		User user = userService.getById(id);
-		user.setInsertedMoney(money);
-		user.setMoneyNow(money);
-		userService.saveOrUpdate(user);
-		return "redirect:/profile";
+	public ModelAndView insertMoney(@RequestParam("insert") String text, @PathVariable Integer id){
+		ModelAndView model = new ModelAndView("redirect:/profile");
+		try {
+			double money = Double.parseDouble(text);
+			if (money > 0) {
+				User user = userService.getById(id);
+				user.setInsertedMoney(money);
+				user.setMoneyNow(money);
+				userService.saveOrUpdate(user);
+			}
+		} catch (NumberFormatException e) {	}
+		finally {
+			return model;
+		}
 	}
 }

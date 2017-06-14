@@ -8,11 +8,14 @@
 <body>
     <div class="container">
         <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+        <div th:if="${param.username}" class="row text-center">
+            <label style="color:red">That name is already taken. Please choose another one.</label>
+        </div>
         <div class="row text-center">
             <h2>Register</h2>
         </div>
         <div class="row text-center">
-            <form class="form-horizontal" th:object="${user}" th:action="@{/newUser}" method="POST">
+            <form class="form-horizontal" th:object="${user}" th:action="@{/register}" method="POST">
                 <table class="table table-striped">
                     <tr>
                         <td><label> User Name : <input type="text" name="username"/> </label></td>
