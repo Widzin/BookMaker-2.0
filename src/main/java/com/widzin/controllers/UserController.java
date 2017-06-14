@@ -106,8 +106,7 @@ public class UserController {
 				user.setMoneyNow(money);
 				userService.saveOrUpdate(user);
 			}
-		} catch (NumberFormatException e) {	}
-		finally {
+		} finally {
 			return model;
 		}
 	}

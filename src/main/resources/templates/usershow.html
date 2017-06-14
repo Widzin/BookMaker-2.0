@@ -25,35 +25,29 @@
                     </div>
                 </div>
                 <div class="form-group" th:if="${user.mainRole != 'ADMIN'}">
-                    <label class="col-sm-6 control-label">Money on Account:</label>
-                    <div class="col-sm-6">
-                        <p class="form-control-static" th:text="${user.moneyNow}">Now</p>
+                    <label class="col-sm-2 control-label">Money on Account:</label>
+                    <div class="col-sm-1">
+                        <p class="form-control-static" th:text="${user.moneyNow} + ' €'">Now</p>
+                    </div>
+                    <label class="col-sm-2 control-label">Won Money:</label>
+                    <div class="col-sm-1">
+                        <p class="form-control-static" th:text="${user.winMoney} + ' €'">Won</p>
+                    </div>
+                    <label class="col-sm-2 control-label">Lost Money:</label>
+                    <div class="col-sm-1">
+                        <p class="form-control-static" th:text="${user.lostMoney} + ' €'">Lost</p>
+                    </div>
+                    <label class="col-sm-2 control-label">Inserted Money:</label>
+                    <div class="col-sm-1">
+                        <p class="form-control-static" th:text="${user.insertedMoney} + ' €'">Inserted</p>
                     </div>
                 </div>
                 <div class="form-group" th:if="${user.mainRole != 'ADMIN'}">
-                    <label class="col-sm-6 control-label">Won Money:</label>
-                    <div class="col-sm-6">
-                        <p class="form-control-static" th:text="${user.winMoney}">Won</p>
-                    </div>
-                </div>
-                <div class="form-group" th:if="${user.mainRole != 'ADMIN'}">
-                    <label class="col-sm-6 control-label">Lost Money:</label>
-                    <div class="col-sm-6">
-                        <p class="form-control-static" th:text="${user.lostMoney}">Lost</p>
-                    </div>
-                </div>
-                <div class="form-group" th:if="${user.mainRole != 'ADMIN'}">
-                    <label class="col-sm-6 control-label">Inserted Money:</label>
-                    <div class="col-sm-6">
-                        <p class="form-control-static" th:text="${user.insertedMoney}">Inserted</p>
-                    </div>
-                </div>
-                <div class="form-group" th:if="${user.mainRole != 'ADMIN'}">
-                    <label class="col-sm-6 control-label">How Much Insert:</label>
-                    <div class="col-sm-3">
+                    <label class="col-sm-2 control-label">How Much Insert (in €):</label>
+                    <div class="col-sm-2">
                         <input type="text" name="insert"/>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-8">
                         <button type="submit" class="btn btn-default">Insert</button>
                     </div>
                 </div>
