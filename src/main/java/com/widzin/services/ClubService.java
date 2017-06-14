@@ -11,7 +11,7 @@ public interface ClubService {
 	Club saveClub(Club club);
 	void deleteClub(Integer id);
 	Iterable<Game> getLastFiveMatches(Club club);
-	List<Game> getAllGames(Club club);
+	Iterable<Game> getAllGames(Club club);
 	List<Game> getAllPlayedGames(Club club);
 	Iterable<Club> getForTableThisSeason();
 	List<Club> getListOfCurrentClubs();

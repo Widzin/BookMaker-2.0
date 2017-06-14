@@ -1,10 +1,8 @@
 package com.widzin.controllers;
 
-import com.widzin.bootstrap.SpringJpaBootstrap;
 import com.widzin.domain.User;
 import com.widzin.services.RoleService;
 import com.widzin.services.UserService;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,12 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
-import java.text.ParseException;
 
 @Controller
 public class UserController {
-
-	Logger log = Logger.getLogger(SpringJpaBootstrap.class);
 
 	private UserService userService;
 	private RoleService roleService;
@@ -61,7 +56,7 @@ public class UserController {
 			user.addRole(roleService.getById(2));
 			user.setMainRole(roleService.getById(2).getRole());
 			userService.saveOrUpdate(user);
-			return new ModelAndView("redirect:/");
+			return new ModelAndView("redirect:/login");
 		}
 	}
 

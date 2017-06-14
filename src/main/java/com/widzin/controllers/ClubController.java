@@ -62,4 +62,11 @@ public class ClubController {
 		model.addAttribute("clubs", clubService.getForTableThisSeason());
 		return "table";
 	}
+
+	@RequestMapping(value = "/historyOfClub/{id}", method = RequestMethod.POST)
+	public String showHistory(@PathVariable Integer id, Model model){
+		model.addAttribute("club", clubService.getClubById(id));
+		model.addAttribute("allPastGames", clubService.getAllGames(clubService.getClubById(id)));
+		return "history";
+	}
 }

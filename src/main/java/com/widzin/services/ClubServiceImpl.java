@@ -47,11 +47,12 @@ public class ClubServiceImpl implements ClubService{
 	}
 
 	@Override
-	public List<Game> getAllGames (Club club) {
-		List<Game> allGames = clubRepository.findOne(club.getId()).getGamesAtHome();
-		allGames.addAll(clubRepository.findOne(club.getId()).getGamesAway());
+	public Iterable<Game> getAllGames (Club club) {
+		List<Game> list = clubRepository.findOne(club.getId()).getGamesAtHome();
+		list.addAll(clubRepository.findOne(club.getId()).getGamesAway());
 		Comparator<Game> byDate = (p, o) -> (-1)*p.getDate().compareTo(o.getDate());
-		allGames.sort(byDate);
+		list.sort(byDate);
+		Iterable<Game> allGames = list;
 		return allGames;
 	}
 
@@ -132,7 +133,6 @@ public class ClubServiceImpl implements ClubService{
 			newIterable = nextGamesList.subList(0, 3);
 		else
 			newIterable = nextGamesList;
-		log.info("Rozmiar tej tablicy: " + nextGamesList.size());
 		return newIterable;
 	}
 }
