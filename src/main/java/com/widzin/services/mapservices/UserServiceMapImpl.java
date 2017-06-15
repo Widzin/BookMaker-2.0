@@ -66,9 +66,4 @@ public class UserServiceMapImpl extends AbstractMapService implements UserServic
 
         return returnUser;
     }
-
-	@Override
-	public Page<User> findAllPageable (Pageable pageable) {
-		return null;
-	}
 }

@@ -12,51 +12,38 @@
             <div class="row text-center">
                 <h2>Users Listing</h2>
             </div>
-            <table class="table table-striped">
-                <tr>
-                    <th>Id</th>
-                    <th>NickName</th>
-                    <th>Money</th>
-                    <th>Role</th>
-                    <th>View</th>
-                    <th>Delete</th>
-                </tr>
-                <tr th:each="user : ${users}">
-                    <td th:text="${user.id}"><a href="/user/@{user.id}">Id</a></td>
-                    <td th:text="${user.username}">Nickname</td>
-                    <td sec:authorize="hasAuthority('ADMIN')" th:text="${user.moneyNow}">Money</td>
-                    <td th:text="${user.mainRole}">Role</td>
-                    <td>
-                        <a th:href="${'/user/show/' + user.id}">View</a>
-                    </td>
-                    <td sec:authorize="hasAuthority('ADMIN')">
-                        <a th:href="${'/user/delete/' + user.id}">Delete</a>
-                    </td>
-                </tr>
+            <table id="myTable" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>NickName</th>
+                        <th>Money</th>
+                        <th>Role</th>
+                        <th>View</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.id}"><a href="/user/@{user.id}">Id</a></td>
+                        <td th:text="${user.username}">Nickname</td>
+                        <td sec:authorize="hasAuthority('ADMIN')" th:text="${user.moneyNow}">Money</td>
+                        <td th:text="${user.mainRole}">Role</td>
+                        <td>
+                            <a th:href="${'/user/show/' + user.id}">View</a>
+                        </td>
+                        <td sec:authorize="hasAuthority('ADMIN')">
+                            <a th:href="${'/user/delete/' + user.id}">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
-            <div class="row">
-                <div th:if="users.totalPages != 1" class="form-group col-md-11 pagination-centered">
-                    <ul class="pagination">
-                        <li th:class="${users.number == 0} ? disabled">
-                            <a class="pageLink" th:href="@{/users(pageSize=${selectedPageSize}, page=1)}">&laquo;</a>
-                        </li>
-                        <li th:class="${users.number == 0} ? disabled">
-                            <a class="pageLink" th:href="@{/users(pageSize=${selectedPageSize}, page=${users.number})}">&larr;</a>
-                        </li>
-                        <li th:class="${users.number == (page - 1)} ? 'active pointer-disabled'"
-                            th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
-                            <a class="pageLink" th:href="@{/users(pageSize=${selectedPageSize}, page=${page})}" th:text="${page}"></a>
-                        </li>
-                        <li th:class="${users.number + 1 == users.totalPages} ? disabled">
-                            <a class="pageLink" th:href="@{/users(pageSize=${selectedPageSize}, page=${users.number + 2})}">&rarr;</a>
-                        </li>
-                        <li th:class="${users.number + 1 == users.totalPages} ? disabled">
-                            <a class="pageLink" th:href="@{/users(pageSize=${selectedPageSize}, page=${users.totalPages})}">&raquo;</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
         </div>
     </div>
 </body>
+<script>
+    $(document).ready(function(){
+        $('#myTable').dataTable();
+    });
+</script>
 </html>

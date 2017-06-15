@@ -75,9 +75,4 @@ public class UserServiceJpaDaoImpl extends AbstractJpaDaoService implements User
 
         return Optional.of(em.createQuery("from User where userName = :userName", User.class).setParameter("userName", userName).setMaxResults(1).getSingleResult());
     }
-
-	@Override
-	public Page<User> findAllPageable (Pageable pageable) {
-		return null;
-	}
 }
