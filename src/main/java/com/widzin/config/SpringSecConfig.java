@@ -52,7 +52,7 @@ public class SpringSecConfig extends WebSecurityConfigurerAdapter {
 				   .authorizeRequests().antMatchers("/", "/clubs", "/register").permitAll()
 				   .and()
 				   .authorizeRequests().antMatchers("/club/edit/*", "/club/delete/*", "/user/show/*",
-				   					"/createMatch", "match/new")
+				   					"/createMatch", "/game/new")
 				   					.hasAuthority("ADMIN")
 				   .and()
 				   .authorizeRequests().antMatchers("/users", "/club/show/*", "/profile", "/insertMoney/*",

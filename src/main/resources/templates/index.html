@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head lang="en">
-
     <title>Bundesliga Bookmaker</title>
 
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
@@ -10,6 +9,9 @@
 
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div th:if="${param.success}" class="row text-center">
+        <label style="color:green">Operation success</label>
+    </div>
 </div>
 </body>
 </html>

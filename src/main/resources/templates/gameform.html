@@ -8,6 +8,12 @@
 <body>
     <div class="container">
         <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+        <div th:if="${param.errorId}" class="row text-center">
+            <label style="color:red">Can't make a match between the same teams.</label>
+        </div>
+        <div th:if="${param.errorDt}" class="row text-center">
+            <label style="color:red">Bad date input.</label>
+        </div>
         <div class="row text-center">
             <h2>Match Details</h2>
         </div>
@@ -34,7 +40,7 @@
                 <div class="col-sm-12">
                     <div class="col-sm-6 row text-center">
                         <h3>Write date</h3>
-                        <input type="text" th:field="*{date}" name = "date"/>
+                        <input type="text" th:name="text"/>
                         <br />
                         <br />
                         <label>
