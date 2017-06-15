@@ -69,4 +69,54 @@ public class GameController {
 		model.addAttribute("games", gameService.getNextMatches());
 		return "nextgames";
 	}
+
+	@RequestMapping("/game/play/{id}")
+	public String playGame(@PathVariable Integer id, Model model){
+		model.addAttribute("game", gameService.findById(id));
+		return "gameplay";
+	}
+
+	@RequestMapping(value = "/game/play/{id}", method = RequestMethod.POST)
+	public String setScoresInGame(@PathVariable Integer id, @RequestParam("homeScore") Integer homeScore, @RequestParam("awayScore") Integer awayScore) {
+		if (homeScore != null && awayScore != null) {
+			updateClubsAfterMatch(id, homeScore, awayScore);
+			return "redirect:/?success";
+		} else {
+			return "redirect:/game/play/" + id + "?error";
+		}
+	}
+
+	private void updateClubsAfterMatch(Integer id, Integer homeScore, Integer awayScore){
+		Game game = gameService.findById(id);
+		game.setHomeScore(homeScore);
+		game.setAwayScore(awayScore);
+		game.setPlayed(true);
+		gameService.saveMatch(game);
+		Club home = clubService.getClubById(game.getHome().getId());
+		Club away = clubService.getClubById(game.getAway().getId());
+		if (homeScore > awayScore) {
+			home.addWins();
+			away.addLoses();
+		} else if (homeScore < awayScore) {
+			home.addLoses();
+			away.addWins();
+		} else {
+			home.addDraws();
+			away.addDraws();
+		}
+		home.addScoredGoals(homeScore);
+		away.addScoredGoals(awayScore);
+		home.addLostGoals(awayScore);
+		away.addLostGoals(homeScore);
+		home.setBilans();
+		home.setPoints();
+		home.setMatches();
+		away.setBilans();
+		away.setMatches();
+		away.setPoints();
+		home.addGameAtHome(game);
+		away.addGameAway(game);
+		clubService.saveClub(home);
+		clubService.saveClub(away);
+	}
 }
