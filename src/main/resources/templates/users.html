@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head lang="en">
 
-    <title>Bundesliga Bookmaker</title>
+    <title>All users</title>
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
@@ -16,10 +16,10 @@
                 <tr>
                     <th>Id</th>
                     <th>NickName</th>
-                    <th sec:authorize="hasAuthority('ADMIN')">Money</th>
+                    <th>Money</th>
                     <th>Role</th>
                     <th>View</th>
-                    <th sec:authorize="hasAuthority('ADMIN')">Delete</th>
+                    <th>Delete</th>
                 </tr>
                 <tr th:each="user : ${users}">
                     <td th:text="${user.id}"><a href="/user/@{user.id}">Id</a></td>
@@ -34,6 +34,28 @@
                     </td>
                 </tr>
             </table>
+            <div class="row">
+                <div th:if="users.totalPages != 1" class="form-group col-md-11 pagination-centered">
+                    <ul class="pagination">
+                        <li th:class="${users.number == 0} ? disabled">
+                            <a class="pageLink" th:href="@{/users(pageSize=${selectedPageSize}, page=1)}">&laquo;</a>
+                        </li>
+                        <li th:class="${users.number == 0} ? disabled">
+                            <a class="pageLink" th:href="@{/users(pageSize=${selectedPageSize}, page=${users.number})}">&larr;</a>
+                        </li>
+                        <li th:class="${users.number == (page - 1)} ? 'active pointer-disabled'"
+                            th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+                            <a class="pageLink" th:href="@{/users(pageSize=${selectedPageSize}, page=${page})}" th:text="${page}"></a>
+                        </li>
+                        <li th:class="${users.number + 1 == users.totalPages} ? disabled">
+                            <a class="pageLink" th:href="@{/users(pageSize=${selectedPageSize}, page=${users.number + 2})}">&rarr;</a>
+                        </li>
+                        <li th:class="${users.number + 1 == users.totalPages} ? disabled">
+                            <a class="pageLink" th:href="@{/users(pageSize=${selectedPageSize}, page=${users.totalPages})}">&raquo;</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </body>

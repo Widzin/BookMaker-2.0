@@ -6,6 +6,8 @@ import com.widzin.domain.User;
 import com.widzin.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -64,4 +66,9 @@ public class UserServiceMapImpl extends AbstractMapService implements UserServic
 
         return returnUser;
     }
+
+	@Override
+	public Page<User> findAllPageable (Pageable pageable) {
+		return null;
+	}
 }

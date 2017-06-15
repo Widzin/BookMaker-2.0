@@ -3,9 +3,12 @@ package com.widzin.services;
 import com.widzin.domain.User;
 
 import com.widzin.repositories.UserRepository;
+import com.widzin.repositories.UserRepositoryForPages;
 import com.widzin.services.security.EncryptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,13 +21,19 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
+    private UserRepositoryForPages userRepositoryForPages;
 
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    private EncryptionService encryptionService;
+    @Autowired
+	public void setUserRepositoryForPages (UserRepositoryForPages userRepositoryForPages) {
+		this.userRepositoryForPages = userRepositoryForPages;
+	}
+
+	private EncryptionService encryptionService;
 
     @Autowired
     public void setEncryptionService(EncryptionService encryptionService) {
@@ -60,4 +69,10 @@ public class UserServiceImpl implements UserService {
     public Optional<User> findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
+
+    @Transactional
+	@Override
+	public Page<User> findAllPageable (Pageable pageable) {
+		return userRepositoryForPages.findAll(pageable);
+	}
 }

@@ -6,6 +6,8 @@ import com.widzin.services.UserService;
 import com.widzin.services.security.EncryptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -73,4 +75,9 @@ public class UserServiceJpaDaoImpl extends AbstractJpaDaoService implements User
 
         return Optional.of(em.createQuery("from User where userName = :userName", User.class).setParameter("userName", userName).setMaxResults(1).getSingleResult());
     }
+
+	@Override
+	public Page<User> findAllPageable (Pageable pageable) {
+		return null;
+	}
 }

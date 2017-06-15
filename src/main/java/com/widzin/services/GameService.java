@@ -2,6 +2,8 @@ package com.widzin.services;
 
 import com.widzin.domain.Club;
 import com.widzin.domain.Game;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface GameService {
 	Iterable<Game> listAllMatches();

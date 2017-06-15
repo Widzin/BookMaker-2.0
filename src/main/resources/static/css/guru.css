@@ -12,3 +12,16 @@ input[type=submit] {
     margin-left: 14%;
     margin-right: 15%;
 }
+
+.pagination-centered {
+    text-align: center;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.pointer-disabled {
+    pointer-events: none;
+}
