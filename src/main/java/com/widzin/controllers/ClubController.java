@@ -29,7 +29,7 @@ public class ClubController {
 	public String showClub(@PathVariable Integer id, Model model) {
 		model.addAttribute("club", clubService.getClubById(id));
 		model.addAttribute("lastGames", clubService.getLastFiveMatches(clubService.getClubById(id)));
-		model.addAttribute("nextGames", clubService.getNextMatches(clubService.getClubById(id)));
+		model.addAttribute("nextGames", clubService.getNextMatchesForClub(clubService.getClubById(id)));
 		return "clubshow";
 	}
 

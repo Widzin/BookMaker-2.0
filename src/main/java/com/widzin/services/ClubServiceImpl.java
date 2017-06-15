@@ -114,7 +114,7 @@ public class ClubServiceImpl implements ClubService{
 	private Logger log = Logger.getLogger(ClubServiceImpl.class);
 
 	@Override
-	public Iterable<Game> getNextMatches (Club club) {
+	public Iterable<Game> getNextMatchesForClub (Club club) {
 		List<Game> allGames = clubRepository.findOne(club.getId()).getGamesAtHome();
 		allGames.addAll(clubRepository.findOne(club.getId()).getGamesAway());
 		Set<Game> nextGames = new HashSet<>();
@@ -126,8 +126,7 @@ public class ClubServiceImpl implements ClubService{
 
 		List<Game> nextGamesList = new ArrayList<>();
 		nextGamesList.addAll(nextGames);
-		Comparator<Game> byDate = (p, o) -> p.getDate().compareTo(o.getDate());
-		nextGamesList.sort(byDate);
+		nextGamesList.sort((p, o) -> p.getDate().compareTo(o.getDate()));
 		Iterable<Game> newIterable;
 		if (nextGames.size() > 3)
 			newIterable = nextGamesList.subList(0, 3);

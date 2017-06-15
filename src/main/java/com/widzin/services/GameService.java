@@ -10,4 +10,5 @@ public interface GameService {
 	Game findById(Integer id);
 	Game saveMatch(Game game);
 	Iterable<Game> listMatchesBetween(Club home, Club away);
+	Iterable<Game> getNextMatches();
 }

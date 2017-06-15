@@ -2,16 +2,12 @@ package com.widzin.services;
 
 import com.widzin.domain.Club;
 import com.widzin.domain.Game;
-import com.widzin.repositories.ClubRepository;
 import com.widzin.repositories.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -40,9 +36,8 @@ public class GameServiceImpl implements GameService {
 
 	@Override
 	public Iterable<Game> listMatchesBetween (Club home, Club away) {
-		Iterable<Game> allGames = gameRepository.findAll();
 		List<Game> list = new ArrayList<>();
-		for (Game g: allGames) {
+		for (Game g: gameRepository.findAll()) {
 			if (g.getHome().getName().equals(home.getName())
 				&& g.getAway().getName().equals(away.getName()))
 				list.add(g);
@@ -52,5 +47,16 @@ public class GameServiceImpl implements GameService {
 		}
 		Iterable<Game> games = list;
 		return games;
+	}
+
+	@Override
+	public Iterable<Game> getNextMatches () {
+		List<Game> list = new ArrayList<>();
+		for (Game g: gameRepository.findAll()) {
+			if (!g.isPlayed())
+				list.add(g);
+		}
+		Iterable<Game> nextGames = list;
+		return nextGames;
 	}
 }
