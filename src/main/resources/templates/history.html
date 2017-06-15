@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head lang="en">
-
     <title>Club details</title>
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
@@ -12,27 +11,36 @@
             <div class="row text-center">
                 <h2>History of <span th:text="${club.name}"></span></h2>
             </div>
-            <table class="table table-striped">
-                <tr style="background-color: #1c1818; color: #b9b5b5; font-size: 20px;">
-                    <th>Date</th>
-                    <th>Home club</th>
-                    <th>Score</th>
-                    <th>Away club</th>
-                </tr>
-                <tr th:each="game : ${allPastGames}">
-                    <td th:text="${#dates.format(game.date, 'yyyy/MM/dd')}">Date</td>
-                    <td th:switch="${game.home.name}">
-                        <b th:case="${club.name}" th:text="${game.home.name}"/>
-                        <span th:case="*" th:text="${game.home.name}"/>
-                    </td>
-                    <td th:text="${game.homeScore} + ':' + ${game.awayScore}">Score</td>
-                    <td th:switch="${game.away.name}">
-                        <b th:case="${club.name}" th:text="${game.away.name}"/>
-                        <span th:case="*" th:text="${game.away.name}"/>
-                    </td>
-                </tr>
+            <table id="myTable" class="table table-striped">
+                <thead>
+                    <tr style="background-color: #1c1818; color: #b9b5b5; font-size: 20px;">
+                        <th>Date</th>
+                        <th>Home club</th>
+                        <th>Score</th>
+                        <th>Away club</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="game : ${allPastGames}">
+                        <td th:text="${#dates.format(game.date, 'yyyy/MM/dd')}">Date</td>
+                        <td th:switch="${game.home.name}">
+                            <b th:case="${club.name}" th:text="${game.home.name}"/>
+                            <span th:case="*" th:text="${game.home.name}"/>
+                        </td>
+                        <td th:text="${game.homeScore} + ':' + ${game.awayScore}">Score</td>
+                        <td th:switch="${game.away.name}">
+                            <b th:case="${club.name}" th:text="${game.away.name}"/>
+                            <span th:case="*" th:text="${game.away.name}"/>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>
 </body>
+<script>
+    $(document).ready(function(){
+        $('#myTable').dataTable();
+    });
+</script>
 </html>
