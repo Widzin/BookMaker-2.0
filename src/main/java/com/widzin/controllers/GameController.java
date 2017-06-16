@@ -108,13 +108,6 @@ public class GameController {
 		String[] parts = between.split("i");
 		Integer idHome = Integer.parseInt(parts[0]);
 		Integer idAway = Integer.parseInt(parts[1]);
-		log.info("Id domowej druzyny: " + idHome);
-		log.info("Id gosci: " + idAway);
-		Iterable<Game> list = gameService.listMatchesBetween(clubService.getClubById(idHome), clubService.getClubById(idAway));
-		for (Game g: list) {
-			log.info(g.toString());
-		}
-		log.info("To juz wszystkie mecze");
 		model.addAttribute("games", gameService.listMatchesBetween(clubService.getClubById(idHome), clubService.getClubById(idAway)));
 		model.addAttribute("home", clubService.getClubById(idHome));
 		model.addAttribute("away", clubService.getClubById(idAway));

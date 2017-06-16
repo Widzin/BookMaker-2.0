@@ -74,6 +74,7 @@
                         <th>Date</th>
                         <th>Home club</th>
                         <th>Away club</th>
+                        <th sec:authorize="hasAnyAuthority('USER','ADMIN')">Show previous games</th>
                     </tr>
                     <tr th:each="game : ${nextGames}">
                         <td th:text="${#dates.format(game.date, 'yyyy/MM/dd')}">Date</td>
@@ -84,6 +85,9 @@
                         <td th:switch="${game.away.name}">
                             <b th:case="${club.name}" th:text="${game.away.name}"/>
                             <span th:case="*" th:text="${game.away.name}"/>
+                        </td>
+                        <td sec:authorize="hasAnyAuthority('USER','ADMIN')">
+                            <a th:href="${'/game/between/' + game.home.id + 'i' + game.away.id}">Show</a>
                         </td>
                     </tr>
                 </table>
@@ -100,6 +104,7 @@
                         <th>Home club</th>
                         <th>Score</th>
                         <th>Away club</th>
+                        <th sec:authorize="hasAnyAuthority('USER','ADMIN')">Show previous games</th>
                     </tr>
                     <tr th:each="game : ${lastGames}">
                         <td th:text="${#dates.format(game.date, 'yyyy/MM/dd')}">Date</td>
@@ -111,6 +116,9 @@
                         <td th:switch="${game.away.name}">
                             <b th:case="${club.name}" th:text="${game.away.name}"/>
                             <span th:case="*" th:text="${game.away.name}"/>
+                        </td>
+                        <td sec:authorize="hasAnyAuthority('USER','ADMIN')">
+                            <a th:href="${'/game/between/' + game.home.id + 'i' + game.away.id}">Show</a>
                         </td>
                     </tr>
                 </table>
