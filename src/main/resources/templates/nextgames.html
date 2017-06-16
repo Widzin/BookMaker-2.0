@@ -19,6 +19,7 @@
                         <th>Home club</th>
                         <th>Guest club</th>
                         <th sec:authorize="hasAuthority('ADMIN')">Play game</th>
+                        <th sec:authorize="hasAnyAuthority('USER','ADMIN')">Show previous games</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,6 +29,9 @@
                         <td th:text="${game.away.name}">Guest club</td>
                         <td sec:authorize="hasAuthority('ADMIN')">
                             <a th:href="${'/game/play/' + game.id}">Play</a>
+                        </td>
+                        <td sec:authorize="hasAnyAuthority('USER','ADMIN')">
+                            <a th:href="${'/game/between/' + game.home.id + 'i' + game.away.id}">Show</a>
                         </td>
                     </tr>
                 </tbody>

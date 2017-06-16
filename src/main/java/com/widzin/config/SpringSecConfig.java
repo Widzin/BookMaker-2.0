@@ -56,7 +56,7 @@ public class SpringSecConfig extends WebSecurityConfigurerAdapter {
 				   					.hasAuthority("ADMIN")
 				   .and()
 				   .authorizeRequests().antMatchers("/users", "/club/show/*", "/profile", "/insertMoney/*",
-				   					"/table", "/historyOfClub/*", "/game/next")
+				   					"/table", "/historyOfClub/*", "/game/next", "/game/between/*")
 				   					.hasAnyAuthority("USER", "ADMIN")
 				   .and()
 				   .formLogin().loginPage("/login").permitAll()

@@ -4,6 +4,7 @@ import com.widzin.domain.Club;
 import com.widzin.domain.Game;
 import com.widzin.services.ClubService;
 import com.widzin.services.GameService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class GameController {
@@ -98,4 +100,25 @@ public class GameController {
 		clubService.saveClub(home);
 		clubService.saveClub(away);
 	}
+
+	private Logger log = Logger.getLogger(GameController.class);
+
+	@RequestMapping("/game/between/{text}")
+	public String showHistoryBetween(@PathVariable("text") String between, Model model){
+		String[] parts = between.split("i");
+		Integer idHome = Integer.parseInt(parts[0]);
+		Integer idAway = Integer.parseInt(parts[1]);
+		log.info("Id domowej druzyny: " + idHome);
+		log.info("Id gosci: " + idAway);
+		Iterable<Game> list = gameService.listMatchesBetween(clubService.getClubById(idHome), clubService.getClubById(idAway));
+		for (Game g: list) {
+			log.info(g.toString());
+		}
+		log.info("To juz wszystkie mecze");
+		model.addAttribute("games", gameService.listMatchesBetween(clubService.getClubById(idHome), clubService.getClubById(idAway)));
+		model.addAttribute("home", clubService.getClubById(idHome));
+		model.addAttribute("away", clubService.getClubById(idAway));
+		return "between";
+	}
+
 }

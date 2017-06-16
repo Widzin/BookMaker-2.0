@@ -20,11 +20,6 @@ public class GameServiceImpl implements GameService {
 	}
 
 	@Override
-	public Iterable<Game> listAllMatches () {
-		return gameRepository.findAll();
-	}
-
-	@Override
 	public Game findById (Integer id) {
 		return gameRepository.findOne(id);
 	}
@@ -38,12 +33,14 @@ public class GameServiceImpl implements GameService {
 	public Iterable<Game> listMatchesBetween (Club home, Club away) {
 		List<Game> list = new ArrayList<>();
 		for (Game g: gameRepository.findAll()) {
-			if (g.getHome().getName().equals(home.getName())
-				&& g.getAway().getName().equals(away.getName()))
-				list.add(g);
-			else if (g.getHome().getName().equals(away.getName())
-					&& g.getAway().getName().equals(home.getName()))
-				list.add(g);
+			if (g.isPlayed()) {
+				if (g.getHome().getName().equals(home.getName())
+						&& g.getAway().getName().equals(away.getName()))
+					list.add(g);
+				else if (g.getHome().getName().equals(away.getName())
+						&& g.getAway().getName().equals(home.getName()))
+					list.add(g);
+			}
 		}
 		Iterable<Game> games = list;
 		return games;
