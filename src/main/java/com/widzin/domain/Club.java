@@ -26,7 +26,6 @@ public class Club {
 	private double valueOfPlayers;
 	private Integer numberOfPlayers;
 	private boolean bundesliga;
-	//private Integer numberOfGames;
 
 	@OneToMany(mappedBy = "home", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Game> gamesAtHome;
@@ -42,7 +41,6 @@ public class Club {
 		scoredGoals = 0;
 		lostGoals = 0;
 		bilans = 0;
-		//numberOfGames = 0;
 		gamesAtHome = new ArrayList<>();
 		gamesAway = new ArrayList<>();
 	}
@@ -165,14 +163,6 @@ public class Club {
 		this.bundesliga = bundesliga;
 	}
 
-	/*public Integer getNumberOfGames () {
-		return numberOfGames;
-	}
-
-	public void setNumberOfGames(){
-		numberOfGames = gamesAtHome.size() + gamesAway.size();
-	}*/
-
 	public List<Game> getGamesAtHome () {
 		return gamesAtHome;
 	}
@@ -197,7 +187,7 @@ public class Club {
 		this.gamesAway = gamesAsGuest;
 	}
 
-	public void resetStats() {
+	/*public void resetStats() {
 		wins = 0;
 		draws = 0;
 		loses = 0;
@@ -206,9 +196,17 @@ public class Club {
 		setMatches();
 		setPoints();
 		setBilans();
-	}
+	}*/
 
-	public void updateStats() {
+	public void updateStats(Integer homeScore, Integer awayScore) {
+		if (homeScore > awayScore)
+			addWins();
+		else if (homeScore < awayScore)
+			addLoses();
+		else
+			addDraws();
+		addScoredGoals(homeScore);
+		addLostGoals(awayScore);
 		setMatches();
 		setPoints();
 		setBilans();

@@ -3,7 +3,9 @@ package com.widzin.domain;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -23,19 +25,17 @@ public class Game {
 
 	private Integer homeScore;
 	private Integer awayScore;
+
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private Date date;
 	private boolean played;
 
+	//@OneToMany(mappedBy = "oneGame", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	//private List<BetGame> betGameList;
+
 	public Game () {
 		this.played = false;
-	}
-
-	public Game (Club home, Club away, Date date) {
-		this.home = home;
-		this.away = away;
-		this.date = date;
-		this.played = false;
+		//betGameList = new ArrayList<>();
 	}
 
 	public Game (Club home, Club away, Integer homeScore, Integer awayScore, Date date) {
@@ -45,6 +45,7 @@ public class Game {
 		this.awayScore = awayScore;
 		this.date = date;
 		this.played = true;
+		//betGameList = new ArrayList<>();
 	}
 
 	public Integer getId () {
@@ -115,6 +116,14 @@ public class Game {
 		this.homeScore = homeScore;
 		this.awayScore = awayScore;
 	}
+
+	/*public List<BetGame> getBetGameList () {
+		return betGameList;
+	}
+
+	public void setBetGameList (List<BetGame> betGameList) {
+		this.betGameList = betGameList;
+	}*/
 
 	@Override
 	public String toString() {

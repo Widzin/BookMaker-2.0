@@ -11,5 +11,32 @@ public class BetGame {
 	@Version
 	private Integer version;
 
+	//@ManyToOne(fetch = FetchType.EAGER)
+	//private Game oneGame;
+	private Result result;
+	private double rate;
 
+	/*public Game getOneGame () {
+		return oneGame;
+	}
+
+	public void setOneGame (Game oneGame) {
+		this.oneGame = oneGame;
+	}*/
+
+	public Result getResult () {
+		return result;
+	}
+
+	public void setResult (Result result) {
+		this.result = result;
+	}
+
+	public double getRate () {
+		return rate;
+	}
+
+	public void setRate (double rate) {
+		this.rate = rate;
+	}
 }

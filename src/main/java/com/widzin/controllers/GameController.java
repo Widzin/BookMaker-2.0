@@ -4,7 +4,6 @@ import com.widzin.domain.Club;
 import com.widzin.domain.Game;
 import com.widzin.services.ClubService;
 import com.widzin.services.GameService;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -94,28 +93,8 @@ public class GameController {
 		gameService.saveMatch(game);
 		Club home = clubService.getClubById(game.getHome().getId());
 		Club away = clubService.getClubById(game.getAway().getId());
-		if (homeScore > awayScore) {
-			home.addWins();
-			away.addLoses();
-		} else if (homeScore < awayScore) {
-			home.addLoses();
-			away.addWins();
-		} else {
-			home.addDraws();
-			away.addDraws();
-		}
-		home.addScoredGoals(homeScore);
-		away.addScoredGoals(awayScore);
-		home.addLostGoals(awayScore);
-		away.addLostGoals(homeScore);
-		home.setBilans();
-		home.setPoints();
-		home.setMatches();
-		away.setBilans();
-		away.setMatches();
-		away.setPoints();
-		home.addGameAtHome(game);
-		away.addGameAway(game);
+		home.updateStats(homeScore, awayScore);
+		away.updateStats(awayScore, homeScore);
 		clubService.saveClub(home);
 		clubService.saveClub(away);
 	}
