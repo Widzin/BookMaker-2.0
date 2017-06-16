@@ -27,9 +27,9 @@ public class Club {
 	private Integer numberOfPlayers;
 	private boolean bundesliga;
 
-	@OneToMany(mappedBy = "home", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "home", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
 	private List<Game> gamesAtHome;
-	@OneToMany(mappedBy = "away", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "away", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
 	private List<Game> gamesAway;
 
 	public Club() {

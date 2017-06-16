@@ -30,12 +30,12 @@ public class Game {
 	private Date date;
 	private boolean played;
 
-	//@OneToMany(mappedBy = "oneGame", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	//private List<BetGame> betGameList;
+	@OneToMany(mappedBy = "oneGame", cascade = {CascadeType.ALL})
+	private List<BetGame> betGameList;
 
 	public Game () {
 		this.played = false;
-		//betGameList = new ArrayList<>();
+		betGameList = new ArrayList<>();
 	}
 
 	public Game (Club home, Club away, Integer homeScore, Integer awayScore, Date date) {
@@ -45,7 +45,7 @@ public class Game {
 		this.awayScore = awayScore;
 		this.date = date;
 		this.played = true;
-		//betGameList = new ArrayList<>();
+		betGameList = new ArrayList<>();
 	}
 
 	public Integer getId () {
@@ -117,13 +117,13 @@ public class Game {
 		this.awayScore = awayScore;
 	}
 
-	/*public List<BetGame> getBetGameList () {
+	public List<BetGame> getBetGameList () {
 		return betGameList;
 	}
 
 	public void setBetGameList (List<BetGame> betGameList) {
 		this.betGameList = betGameList;
-	}*/
+	}
 
 	@Override
 	public String toString() {

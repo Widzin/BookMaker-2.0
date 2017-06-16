@@ -76,6 +76,7 @@
                         <th>Away club</th>
                     </tr>
                     <tr th:each="game : ${nextGames}">
+                        <td th:text="${#dates.format(game.date, 'yyyy/MM/dd')}">Date</td>
                         <td th:switch="${game.home.name}">
                             <b th:case="${club.name}" th:text="${game.home.name}"/>
                             <span th:case="*" th:text="${game.home.name}"/>
