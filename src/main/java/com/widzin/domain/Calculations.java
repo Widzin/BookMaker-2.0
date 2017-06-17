@@ -88,15 +88,15 @@ public class Calculations {
 	public void prepareMatch(Club home, Club away) {
 		this.home = home;
 		this.away = away;
-		setHomeDetails();
-		setAwayDetails();
+		setHomeDetails(2016);
+		setAwayDetails(2016);
 		setMatchesBetween();
 	}
 
-	private void setHomeDetails() {
+	private void setHomeDetails(int year) {
 		for (Game g: home.getGamesAtHome()){
 			try {
-				if (g.isPlayed() && g.getDate().after(ft.parse("2016-07-10"))) {
+				if (g.isPlayed() && g.getDate().after(ft.parse(year + "-07-10"))) {
 					numberOfMatchesAtHome++;
 					goalsScoredByHomeTeam += g.getHomeScore();
 					goalsLostByHomeTeam += g.getAwayScore();
@@ -105,12 +105,15 @@ public class Calculations {
 				System.out.println("Something went wrong");
 			}
 		}
+		if (numberOfMatchesAtHome == 0) {
+			setHomeDetails(year - 1);
+		}
 	}
 
-	private void setAwayDetails() {
+	private void setAwayDetails(int year) {
 		for (Game g: away.getGamesAway()){
 			try {
-				if (g.isPlayed() && g.getDate().after(ft.parse("2016-07-10"))) {
+				if (g.isPlayed() && g.getDate().after(ft.parse(year + "-07-10"))) {
 					numberOfMatchesAway++;
 					goalsScoredByAwayTeam += g.getAwayScore();
 					goalsLostByAwayTeam += g.getHomeScore();
@@ -118,6 +121,9 @@ public class Calculations {
 			} catch (ParseException e) {
 				System.out.println("Something went wrong");
 			}
+		}
+		if (numberOfMatchesAway == 0) {
+			setAwayDetails(year - 1);
 		}
 	}
 

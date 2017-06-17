@@ -57,7 +57,7 @@ public class GameController {
 				away.addGameAway(game);
 				clubService.saveClub(home);
 				clubService.saveClub(away);
-				return "redirect:/?success";
+				return "redirect:/game/next";
 			} catch (ParseException ex) {
 				return "redirect:/game/new?errorDt";
 			}
