@@ -32,8 +32,7 @@ public class Game {
 	private Date date;
 	private boolean played;
 
-	private double[] rates;
-	private String stringRates;
+	private Double[] rates;
 
 	@OneToMany(mappedBy = "oneGame", cascade = {CascadeType.ALL})
 	private List<BetGame> betGameList;
@@ -41,7 +40,7 @@ public class Game {
 	public Game () {
 		this.played = false;
 		betGameList = new ArrayList<>();
-		rates = new double[NUMBER_OF_RATES];
+		rates = new Double[NUMBER_OF_RATES];
 	}
 
 	public Game (Club home, Club away, Integer homeScore, Integer awayScore, Date date) {
@@ -52,7 +51,7 @@ public class Game {
 		this.date = date;
 		this.played = true;
 		betGameList = new ArrayList<>();
-		rates = new double[NUMBER_OF_RATES];
+		rates = new Double[NUMBER_OF_RATES];
 	}
 
 	public Integer getId () {
@@ -119,20 +118,12 @@ public class Game {
 		this.played = played;
 	}
 
-	public double[] getRates () {
+	public Double[] getRates () {
 		return rates;
 	}
 
-	public void setRates (double[] rates) {
+	public void setRates (Double[] rates) {
 		this.rates = rates;
-	}
-
-	public String getStringRates () {
-		return stringRates;
-	}
-
-	public void setStringRates (String stringRates) {
-		this.stringRates = stringRates;
 	}
 
 	public void setScore(int homeScore, int awayScore){

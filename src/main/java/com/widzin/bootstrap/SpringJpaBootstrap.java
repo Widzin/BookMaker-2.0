@@ -28,6 +28,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     private Calculations calculations;
 
 	private Logger log = Logger.getLogger(SpringJpaBootstrap.class);
+	private SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 
     @Autowired
 	public void setClubRepository (ClubService clubService) {
@@ -51,7 +52,6 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-		calculations = Calculations.getInstance();
         loadClubs();
 		loadMatches(2015, 2016);
 		loadMatches(2016, 2017);
@@ -59,7 +59,22 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         loadRoles();
         assignUsersToUserRole();
         assignUsersToAdminRole();
-    }
+		calculations = Calculations.getInstance();
+		for (Game g: gameService.findAllGames()) {
+			log.info("Sprawdzam mecz nr. " + g.getId());
+			try {
+				if (g.getDate().after(ft.parse("2016-07-10")) && g.isPlayed()) {
+					calculations.addAllGoalsScoredAtHome(g.getHomeScore());
+					calculations.addAllGoalsLostAtHome(g.getAwayScore());
+					calculations.addNumberOfAllMatches();
+				}
+			} catch (ParseException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		log.info("Wszystkie bramki strzelone: " + calculations.getAllGoalsScoredAtHome());
+		log.info("Wszystkie bramki stracone: " + calculations.getAllGoalsLostAtHome());
+	}
 
 	private void loadClubs(){
 		Club club01 = new Club();
@@ -275,7 +290,6 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 	}
 
 	private void addMatchToJavaClass(String[] strings) {
-		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 
 		for (String s: strings) {
@@ -302,15 +316,6 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 					gameService.saveMatch(match);
 					log.info("Saved match nr. " + match.getId());
 					updateClubs(match);
-					try {
-						if (date.after(ft.parse("2016-07-10"))) {
-							calculations.addAllGoalsScoredAtHome(homeScore);
-							calculations.addAllGoalsLostAtHome(awayScore);
-							calculations.addNumberOfAllMatches();
-						}
-					} catch (ParseException e) {
-						System.out.println(e.getMessage());
-					}
 				}
 			}
 		}

@@ -18,7 +18,9 @@
                         <th>Date</th>
                         <th>Home club</th>
                         <th>Guest club</th>
-                        <th>Rates</th>
+                        <th>1</th>
+                        <th>X</th>
+                        <th>2</th>
                         <th sec:authorize="hasAuthority('ADMIN')">Play game</th>
                         <th sec:authorize="hasAnyAuthority('USER','ADMIN')">History</th>
                     </tr>
@@ -28,7 +30,9 @@
                         <td th:text="${#dates.format(game.date, 'yyyy/MM/dd')}">Date</td>
                         <td th:text="${game.home.name}">Home club</td>
                         <td th:text="${game.away.name}">Guest club</td>
-                        <td th:text="${game.stringRates}">Rates</td>
+                        <td th:text="${#numbers.formatDecimal(game.rates[0],0,2)}">1</td>
+                        <td th:text="${#numbers.formatDecimal(game.rates[1],0,2)}">X</td>
+                        <td th:text="${#numbers.formatDecimal(game.rates[2],0,2)}">2</td>
                         <td sec:authorize="hasAuthority('ADMIN')">
                             <a th:href="${'/game/play/' + game.id}">Play</a>
                         </td>

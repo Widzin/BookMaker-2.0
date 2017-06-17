@@ -1,9 +1,11 @@
 package com.widzin.services;
 
+import com.widzin.bootstrap.SpringJpaBootstrap;
 import com.widzin.domain.Calculations;
 import com.widzin.domain.Club;
 import com.widzin.domain.Game;
 import com.widzin.repositories.GameRepository;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,22 +50,30 @@ public class GameServiceImpl implements GameService {
 		return games;
 	}
 
+	private Logger log = Logger.getLogger(SpringJpaBootstrap.class);
+
 	@Override
 	public Iterable<Game> getNextMatches () {
 		Calculations calculations = Calculations.getInstance();
 		List<Game> list = new ArrayList<>();
 		for (Game g: gameRepository.findAll()) {
 			if (!g.isPlayed()){
-				calculations.prepareMatch(g.getHome(), g.getAway());
-				g.setRates(calculations.calculateRates());
-				g.setStringRates(new DecimalFormat("##.##").format(g.getRates()[0]) + " - " +
-						new DecimalFormat("##.##").format(g.getRates()[1]) + " - " +
-						new DecimalFormat("##.##").format(g.getRates()[2]));
+				if (g.getRates()[0] == null) {
+					calculations.prepareMatch(g.getHome(), g.getAway());
+					g.setRates(calculations.calculateRates());
+					gameRepository.save(g);
+					log.info("Policzyłem: " + g.getRates()[0] + " - " + g.getRates()[1] + " - " + g.getRates()[2]);
+				}
 				list.add(g);
 				calculations.resetClubs();
 			}
 		}
 		Iterable<Game> nextGames = list;
 		return nextGames;
+	}
+
+	@Override
+	public Iterable<Game> findAllGames(){
+		return gameRepository.findAll();
 	}
 }

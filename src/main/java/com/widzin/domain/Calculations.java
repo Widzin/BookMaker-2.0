@@ -1,6 +1,5 @@
 package com.widzin.domain;
 
-import com.widzin.services.GameService;
 import org.apache.log4j.Logger;
 
 import java.text.ParseException;
@@ -17,8 +16,8 @@ public class Calculations {
 	}
 
 	//variables for calculating
-	final double WEIGHT_OF_GOALS = 0.7;
-	final double WEIGHT_OF_MATCHES_BETWEEN = 0.3;
+	final Double WEIGHT_OF_GOALS = 0.7;
+	final Double WEIGHT_OF_MATCHES_BETWEEN = 0.3;
 	final int MAX_GOALS = 6;
 
 	//league details
@@ -72,6 +71,18 @@ public class Calculations {
 
 	public void addNumberOfAllMatches () {
 		this.numberOfAllMatches ++;
+	}
+
+	public int getAllGoalsScoredAtHome () {
+		return allGoalsScoredAtHome;
+	}
+
+	public int getAllGoalsLostAtHome () {
+		return allGoalsLostAtHome;
+	}
+
+	public int getNumberOfAllMatches () {
+		return numberOfAllMatches;
 	}
 
 	public void prepareMatch(Club home, Club away) {
@@ -137,14 +148,14 @@ public class Calculations {
 		}
 	}
 
-	public double[] calculateRates() {
-		double[] rates = new double[3];
+	public Double[] calculateRates() {
+		Double[] rates = new Double[3];
 		rates[0] = 0.0;
 		rates[1] = 0.0;
 		rates[2] = 0.0;
 
-		double[] goalRates = ratesFromGoal();
-		double[] matchRates = ratesFromMatches();
+		Double[] goalRates = ratesFromGoal();
+		Double[] matchRates = ratesFromMatches();
 
 		rates[0] = 1/(goalRates[0] * WEIGHT_OF_GOALS + matchRates[0] * WEIGHT_OF_MATCHES_BETWEEN);
 		rates[1] = 1/(goalRates[1] * WEIGHT_OF_GOALS + matchRates[1] * WEIGHT_OF_MATCHES_BETWEEN);
@@ -155,35 +166,35 @@ public class Calculations {
 
 	private Logger log = Logger.getLogger(Calculations.class);
 
-	private double[] ratesFromGoal() {
-		double[] rates = new double[3];
+	private Double[] ratesFromGoal() {
+		Double[] rates = new Double[3];
 		rates[0] = 0.0;
 		rates[1] = 0.0;
 		rates[2] = 0.0;
 
-		double averageScoredByHomeTeam = (double) goalsScoredByHomeTeam/numberOfMatchesAtHome;
-		double averageLostByHomeTeam = (double) goalsLostByHomeTeam/numberOfMatchesAtHome;
+		Double averageScoredByHomeTeam = Double.valueOf((double)goalsScoredByHomeTeam/numberOfMatchesAtHome);
+		Double averageLostByHomeTeam = Double.valueOf((double)goalsLostByHomeTeam/numberOfMatchesAtHome);
 
-		double averageScoredByAwayTeam = (double) goalsScoredByAwayTeam/numberOfMatchesAway;
-		double averageLostByAwayTeam = (double) goalsLostByAwayTeam/numberOfMatchesAway;
+		Double averageScoredByAwayTeam = Double.valueOf((double)goalsScoredByAwayTeam/numberOfMatchesAway);
+		Double averageLostByAwayTeam = Double.valueOf((double)goalsLostByAwayTeam/numberOfMatchesAway);
 
-		double averageScoredAtHome = (double) allGoalsScoredAtHome/numberOfAllMatches;
-		double averageLostAtHome = (double) allGoalsLostAtHome/numberOfAllMatches;
-		double averageScoredAway = averageLostAtHome;
-		double averageLostAway = averageScoredAtHome;
+		Double averageScoredAtHome = Double.valueOf((double)allGoalsScoredAtHome/numberOfAllMatches);
+		Double averageLostAtHome = Double.valueOf((double)allGoalsLostAtHome/numberOfAllMatches);
+		Double averageScoredAway = averageLostAtHome;
+		Double averageLostAway = averageScoredAtHome;
 
-		double powerAttackHomeTeam = averageScoredByHomeTeam/averageScoredAtHome;
-		double powerAttackAwayTeam = averageScoredByAwayTeam/averageScoredAway;
-		double powerDefenseHomeTeam = averageLostByHomeTeam/averageLostAtHome;
-		double powerDefenseAwayTeam = averageLostByAwayTeam/averageLostAway;
+		Double powerAttackHomeTeam = averageScoredByHomeTeam/averageScoredAtHome;
+		Double powerAttackAwayTeam = averageScoredByAwayTeam/averageScoredAway;
+		Double powerDefenseHomeTeam = averageLostByHomeTeam/averageLostAtHome;
+		Double powerDefenseAwayTeam = averageLostByAwayTeam/averageLostAway;
 
-		double lambdaHomeTeam = powerAttackHomeTeam * powerDefenseAwayTeam;
-		double lambdaAwayTeam = powerAttackAwayTeam * powerDefenseHomeTeam;
+		Double lambdaHomeTeam = powerAttackHomeTeam * powerDefenseAwayTeam;
+		Double lambdaAwayTeam = powerAttackAwayTeam * powerDefenseHomeTeam;
 
-		double[] chancesForHomeTeam = calculateChancesForGoals(lambdaHomeTeam);
-		double[] chancesForAwayTeam = calculateChancesForGoals(lambdaAwayTeam);
+		Double[] chancesForHomeTeam = calculateChancesForGoals(lambdaHomeTeam);
+		Double[] chancesForAwayTeam = calculateChancesForGoals(lambdaAwayTeam);
 
-		double[][] chancesOfExactScore = new double[MAX_GOALS][MAX_GOALS];
+		Double[][] chancesOfExactScore = new Double[MAX_GOALS][MAX_GOALS];
 
 		for (int i = 0; i < MAX_GOALS; i++){
 			for (int j = 0; j < MAX_GOALS; j++){
@@ -199,22 +210,18 @@ public class Calculations {
 		return rates;
 	}
 
-	private double[] ratesFromMatches(){
-		double[] rates = new double[3];
-		rates[0] = (double)(winsByHome + 1)/(winsByHome + winsByAway + drawsBetween + 1);
-		rates[1] = (double)(drawsBetween + 1)/(winsByHome + winsByAway + drawsBetween + 1);
-		rates[2] = (double)(winsByAway + 1)/(winsByHome + winsByAway + drawsBetween + 1);
-
-		log.info("Kurs na bayern tylko z meczy: " + (double)(winsByHome + winsByAway + drawsBetween + 1)/(winsByHome + 1));
-		log.info("Kurs na borussie tylko z meczy: " + (double)(winsByHome + winsByAway + drawsBetween + 1)/(drawsBetween + 1));
-		log.info("Kurs na remis tylko z meczy: " + (double)(winsByHome + winsByAway + drawsBetween + 1)/(winsByAway + 1));
+	private Double[] ratesFromMatches(){
+		Double[] rates = new Double[3];
+		rates[0] = Double.valueOf((double)(winsByHome + 1)/(winsByHome + winsByAway + drawsBetween + 1));
+		rates[1] = Double.valueOf((double)(drawsBetween + 1)/(winsByHome + winsByAway + drawsBetween + 1));
+		rates[2] = Double.valueOf((double)(winsByAway + 1)/(winsByHome + winsByAway + drawsBetween + 1));
 
 		return rates;
 	}
 
 
-	public double[] calculateChancesForGoals(double lambda) {
-		double[] temp = new double[MAX_GOALS];
+	public Double[] calculateChancesForGoals(Double lambda) {
+		Double[] temp = new Double[MAX_GOALS];
 		for (int i = 0; i < temp.length; i++){
 			temp[i] = Math.pow(lambda, i) * Math.pow(Math.E, (-lambda))/factorial(i);
 		}
