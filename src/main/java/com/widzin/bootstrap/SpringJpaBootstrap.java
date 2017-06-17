@@ -1,9 +1,6 @@
 package com.widzin.bootstrap;
 
-import com.widzin.domain.Game;
-import com.widzin.domain.Role;
-import com.widzin.domain.Club;
-import com.widzin.domain.User;
+import com.widzin.domain.*;
 import com.widzin.services.ClubService;
 import com.widzin.services.GameService;
 import com.widzin.services.RoleService;
@@ -28,8 +25,9 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     private UserService userService;
     private RoleService roleService;
     private GameService gameService;
+    private Calculations calculations;
 
-    private Logger log = Logger.getLogger(SpringJpaBootstrap.class);
+	private Logger log = Logger.getLogger(SpringJpaBootstrap.class);
 
     @Autowired
 	public void setClubRepository (ClubService clubService) {
@@ -53,13 +51,14 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        /*loadClubs();
+		calculations = Calculations.getInstance();
+        loadClubs();
 		loadMatches(2015, 2016);
 		loadMatches(2016, 2017);
         loadUsers();
         loadRoles();
         assignUsersToUserRole();
-        assignUsersToAdminRole();*/
+        assignUsersToAdminRole();
     }
 
 	private void loadClubs(){
@@ -303,6 +302,8 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 					gameService.saveMatch(match);
 					log.info("Saved match nr. " + match.getId());
 					updateClubs(match);
+					calculations.addAllGoalsScoredAtHome(homeScore);
+					calculations.addAllGoalsLostAtHome(homeScore);
 				}
 			}
 		}

@@ -1,8 +1,11 @@
 package com.widzin.controllers;
 
+import com.widzin.bootstrap.SpringJpaBootstrap;
+import com.widzin.domain.Calculations;
 import com.widzin.domain.User;
 import com.widzin.services.RoleService;
 import com.widzin.services.UserService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
