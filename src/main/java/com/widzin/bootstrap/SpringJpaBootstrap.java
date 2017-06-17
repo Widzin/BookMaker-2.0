@@ -302,8 +302,15 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 					gameService.saveMatch(match);
 					log.info("Saved match nr. " + match.getId());
 					updateClubs(match);
-					calculations.addAllGoalsScoredAtHome(homeScore);
-					calculations.addAllGoalsLostAtHome(homeScore);
+					try {
+						if (date.after(ft.parse("2016-07-10"))) {
+							calculations.addAllGoalsScoredAtHome(homeScore);
+							calculations.addAllGoalsLostAtHome(awayScore);
+							calculations.addNumberOfAllMatches();
+						}
+					} catch (ParseException e) {
+						System.out.println(e.getMessage());
+					}
 				}
 			}
 		}

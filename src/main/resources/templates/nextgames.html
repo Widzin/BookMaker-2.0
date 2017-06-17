@@ -18,8 +18,9 @@
                         <th>Date</th>
                         <th>Home club</th>
                         <th>Guest club</th>
+                        <th>Rates</th>
                         <th sec:authorize="hasAuthority('ADMIN')">Play game</th>
-                        <th sec:authorize="hasAnyAuthority('USER','ADMIN')">Show previous games</th>
+                        <th sec:authorize="hasAnyAuthority('USER','ADMIN')">History</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,6 +28,7 @@
                         <td th:text="${#dates.format(game.date, 'yyyy/MM/dd')}">Date</td>
                         <td th:text="${game.home.name}">Home club</td>
                         <td th:text="${game.away.name}">Guest club</td>
+                        <td th:text="${game.stringRates}">Rates</td>
                         <td sec:authorize="hasAuthority('ADMIN')">
                             <a th:href="${'/game/play/' + game.id}">Play</a>
                         </td>
@@ -36,6 +38,9 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+        <div th:if="${#lists.isEmpty(games)}" class="row text-center">
+            <h2>There is no planned games in future.</h2>
         </div>
     </div>
 </body>

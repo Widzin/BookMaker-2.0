@@ -10,6 +10,8 @@ import java.util.Set;
 
 @Entity
 public class Game {
+	final int NUMBER_OF_RATES = 3;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
@@ -30,12 +32,16 @@ public class Game {
 	private Date date;
 	private boolean played;
 
+	private double[] rates;
+	private String stringRates;
+
 	@OneToMany(mappedBy = "oneGame", cascade = {CascadeType.ALL})
 	private List<BetGame> betGameList;
 
 	public Game () {
 		this.played = false;
 		betGameList = new ArrayList<>();
+		rates = new double[NUMBER_OF_RATES];
 	}
 
 	public Game (Club home, Club away, Integer homeScore, Integer awayScore, Date date) {
@@ -46,6 +52,7 @@ public class Game {
 		this.date = date;
 		this.played = true;
 		betGameList = new ArrayList<>();
+		rates = new double[NUMBER_OF_RATES];
 	}
 
 	public Integer getId () {
@@ -110,6 +117,22 @@ public class Game {
 
 	public void setPlayed (boolean played) {
 		this.played = played;
+	}
+
+	public double[] getRates () {
+		return rates;
+	}
+
+	public void setRates (double[] rates) {
+		this.rates = rates;
+	}
+
+	public String getStringRates () {
+		return stringRates;
+	}
+
+	public void setStringRates (String stringRates) {
+		this.stringRates = stringRates;
 	}
 
 	public void setScore(int homeScore, int awayScore){

@@ -1,5 +1,11 @@
 package com.widzin.domain;
 
+import com.widzin.services.GameService;
+import org.apache.log4j.Logger;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 public class Calculations {
 	private static Calculations instance = null;
 
@@ -37,6 +43,8 @@ public class Calculations {
 	private int winsByAway;
 	private int drawsBetween;
 
+	private SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+
 	protected Calculations() {
 		allGoalsScoredAtHome = 0;
 		allGoalsLostAtHome = 0;
@@ -62,55 +70,92 @@ public class Calculations {
 		this.allGoalsLostAtHome += allGoalsLostAtHome;
 	}
 
-	public void addNumberOfAllMatches (int numberOfAllMatches) {
-		this.numberOfAllMatches += numberOfAllMatches;
+	public void addNumberOfAllMatches () {
+		this.numberOfAllMatches ++;
 	}
 
-	public void setHome (Club home) {
+	public void prepareMatch(Club home, Club away) {
 		this.home = home;
-	}
-
-	public void setAway (Club away) {
 		this.away = away;
+		setHomeDetails();
+		setAwayDetails();
+		setMatchesBetween();
 	}
 
-	public void addGoalsScoredByHomeTeam (int goalsScoredByHomeTeam) {
-		this.goalsScoredByHomeTeam += goalsScoredByHomeTeam;
+	private void setHomeDetails() {
+		for (Game g: home.getGamesAtHome()){
+			try {
+				if (g.isPlayed() && g.getDate().after(ft.parse("2016-07-10"))) {
+					numberOfMatchesAtHome++;
+					goalsScoredByHomeTeam += g.getHomeScore();
+					goalsLostByHomeTeam += g.getAwayScore();
+				}
+			} catch (ParseException e) {
+				System.out.println("Something went wrong");
+			}
+		}
 	}
 
-	public void addGoalsScoredByAwayTeam (int goalsScoredByAwayTeam) {
-		this.goalsScoredByAwayTeam += goalsScoredByAwayTeam;
+	private void setAwayDetails() {
+		for (Game g: away.getGamesAway()){
+			try {
+				if (g.isPlayed() && g.getDate().after(ft.parse("2016-07-10"))) {
+					numberOfMatchesAway++;
+					goalsScoredByAwayTeam += g.getAwayScore();
+					goalsLostByAwayTeam += g.getHomeScore();
+				}
+			} catch (ParseException e) {
+				System.out.println("Something went wrong");
+			}
+		}
 	}
 
-	public void addGoalsLostByHomeTeam (int goalsLostByHomeTeam) {
-		this.goalsLostByHomeTeam += goalsLostByHomeTeam;
-	}
-
-	public void addGoalsLostByAwayTeam (int goalsLostByAwayTeam) {
-		this.goalsLostByAwayTeam += goalsLostByAwayTeam;
-	}
-
-	public void addNumberOfMatchesAtHome (int numberOfMatchesAtHome) {
-		this.numberOfMatchesAtHome += numberOfMatchesAtHome;
-	}
-
-	public void addNumberOfMatchesAway (int numberOfMatchesAway) {
-		this.numberOfMatchesAway += numberOfMatchesAway;
-	}
-
-	public void addWinsByHome (int winsByHome) {
-		this.winsByHome += winsByHome;
-	}
-
-	public void addWinsByAway (int winsByAway) {
-		this.winsByAway += winsByAway;
-	}
-
-	public void addDrawsBetween (int drawsBetween) {
-		this.drawsBetween += drawsBetween;
+	private void setMatchesBetween() {
+		for (Game g: home.getGamesAtHome()) {
+			if (g.getAway().getId() == away.getId()) {
+				if (g.isPlayed()) {
+					if (g.getHomeScore() > g.getAwayScore())
+						winsByHome++;
+					else if (g.getHomeScore() < g.getAwayScore())
+						winsByAway++;
+					else
+						drawsBetween++;
+				}
+			}
+		}
+		for (Game g: away.getGamesAtHome()) {
+			if (g.getAway().getId() == home.getId()) {
+				if (g.isPlayed()) {
+					if (g.getHomeScore() > g.getAwayScore())
+						winsByAway++;
+					else if (g.getHomeScore() < g.getAwayScore())
+						winsByHome++;
+					else
+						drawsBetween++;
+				}
+			}
+		}
 	}
 
 	public double[] calculateRates() {
+		double[] rates = new double[3];
+		rates[0] = 0.0;
+		rates[1] = 0.0;
+		rates[2] = 0.0;
+
+		double[] goalRates = ratesFromGoal();
+		double[] matchRates = ratesFromMatches();
+
+		rates[0] = 1/(goalRates[0] * WEIGHT_OF_GOALS + matchRates[0] * WEIGHT_OF_MATCHES_BETWEEN);
+		rates[1] = 1/(goalRates[1] * WEIGHT_OF_GOALS + matchRates[1] * WEIGHT_OF_MATCHES_BETWEEN);
+		rates[2] = 1/(goalRates[2] * WEIGHT_OF_GOALS + matchRates[2] * WEIGHT_OF_MATCHES_BETWEEN);
+
+		return rates;
+	}
+
+	private Logger log = Logger.getLogger(Calculations.class);
+
+	private double[] ratesFromGoal() {
 		double[] rates = new double[3];
 		rates[0] = 0.0;
 		rates[1] = 0.0;
@@ -143,21 +188,30 @@ public class Calculations {
 		for (int i = 0; i < MAX_GOALS; i++){
 			for (int j = 0; j < MAX_GOALS; j++){
 				chancesOfExactScore[i][j] = chancesForHomeTeam[i] * chancesForAwayTeam[j];
-				if (i == j)
+				if (i > j)
 					rates[0] += chancesOfExactScore[i][j];
-				else if (i < j)
+				else if (i == j)
 					rates[1] += chancesOfExactScore[i][j];
 				else
 					rates[2] += chancesOfExactScore[i][j];
 			}
 		}
+		return rates;
+	}
 
-		rates[0] = 1/(rates[0] * WEIGHT_OF_GOALS + (drawsBetween + 1) * WEIGHT_OF_MATCHES_BETWEEN/(winsByHome + winsByAway + drawsBetween));
-		rates[1] = 1/(rates[1] * WEIGHT_OF_GOALS + (winsByHome + 1) * WEIGHT_OF_MATCHES_BETWEEN/(winsByHome + winsByAway + drawsBetween));
-		rates[2] = 1/(rates[2] * WEIGHT_OF_GOALS + (winsByAway + 1) * WEIGHT_OF_MATCHES_BETWEEN/(winsByHome + winsByAway + drawsBetween));
+	private double[] ratesFromMatches(){
+		double[] rates = new double[3];
+		rates[0] = (double)(winsByHome + 1)/(winsByHome + winsByAway + drawsBetween + 1);
+		rates[1] = (double)(drawsBetween + 1)/(winsByHome + winsByAway + drawsBetween + 1);
+		rates[2] = (double)(winsByAway + 1)/(winsByHome + winsByAway + drawsBetween + 1);
+
+		log.info("Kurs na bayern tylko z meczy: " + (double)(winsByHome + winsByAway + drawsBetween + 1)/(winsByHome + 1));
+		log.info("Kurs na borussie tylko z meczy: " + (double)(winsByHome + winsByAway + drawsBetween + 1)/(drawsBetween + 1));
+		log.info("Kurs na remis tylko z meczy: " + (double)(winsByHome + winsByAway + drawsBetween + 1)/(winsByAway + 1));
 
 		return rates;
 	}
+
 
 	public double[] calculateChancesForGoals(double lambda) {
 		double[] temp = new double[MAX_GOALS];

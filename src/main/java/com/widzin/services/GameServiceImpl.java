@@ -1,11 +1,13 @@
 package com.widzin.services;
 
+import com.widzin.domain.Calculations;
 import com.widzin.domain.Club;
 import com.widzin.domain.Game;
 import com.widzin.repositories.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -48,10 +50,18 @@ public class GameServiceImpl implements GameService {
 
 	@Override
 	public Iterable<Game> getNextMatches () {
+		Calculations calculations = Calculations.getInstance();
 		List<Game> list = new ArrayList<>();
 		for (Game g: gameRepository.findAll()) {
-			if (!g.isPlayed())
+			if (!g.isPlayed()){
+				calculations.prepareMatch(g.getHome(), g.getAway());
+				g.setRates(calculations.calculateRates());
+				g.setStringRates(new DecimalFormat("##.##").format(g.getRates()[0]) + " - " +
+						new DecimalFormat("##.##").format(g.getRates()[1]) + " - " +
+						new DecimalFormat("##.##").format(g.getRates()[2]));
 				list.add(g);
+				calculations.resetClubs();
+			}
 		}
 		Iterable<Game> nextGames = list;
 		return nextGames;
