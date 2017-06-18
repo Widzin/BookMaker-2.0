@@ -42,6 +42,9 @@ public class Calculations {
 	private int winsByAway;
 	private int drawsBetween;
 
+	//changed matches
+	private boolean addedNewMatch;
+
 	private SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 
 	protected Calculations() {
@@ -59,6 +62,7 @@ public class Calculations {
 		winsByHome = 0;
 		winsByAway = 0;
 		drawsBetween = 0;
+		addedNewMatch = false;
 	}
 
 	public void addAllGoalsScoredAtHome (int allGoalsScoredAtHome) {
@@ -83,6 +87,14 @@ public class Calculations {
 
 	public int getNumberOfAllMatches () {
 		return numberOfAllMatches;
+	}
+
+	public boolean isAddedNewMatch () {
+		return addedNewMatch;
+	}
+
+	public void setAddedNewMatch (boolean addedNewMatch) {
+		this.addedNewMatch = addedNewMatch;
 	}
 
 	public void prepareMatch(Club home, Club away) {

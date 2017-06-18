@@ -1,6 +1,7 @@
 package com.widzin.services;
 
 import com.widzin.domain.BetGame;
+import com.widzin.domain.Game;
 import com.widzin.repositories.BetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

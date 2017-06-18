@@ -58,7 +58,7 @@ public class GameServiceImpl implements GameService {
 		List<Game> list = new ArrayList<>();
 		for (Game g: gameRepository.findAll()) {
 			if (!g.isPlayed()){
-				if (g.getRates()[0] == null) {
+				if (g.getRates()[0] == null || calculations.isAddedNewMatch()) {
 					calculations.prepareMatch(g.getHome(), g.getAway());
 					g.setRates(calculations.calculateRates());
 					gameRepository.save(g);

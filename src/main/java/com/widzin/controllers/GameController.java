@@ -1,5 +1,6 @@
 package com.widzin.controllers;
 
+import com.widzin.domain.Calculations;
 import com.widzin.domain.Club;
 import com.widzin.domain.Game;
 import com.widzin.domain.Ticket;
@@ -101,6 +102,10 @@ public class GameController {
 		away.updateStats(awayScore, homeScore);
 		clubService.saveClub(home);
 		clubService.saveClub(away);
+		Calculations calculations = Calculations.getInstance();
+		calculations.addNumberOfAllMatches();
+		calculations.addAllGoalsScoredAtHome(homeScore);
+		calculations.addAllGoalsLostAtHome(awayScore);
 	}
 
 	private Logger log = Logger.getLogger(GameController.class);

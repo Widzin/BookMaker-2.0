@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head lang="en">
+
+    <title>Make bets</title>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div th:if="${not #lists.isEmpty(bets)}">
+        <div class="row text-center">
+            <h2>Games to bet</h2>
+        </div>
+        <form class="form-horizontal" th:object="${ticket}" th:action="@{/ticket/makeFull}" method="POST">
+            <table id="myTable" class="table table-striped">
+                <thead>
+                <tr style="background-color: #1c1818; color: #b9b5b5; font-size: 20px;">
+                    <th>Date</th>
+                    <th>Home club</th>
+                    <th>Guest club</th>
+                    <th>1</th>
+                    <th>X</th>
+                    <th>2</th>
+                    <th>Result</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="bet : ${bets}">
+                    <td th:text="${#dates.format(bet.oneGame.date, 'yyyy/MM/dd')}">Date</td>
+                    <td th:text="${bet.oneGame.home.name}">Home club</td>
+                    <td th:text="${bet.oneGame.away.name}">Guest club</td>
+                    <td th:text="${#numbers.formatDecimal(bet.oneGame.rates[0],0,2)}">1</td>
+                    <td th:text="${#numbers.formatDecimal(bet.oneGame.rates[1],0,2)}">X</td>
+                    <td th:text="${#numbers.formatDecimal(bet.oneGame.rates[2],0,2)}">2</td>
+                    <td>
+                        <select name="result">
+                            <option th:each="result : ${options}"
+                                    th:value="${result}" th:text="${result}">Results</option>
+                        </select>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <br />
+            <br />
+            <label class="col-sm-3 control-label">Money for this bet (in €):</label>
+            <div class="col-sm-2">
+                <input type="text" name="insert"/>
+            </div>
+            <div class="col-sm-7">
+                <button type="submit" class="btn btn-default">Make</button>
+            </div>
+
+        </form>
+    </div>
+    <div th:if="${#lists.isEmpty(bets)}" class="row text-center">
+        <h2>There is no chosen games to bet.</h2>
+    </div>
+</div>
+</body>
+<script>
+    $(document).ready(function(){
+        $('#myTable').dataTable();
+    });
+</script>
+</html>
