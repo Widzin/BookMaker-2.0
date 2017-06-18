@@ -28,12 +28,16 @@ public class TicketServiceImpl implements TicketService {
 	}
 
 	@Override
-	public Iterable<Game> getGamesFromTicket (Ticket ticket) {
-		List<Game> list = new ArrayList<>();
-		for (BetGame bg: ticket.getBets()) {
-			list.add(bg.getOneGame());
+	public List<Game> getAllGamesFromTicket (Ticket ticket) {
+		List<Game> games = new ArrayList<>();
+		for (BetGame bg: ticket.getBets()){
+			games.add(bg.getOneGame());
 		}
-		Iterable<Game> games = list;
 		return games;
+	}
+
+	@Override
+	public void saveTicket (Ticket ticket) {
+		ticketRepository.save(ticket);
 	}
 }

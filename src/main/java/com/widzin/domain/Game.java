@@ -135,8 +135,8 @@ public class Game {
 		return betGameList;
 	}
 
-	public void setBetGameList (List<BetGame> betGameList) {
-		this.betGameList = betGameList;
+	public void addBetGameList (BetGame betGame) {
+		betGameList.add(betGame);
 	}
 
 	@Override

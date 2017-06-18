@@ -14,10 +14,10 @@ public class User extends AbstractDomainClass  {
 
     private String encryptedPassword;
     private Boolean enabled;
-    private double moneyNow;
-    private double winMoney;
-    private double lostMoney;
-    private double insertedMoney;
+    private Double moneyNow;
+    private Double winMoney;
+    private Double lostMoney;
+    private Double insertedMoney;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable
@@ -34,10 +34,10 @@ public class User extends AbstractDomainClass  {
 		roles = new ArrayList<>();
 		failedLoginAttempts = 0;
 		enabled = true;
-		moneyNow = 0;
-		winMoney = 0;
-		lostMoney = 0;
-		insertedMoney = 0;
+		moneyNow = 0.0;
+		winMoney = 0.0;
+		lostMoney = 0.0;
+		insertedMoney = 0.0;
 		tickets = new ArrayList<>();
 	}
 
@@ -73,35 +73,37 @@ public class User extends AbstractDomainClass  {
         this.enabled = enabled;
     }
 
-	public double getMoneyNow () {
+	public Double getMoneyNow () {
 		return moneyNow;
 	}
 
-	public void setMoneyNow (double moneyNow) {
+	public void addMoneyNow (Double moneyNow) {
 		this.moneyNow += moneyNow;
 	}
 
-	public double getWinMoney () {
+	public void setMoneyNow (Double moneyNow) {this.moneyNow = moneyNow;}
+
+	public Double getWinMoney () {
 		return winMoney;
 	}
 
-	public void setWinMoney (double winMoney) {
+	public void setWinMoney (Double winMoney) {
 		this.winMoney += winMoney;
 	}
 
-	public double getLostMoney () {
+	public Double getLostMoney () {
 		return lostMoney;
 	}
 
-	public void setLostMoney (double lostMoney) {
+	public void setLostMoney (Double lostMoney) {
 		this.lostMoney += lostMoney;
 	}
 
-	public double getInsertedMoney () {
+	public Double getInsertedMoney () {
 		return insertedMoney;
 	}
 
-	public void setInsertedMoney (double insertedMoney) {
+	public void setInsertedMoney (Double insertedMoney) {
 		this.insertedMoney += insertedMoney;
 	}
 
@@ -117,6 +119,14 @@ public class User extends AbstractDomainClass  {
 
 	public void setMainRole (String mainRole) {
 		this.mainRole = mainRole;
+	}
+
+	public List<Ticket> getTickets () {
+		return tickets;
+	}
+
+	public void addTickets (Ticket ticket) {
+		tickets.add(ticket);
 	}
 
 	public void addRole(Role role){

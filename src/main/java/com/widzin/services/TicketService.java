@@ -4,7 +4,10 @@ import com.widzin.domain.Game;
 import com.widzin.domain.Result;
 import com.widzin.domain.Ticket;
 
+import java.util.List;
+
 public interface TicketService {
 	Iterable<Result> getAllOptions();
-	Iterable<Game> getGamesFromTicket(Ticket ticket);
+	List<Game> getAllGamesFromTicket(Ticket ticket);
+	void saveTicket(Ticket ticket);
 }

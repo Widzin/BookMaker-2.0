@@ -19,6 +19,7 @@ public class Ticket {
 	private Double rate;
 	private Double moneyInserted;
 	private Double moneyToWin;
+	private boolean finished;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	private User ticketOwner;
@@ -26,6 +27,7 @@ public class Ticket {
 	public Ticket(){
 		rate = 1.0;
 		bets = new ArrayList<>();
+		finished = false;
 	}
 
 	public List<BetGame> getBets () {
@@ -52,11 +54,19 @@ public class Ticket {
 		return moneyToWin;
 	}
 
-	public void finishTicket () {
+	public void calculateTicket () {
 		for (BetGame bet: bets) {
 			rate *= bet.getRate();
 		}
 		moneyToWin = rate * moneyInserted;
+	}
+
+	public boolean isFinished () {
+		return finished;
+	}
+
+	public void setFinished (boolean finished) {
+		this.finished = finished;
 	}
 
 	public User getTicketOwner () {

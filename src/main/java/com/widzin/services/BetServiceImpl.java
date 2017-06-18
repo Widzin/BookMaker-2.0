@@ -20,4 +20,9 @@ public class BetServiceImpl implements BetService{
 	public BetGame findById (Integer id) {
 		return betRepository.findOne(id);
 	}
+
+	@Override
+	public void saveBet (BetGame betGame) {
+		betRepository.save(betGame);
+	}
 }

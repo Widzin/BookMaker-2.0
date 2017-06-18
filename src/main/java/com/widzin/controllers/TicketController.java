@@ -1,9 +1,6 @@
 package com.widzin.controllers;
 
-import com.widzin.domain.BetGame;
-import com.widzin.domain.Checked;
-import com.widzin.domain.Result;
-import com.widzin.domain.Ticket;
+import com.widzin.domain.*;
 import com.widzin.services.BetService;
 import com.widzin.services.GameService;
 import com.widzin.services.TicketService;
@@ -14,8 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,24 +58,13 @@ public class TicketController {
 		for (Integer i: checkedGames) {
 			BetGame betGame = new BetGame();
 			betGame.setOneGame(gameService.findById(i));
+			gameService.findById(i).addBetGameList(betGame);
+			betGame.setTicket(ticket);
 			ticket.addBets(betGame);
 		}
 		model.addAttribute("ticket", ticket);
 		model.addAttribute("bets", ticket.getBets());
 		model.addAttribute("options", ticketService.getAllOptions());
 		return "chosengames";
-	}
-
-	@RequestMapping(value = "/ticket/makeFull", method = RequestMethod.POST)
-	public ModelAndView createTicket(@RequestParam("result") List<Result> results, @RequestParam("money") String text){
-		ModelAndView model = new ModelAndView("redirect:/?error");
-		try {
-			double money = Double.parseDouble(text);
-			if (money > 0) {
-				model = new ModelAndView("redirect:/");
-			}
-		} finally {
-			return model;
-		}
 	}
 }
