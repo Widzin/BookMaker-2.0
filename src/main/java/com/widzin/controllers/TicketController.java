@@ -4,14 +4,14 @@ import com.widzin.domain.*;
 import com.widzin.services.BetService;
 import com.widzin.services.GameService;
 import com.widzin.services.TicketService;
+import com.widzin.services.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +21,7 @@ public class TicketController {
 	private TicketService ticketService;
 	private GameService gameService;
 	private BetService betService;
+	private UserService userService;
 
 	@Autowired
 	public void setTicketService (TicketService ticketService) {
@@ -35,6 +36,11 @@ public class TicketController {
 	@Autowired
 	public void setBetService (BetService betService) {
 		this.betService = betService;
+	}
+
+	@Autowired
+	public void setUserService (UserService userService) {
+		this.userService = userService;
 	}
 
 	@RequestMapping("/ticket/new")
@@ -67,5 +73,14 @@ public class TicketController {
 		model.addAttribute("bets", ticket.getBets());
 		model.addAttribute("options", ticketService.getAllOptions());
 		return "chosengames";
+	}
+
+	@RequestMapping("/historyOfBets")
+	public String showUserBets(Principal principal, Model model){
+		User user = userService.findByUsername(principal.getName()).get();
+		List<Ticket> tickets = ticketService.getAllTicketsFromUser(user.getId());
+		model.addAttribute("tickets", tickets);
+		model.addAttribute("user", user);
+		return "ticketshow";
 	}
 }

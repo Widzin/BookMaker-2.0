@@ -24,7 +24,7 @@
                         <p class="form-control-static" th:text="${user.mainRole}">Role</p>
                     </div>
                 </div>
-                <div class="form-group" th:if="${user.mainRole != 'ADMIN'}">
+                <div class="form-group">
                     <label class="col-sm-2 control-label">Money on Account:</label>
                     <div class="col-sm-1">
                         <p class="form-control-static" th:text="${user.moneyNow} + ' €'">Now</p>
@@ -42,13 +42,16 @@
                         <p class="form-control-static" th:text="${user.insertedMoney} + ' €'">Inserted</p>
                     </div>
                 </div>
-                <div class="form-group" th:if="${user.mainRole != 'ADMIN'}">
+                <div class="form-group">
                     <label class="col-sm-2 control-label">How Much Insert (in €):</label>
                     <div class="col-sm-2">
                         <input type="text" name="insert"/>
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-sm-4">
                         <button type="submit" class="btn btn-default">Insert</button>
+                    </div>
+                    <div class="col-sm-4">
+                        <a th:href="${'/historyOfBets'}">Show my bets</a>
                     </div>
                 </div>
             </form>

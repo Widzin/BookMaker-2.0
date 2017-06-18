@@ -135,7 +135,7 @@ public class UserController {
 			Double money = Double.parseDouble(text);
 			User user = userService.findByUsername(principal.getName()).get();
 			Ticket ticket = ticketService.findById(id);
-			if (money < user.getMoneyNow()) {
+			if (money <= user.getMoneyNow()) {
 				ticket.setMoneyInserted(money);
 				for (int i = 0; i < ticket.getBets().size(); i++) {
 					ticket.getBets().get(i).setBet(results.get(i));
@@ -156,4 +156,6 @@ public class UserController {
 			return model;
 		}
 	}
+
+
 }

@@ -45,4 +45,14 @@ public class TicketServiceImpl implements TicketService {
 	public Ticket findById (Integer id) {
 		return ticketRepository.findOne(id);
 	}
+
+	@Override
+	public List<Ticket> getAllTicketsFromUser (Integer id) {
+		List<Ticket> tickets = new ArrayList<>();
+		for(Ticket t: ticketRepository.findAll()){
+			if (t.getTicketOwner().getId() == id)
+				tickets.add(t);
+		}
+		return tickets;
+	}
 }
