@@ -21,7 +21,7 @@ public class ClubController {
 
 	@RequestMapping(value = "/clubs", method = RequestMethod.GET)
 	public String list(Model model){
-		model.addAttribute("clubs", clubService.getForTableAllSeasons());
+		model.addAttribute("clubs", clubService.listAllClubs());
 		return "clubs";
 	}
 

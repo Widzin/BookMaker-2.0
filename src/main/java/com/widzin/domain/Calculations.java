@@ -105,7 +105,7 @@ public class Calculations {
 				System.out.println("Something went wrong");
 			}
 		}
-		if (numberOfMatchesAtHome == 0) {
+		if (numberOfMatchesAtHome < 34) {
 			setHomeDetails(year - 1);
 		}
 	}
@@ -122,7 +122,7 @@ public class Calculations {
 				System.out.println("Something went wrong");
 			}
 		}
-		if (numberOfMatchesAway == 0) {
+		if (numberOfMatchesAway < 34) {
 			setAwayDetails(year - 1);
 		}
 	}

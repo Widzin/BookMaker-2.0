@@ -27,6 +27,9 @@ public class User extends AbstractDomainClass  {
     private Integer failedLoginAttempts;
     private String mainRole;
 
+    @OneToMany(mappedBy = "ticketOwner", cascade = CascadeType.ALL)
+	private List<Ticket> tickets;
+
 	public User () {
 		roles = new ArrayList<>();
 		failedLoginAttempts = 0;
@@ -35,6 +38,7 @@ public class User extends AbstractDomainClass  {
 		winMoney = 0;
 		lostMoney = 0;
 		insertedMoney = 0;
+		tickets = new ArrayList<>();
 	}
 
 	public String getUsername() {

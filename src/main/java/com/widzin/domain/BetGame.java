@@ -14,7 +14,10 @@ public class BetGame {
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Game oneGame;
 	private Result result;
-	private double rate;
+	private Double rate;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Ticket ticket;
 
 	public Game getOneGame () {
 		return oneGame;
@@ -28,15 +31,30 @@ public class BetGame {
 		return result;
 	}
 
-	public void setResult (Result result) {
-		this.result = result;
-	}
-
 	public double getRate () {
 		return rate;
 	}
 
-	public void setRate (double rate) {
-		this.rate = rate;
+	public void setBet(Result result){
+		this.result = result;
+		switch (this.result){
+			case home:
+				rate = oneGame.getRates()[0];
+				break;
+			case draw:
+				rate = oneGame.getRates()[1];
+				break;
+			case guest:
+				rate = oneGame.getRates()[2];
+				break;
+		}
+	}
+
+	public Ticket getTicket () {
+		return ticket;
+	}
+
+	public void setTicket (Ticket ticket) {
+		this.ticket = ticket;
 	}
 }
