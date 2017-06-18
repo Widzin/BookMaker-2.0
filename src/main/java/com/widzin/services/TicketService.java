@@ -12,4 +12,5 @@ public interface TicketService {
 	void saveTicket(Ticket ticket);
 	Ticket findById(Integer id);
 	List<Ticket> getAllTicketsFromUser(Integer id);
+	List<Ticket> getAllTicketsWithMatch(Game game);
 }

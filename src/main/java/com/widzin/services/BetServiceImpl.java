@@ -2,9 +2,13 @@ package com.widzin.services;
 
 import com.widzin.domain.BetGame;
 import com.widzin.domain.Game;
+import com.widzin.domain.Ticket;
 import com.widzin.repositories.BetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class BetServiceImpl implements BetService{
@@ -17,12 +21,17 @@ public class BetServiceImpl implements BetService{
 	}
 
 	@Override
-	public BetGame findById (Integer id) {
-		return betRepository.findOne(id);
+	public void saveBet (BetGame betGame) {
+		betRepository.save(betGame);
 	}
 
 	@Override
-	public void saveBet (BetGame betGame) {
-		betRepository.save(betGame);
+	public List<BetGame> getBetsFromGameAndTicket (Game game, Ticket ticket) {
+		List<BetGame> bets = new ArrayList<>();
+		for (BetGame bg: ticket.getBets()){
+			if (bg.getOneGame().getId() == game.getId())
+				bets.add(bg);
+		}
+		return bets;
 	}
 }

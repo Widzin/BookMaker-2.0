@@ -1,11 +1,10 @@
 package com.widzin.controllers;
 
-import com.widzin.domain.Calculations;
-import com.widzin.domain.Club;
-import com.widzin.domain.Game;
-import com.widzin.domain.Ticket;
+import com.widzin.domain.*;
+import com.widzin.services.BetService;
 import com.widzin.services.ClubService;
 import com.widzin.services.GameService;
+import com.widzin.services.TicketService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,13 +17,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class GameController {
 
 	private GameService gameService;
 	private ClubService clubService;
+	private TicketService ticketService;
+	private BetService betService;
 
 	@Autowired
 	public void setGameService (GameService gameService) {
@@ -34,6 +37,16 @@ public class GameController {
 	@Autowired
 	public void setClubService (ClubService clubService) {
 		this.clubService = clubService;
+	}
+
+	@Autowired
+	public void setTicketService (TicketService ticketService) {
+		this.ticketService = ticketService;
+	}
+
+	@Autowired
+	public void setBetService (BetService betService) {
+		this.betService = betService;
 	}
 
 	@RequestMapping("/game/new")
@@ -95,6 +108,7 @@ public class GameController {
 		game.setHomeScore(homeScore);
 		game.setAwayScore(awayScore);
 		game.setPlayed(true);
+		updateBets(game);
 		gameService.saveMatch(game);
 		Club home = clubService.getClubById(game.getHome().getId());
 		Club away = clubService.getClubById(game.getAway().getId());
@@ -106,6 +120,37 @@ public class GameController {
 		calculations.addNumberOfAllMatches();
 		calculations.addAllGoalsScoredAtHome(homeScore);
 		calculations.addAllGoalsLostAtHome(awayScore);
+	}
+
+	private void updateBets(Game game){
+		List<BetGame> bets = new ArrayList<>();
+		for (Ticket t: ticketService.getAllTicketsWithMatch(game)){
+			bets.addAll(betService.getBetsFromGameAndTicket(game, t));
+		}
+		for (BetGame bg: bets){
+			switch (bg.getResult()){
+				case home:
+					if (game.getHomeScore() > game.getAwayScore())
+						bg.setMatched(true);
+					else
+						bg.setMatched(false);
+					break;
+				case guest:
+					if (game.getHomeScore() < game.getAwayScore())
+						bg.setMatched(true);
+					else
+						bg.setMatched(false);
+					break;
+				case draw:
+					if (game.getHomeScore() == game.getAwayScore())
+						bg.setMatched(true);
+					else
+						bg.setMatched(false);
+					break;
+			}
+			betService.saveBet(bg);
+		}
+
 	}
 
 	private Logger log = Logger.getLogger(GameController.class);

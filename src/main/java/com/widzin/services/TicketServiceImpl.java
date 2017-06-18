@@ -55,4 +55,16 @@ public class TicketServiceImpl implements TicketService {
 		}
 		return tickets;
 	}
+
+	@Override
+	public List<Ticket> getAllTicketsWithMatch (Game game) {
+		List<Ticket> tickets = new ArrayList<>();
+		for(Ticket t: ticketRepository.findAll()){
+			for (BetGame bg: t.getBets()){
+				if (bg.getOneGame().getId() == game.getId())
+					tickets.add(t);
+			}
+		}
+		return tickets;
+	}
 }

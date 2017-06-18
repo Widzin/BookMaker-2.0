@@ -31,10 +31,10 @@
                 <td th:text="${#numbers.formatDecimal(bet.rate,0,2)}" style="text-align: center">Rate</td>
                 <td th:text="${bet.result}" style="text-align: center">Prediction</td>
                 <span th:switch="${bet.oneGame.played}">
-                    <td th:case="true" style="text-align: center" th:switch="${bet.matched}">
-                        <span th:case="true">Yes</span>
-                        <span th:case="false">No</span>
-                    </td>
+                    <span th:case="true">
+                        <td th:if="${bet.matched == true}" style="text-align: center">Yes</td>
+                        <td th:if="${bet.matched == false}" style="text-align: center">No</td>
+                    </span>
                     <td th:case="false" style="text-align: center">Don't Know</td>
                 </span>
             </tr>
