@@ -27,6 +27,7 @@ public class TicketController {
 	public String showMatchesToBet(Model model){
 		model.addAttribute("games", gameService.getNextMatches());
 		model.addAttribute("betting", true);
+		model.addAttribute("options", ticketService.getAllOptions());
 		return "nextgames";
 	}
 }

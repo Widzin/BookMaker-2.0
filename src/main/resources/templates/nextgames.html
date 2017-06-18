@@ -41,7 +41,11 @@
                             <a th:href="${'/game/between/' + game.home.id + 'i' + game.away.id}">Show</a>
                         </td>
                         <td sec:authorize="hasAuthority('USER')" th:if="${betting == true}">
-                            Tekst probny
+                            <select name="results">
+                                <option th:text="-----"></option>
+                                <option th:each="result : ${options}"
+                                        th:value="${result}" th:text="${result}">Results</option>
+                            </select>
                         </td>
                     </tr>
                 </tbody>
