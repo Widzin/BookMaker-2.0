@@ -8,6 +8,9 @@ public class BetGame {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
+	@Version
+	private Integer version;
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Game oneGame;
 	private Result result;
@@ -16,6 +19,22 @@ public class BetGame {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Ticket ticket;
+
+	public Integer getId () {
+		return id;
+	}
+
+	public void setId (Integer id) {
+		this.id = id;
+	}
+
+	public Integer getVersion () {
+		return version;
+	}
+
+	public void setVersion (Integer version) {
+		this.version = version;
+	}
 
 	public Game getOneGame () {
 		return oneGame;

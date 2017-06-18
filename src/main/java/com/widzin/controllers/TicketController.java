@@ -69,6 +69,9 @@ public class TicketController {
 			ticket.addBets(betGame);
 		}
 		ticketService.saveTicket(ticket);
+		for (BetGame bg: ticket.getBets()){
+			betService.saveBet(bg);
+		}
 		model.addAttribute("ticket", ticket);
 		model.addAttribute("bets", ticket.getBets());
 		model.addAttribute("options", ticketService.getAllOptions());
