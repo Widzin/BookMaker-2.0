@@ -84,8 +84,14 @@ public class TicketController {
 	@RequestMapping("/historyOfBets")
 	public String showUserBets(Principal principal, Model model){
 		User user = userService.findByUsername(principal.getName()).get();
+		Iterable<Ticket> list;
+		if (user.getId() != 1) {
+			list = ticketService.getAllTicketsFromUser(user.getId());
+		} else {
+			list = ticketService.getAllTickets();
+		}
 		List<Ticket> tickets = new ArrayList<>();
-		for(Ticket t: ticketService.getAllTicketsFromUser(user.getId())){
+		for(Ticket t: list){
 			if(t.getRate() != 1.0)
 				tickets.add(t);
 			else {
@@ -110,6 +116,11 @@ public class TicketController {
 				model.addAttribute("bets", ticket.getBets());
 				return "betshow";
 			}
+		}
+		if (user.getId() == 1) {
+			Ticket ticket = ticketService.findById(id);
+			model.addAttribute("bets", ticket.getBets());
+			return "betshow";
 		}
 		return "redirect:/historyOfBets?error";
 	}

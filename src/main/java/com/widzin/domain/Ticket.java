@@ -19,7 +19,8 @@ public class Ticket {
 	private Double rate;
 	private Double moneyInserted;
 	private Double moneyToWin;
-	private boolean finished;
+	private Boolean finished;
+	private Boolean win;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	private User ticketOwner;
@@ -77,12 +78,20 @@ public class Ticket {
 		moneyToWin = rate * moneyInserted;
 	}
 
-	public boolean isFinished () {
+	public Boolean isFinished () {
 		return finished;
 	}
 
-	public void setFinished (boolean finished) {
+	public void setFinished (Boolean finished) {
 		this.finished = finished;
+	}
+
+	public Boolean isWin () {
+		return win;
+	}
+
+	public void setWin (Boolean win) {
+		this.win = win;
 	}
 
 	public User getTicketOwner () {

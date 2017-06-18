@@ -14,4 +14,5 @@ public interface TicketService {
 	List<Ticket> getAllTicketsFromUser(Integer id);
 	List<Ticket> getAllTicketsWithMatch(Game game);
 	void deleteTicket(Ticket ticket);
+	Iterable<Ticket> getAllTickets();
 }

@@ -23,6 +23,7 @@
                 <th>Rate</th>
                 <th style="text-align: center">Money to Win</th>
                 <th style="text-align: center">Finished</th>
+                <th style="text-align: center">Win</th>
                 <th style="text-align: center">Show details</th>
             </tr>
             </thead>
@@ -35,6 +36,13 @@
                 <span th:switch="${ticket.finished}">
                     <td th:case="true" style="text-align: center">Finished</td>
                     <td th:case="false" style="text-align: center">Not finished yet</td>
+                </span>
+                <span th:switch="${ticket.finished}">
+                    <span th:case="true">
+                        <td th:if="${ticket.win == true}" style="text-align: center"><b>Yes</b></td>
+                        <td th:if="${ticket.win == false}" style="text-align: center">No</td>
+                    </span>
+                    <td th:case="false" style="text-align: center">Don't Know</td>
                 </span>
                 <td style="text-align: center">
                     <a th:href="${'/historyOfBets/' + ticket.id}">Show</a>

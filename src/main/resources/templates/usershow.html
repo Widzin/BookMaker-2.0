@@ -27,19 +27,19 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Money on Account:</label>
                     <div class="col-sm-1">
-                        <p class="form-control-static" th:text="${#numbers.formatDecimal(user.moneyNow,0,2)} + ' €'">Now</p>
+                        <p class="form-control-static" th:text="${#numbers.formatDecimal(user.moneyNow,1,2)} + ' €'">Now</p>
                     </div>
                     <label class="col-sm-2 control-label">Won Money:</label>
                     <div class="col-sm-1">
-                        <p class="form-control-static" th:text="${#numbers.formatDecimal(user.winMoney,0,2)} + ' €'">Won</p>
+                        <p class="form-control-static" th:text="${#numbers.formatDecimal(user.winMoney,1,2)} + ' €'">Won</p>
                     </div>
                     <label class="col-sm-2 control-label">Lost Money:</label>
                     <div class="col-sm-1">
-                        <p class="form-control-static" th:text="${#numbers.formatDecimal(user.lostMoney,0,2)} + ' €'">Lost</p>
+                        <p class="form-control-static" th:text="${#numbers.formatDecimal(user.lostMoney,1,2)} + ' €'">Lost</p>
                     </div>
                     <label class="col-sm-2 control-label">Inserted Money:</label>
                     <div class="col-sm-1">
-                        <p class="form-control-static" th:text="${#numbers.formatDecimal(user.insertedMoney,0,2)} + ' €'">Inserted</p>
+                        <p class="form-control-static" th:text="${#numbers.formatDecimal(user.insertedMoney,1,2)} + ' €'">Inserted</p>
                     </div>
                 </div>
                 <div class="form-group">

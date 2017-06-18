@@ -24,7 +24,7 @@
                             <li><a href="#" th:href="@{/users}" sec:authorize="hasAuthority('ADMIN')">Show All Users</a></li>
                             <li><a href="#" th:href="@{/register}" sec:authorize="!isAuthenticated()">Sign Up</a></li>
                             <li><a href="#" th:href="@{/login}" sec:authorize="!isAuthenticated()">Sign In</a></li>
-                            <li><a href="#" th:href="@{/profile}" sec:authorize="hasAuthority('USER')">Profile</a></li>
+                            <li><a href="#" th:href="@{/profile}" sec:authorize="isAuthenticated()">Profile</a></li>
                             <li><a href="#" th:href="@{/logout}" sec:authorize="isAuthenticated()">Sign Out</a></li>
                         </ul>
                     </div>

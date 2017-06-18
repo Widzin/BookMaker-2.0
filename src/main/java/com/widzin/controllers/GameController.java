@@ -181,11 +181,16 @@ public class GameController {
 					user.addMoneyNow(t.getMoneyToWin() - t.getMoneyInserted());
 					admin.addLostMoney(t.getMoneyToWin() - t.getMoneyInserted());
 					admin.addMoneyNow((-1)*(t.getMoneyToWin() - t.getMoneyInserted()));
+					t.setWin(true);
 				} else {
 					user.addLostMoney(t.getMoneyInserted());
 					admin.addWinMoney(t.getMoneyInserted());
 					admin.addMoneyNow(t.getMoneyInserted());
+					t.setWin(false);
 				}
+				ticketService.saveTicket(t);
+				userService.saveOrUpdate(user);
+				userService.saveOrUpdate(admin);
 			}
 		}
 	}
