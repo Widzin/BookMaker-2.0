@@ -67,6 +67,7 @@ public class GameController {
 	@RequestMapping("/game/next")
 	public String showNextGames(Model model){
 		model.addAttribute("games", gameService.getNextMatches());
+		model.addAttribute("betting", false);
 		return "nextgames";
 	}
 

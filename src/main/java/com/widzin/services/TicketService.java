@@ -1,7 +1,6 @@
 package com.widzin.services;
 
-/**
- * Created by Artur on 2017-06-18.
- */
+import com.widzin.domain.Game;
+
 public interface TicketService {
 }

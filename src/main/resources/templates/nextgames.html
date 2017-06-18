@@ -23,6 +23,7 @@
                         <th>2</th>
                         <th sec:authorize="hasAuthority('ADMIN')">Play game</th>
                         <th sec:authorize="hasAnyAuthority('USER','ADMIN')">History</th>
+                        <th sec:authorize="hasAuthority('USER')" th:if="${betting == true}">BET</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,6 +39,9 @@
                         </td>
                         <td sec:authorize="hasAnyAuthority('USER','ADMIN')">
                             <a th:href="${'/game/between/' + game.home.id + 'i' + game.away.id}">Show</a>
+                        </td>
+                        <td sec:authorize="hasAuthority('USER')" th:if="${betting == true}">
+                            Tekst probny
                         </td>
                     </tr>
                 </tbody>
