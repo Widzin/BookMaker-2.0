@@ -11,7 +11,7 @@
     <div class="row text-center">
         <h2>Bet details</h2>
     </div>
-    <div>
+    <div th:if="${not #lists.isEmpty(bets)}">
         <table id="myTable" class="table table-striped">
             <thead>
             <tr style="background-color: #1c1818; color: #b9b5b5; font-size: 20px;">

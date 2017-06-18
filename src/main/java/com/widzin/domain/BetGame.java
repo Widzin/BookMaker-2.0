@@ -48,7 +48,7 @@ public class BetGame {
 		return result;
 	}
 
-	public double getRate () {
+	public Double getRate () {
 		return rate;
 	}
 

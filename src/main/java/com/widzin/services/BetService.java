@@ -9,4 +9,5 @@ import java.util.List;
 public interface BetService {
 	void saveBet(BetGame betGame);
 	List<BetGame> getBetsFromGameAndTicket(Game game, Ticket ticket);
+	void deleteBet(BetGame betGame);
 }

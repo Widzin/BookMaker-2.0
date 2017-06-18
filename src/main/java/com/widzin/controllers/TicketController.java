@@ -58,8 +58,10 @@ public class TicketController {
 	private Logger log = Logger.getLogger(GameController.class);
 
 	@RequestMapping(value = "/ticket/make", method = RequestMethod.POST)
-	public String showChosenMatches(@ModelAttribute(value = "checked") Checked checked, Model model){
+	public String showChosenMatches(@ModelAttribute(value = "checked") Checked checked, Model model,
+									Principal principal){
 		List<Integer> checkedGames = checked.getCheckedGames();
+		User user = userService.findByUsername(principal.getName()).get();
 		Ticket ticket = new Ticket();
 		for (Integer i: checkedGames) {
 			BetGame betGame = new BetGame();
@@ -67,6 +69,7 @@ public class TicketController {
 			gameService.findById(i).addBetGameList(betGame);
 			betGame.setTicket(ticket);
 			ticket.addBets(betGame);
+			ticket.setTicketOwner(user);
 		}
 		ticketService.saveTicket(ticket);
 		for (BetGame bg: ticket.getBets()){
@@ -81,14 +84,25 @@ public class TicketController {
 	@RequestMapping("/historyOfBets")
 	public String showUserBets(Principal principal, Model model){
 		User user = userService.findByUsername(principal.getName()).get();
-		List<Ticket> tickets = ticketService.getAllTicketsFromUser(user.getId());
+		List<Ticket> tickets = new ArrayList<>();
+		for(Ticket t: ticketService.getAllTicketsFromUser(user.getId())){
+			if(t.getRate() != 1.0)
+				tickets.add(t);
+			else {
+				for (BetGame bg: t.getBets()) {
+					if (bg.getRate() == null)
+						betService.deleteBet(bg);
+				}
+				ticketService.deleteTicket(t);
+			}
+		}
 		model.addAttribute("tickets", tickets);
 		model.addAttribute("user", user);
 		return "ticketshow";
 	}
 
 	@RequestMapping("/historyOfBets/{id}")
-	public String showUserBets(@PathVariable("id") Integer id, Principal principal, Model model){
+	public String showUserBetsDetails(@PathVariable("id") Integer id, Principal principal, Model model){
 		User user = userService.findByUsername(principal.getName()).get();
 		for (Ticket t: user.getTickets()) {
 			if (t.getId() == id) {

@@ -13,4 +13,5 @@ public interface TicketService {
 	Ticket findById(Integer id);
 	List<Ticket> getAllTicketsFromUser(Integer id);
 	List<Ticket> getAllTicketsWithMatch(Game game);
+	void deleteTicket(Ticket ticket);
 }

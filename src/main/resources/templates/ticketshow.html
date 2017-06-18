@@ -14,7 +14,7 @@
     <div class="row text-center">
         <h2><span th:text="${user.username} + ' bets'"></span></h2>
     </div>
-    <div>
+    <div th:if="${not #lists.isEmpty(tickets)}">
         <table id="myTable" class="table table-striped">
             <thead>
             <tr style="background-color: #1c1818; color: #b9b5b5; font-size: 20px;">
@@ -42,6 +42,9 @@
             </tr>
             </tbody>
         </table>
+    </div>
+    <div th:if="${#lists.isEmpty(tickets)}" class="row text-center">
+        <h2>There is no bets in your history</h2>
     </div>
 </div>
 </body>

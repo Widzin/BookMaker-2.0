@@ -34,4 +34,9 @@ public class BetServiceImpl implements BetService{
 		}
 		return bets;
 	}
+
+	@Override
+	public void deleteBet (BetGame betGame) {
+		betRepository.delete(betGame);
+	}
 }

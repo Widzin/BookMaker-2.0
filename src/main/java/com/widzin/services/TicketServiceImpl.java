@@ -67,4 +67,9 @@ public class TicketServiceImpl implements TicketService {
 		}
 		return tickets;
 	}
+
+	@Override
+	public void deleteTicket (Ticket ticket) {
+		ticketRepository.delete(ticket);
+	}
 }
