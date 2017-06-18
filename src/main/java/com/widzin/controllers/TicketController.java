@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,10 +72,15 @@ public class TicketController {
 	}
 
 	@RequestMapping(value = "/ticket/makeFull", method = RequestMethod.POST)
-	public String createTicket(@RequestParam("result") List<Result> results){
-		for (Result r: results) {
-			log.info("Takie zaznaczyłem: " + r);
+	public ModelAndView createTicket(@RequestParam("result") List<Result> results, @RequestParam("money") String text){
+		ModelAndView model = new ModelAndView("redirect:/?error");
+		try {
+			double money = Double.parseDouble(text);
+			if (money > 0) {
+				model = new ModelAndView("redirect:/");
+			}
+		} finally {
+			return model;
 		}
-		return "redirect:/";
 	}
 }
