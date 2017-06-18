@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head lang="en">
+
+    <title>Bet details</title>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div class="row text-center">
+        <h2>Bet details</h2>
+    </div>
+    <div>
+        <table id="myTable" class="table table-striped">
+            <thead>
+            <tr style="background-color: #1c1818; color: #b9b5b5; font-size: 20px;">
+                <th>Nr</th>
+                <th style="text-align: center">Home Team</th>
+                <th style="text-align: center">Guest Team</th>
+                <th style="text-align: center">Rate</th>
+                <th style="text-align: center">My Prediction</th>
+                <th style="text-align: center">Good prediction</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="bet, iterStat : ${bets}" th:class="${iterStat.odd}? 'odd'">
+                <td th:text="${iterStat.count}"><a href="/bet/@{bet.id}" style="text-align: center">Nr</a></td>
+                <td th:text="${bet.oneGame.home.name}" style="text-align: center">Home Team</td>
+                <td th:text="${bet.oneGame.away.name}" style="text-align: center">Guest Team</td>
+                <td th:text="${#numbers.formatDecimal(bet.rate,0,2)}" style="text-align: center">Rate</td>
+                <td th:text="${bet.result}" style="text-align: center">Prediction</td>
+                <span th:switch="${bet.oneGame.played}">
+                    <td th:case="true" style="text-align: center" th:switch="${bet.matched}">
+                        <span th:case="true">Yes</span>
+                        <span th:case="false">No</span>
+                    </td>
+                    <td th:case="false" style="text-align: center">Don't Know</td>
+                </span>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+<script>
+    $(document).ready(function(){
+        $('#myTable').dataTable();
+    });
+</script>
+</html>

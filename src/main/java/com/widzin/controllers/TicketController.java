@@ -83,4 +83,17 @@ public class TicketController {
 		model.addAttribute("user", user);
 		return "ticketshow";
 	}
+
+	@RequestMapping("/historyOfBets/{id}")
+	public String showUserBets(@PathVariable("id") Integer id, Principal principal, Model model){
+		User user = userService.findByUsername(principal.getName()).get();
+		for (Ticket t: user.getTickets()) {
+			if (t.getId() == id) {
+				Ticket ticket = ticketService.findById(id);
+				model.addAttribute("bets", ticket.getBets());
+				return "betshow";
+			}
+		}
+		return "redirect:/historyOfBets?error";
+	}
 }

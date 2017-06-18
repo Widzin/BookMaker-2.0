@@ -12,6 +12,7 @@ public class BetGame {
 	private Game oneGame;
 	private Result result;
 	private Double rate;
+	private boolean matched;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Ticket ticket;
@@ -45,6 +46,14 @@ public class BetGame {
 				rate = oneGame.getRates()[2];
 				break;
 		}
+	}
+
+	public boolean isMatched () {
+		return matched;
+	}
+
+	public void setMatched (boolean matched) {
+		this.matched = matched;
 	}
 
 	public Ticket getTicket () {
