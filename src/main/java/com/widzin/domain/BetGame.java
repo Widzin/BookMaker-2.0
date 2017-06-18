@@ -15,7 +15,7 @@ public class BetGame {
 	private Game oneGame;
 	private Result result;
 	private Double rate;
-	private boolean matched;
+	private Boolean matched;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Ticket ticket;
@@ -67,11 +67,11 @@ public class BetGame {
 		}
 	}
 
-	public boolean isMatched () {
+	public Boolean isMatched () {
 		return matched;
 	}
 
-	public void setMatched (boolean matched) {
+	public void setMatched (Boolean matched) {
 		this.matched = matched;
 	}
 

@@ -135,7 +135,6 @@ public class UserController {
 			Double money = Double.parseDouble(text);
 			User user = userService.findByUsername(principal.getName()).get();
 			Ticket ticket = ticketService.findById(id);
-			log.info("Ilosc meczy w ticket: " + ticket.getBets().size());
 			if (money <= user.getMoneyNow()) {
 				ticket.setMoneyInserted(money);
 				for (int i = 0; i < ticket.getBets().size(); i++) {

@@ -87,7 +87,7 @@ public class User extends AbstractDomainClass  {
 		return winMoney;
 	}
 
-	public void setWinMoney (Double winMoney) {
+	public void addWinMoney (Double winMoney) {
 		this.winMoney += winMoney;
 	}
 
@@ -95,7 +95,7 @@ public class User extends AbstractDomainClass  {
 		return lostMoney;
 	}
 
-	public void setLostMoney (Double lostMoney) {
+	public void addLostMoney (Double lostMoney) {
 		this.lostMoney += lostMoney;
 	}
 

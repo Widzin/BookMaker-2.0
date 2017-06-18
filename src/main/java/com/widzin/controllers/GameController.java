@@ -1,10 +1,7 @@
 package com.widzin.controllers;
 
 import com.widzin.domain.*;
-import com.widzin.services.BetService;
-import com.widzin.services.ClubService;
-import com.widzin.services.GameService;
-import com.widzin.services.TicketService;
+import com.widzin.services.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,6 +26,7 @@ public class GameController {
 	private ClubService clubService;
 	private TicketService ticketService;
 	private BetService betService;
+	private UserService userService;
 
 	@Autowired
 	public void setGameService (GameService gameService) {
@@ -47,6 +46,11 @@ public class GameController {
 	@Autowired
 	public void setBetService (BetService betService) {
 		this.betService = betService;
+	}
+
+	@Autowired
+	public void setUserService (UserService userService) {
+		this.userService = userService;
 	}
 
 	@RequestMapping("/game/new")
@@ -94,7 +98,8 @@ public class GameController {
 	}
 
 	@RequestMapping(value = "/game/play/{id}", method = RequestMethod.POST)
-	public String setScoresInGame(@PathVariable Integer id, @RequestParam("homeScore") Integer homeScore, @RequestParam("awayScore") Integer awayScore) {
+	public String setScoresInGame(@PathVariable Integer id, @RequestParam("homeScore") Integer homeScore,
+								  @RequestParam("awayScore") Integer awayScore) {
 		if (homeScore != null && awayScore != null) {
 			updateClubsAfterMatch(id, homeScore, awayScore);
 			return "redirect:/?success";
@@ -150,7 +155,33 @@ public class GameController {
 			}
 			betService.saveBet(bg);
 		}
+		updateTickets(game);
+	}
 
+	private void updateTickets(Game game){
+		for(Ticket t: ticketService.getAllTicketsWithMatch(game)){
+			int i = 0;
+			do {
+				if (t.getBets().get(i).isMatched() == null){
+					break;
+				}
+				i++;
+			} while (i < t.getBets().size());
+			if (i == t.getBets().size()){
+				t.setFinished(true);
+				int j;
+				for (j = 0; j < t.getBets().size(); j++){
+					if (!t.getBets().get(j).isMatched())
+						break;
+				}
+				User user = userService.getById(t.getTicketOwner().getId());
+				if (j == t.getBets().size()){
+					user.addWinMoney(t.getMoneyToWin() - t.getMoneyInserted());
+				} else {
+					user.addLostMoney(t.getMoneyInserted());
+				}
+			}
+		}
 	}
 
 	private Logger log = Logger.getLogger(GameController.class);
