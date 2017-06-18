@@ -12,7 +12,7 @@
             <div class="row text-center">
                 <h2>Next games</h2>
             </div>
-            <form class="form-horizontal" th:object="${ticket}" th:action="@{/ticket/make}" method="POST">
+            <form class="form-horizontal" th:object="${checked}" th:action="@{/ticket/make}" method="POST">
                 <table id="myTable" class="table table-striped">
                     <thead>
                         <tr style="background-color: #1c1818; color: #b9b5b5; font-size: 20px;">
@@ -24,7 +24,7 @@
                             <th>2</th>
                             <th sec:authorize="hasAuthority('ADMIN')">Play game</th>
                             <th sec:authorize="hasAnyAuthority('USER','ADMIN')">History</th>
-                            <th sec:authorize="hasAuthority('USER')" th:if="${betting == true}">BET</th>
+                            <th sec:authorize="hasAuthority('USER')" th:if="${betting == true}">Add to bet</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,11 +42,7 @@
                             <a th:href="${'/game/between/' + game.home.id + 'i' + game.away.id}">Show</a>
                         </td>
                         <td sec:authorize="hasAuthority('USER')" th:if="${betting == true}">
-                            <select name="results">
-                                <option th:text="-----"></option>
-                                <option th:each="result : ${options}"
-                                        th:value="${result}" th:text="${result}">Results</option>
-                            </select>
+                            <input type="checkbox" th:field="*{checkedGames}" th:value="${game.id}"/>
                         </td>
                     </tr>
                     </tbody>
