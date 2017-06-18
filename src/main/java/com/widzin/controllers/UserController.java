@@ -127,14 +127,14 @@ public class UserController {
 
 	private Logger log = Logger.getLogger(GameController.class);
 
-	@RequestMapping(value = "/ticket/makeFull", method = RequestMethod.POST)
+	@RequestMapping(value = "/ticket/makeFull/{id}", method = RequestMethod.POST)
 	public ModelAndView createTicket(@RequestParam("result") List<Result> results, @RequestParam("money") String text,
-									 Principal principal, Ticket ticket){
+									 Principal principal, @PathVariable("id") Integer id){
 		ModelAndView model = new ModelAndView("redirect:/?error");
 		try {
 			Double money = Double.parseDouble(text);
 			User user = userService.findByUsername(principal.getName()).get();
-			log.info("Pieniadze na koncie: " + user.getMoneyNow());
+			Ticket ticket = ticketService.findById(id);
 			if (money < user.getMoneyNow()) {
 				ticket.setMoneyInserted(money);
 				for (int i = 0; i < ticket.getBets().size(); i++) {

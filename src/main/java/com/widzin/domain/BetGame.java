@@ -8,9 +8,6 @@ public class BetGame {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
-	@Version
-	private Integer version;
-
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Game oneGame;
 	private Result result;

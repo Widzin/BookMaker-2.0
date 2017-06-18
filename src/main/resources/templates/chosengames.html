@@ -15,7 +15,7 @@
         <div class="row text-center">
             <h2>Games to bet</h2>
         </div>
-        <form class="form-horizontal" th:object="${ticket}" th:action="@{/ticket/makeFull}" method="POST">
+        <form class="form-horizontal" th:object="${ticket}" th:action="@{/ticket/makeFull/} + ${ticket.id}" method="POST">
             <table id="myTable" class="table table-striped">
                 <thead>
                 <tr style="background-color: #1c1818; color: #b9b5b5; font-size: 20px;">

@@ -10,4 +10,5 @@ public interface TicketService {
 	Iterable<Result> getAllOptions();
 	List<Game> getAllGamesFromTicket(Ticket ticket);
 	void saveTicket(Ticket ticket);
+	Ticket findById(Integer id);
 }

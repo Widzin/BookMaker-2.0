@@ -40,4 +40,9 @@ public class TicketServiceImpl implements TicketService {
 	public void saveTicket (Ticket ticket) {
 		ticketRepository.save(ticket);
 	}
+
+	@Override
+	public Ticket findById (Integer id) {
+		return ticketRepository.findOne(id);
+	}
 }

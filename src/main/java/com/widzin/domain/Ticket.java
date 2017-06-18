@@ -11,9 +11,6 @@ public class Ticket {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
-	@Version
-	private Integer version;
-
 	@OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL)
 	private List<BetGame> bets;
 	private Double rate;
@@ -28,6 +25,14 @@ public class Ticket {
 		rate = 1.0;
 		bets = new ArrayList<>();
 		finished = false;
+	}
+
+	public Integer getId () {
+		return id;
+	}
+
+	public void setId (Integer id) {
+		this.id = id;
 	}
 
 	public List<BetGame> getBets () {
