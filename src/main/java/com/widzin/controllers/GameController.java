@@ -175,10 +175,16 @@ public class GameController {
 						break;
 				}
 				User user = userService.getById(t.getTicketOwner().getId());
+				User admin = userService.getById(1);
 				if (j == t.getBets().size()){
 					user.addWinMoney(t.getMoneyToWin() - t.getMoneyInserted());
+					user.addMoneyNow(t.getMoneyToWin() - t.getMoneyInserted());
+					admin.addLostMoney(t.getMoneyToWin() - t.getMoneyInserted());
+					admin.addMoneyNow((-1)*(t.getMoneyToWin() - t.getMoneyInserted()));
 				} else {
 					user.addLostMoney(t.getMoneyInserted());
+					admin.addWinMoney(t.getMoneyInserted());
+					admin.addMoneyNow(t.getMoneyInserted());
 				}
 			}
 		}

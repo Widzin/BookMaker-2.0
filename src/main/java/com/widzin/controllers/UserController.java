@@ -147,7 +147,7 @@ public class UserController {
 				ticket.calculateTicket();
 				ticket.setTicketOwner(user);
 				ticketService.saveTicket(ticket);
-				user.setMoneyNow(user.getMoneyNow() - money);
+				user.addMoneyNow((-1)*money);
 				user.addTickets(ticket);
 				userService.saveOrUpdate(user);
 				model = new ModelAndView("redirect:/?success");
