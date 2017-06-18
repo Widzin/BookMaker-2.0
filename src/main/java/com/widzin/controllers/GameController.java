@@ -2,6 +2,7 @@ package com.widzin.controllers;
 
 import com.widzin.domain.Club;
 import com.widzin.domain.Game;
+import com.widzin.domain.Ticket;
 import com.widzin.services.ClubService;
 import com.widzin.services.GameService;
 import org.apache.log4j.Logger;
@@ -68,6 +69,7 @@ public class GameController {
 	public String showNextGames(Model model){
 		model.addAttribute("games", gameService.getNextMatches());
 		model.addAttribute("betting", false);
+		model.addAttribute("ticket", new Ticket());
 		return "nextgames";
 	}
 
