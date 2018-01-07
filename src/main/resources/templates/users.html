@@ -6,14 +6,15 @@
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
-    <div class="container">
-        <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-        <div th:if="${not #lists.isEmpty(users)}">
-            <div class="row text-center">
-                <h2>Users Listing</h2>
-            </div>
-            <table id="myTable" class="table table-striped">
-                <thead>
+    <div class="container" id="container">
+        <div id="main">
+            <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+            <div th:if="${not #lists.isEmpty(users)}">
+                <div class="row text-center">
+                    <h2>Users Listing</h2>
+                </div>
+                <table id="myTable" class="table table-striped">
+                    <thead>
                     <tr style="background-color: #1c1818; color: #b9b5b5; font-size: 20px;">
                         <th>Id</th>
                         <th>NickName</th>
@@ -22,8 +23,8 @@
                         <th>View</th>
                         <th>Delete</th>
                     </tr>
-                </thead>
-                <tbody>
+                    </thead>
+                    <tbody>
                     <tr th:each="user : ${users}">
                         <td th:text="${user.id}"><a href="/user/@{user.id}">Id</a></td>
                         <td th:text="${user.username}">Nickname</td>
@@ -36,10 +37,14 @@
                             <a th:href="${'/user/delete/' + user.id}">Delete</a>
                         </td>
                     </tr>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+    <footer id="footer">
+        <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+    </footer>
 </body>
 <script>
     $(document).ready(function(){

@@ -6,57 +6,62 @@
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
-<div class="container">
-    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-    <div th:if="${param.error}" class="row text-center">
-        <label style="color:red">Cannot access that bet.</label>
-    </div>
-    <div class="row text-center">
-        <h2><span th:text="${user.username} + ' bets'"></span></h2>
-    </div>
-    <div th:if="${not #lists.isEmpty(tickets)}">
-        <table id="myTable" class="table table-striped">
-            <thead>
-            <tr style="background-color: #1c1818; color: #b9b5b5; font-size: 20px;">
-                <th>Nr</th>
-                <th style="text-align: center">Money inserted</th>
-                <th>Rate</th>
-                <th style="text-align: center">Full prize</th>
-                <th style="text-align: center">Prize without tax</th>
-                <th style="text-align: center">Finished</th>
-                <th style="text-align: center">Win</th>
-                <th style="text-align: center">Show details</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="ticket, iterStat : ${tickets}" th:class="${iterStat.odd}? 'odd'">
-                <td th:text="${iterStat.count}"><a href="/ticket/@{ticket.id}" style="text-align: center">Nr</a></td>
-                <td th:text="${#numbers.formatDecimal(ticket.moneyInserted,1,2)}" style="text-align: center">Money inserted</td>
-                <td th:text="${#numbers.formatDecimal(ticket.rate,1,2)}">Rate</td>
-                <td th:text="${#numbers.formatDecimal(ticket.moneyToWin,1,2)}" style="text-align: center">Money to Win</td>
-                <td th:text="${#numbers.formatDecimal(ticket.moneyToWin * 0.88,1,2)}" style="text-align: center">Money to Win</td>
-                <span th:switch="${ticket.finished}">
+<div class="container" id="container">
+    <div id="main">
+        <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+        <div th:if="${param.error}" class="row text-center">
+            <label style="color:red">Cannot access that bet.</label>
+        </div>
+        <div class="row text-center">
+            <h2><span th:text="${user.username} + ' bets'"></span></h2>
+        </div>
+        <div th:if="${not #lists.isEmpty(tickets)}">
+            <table id="myTable" class="table table-striped">
+                <thead>
+                <tr style="background-color: #1c1818; color: #b9b5b5; font-size: 20px;">
+                    <th>Nr</th>
+                    <th style="text-align: center">Money inserted</th>
+                    <th>Rate</th>
+                    <th style="text-align: center">Full prize</th>
+                    <th style="text-align: center">Prize without tax</th>
+                    <th style="text-align: center">Finished</th>
+                    <th style="text-align: center">Win</th>
+                    <th style="text-align: center">Show details</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="ticket, iterStat : ${tickets}" th:class="${iterStat.odd}? 'odd'">
+                    <td th:text="${iterStat.count}"><a href="/ticket/@{ticket.id}" style="text-align: center">Nr</a></td>
+                    <td th:text="${#numbers.formatDecimal(ticket.moneyInserted,1,2)}" style="text-align: center">Money inserted</td>
+                    <td th:text="${#numbers.formatDecimal(ticket.rate,1,2)}">Rate</td>
+                    <td th:text="${#numbers.formatDecimal(ticket.moneyToWin,1,2)}" style="text-align: center">Money to Win</td>
+                    <td th:text="${#numbers.formatDecimal(ticket.moneyToWin * 0.88,1,2)}" style="text-align: center">Money to Win</td>
+                    <span th:switch="${ticket.finished}">
                     <td th:case="true" style="text-align: center">Finished</td>
                     <td th:case="false" style="text-align: center">Not finished yet</td>
                 </span>
-                <span th:switch="${ticket.finished}">
+                    <span th:switch="${ticket.finished}">
                     <span th:case="true">
                         <td th:if="${ticket.win == true}" style="text-align: center"><b>Yes</b></td>
                         <td th:if="${ticket.win == false}" style="text-align: center">No</td>
                     </span>
                     <td th:case="false" style="text-align: center">Don't Know</td>
                 </span>
-                <td style="text-align: center">
-                    <a th:href="${'/historyOfBets/' + ticket.id}">Show</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div th:if="${#lists.isEmpty(tickets)}" class="row text-center">
-        <h2>There is no bets in your history</h2>
+                    <td style="text-align: center">
+                        <a th:href="${'/historyOfBets/' + ticket.id}">Show</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div th:if="${#lists.isEmpty(tickets)}" class="row text-center">
+            <h2>There is no bets in your history</h2>
+        </div>
     </div>
 </div>
+<footer id="footer">
+    <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+</footer>
 </body>
 <script>
     $(document).ready(function(){

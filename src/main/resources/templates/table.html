@@ -6,35 +6,39 @@
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
-<div class="container">
-    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-    <div th:if="${not #lists.isEmpty(clubs)}">
-        <div class="row text-center">
-            <h2>Table</h2>
-            <h4>(for 2017/2018 season)</h4>
-        </div>
-        <div class="col-lg-offset-2 col-lg-8 col-lg-offset-2">
-            <table class="table table-striped">
-                <tr>
-                    <th>Nr</th>
-                    <th>Name</th>
-                    <th class="row text-center">Matches</th>
-                    <th>Bilans</th>
-                    <th>Goals</th>
-                    <th class="row text-center">Points</th>
-                </tr>
-                <tr th:each="club, iterStat : ${clubs}" th:class="${iterStat.odd}? 'odd'">
-                    <td th:text="${iterStat.count}"><a href="/club/@{club.id}">Nr</a></td>
-                    <td th:text="${club.name}">Name</td>
-                    <td th:text="${club.matches}" class="row text-center">Matches</td>
-                    <td th:text="${club.wins} + '-' + ${club.draws} + '-' + ${club.loses}">Bilans</td>
-                    <td th:text="${club.bilans} + '  (' + ${club.scoredGoals} + ' - ' + ${club.lostGoals} + ')'">Goals</td>
-                    <td th:text="${club.points}" class="row text-center">Points</td>
-                </tr>
-            </table>
+    <div class="container" id="container">
+        <div id="main">
+            <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+            <div th:if="${not #lists.isEmpty(clubs)}">
+                <div class="row text-center">
+                    <h2>Table</h2>
+                    <h4>(for 2017/2018 season)</h4>
+                </div>
+                <div class="col-lg-offset-2 col-lg-8 col-lg-offset-2">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Nr</th>
+                            <th>Name</th>
+                            <th class="row text-center">Matches</th>
+                            <th>Bilans</th>
+                            <th>Goals</th>
+                            <th class="row text-center">Points</th>
+                        </tr>
+                        <tr th:each="club, iterStat : ${clubs}" th:class="${iterStat.odd}? 'odd'">
+                            <td th:text="${iterStat.count}"><a href="/club/@{club.id}">Nr</a></td>
+                            <td th:text="${club.name}">Name</td>
+                            <td th:text="${club.matches}" class="row text-center">Matches</td>
+                            <td th:text="${club.wins} + '-' + ${club.draws} + '-' + ${club.loses}">Bilans</td>
+                            <td th:text="${club.bilans} + '  (' + ${club.scoredGoals} + ' - ' + ${club.lostGoals} + ')'">Goals</td>
+                            <td th:text="${club.points}" class="row text-center">Points</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-
+    <footer id="footer">
+        <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+    </footer>
 </body>
 </html>

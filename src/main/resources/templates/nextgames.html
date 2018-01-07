@@ -6,15 +6,16 @@
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
-    <div class="container">
-        <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-        <div th:if="${not #lists.isEmpty(games)}">
-            <div class="row text-center">
-                <h2>Next games</h2>
-            </div>
-            <form class="form-horizontal" th:object="${checked}" th:action="@{/ticket/make}" method="POST">
-                <table id="myTable" class="table table-striped">
-                    <thead>
+    <div class="container" id="container">
+        <div id="main">
+            <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+            <div th:if="${not #lists.isEmpty(games)}">
+                <div class="row text-center">
+                    <h2>Next games</h2>
+                </div>
+                <form class="form-horizontal" th:object="${checked}" th:action="@{/ticket/make}" method="POST">
+                    <table id="myTable" class="table table-striped">
+                        <thead>
                         <tr style="background-color: #1c1818; color: #b9b5b5; font-size: 20px;">
                             <th>Date</th>
                             <th>Home club</th>
@@ -26,39 +27,43 @@
                             <th sec:authorize="hasAnyAuthority('USER','ADMIN')">History</th>
                             <th sec:authorize="hasAuthority('USER')" th:if="${betting == true}">Add to bet</th>
                         </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="game : ${games}">
-                        <td th:text="${#dates.format(game.date, 'yyyy/MM/dd')}">Date</td>
-                        <td th:text="${game.home.name}">Home club</td>
-                        <td th:text="${game.away.name}">Guest club</td>
-                        <td th:text="${#numbers.formatDecimal(game.rates[0],1,2)}">1</td>
-                        <td th:text="${#numbers.formatDecimal(game.rates[1],1,2)}">X</td>
-                        <td th:text="${#numbers.formatDecimal(game.rates[2],1,2)}">2</td>
-                        <td sec:authorize="hasAuthority('ADMIN')">
-                            <a th:href="${'/game/play/' + game.id}">Play</a>
-                        </td>
-                        <td sec:authorize="hasAnyAuthority('USER','ADMIN')">
-                            <a th:href="${'/game/between/' + game.home.id + 'i' + game.away.id}">Show</a>
-                        </td>
-                        <td sec:authorize="hasAuthority('USER')" th:if="${betting == true}">
-                            <input type="checkbox" th:field="*{checkedGames}" th:value="${game.id}"/>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                <br />
-                <br />
-                <div class="col-lg-offset-10 col-lg-1">
-                    <button sec:authorize="hasAuthority('USER')" th:if="${betting == true}"
-                            type="submit" class="btn btn-default">Send types</button>
-                </div>
-            </form>
-        </div>
-        <div th:if="${#lists.isEmpty(games)}" class="row text-center">
-            <h2>There is no planned games in future.</h2>
+                        </thead>
+                        <tbody>
+                        <tr th:each="game : ${games}">
+                            <td th:text="${#dates.format(game.date, 'yyyy/MM/dd')}">Date</td>
+                            <td th:text="${game.home.name}">Home club</td>
+                            <td th:text="${game.away.name}">Guest club</td>
+                            <td th:text="${#numbers.formatDecimal(game.rates[0],1,2)}">1</td>
+                            <td th:text="${#numbers.formatDecimal(game.rates[1],1,2)}">X</td>
+                            <td th:text="${#numbers.formatDecimal(game.rates[2],1,2)}">2</td>
+                            <td sec:authorize="hasAuthority('ADMIN')">
+                                <a th:href="${'/game/play/' + game.id}">Play</a>
+                            </td>
+                            <td sec:authorize="hasAnyAuthority('USER','ADMIN')">
+                                <a th:href="${'/game/between/' + game.home.id + 'i' + game.away.id}">Show</a>
+                            </td>
+                            <td sec:authorize="hasAuthority('USER')" th:if="${betting == true}">
+                                <input type="checkbox" th:field="*{checkedGames}" th:value="${game.id}"/>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br />
+                    <br />
+                    <div class="col-lg-offset-10 col-lg-1">
+                        <button sec:authorize="hasAuthority('USER')" th:if="${betting == true}"
+                                type="submit" class="btn btn-default">Send types</button>
+                    </div>
+                </form>
+            </div>
+            <div th:if="${#lists.isEmpty(games)}" class="row text-center">
+                <h2>There is no planned games in future.</h2>
+            </div>
         </div>
     </div>
+    <footer id="footer">
+        <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+    </footer>
 </body>
 <script>
     $(document).ready(function(){

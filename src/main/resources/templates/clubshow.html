@@ -6,131 +6,136 @@
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
-    <div class="container">
-        <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-        <div class="row text-center">
-            <h2><span th:text="${club.name}"></span></h2>
-            <h4>(for 2017/2018 season)</h4>
-        </div>
-        <div>
-            <form class="form-horizontal">
-                <div>
-                    <div class="col-lg-offset-1 col-lg-7">
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label">Matches:</label>
-                            <div class="col-sm-8">
-                                <p class="form-control-static" th:text="${club.matches}">Matches</p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label">Points:</label>
-                            <div class="col-sm-8">
-                                <p class="form-control-static" th:text="${club.points}">Points</p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label">Bilans: (Win-Draw-Lost)</label>
-                            <div class="col-sm-8">
-                                <p class="form-control-static" th:text="${club.wins} + '-' + ${club.draws} + '-' + ${club.loses}">Bilans</p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label">Goals:</label>
-                            <div class="col-sm-8">
-                                <p class="form-control-static" th:text="${club.bilans} + '  (' + ${club.scoredGoals} + ' - ' + ${club.lostGoals} + ')'">Goals</p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label">Value: (mln €)</label>
-                            <div class="col-sm-8">
-                                <p class="form-control-static" th:text="${club.valueOfPlayers}">Value</p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-4 control-label">Players:</label>
-                            <div class="col-sm-8">
-                                <p class="form-control-static" th:text="${club.numberOfPlayers}">Players</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <div class="row text-center">
-                                <h3>Logo:</h3>
-                                <img th:src="${club.imgUrl}" width="200" alt="No logo available"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <br />
-            <br />
-            <div class="col-lg-12" th:if="${not #lists.isEmpty(nextGames)}">
-                <div class="row text-center">
-                    <h3>Next matches</h3>
-                </div>
-                <table class="table table-striped">
-                    <tr style="background-color: #1c1818; color: #b9b5b5; font-size: 20px;">
-                        <th>Date</th>
-                        <th>Home club</th>
-                        <th>Away club</th>
-                        <th sec:authorize="hasAnyAuthority('USER','ADMIN')">Show previous games</th>
-                    </tr>
-                    <tr th:each="game : ${nextGames}">
-                        <td th:text="${#dates.format(game.date, 'yyyy/MM/dd')}">Date</td>
-                        <td th:switch="${game.home.name}">
-                            <b th:case="${club.name}" th:text="${game.home.name}"/>
-                            <span th:case="*" th:text="${game.home.name}"/>
-                        </td>
-                        <td th:switch="${game.away.name}">
-                            <b th:case="${club.name}" th:text="${game.away.name}"/>
-                            <span th:case="*" th:text="${game.away.name}"/>
-                        </td>
-                        <td sec:authorize="hasAnyAuthority('USER','ADMIN')">
-                            <a th:href="${'/game/between/' + game.home.id + 'i' + game.away.id}">Show</a>
-                        </td>
-                    </tr>
-                </table>
+    <div class="container" id="container">
+        <div id="main">
+            <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+            <div class="row text-center">
+                <h2><span th:text="${club.name}"></span></h2>
+                <h4>(for 2017/2018 season)</h4>
             </div>
-            <br />
-            <br />
-            <div class="col-lg-12" th:if="${not #lists.isEmpty(lastGames)}">
-                <div class="row text-center">
-                    <h3>Last five matches</h3>
-                </div>
-                <table class="table table-striped">
-                    <tr style="background-color: #1c1818; color: #b9b5b5; font-size: 20px;">
-                        <th>Date</th>
-                        <th>Home club</th>
-                        <th>Score</th>
-                        <th>Away club</th>
-                        <th sec:authorize="hasAnyAuthority('USER','ADMIN')">Show previous games</th>
-                    </tr>
-                    <tr th:each="game : ${lastGames}">
-                        <td th:text="${#dates.format(game.date, 'yyyy/MM/dd')}">Date</td>
-                        <td th:switch="${game.home.name}">
-                            <b th:case="${club.name}" th:text="${game.home.name}"/>
-                            <span th:case="*" th:text="${game.home.name}"/>
-                        </td>
-                        <td th:text="${game.homeScore} + ':' + ${game.awayScore}">Score</td>
-                        <td th:switch="${game.away.name}">
-                            <b th:case="${club.name}" th:text="${game.away.name}"/>
-                            <span th:case="*" th:text="${game.away.name}"/>
-                        </td>
-                        <td sec:authorize="hasAnyAuthority('USER','ADMIN')">
-                            <a th:href="${'/game/between/' + game.home.id + 'i' + game.away.id}">Show</a>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <form class="form-horizontal" th:object="${club}" th:action="@{/historyOfClub/} + ${club.id}" method="POST">
-                <div class="form-group">
-                    <div class="col-lg-offset-10 col-lg-2" style="padding-top: 30px;">
-                        <input type="submit" value="Show history"/>
+            <div>
+                <form class="form-horizontal">
+                    <div>
+                        <div class="col-lg-offset-1 col-lg-7">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Matches:</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" th:text="${club.matches}">Matches</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Points:</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" th:text="${club.points}">Points</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Bilans: (Win-Draw-Lost)</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" th:text="${club.wins} + '-' + ${club.draws} + '-' + ${club.loses}">Bilans</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Goals:</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" th:text="${club.bilans} + '  (' + ${club.scoredGoals} + ' - ' + ${club.lostGoals} + ')'">Goals</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Value: (mln €)</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" th:text="${club.valueOfPlayers}">Value</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Players:</label>
+                                <div class="col-sm-8">
+                                    <p class="form-control-static" th:text="${club.numberOfPlayers}">Players</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <div class="row text-center">
+                                    <h3>Logo:</h3>
+                                    <img th:src="${club.imgUrl}" width="200" alt="No logo available"/>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </form>
+                <br />
+                <br />
+                <div class="col-lg-12" th:if="${not #lists.isEmpty(nextGames)}">
+                    <div class="row text-center">
+                        <h3>Next matches</h3>
+                    </div>
+                    <table class="table table-striped">
+                        <tr style="background-color: #1c1818; color: #b9b5b5; font-size: 20px;">
+                            <th>Date</th>
+                            <th>Home club</th>
+                            <th>Away club</th>
+                            <th sec:authorize="hasAnyAuthority('USER','ADMIN')">Show previous games</th>
+                        </tr>
+                        <tr th:each="game : ${nextGames}">
+                            <td th:text="${#dates.format(game.date, 'yyyy/MM/dd')}">Date</td>
+                            <td th:switch="${game.home.name}">
+                                <b th:case="${club.name}" th:text="${game.home.name}"/>
+                                <span th:case="*" th:text="${game.home.name}"/>
+                            </td>
+                            <td th:switch="${game.away.name}">
+                                <b th:case="${club.name}" th:text="${game.away.name}"/>
+                                <span th:case="*" th:text="${game.away.name}"/>
+                            </td>
+                            <td sec:authorize="hasAnyAuthority('USER','ADMIN')">
+                                <a th:href="${'/game/between/' + game.home.id + 'i' + game.away.id}">Show</a>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
-            </form>
+                <br />
+                <br />
+                <div class="col-lg-12" th:if="${not #lists.isEmpty(lastGames)}">
+                    <div class="row text-center">
+                        <h3>Last five matches</h3>
+                    </div>
+                    <table class="table table-striped">
+                        <tr style="background-color: #1c1818; color: #b9b5b5; font-size: 20px;">
+                            <th>Date</th>
+                            <th>Home club</th>
+                            <th>Score</th>
+                            <th>Away club</th>
+                            <th sec:authorize="hasAnyAuthority('USER','ADMIN')">Show previous games</th>
+                        </tr>
+                        <tr th:each="game : ${lastGames}">
+                            <td th:text="${#dates.format(game.date, 'yyyy/MM/dd')}">Date</td>
+                            <td th:switch="${game.home.name}">
+                                <b th:case="${club.name}" th:text="${game.home.name}"/>
+                                <span th:case="*" th:text="${game.home.name}"/>
+                            </td>
+                            <td th:text="${game.homeScore} + ':' + ${game.awayScore}">Score</td>
+                            <td th:switch="${game.away.name}">
+                                <b th:case="${club.name}" th:text="${game.away.name}"/>
+                                <span th:case="*" th:text="${game.away.name}"/>
+                            </td>
+                            <td sec:authorize="hasAnyAuthority('USER','ADMIN')">
+                                <a th:href="${'/game/between/' + game.home.id + 'i' + game.away.id}">Show</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <form class="form-horizontal" th:object="${club}" th:action="@{/historyOfClub/} + ${club.id}" method="POST">
+                    <div class="form-group">
+                        <div class="col-lg-offset-10 col-lg-2" style="padding-top: 30px;">
+                            <input type="submit" value="Show history"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
+    <footer id="footer">
+        <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+    </footer>
 </body>
 </html>
