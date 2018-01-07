@@ -25,3 +25,30 @@ input[type=submit] {
 .pointer-disabled {
     pointer-events: none;
 }
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+#container {
+    min-height: 100%;
+}
+
+#main {
+    overflow: auto;
+    padding-bottom: 40px;
+}
+
+#footer {
+    background-color: #eeeeee;
+    position: relative;
+    height: 40px;
+    margin-top: -40px;
+    clear: both;
+    text-align: center;
+}

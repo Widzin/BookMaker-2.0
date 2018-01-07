@@ -6,15 +6,19 @@
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
-
-<div class="container">
-    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-    <div th:if="${param.success}" class="row text-center">
-        <label style="color:green">Operation success</label>
+    <div class="container" id="container">
+        <div id="main">
+            <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+            <div th:if="${param.success}" class="row text-center">
+                <label style="color:green">Operation success</label>
+            </div>
+            <div th:if="${param.error}" class="row text-center">
+                <label style="color:red">Operation unsuccesful. Please check your money in profile</label>
+            </div>
+        </div>
     </div>
-    <div th:if="${param.error}" class="row text-center">
-        <label style="color:red">Operation unsuccesful. Please check your money in profile</label>
-    </div>
-</div>
+    <footer id="footer">
+        <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+    </footer>
 </body>
 </html>

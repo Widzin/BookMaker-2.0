@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head lang="en">
-    <link rel="stylesheet" type="text/css" href="../static/css/guru.css" />
+    <link rel="stylesheet" type="text/css" href="../../static/css/styles.css" />
 </head>
 <body>
 
@@ -43,17 +43,16 @@
                     </h1>
                 </div>
             </span>
-
         </div>
         <div class="jumbotron">
             <div class="row text-center">
-                <div class="">
-                    <h2>Bundesliga bookmaker (made by 'Widzin')</h2>
+                <div class="col-sm-3">
+                    <img src="../../static/images/Bundesliga-logo-2010.png" width="100"
+                         th:src="@{/images/Bundesliga-logo-2010.png}"/>
                 </div>
-            </div>
-            <div class="row text-center">
-                <img src="../../static/images/Bundesliga-logo-2010.png" width="400"
-                     th:src="@{/images/Bundesliga-logo-2010.png}"/>
+                <div class="col-sm-9">
+                    <h2>Bundesliga bookmaker</h2>
+                </div>
             </div>
         </div>
     </div>
