@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.widzin</groupId>
-	<artifactId>project-zai-oro</artifactId>
+	<artifactId>engineer-thesis</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>Bundesliga Bookmaker</name>
-	<description>Spring Boot Web Application with PostgreSQL database</description>
+	<description>Spring Boot Web Application with MySQL database</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -57,10 +57,6 @@
 			<groupId>org.webjars</groupId>
 			<artifactId>bootstrap</artifactId>
 			<version>3.3.4</version>
-		</dependency>
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
 		</dependency>
         <dependency>
             <groupId>mysql</groupId>
