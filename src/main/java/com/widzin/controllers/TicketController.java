@@ -78,12 +78,17 @@ public class TicketController {
 		model.addAttribute("ticket", ticket);
 		model.addAttribute("bets", ticket.getBets());
 		model.addAttribute("options", ticketService.getAllOptions());
+		model.addAttribute("user", user);
+		if (user.getMoneyNow() == 0.0)
+		    model.addAttribute("disabled", true);
+		else
+            model.addAttribute("disabled", false);
 		return "chosengames";
 	}
 
-	@RequestMapping("/historyOfBets")
-	public String showUserBets(Principal principal, Model model){
-		User user = userService.findByUsername(principal.getName()).get();
+	@RequestMapping("/user/{id}/tickets")
+	public String showUserTickets(@PathVariable("id") Integer id, Model model){
+		User user = userService.getById(id);
 		Iterable<Ticket> list;
 		if (user.getId() != 1) {
 			list = ticketService.getAllTicketsFromUser(user.getId());
@@ -107,18 +112,19 @@ public class TicketController {
 		return "ticketshow";
 	}
 
-	@RequestMapping("/historyOfBets/{id}")
-	public String showUserBetsDetails(@PathVariable("id") Integer id, Principal principal, Model model){
-		User user = userService.findByUsername(principal.getName()).get();
+	@RequestMapping("/user/{userId}/ticket/{ticketId}")
+	public String showUserBetsDetails(@PathVariable("userId") Integer userId,
+                                      @PathVariable("ticketId") Integer ticketId, Model model){
+		User user = userService.getById(userId);
 		for (Ticket t: user.getTickets()) {
-			if (t.getId() == id) {
-				Ticket ticket = ticketService.findById(id);
+			if (t.getId() == ticketId) {
+				Ticket ticket = ticketService.findById(ticketId);
 				model.addAttribute("bets", ticket.getBets());
 				return "betshow";
 			}
 		}
 		if (user.getId() == 1) {
-			Ticket ticket = ticketService.findById(id);
+			Ticket ticket = ticketService.findById(ticketId);
 			model.addAttribute("bets", ticket.getBets());
 			return "betshow";
 		}

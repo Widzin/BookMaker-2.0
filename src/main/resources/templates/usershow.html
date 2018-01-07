@@ -6,56 +6,83 @@
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
-    <div class="container">
-        <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-        <div th:if="${param.wrongInput}" class="row text-center">
-            <label style="color:red">Cannot add that amount of money.</label>
-        </div>
-        <div class="row text-center">
-            <h2><span th:text="${user.username}"></span></h2>
-        </div>
-        <div>
-            <form class="form-horizontal" th:object="${user}" th:action="@{/insertMoney/} + ${user.id}" method="POST">
-                <input type="hidden" th:field="*{id}"/>
-                <input type="hidden" th:field="*{version}"/>
-                <div class="form-group">
-                    <label class="col-sm-6 control-label">Role:</label>
-                    <div class="col-sm-6">
-                        <p class="form-control-static" th:text="${user.mainRole}">Role</p>
+    <div class="container" id="container">
+        <div id="main">
+            <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+            <div th:if="${param.wrongInput}" class="row text-center">
+                <label style="color:red">Cannot add that amount of money.</label>
+            </div>
+            <div>
+                <form class="form-horizontal" th:object="${user}" th:action="@{/insertMoney/} + ${user.id}" method="POST">
+                    <input type="hidden" th:field="*{id}"/>
+                    <input type="hidden" th:field="*{version}"/>
+                    <div class="form-group">
+                        <label class="col-sm-6 control-label">Role:</label>
+                        <div class="col-sm-6">
+                            <p class="form-control-static" th:text="${user.mainRole}">Role</p>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Money on Account:</label>
-                    <div class="col-sm-1">
-                        <p class="form-control-static" th:text="${#numbers.formatDecimal(user.moneyNow,1,2)} + ' €'">Now</p>
+                    <div class="form-group">
+                        <div sec:authorize="hasAuthority('ADMIN')">
+                            <label class="col-sm-2 control-label">Money on Account:</label>
+                            <div class="col-sm-2">
+                                <p class="form-control-static" th:text="${#numbers.formatDecimal(user.moneyNow,1,2)} + ' €'">Now</p>
+                            </div>
+                            <label class="col-sm-2 control-label">Won Money:</label>
+                            <div class="col-sm-2">
+                                <p class="form-control-static" th:text="${#numbers.formatDecimal(user.winMoney,1,2)} + ' €'">Won</p>
+                            </div>
+                            <label class="col-sm-2 control-label">Lost Money:</label>
+                            <div class="col-sm-2">
+                                <p class="form-control-static" th:text="${#numbers.formatDecimal(user.lostMoney,1,2)} + ' €'">Lost</p>
+                            </div>
+                        </div>
+                        <div sec:authorize="!hasAuthority('ADMIN')">
+                            <label class="col-sm-2 control-label">Money on Account:</label>
+                            <div class="col-sm-1">
+                                <p class="form-control-static" th:text="${#numbers.formatDecimal(user.moneyNow,1,2)} + ' €'">Now</p>
+                            </div>
+                            <label class="col-sm-2 control-label">Won Money:</label>
+                            <div class="col-sm-1">
+                                <p class="form-control-static" th:text="${#numbers.formatDecimal(user.winMoney,1,2)} + ' €'">Won</p>
+                            </div>
+                            <label class="col-sm-2 control-label">Lost Money:</label>
+                            <div class="col-sm-1">
+                                <p class="form-control-static" th:text="${#numbers.formatDecimal(user.lostMoney,1,2)} + ' €'">Lost</p>
+                            </div>
+                            <label class="col-sm-2 control-label">Inserted Money:</label>
+                            <div class="col-sm-1">
+                                <p class="form-control-static" th:text="${#numbers.formatDecimal(user.insertedMoney,1,2)} + ' €'">Inserted</p>
+                            </div>
+                        </div>
                     </div>
-                    <label class="col-sm-2 control-label">Won Money:</label>
-                    <div class="col-sm-1">
-                        <p class="form-control-static" th:text="${#numbers.formatDecimal(user.winMoney,1,2)} + ' €'">Won</p>
+                    <div class="form-group">
+                        <div sec:authorize="!hasAuthority('ADMIN')">
+                            <label class="col-sm-2 control-label">How Much Insert (in €):</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="insert"/>
+                            </div>
+                            <div class="col-sm-4">
+                                <button type="submit" class="btn btn-default">Insert</button>
+                            </div>
+                            <div class="col-sm-4">
+                                <a th:href="${'/user/' + user.id + '/tickets'}">Show bets</a>
+                            </div>
+                        </div>
+                        <div sec:authorize="hasAuthority('ADMIN')">
+                            <div th:if="${user.id} != 1">
+                                <div class="row text-center">
+                                    <a th:href="${'/user/' + user.id + '/tickets'}">Show bets</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <label class="col-sm-2 control-label">Lost Money:</label>
-                    <div class="col-sm-1">
-                        <p class="form-control-static" th:text="${#numbers.formatDecimal(user.lostMoney,1,2)} + ' €'">Lost</p>
-                    </div>
-                    <label class="col-sm-2 control-label">Inserted Money:</label>
-                    <div class="col-sm-1">
-                        <p class="form-control-static" th:text="${#numbers.formatDecimal(user.insertedMoney,1,2)} + ' €'">Inserted</p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">How Much Insert (in €):</label>
-                    <div class="col-sm-2">
-                        <input type="text" name="insert"/>
-                    </div>
-                    <div class="col-sm-4">
-                        <button type="submit" class="btn btn-default">Insert</button>
-                    </div>
-                    <div class="col-sm-4">
-                        <a th:href="${'/historyOfBets'}">Show my bets</a>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
+    <footer id="footer">
+        <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+    </footer>
 </body>
 </html>

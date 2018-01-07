@@ -6,38 +6,43 @@
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
-    <div class="container">
-        <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-        <div class="col-lg-12" th:if="${not #lists.isEmpty(allPastGames)}">
-            <div class="row text-center">
-                <h2>History of <span th:text="${club.name}"></span></h2>
+    <div class="container" id="container">
+        <div id="main">
+            <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+            <div class="col-lg-12" th:if="${not #lists.isEmpty(allPastGames)}">
+                <div class="row text-center">
+                    <h2>History of <span th:text="${club.name}"></span></h2>
+                </div>
+                <table id="myTable" class="table table-striped">
+                    <thead>
+                        <tr style="background-color: #1c1818; color: #b9b5b5; font-size: 20px;">
+                            <th>Date</th>
+                            <th>Home club</th>
+                            <th>Score</th>
+                            <th>Away club</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="game : ${allPastGames}">
+                            <td th:text="${#dates.format(game.date, 'yyyy/MM/dd')}">Date</td>
+                            <td th:switch="${game.home.name}">
+                                <b th:case="${club.name}" th:text="${game.home.name}"/>
+                                <span th:case="*" th:text="${game.home.name}"/>
+                            </td>
+                            <td th:text="${game.homeScore} + ':' + ${game.awayScore}">Score</td>
+                            <td th:switch="${game.away.name}">
+                                <b th:case="${club.name}" th:text="${game.away.name}"/>
+                                <span th:case="*" th:text="${game.away.name}"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <table id="myTable" class="table table-striped">
-                <thead>
-                    <tr style="background-color: #1c1818; color: #b9b5b5; font-size: 20px;">
-                        <th>Date</th>
-                        <th>Home club</th>
-                        <th>Score</th>
-                        <th>Away club</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="game : ${allPastGames}">
-                        <td th:text="${#dates.format(game.date, 'yyyy/MM/dd')}">Date</td>
-                        <td th:switch="${game.home.name}">
-                            <b th:case="${club.name}" th:text="${game.home.name}"/>
-                            <span th:case="*" th:text="${game.home.name}"/>
-                        </td>
-                        <td th:text="${game.homeScore} + ':' + ${game.awayScore}">Score</td>
-                        <td th:switch="${game.away.name}">
-                            <b th:case="${club.name}" th:text="${game.away.name}"/>
-                            <span th:case="*" th:text="${game.away.name}"/>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </div>
+    <footer id="footer">
+        <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+    </footer>
 </body>
 <script>
     $(document).ready(function(){

@@ -6,46 +6,51 @@
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
-    <div class="container">
-        <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-        <div class="row text-center">
-            <h2>Club Details</h2>
-        </div>
-        <div>
-            <form class="form-horizontal" th:object="${club}" th:action="@{/club}" method="post">
-                <input type="hidden" th:field="*{id}"/>
-                <input type="hidden" th:field="*{version}"/>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Name:</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" th:field="*{name}"/>
+    <div class="container" id="container">
+        <div id="main">
+            <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+            <div class="row text-center">
+                <h2>Club Details</h2>
+            </div>
+            <div>
+                <form class="form-horizontal" th:object="${club}" th:action="@{/club}" method="post">
+                    <input type="hidden" th:field="*{id}"/>
+                    <input type="hidden" th:field="*{version}"/>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Name:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" th:field="*{name}"/>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Total value of players: (mln €)</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" th:field="*{valueOfPlayers}"/>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Total value of players: (mln €)</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" th:field="*{valueOfPlayers}"/>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Number of players:</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" th:field="*{numberOfPlayers}"/>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Number of players:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" th:field="*{numberOfPlayers}"/>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">Logo:</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" th:field="*{imgUrl}"/>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Logo:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" th:field="*{imgUrl}"/>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-offset-2 col-lg-10">
-                        <button type="submit" class="btn btn-default">Submit</button>
+                    <div class="row">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
+    <footer id="footer">
+        <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+    </footer>
 </body>
 </html>

@@ -54,13 +54,13 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-    	/*loadClubs();
+    	loadClubs();
 		loadMatches(2015, 2016);
 		loadMatches(2016, 2017);
         loadUsers();
         loadRoles();
         assignUsersToUserRole();
-        assignUsersToAdminRole();*/
+        assignUsersToAdminRole();
 		calculations = Calculations.getInstance();
 		for (Game g: gameService.findAllGames()) {
 			log.info("Sprawdzam mecz nr. " + g.getId());
@@ -261,10 +261,9 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 	}
 
     private void loadMatches(int from, int to){
-		String path = "static/txt/Terminarz_" + from + "_" + to + ".txt";
-		ClassLoader classLoader = new SpringJpaBootstrap().getClass().getClassLoader();
+		String path = "src\\main\\resources\\static\\txt\\Terminarz_" + from + "_" + to + ".txt";
 		try {
-			File file = new File(classLoader.getResource(path).getFile());
+			File file = new File(path);
 
 			String content = new String(Files.readAllBytes(file.toPath()));
 			String[] matchdays = content.split("Kolejka");
@@ -340,6 +339,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 				c.addGameAway(match);
 			}
 		}
+
 		/*Club home = clubService.getClubById(match.getHome().getId());
 		Club away = clubService.getClubById(match.getAway().getId());
 		if (match.getHomeScore() > match.getAwayScore()){

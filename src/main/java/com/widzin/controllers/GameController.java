@@ -177,10 +177,13 @@ public class GameController {
 				User user = userService.getById(t.getTicketOwner().getId());
 				User admin = userService.getById(1);
 				if (j == t.getBets().size()){
-					user.addWinMoney(t.getMoneyToWin() - t.getMoneyInserted());
-					user.addMoneyNow(t.getMoneyToWin() - t.getMoneyInserted());
-					admin.addLostMoney(t.getMoneyToWin() - t.getMoneyInserted());
-					admin.addMoneyNow((-1)*(t.getMoneyToWin() - t.getMoneyInserted()));
+				    Double fullMoneyWon = t.getMoneyToWin();// - t.getMoneyInserted();
+				    Double moneyForUser = 0.88 * fullMoneyWon;
+				    Double moneyForAdmin = 0.12 * fullMoneyWon;
+					user.addWinMoney(moneyForUser);
+					user.addMoneyNow(moneyForUser);
+					admin.addLostMoney(moneyForUser);
+					admin.addMoneyNow(moneyForAdmin - moneyForUser);
 					t.setWin(true);
 				} else {
 					user.addLostMoney(t.getMoneyInserted());
