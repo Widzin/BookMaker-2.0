@@ -48,7 +48,7 @@
                     <td th:case="false" style="text-align: center">Don't Know</td>
                 </span>
                     <td style="text-align: center">
-                        <a th:href="${'/historyOfBets/' + ticket.id}">Show</a>
+                        <a th:href="${'/user/' + user.id + '/ticket/' + ticket.id}">Show</a>
                     </td>
                 </tr>
                 </tbody>
