@@ -49,12 +49,24 @@
             </table>
             <br />
             <br />
-            <label class="col-sm-3 control-label">Money for this bet (in €):</label>
+            <label class="col-sm-3 control-label">
+                Money for this bet:
+            </label>
             <div class="col-sm-2">
                 <input type="text" name="money"/>
             </div>
-            <div class="col-sm-7">
-                <button type="submit" class="btn btn-default">Make</button>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-default" th:disabled="${disabled}">Make</button>
+                <!--<button type="submit" class="btn btn-default" th:disabled="${disabled}">Make</button>-->
+            </div>
+            <div th:if="${disabled}" class="col-sm-5">
+                <label style="color:red">You don't have any money to make a bet.</label>
+            </div>
+            <div th:unless="${disabled}" class="col-sm-5">
+                <label style="color: green">
+                    You have
+                    <span th:text="${#numbers.formatDecimal(user.moneyNow, 0, 2)}"/> on your account.
+                </label>
             </div>
 
         </form>

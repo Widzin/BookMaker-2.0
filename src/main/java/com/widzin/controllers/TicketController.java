@@ -78,6 +78,11 @@ public class TicketController {
 		model.addAttribute("ticket", ticket);
 		model.addAttribute("bets", ticket.getBets());
 		model.addAttribute("options", ticketService.getAllOptions());
+		model.addAttribute("user", user);
+		if (user.getMoneyNow() == 0.0)
+		    model.addAttribute("disabled", true);
+		else
+            model.addAttribute("disabled", false);
 		return "chosengames";
 	}
 
