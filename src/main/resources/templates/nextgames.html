@@ -32,9 +32,9 @@
                         <td th:text="${#dates.format(game.date, 'yyyy/MM/dd')}">Date</td>
                         <td th:text="${game.home.name}">Home club</td>
                         <td th:text="${game.away.name}">Guest club</td>
-                        <td th:text="${#numbers.formatDecimal(game.rates[0],0,2)}">1</td>
-                        <td th:text="${#numbers.formatDecimal(game.rates[1],0,2)}">X</td>
-                        <td th:text="${#numbers.formatDecimal(game.rates[2],0,2)}">2</td>
+                        <td th:text="${#numbers.formatDecimal(game.rates[0],1,2)}">1</td>
+                        <td th:text="${#numbers.formatDecimal(game.rates[1],1,2)}">X</td>
+                        <td th:text="${#numbers.formatDecimal(game.rates[2],1,2)}">2</td>
                         <td sec:authorize="hasAuthority('ADMIN')">
                             <a th:href="${'/game/play/' + game.id}">Play</a>
                         </td>

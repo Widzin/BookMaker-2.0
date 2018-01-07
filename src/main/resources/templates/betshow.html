@@ -28,7 +28,7 @@
                 <td th:text="${iterStat.count}"><a href="/bet/@{bet.id}" style="text-align: center">Nr</a></td>
                 <td th:text="${bet.oneGame.home.name}" style="text-align: center">Home Team</td>
                 <td th:text="${bet.oneGame.away.name}" style="text-align: center">Guest Team</td>
-                <td th:text="${#numbers.formatDecimal(bet.rate,0,2)}" style="text-align: center">Rate</td>
+                <td th:text="${#numbers.formatDecimal(bet.rate,1,2)}" style="text-align: center">Rate</td>
                 <td th:text="${bet.result}" style="text-align: center">Prediction</td>
                 <span th:switch="${bet.oneGame.played}">
                     <span th:case="true">

@@ -27,7 +27,7 @@
                     <tr th:each="user : ${users}">
                         <td th:text="${user.id}"><a href="/user/@{user.id}">Id</a></td>
                         <td th:text="${user.username}">Nickname</td>
-                        <td sec:authorize="hasAuthority('ADMIN')" th:text="${user.moneyNow}">Money</td>
+                        <td sec:authorize="hasAuthority('ADMIN')" th:text="${#numbers.formatDecimal(user.moneyNow,1,2)}">Money</td>
                         <td th:text="${user.mainRole}">Role</td>
                         <td>
                             <a th:href="${'/user/show/' + user.id}">View</a>

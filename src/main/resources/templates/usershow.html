@@ -25,33 +25,58 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Money on Account:</label>
-                    <div class="col-sm-1">
-                        <p class="form-control-static" th:text="${#numbers.formatDecimal(user.moneyNow,1,2)} + ' €'">Now</p>
+                    <div sec:authorize="hasAuthority('ADMIN')">
+                        <label class="col-sm-2 control-label">Money on Account:</label>
+                        <div class="col-sm-2">
+                            <p class="form-control-static" th:text="${#numbers.formatDecimal(user.moneyNow,1,2)} + ' €'">Now</p>
+                        </div>
+                        <label class="col-sm-2 control-label">Won Money:</label>
+                        <div class="col-sm-2">
+                            <p class="form-control-static" th:text="${#numbers.formatDecimal(user.winMoney,1,2)} + ' €'">Won</p>
+                        </div>
+                        <label class="col-sm-2 control-label">Lost Money:</label>
+                        <div class="col-sm-2">
+                            <p class="form-control-static" th:text="${#numbers.formatDecimal(user.lostMoney,1,2)} + ' €'">Lost</p>
+                        </div>
                     </div>
-                    <label class="col-sm-2 control-label">Won Money:</label>
-                    <div class="col-sm-1">
-                        <p class="form-control-static" th:text="${#numbers.formatDecimal(user.winMoney,1,2)} + ' €'">Won</p>
-                    </div>
-                    <label class="col-sm-2 control-label">Lost Money:</label>
-                    <div class="col-sm-1">
-                        <p class="form-control-static" th:text="${#numbers.formatDecimal(user.lostMoney,1,2)} + ' €'">Lost</p>
-                    </div>
-                    <label class="col-sm-2 control-label">Inserted Money:</label>
-                    <div class="col-sm-1">
-                        <p class="form-control-static" th:text="${#numbers.formatDecimal(user.insertedMoney,1,2)} + ' €'">Inserted</p>
+                    <div sec:authorize="!hasAuthority('ADMIN')">
+                        <label class="col-sm-2 control-label">Money on Account:</label>
+                        <div class="col-sm-1">
+                            <p class="form-control-static" th:text="${#numbers.formatDecimal(user.moneyNow,1,2)} + ' €'">Now</p>
+                        </div>
+                        <label class="col-sm-2 control-label">Won Money:</label>
+                        <div class="col-sm-1">
+                            <p class="form-control-static" th:text="${#numbers.formatDecimal(user.winMoney,1,2)} + ' €'">Won</p>
+                        </div>
+                        <label class="col-sm-2 control-label">Lost Money:</label>
+                        <div class="col-sm-1">
+                            <p class="form-control-static" th:text="${#numbers.formatDecimal(user.lostMoney,1,2)} + ' €'">Lost</p>
+                        </div>
+                        <label class="col-sm-2 control-label">Inserted Money:</label>
+                        <div class="col-sm-1">
+                            <p class="form-control-static" th:text="${#numbers.formatDecimal(user.insertedMoney,1,2)} + ' €'">Inserted</p>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">How Much Insert (in €):</label>
-                    <div class="col-sm-2">
-                        <input type="text" name="insert"/>
+                    <div sec:authorize="!hasAuthority('ADMIN')">
+                        <label class="col-sm-2 control-label">How Much Insert (in €):</label>
+                        <div class="col-sm-2">
+                            <input type="text" name="insert"/>
+                        </div>
+                        <div class="col-sm-4">
+                            <button type="submit" class="btn btn-default">Insert</button>
+                        </div>
+                        <div class="col-sm-4">
+                            <a th:href="${'/historyOfBets'}">Show bets</a>
+                        </div>
                     </div>
-                    <div class="col-sm-4">
-                        <button type="submit" class="btn btn-default">Insert</button>
-                    </div>
-                    <div class="col-sm-4">
-                        <a th:href="${'/historyOfBets'}">Show bets</a>
+                    <div sec:authorize="hasAuthority('ADMIN')">
+                        <div th:if="${user.id} != 1">
+                            <div class="row text-center">
+                                <a th:href="${'/historyOfBets'}">Show bets</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </form>
