@@ -51,7 +51,7 @@ public class MainLoadService {
 
     public Club2 getClubFromService(String clubName) {
         for (Club2 club: clubs) {
-            if (club.getName().equalsIgnoreCase(clubName))
+            if (club.getName().contains(clubName))
                 return club;
         }
         return null;

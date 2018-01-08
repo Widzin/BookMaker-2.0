@@ -69,6 +69,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 
         loadPlayers();
         loadMatches();
+        loadLogos();
         //loadLogos();
     	/*loadClubs();
 		loadMatches(2015, 2016);
@@ -105,88 +106,11 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         matchesLoadService.startParsing(Links.MATCHES_2017_2018, loadService);
     }
 
-	/*private void loadClubs(){
-        loadClub("Bayern Monachium",
-                "http://www.bettingexpert.com/assets/images/content/sports/football/germany/Bundesliga2015/55x55xBayernmunich.png.pagespeed.ic.UFdQXp7qtu.png",
-                23, true, 566.15);
+    private void loadLogos() {
+        playersAndClubLoadService.addLogos(Links.LOGOS, loadService);
+    }
 
-        loadClub("Borussia Dortmund",
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/500px-Borussia_Dortmund_logo.svg.png",
-                28, true, 376.35);
-
-        loadClub("Borussia Monchengladbach",
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Borussia_M%C3%B6nchengladbach_logo.svg/2000px-Borussia_M%C3%B6nchengladbach_logo.svg.png",
-                30, true,163.55);
-
-        loadClub("Bayer Leverkusen",
-                "https://upload.wikimedia.org/wikipedia/en/thumb/5/59/Bayer_04_Leverkusen_logo.svg/2400px-Bayer_04_Leverkusen_logo.svg.png",
-                27, true, 273.95);
-
-        loadClub("FC Schalke 04",
-                "https://upload.wikimedia.org/wikipedia/commons/9/97/FC_Schalke_04_Logo.png",
-                32, true, 216.63);
-
-        loadClub("TSG 1899 Hoffenheim",
-                "https://upload.wikimedia.org/wikipedia/commons/f/f3/Logo_TSG_Hoffenheim.png",
-                25, true, 101.63);
-
-        loadClub("VfL Wolfsburg",
-                "https://upload.wikimedia.org/wikipedia/commons/5/56/VfL_Wolfsburg_Logo.png",
-                31, true, 154.0);
-
-        loadClub("Hertha Berlin",
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Hertha_BSC_Logo_2012.svg/2000px-Hertha_BSC_Logo_2012.svg.png",
-                26, true, 86.3);
-
-        loadClub("1.FC Koeln",
-                "https://s-media-cache-ak0.pinimg.com/originals/89/cf/4a/89cf4a23591414a0934fd33031fb3197.jpg",
-                24, true, 99.3);
-
-        loadClub("RB Lipsk",
-                "https://qph.ec.quoracdn.net/main-qimg-fdcb9fba3cada788f244550f0b59ccf3",
-                23, true, 123.93);
-
-        loadClub("Werder Bremen",
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/SV-Werder-Bremen-Logo.svg/2000px-SV-Werder-Bremen-Logo.svg.png",
-                32, true, 69.8);
-
-        loadClub("SC Freiburg",
-                "https://upload.wikimedia.org/wikipedia/en/7/7b/SC_Freiburg.png",
-                27, true, 58.68);
-
-        loadClub("Eintracht Frankfurt",
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Eintracht_Frankfurt_Logo.svg/2000px-Eintracht_Frankfurt_Logo.svg.png",
-                30, true, 68.55);
-
-        loadClub("FC Augsburg",
-                "https://upload.wikimedia.org/wikipedia/en/thumb/c/c5/FC_Augsburg_logo.svg/368px-FC_Augsburg_logo.svg.png",
-                31, true, 62.73);
-
-        loadClub("Hamburger SV",
-                "https://upload.wikimedia.org/wikipedia/en/thumb/f/f7/Hamburger_SV_logo.svg/1280px-Hamburger_SV_logo.svg.png",
-                31, true, 75.75);
-
-        loadClub("FSV Mainz 05",
-                "https://upload.wikimedia.org/wikipedia/commons/d/d6/FSV_Mainz_05_Logo.png",
-                30, true, 79.73);
-
-        loadClub("FC Ingolstadt 04",
-                "https://upload.wikimedia.org/wikipedia/en/thumb/0/0b/FC_Ingolstadt_04_logo.svg/694px-FC_Ingolstadt_04_logo.svg.png",
-                25, false, 34.55);
-
-        loadClub("SV Darmstadt 98",
-                "https://upload.wikimedia.org/wikipedia/commons/3/3a/Darmstadt_98_football_club_new_logo_2015.png",
-                31, false, 21.5);
-
-        loadClub("VfB Stuttgart",
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/VfB_Stuttgart_1893_Logo.svg/2000px-VfB_Stuttgart_1893_Logo.svg.png",
-                24, true, 41.9);
-
-        loadClub("Hannover 96", "https://upload.wikimedia.org/wikipedia/an/5/50/Hannover_96.png",
-                27, true, 32.15);
-	}
-
-    private void loadClub(String clubName, String logoUrl, int playersAmount,
+	/*private void loadClub(String clubName, String logoUrl, int playersAmount,
                           boolean inBundesligaNow, double totalValueOfPlayers) {
         Club club = new Club();
         club.setName(clubName);
@@ -198,7 +122,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         log.info("Saved " + club.getName() + " - id: " + club.getId());
     }*/
 
-    private void loadMatches(int from, int to){
+    /*private void loadMatches(int from, int to){
 		String path = "src\\main\\resources\\static\\data\\Terminarz_" + from + "_" + to + ".data";
 		try {
 			File file = new File(path);
@@ -267,7 +191,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 			}
 		}
 		return null;
-	}
+	}*/
 
 	private void updateClubs(Game match) {
 		for (Club c: clubService.listAllClubs()) {

@@ -18,4 +18,7 @@ public class Links {
     public static final String PLAYERS_2017_2018 = DIRECTORY + "\\squads\\2017_2018";
     public static final String INJURIES_2017_2018 = DIRECTORY + "\\injuries\\2017_2018";
     public static final String MATCHES_2017_2018 = DIRECTORY + "\\matches\\2017_2018.xml";
+
+    //----------------Logos------------------------------
+    public static final String LOGOS = DIRECTORY + "\\logos.xml";
 }

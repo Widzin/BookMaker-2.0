@@ -3,6 +3,8 @@ package com.widzin.bootstrap.loaders.services;
 import com.widzin.bootstrap.loaders.parsers.ClubParser;
 import com.widzin.bootstrap.loaders.parsers.ParsingMethods;
 import com.widzin.bootstrap.loaders.parsers.PlayerParser;
+import com.widzin.bootstrap.loaders.xmlModels.XMLAllLogos;
+import com.widzin.bootstrap.loaders.xmlModels.XMLClubLogo;
 import com.widzin.bootstrap.loaders.xmlModels.XMLClubSeason;
 import com.widzin.bootstrap.loaders.xmlModels.XMLPlayer;
 import com.widzin.model.*;
@@ -11,6 +13,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
+import java.nio.charset.MalformedInputException;
 import java.util.Date;
 
 public class PlayersAndClubLoadService implements LoadService{
@@ -36,10 +39,12 @@ public class PlayersAndClubLoadService implements LoadService{
         ClubSeason club;
         Club2 club2 = loadService.getClubFromService(clubParser.getClubName(file));
 
-        if (club2 == null)
+        if (club2 == null) {
             club = new ClubSeason(clubParser.getClubName(file));
-        else
+            loadService.addClub(club.getClub());
+        } else
             club = new ClubSeason(club2);
+
         try {
             JAXBContext jc = JAXBContext.newInstance(XMLClubSeason.class);
 
@@ -68,5 +73,22 @@ public class PlayersAndClubLoadService implements LoadService{
 
     private Date getBirthDate(XMLPlayer xmlPlayer) {
         return playerParser.parseDate(playerParser.cutAge(xmlPlayer.getBirthDateAndAge()));
+    }
+
+    public void addLogos(String directory, final MainLoadService loadService) {
+        File file = new File(directory);
+
+        try {
+            JAXBContext jc = JAXBContext.newInstance(XMLAllLogos.class);
+            Unmarshaller unmarshaller = jc.createUnmarshaller();
+            XMLAllLogos xmlAllLogos = (XMLAllLogos) unmarshaller.unmarshal(file);
+            for (XMLClubLogo clubLogo: xmlAllLogos.getLogos()) {
+                loadService.getClubFromService(clubLogo.getClubName())
+                        .setImgUrl(clubLogo.getClubUrl());
+            }
+        } catch (JAXBException ex) {
+            ex.printStackTrace();
+            //System.out.println("Cannot create instance of XMLAllLogos Class");
+        }
     }
 }
