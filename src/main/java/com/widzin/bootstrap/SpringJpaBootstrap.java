@@ -59,8 +59,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 		loadMatches(2016, 2017);*/
         loadUsers();
         loadRoles();
-        assignUsersToUserRole();
-        assignUsersToAdminRole();
+        assignUsersToDefaultRoles();
 		calculations = Calculations.getInstance();
 		for (Game g: gameService.findAllGames()) {
 			log.info("Sprawdzam mecz nr. " + g.getId());
@@ -172,7 +171,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     }
 
     private void loadMatches(int from, int to){
-		String path = "src\\main\\resources\\static\\txt\\Terminarz_" + from + "_" + to + ".txt";
+		String path = "src\\main\\resources\\static\\data\\Terminarz_" + from + "_" + to + ".data";
 		try {
 			File file = new File(path);
 
@@ -297,32 +296,21 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         log.info("Saved role " + role.getRole());
     }
 
-    private void assignUsersToUserRole() {
+    private void assignUsersToDefaultRoles() {
+        assingUsersToRole("USER");
+        assingUsersToRole("ADMIN");
+    }
+
+    private void assingUsersToRole(String string) {
         List<Role> roles = (List<Role>) roleService.listAll();
         List<User> users = (List<User>) userService.listAll();
 
         roles.forEach(role -> {
-            if (role.getRole().equalsIgnoreCase("USER")) {
+            if (role.getRole().equalsIgnoreCase(string)) {
                 users.forEach(user -> {
-                    if (user.getUsername().equals("user")) {
+                    if (user.getUsername().equalsIgnoreCase(string)) {
                         user.addRole(role);
                         user.setMainRole(role.getRole());
-                        userService.saveOrUpdate(user);
-                    }
-                });
-            }
-        });
-    }
-    private void assignUsersToAdminRole() {
-        List<Role> roles = (List<Role>) roleService.listAll();
-        List<User> users = (List<User>) userService.listAll();
-
-        roles.forEach(role -> {
-            if (role.getRole().equalsIgnoreCase("ADMIN")) {
-                users.forEach(user -> {
-                    if (user.getUsername().equals("admin")) {
-                        user.addRole(role);
-						user.setMainRole(role.getRole());
                         userService.saveOrUpdate(user);
                     }
                 });
