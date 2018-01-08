@@ -1,6 +1,6 @@
 package com.widzin.services;
 
-import com.widzin.domain.User;
+import com.widzin.model.User;
 
 import com.widzin.repositories.UserRepository;
 import com.widzin.services.security.EncryptionService;

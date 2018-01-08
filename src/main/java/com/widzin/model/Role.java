@@ -1,4 +1,4 @@
-package com.widzin.domain;
+package com.widzin.model;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;

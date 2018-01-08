@@ -1,13 +1,11 @@
 package com.widzin.services.mapservices;
 
-import com.widzin.domain.DomainObject;
+import com.widzin.model.DomainObject;
 import com.widzin.services.security.EncryptionService;
-import com.widzin.domain.User;
+import com.widzin.model.User;
 import com.widzin.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

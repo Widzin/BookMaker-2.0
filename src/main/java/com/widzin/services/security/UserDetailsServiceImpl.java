@@ -1,6 +1,6 @@
 package com.widzin.services.security;
 
-import com.widzin.domain.User;
+import com.widzin.model.User;
 import com.widzin.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

@@ -1,6 +1,6 @@
 package com.widzin.controllers;
 
-import com.widzin.domain.*;
+import com.widzin.model.*;
 import com.widzin.services.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

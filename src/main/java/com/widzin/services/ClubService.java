@@ -1,7 +1,7 @@
 package com.widzin.services;
 
-import com.widzin.domain.Club;
-import com.widzin.domain.Game;
+import com.widzin.model.Club;
+import com.widzin.model.Game;
 
 import java.util.List;
 

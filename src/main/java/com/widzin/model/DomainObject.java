@@ -1,4 +1,4 @@
-package com.widzin.domain;
+package com.widzin.model;
 
 /**
  * Created by jt on 11/14/15.

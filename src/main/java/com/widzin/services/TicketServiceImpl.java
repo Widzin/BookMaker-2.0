@@ -1,9 +1,9 @@
 package com.widzin.services;
 
-import com.widzin.domain.BetGame;
-import com.widzin.domain.Game;
-import com.widzin.domain.Result;
-import com.widzin.domain.Ticket;
+import com.widzin.model.BetGame;
+import com.widzin.model.Game;
+import com.widzin.model.Result;
+import com.widzin.model.Ticket;
 import com.widzin.repositories.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

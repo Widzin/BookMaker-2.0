@@ -1,6 +1,6 @@
 package com.widzin.services.mapservices;
 
-import com.widzin.domain.DomainObject;
+import com.widzin.model.DomainObject;
 
 import java.util.*;
 

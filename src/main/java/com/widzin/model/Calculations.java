@@ -1,4 +1,4 @@
-package com.widzin.domain;
+package com.widzin.model;
 
 import org.apache.log4j.Logger;
 

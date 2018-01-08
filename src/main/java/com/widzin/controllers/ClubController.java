@@ -1,6 +1,6 @@
 package com.widzin.controllers;
 
-import com.widzin.domain.Club;
+import com.widzin.model.Club;
 import com.widzin.services.ClubService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

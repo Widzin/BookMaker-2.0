@@ -1,17 +1,15 @@
 package com.widzin.services;
 
 import com.widzin.bootstrap.SpringJpaBootstrap;
-import com.widzin.domain.Calculations;
-import com.widzin.domain.Club;
-import com.widzin.domain.Game;
+import com.widzin.model.Calculations;
+import com.widzin.model.Club;
+import com.widzin.model.Game;
 import com.widzin.repositories.GameRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 @Service
