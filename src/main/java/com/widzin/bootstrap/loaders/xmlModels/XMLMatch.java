@@ -18,9 +18,6 @@ public class XMLMatch {
     @XmlElement(name = "Round")
     private Integer round;
 
-
-    private String season;
-
     // -------------------- Home team stats -------------------------------
     @XmlElement(name = "HomeTeam")
     private String homeTeam;
@@ -114,10 +111,6 @@ public class XMLMatch {
 
     public Integer getRound() {
         return round;
-    }
-
-    public String getSeason() {
-        return season;
     }
 
     public String getHomeTeam() {

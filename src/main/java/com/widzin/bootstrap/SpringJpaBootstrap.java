@@ -1,5 +1,9 @@
 package com.widzin.bootstrap;
 
+import com.widzin.bootstrap.loaders.Links;
+import com.widzin.bootstrap.loaders.services.MainLoadService;
+import com.widzin.bootstrap.loaders.services.MatchesLoadService;
+import com.widzin.bootstrap.loaders.services.PlayersAndClubLoadService;
 import com.widzin.model.*;
 import com.widzin.services.ClubService;
 import com.widzin.services.GameService;
@@ -27,10 +31,15 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     private GameService gameService;
     private Calculations calculations;
 
+    //----------- Loading services ---------------
+    private MainLoadService loadService;
+    private MatchesLoadService matchesLoadService;
+    private PlayersAndClubLoadService playersAndClubLoadService;
+
 	private Logger log = Logger.getLogger(SpringJpaBootstrap.class);
 	private SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 
-	private final int MATCHES_IN_ONE_SEASON = 34;
+	//private final int MATCHES_IN_ONE_SEASON = 34;
 
     @Autowired
 	public void setClubRepository (ClubService clubService) {
@@ -54,12 +63,19 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-    	loadClubs();
-		/*loadMatches(2015, 2016);
+        loadService = new MainLoadService();
+        matchesLoadService = new MatchesLoadService();
+        playersAndClubLoadService = new PlayersAndClubLoadService();
+
+        loadPlayers();
+        loadMatches();
+        //loadLogos();
+    	/*loadClubs();
+		loadMatches(2015, 2016);
 		loadMatches(2016, 2017);*/
         loadUsers();
         loadRoles();
-        assignUsersToDefaultRoles();
+        /*assignUsersToDefaultRoles();
 		calculations = Calculations.getInstance();
 		for (Game g: gameService.findAllGames()) {
 			log.info("Sprawdzam mecz nr. " + g.getId());
@@ -74,10 +90,22 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 			}
 		}
 		log.info("Wszystkie bramki strzelone: " + calculations.getAllGoalsScoredAtHome());
-		log.info("Wszystkie bramki stracone: " + calculations.getAllGoalsLostAtHome());
+		log.info("Wszystkie bramki stracone: " + calculations.getAllGoalsLostAtHome());*/
 	}
 
-	private void loadClubs(){
+	private void loadPlayers() {
+        playersAndClubLoadService.startParsing(Links.PLAYERS_2015_2016, loadService);
+        playersAndClubLoadService.startParsing(Links.PLAYERS_2016_2017, loadService);
+        playersAndClubLoadService.startParsing(Links.PLAYERS_2017_2018, loadService);
+    }
+
+    private void loadMatches() {
+        matchesLoadService.startParsing(Links.MATCHES_2015_2016, loadService);
+        matchesLoadService.startParsing(Links.MATCHES_2016_2017, loadService);
+        matchesLoadService.startParsing(Links.MATCHES_2017_2018, loadService);
+    }
+
+	/*private void loadClubs(){
         loadClub("Bayern Monachium",
                 "http://www.bettingexpert.com/assets/images/content/sports/football/germany/Bundesliga2015/55x55xBayernmunich.png.pagespeed.ic.UFdQXp7qtu.png",
                 23, true, 566.15);
@@ -168,7 +196,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         club.setValueOfPlayers(totalValueOfPlayers);
         clubService.saveClub(club);
         log.info("Saved " + club.getName() + " - id: " + club.getId());
-    }
+    }*/
 
     private void loadMatches(int from, int to){
 		String path = "src\\main\\resources\\static\\data\\Terminarz_" + from + "_" + to + ".data";
