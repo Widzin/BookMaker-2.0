@@ -1,7 +1,8 @@
-package com.widzin.services;
+package com.widzin.services.implementations;
 
 import com.widzin.model.MatchEvent;
 import com.widzin.repositories.MatchEventRepository;
+import com.widzin.services.MatchEventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

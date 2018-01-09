@@ -16,13 +16,13 @@ public class MatchEvent {
     private Integer minute;
     private String additionalInformation;
 
-    @OneToOne
-    @JoinColumn(name = "player_season_id")
-    private PlayerSeason player;
+    @ManyToOne(fetch = FetchType.EAGER)
+    //@JoinColumn(name = "player_season_id", insertable = false, updatable = false)
+    private PlayerSeason playerSeason;
 
-    public MatchEvent(Integer minute, PlayerSeason player, String additionalInformation) {
+    public MatchEvent(Integer minute, PlayerSeason playerSeason, String additionalInformation) {
         this.minute = minute;
-        this.player = player;
+        this.playerSeason = playerSeason;
         this.additionalInformation = additionalInformation;
     }
 
@@ -51,11 +51,11 @@ public class MatchEvent {
     }
 
     public PlayerSeason getPlayer() {
-        return player;
+        return playerSeason;
     }
 
     public void setPlayer(PlayerSeason player) {
-        this.player = player;
+        this.playerSeason = playerSeason;
     }
 
     public String getAdditionalInformation() {
@@ -70,7 +70,7 @@ public class MatchEvent {
     public String toString() {
         return "MatchEvent{" +
                 "minute=" + minute +
-                ", player='" + player + '\'' +
+                ", player='" + playerSeason + '\'' +
                 ", additionalInformation='" + additionalInformation + '\'' +
                 '}';
     }

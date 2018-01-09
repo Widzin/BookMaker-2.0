@@ -15,8 +15,8 @@ public class ClubSeason {
     @Version
     private Integer version;
 
-    @OneToOne
-    @JoinColumn(name = "club2_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    //@JoinColumn(name = "club2_id", insertable = false, updatable = false)
     private Club2 club2;
 
     private Integer points;
@@ -28,8 +28,8 @@ public class ClubSeason {
     private Integer lostGoals;
     private Integer bilans;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "player_season_id", nullable = false)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "club_season_id")
     private List<PlayerSeason> players;
 
     public ClubSeason(String name) {

@@ -5,8 +5,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
+@Table
 public class Player {
 
     @Id
@@ -20,6 +22,9 @@ public class Player {
     private String name;
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private Date birthDate;
+
+    @OneToMany(mappedBy = "player", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<PlayerSeason> playerSeasonList;
 
     public Player(String name, Date birthDate) {
         this.name = name;
@@ -48,6 +53,14 @@ public class Player {
 
     public Date getBirthDate() {
         return birthDate;
+    }
+
+    public List<PlayerSeason> getPlayerSeasonList() {
+        return playerSeasonList;
+    }
+
+    public void setPlayerSeasonList(List<PlayerSeason> playerSeasonList) {
+        this.playerSeasonList = playerSeasonList;
     }
 
     @Override

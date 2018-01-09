@@ -23,6 +23,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     private Club2Service club2Service;
     private ClubSeasonService clubSeasonService;
     private MatchEventService matchEventService;
+    private TeamMatchDetailsService teamMatchDetailsService;
     private UserService userService;
     private RoleService roleService;
     private GameService gameService;
@@ -58,6 +59,11 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     @Autowired
     public void setMatchEventService(MatchEventService matchEventService) {
         this.matchEventService = matchEventService;
+    }
+
+    @Autowired
+    public void setTeamMatchDetailsService(TeamMatchDetailsService teamMatchDetailsService) {
+        this.teamMatchDetailsService = teamMatchDetailsService;
     }
 
     @Autowired
@@ -101,8 +107,8 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 		loadMatches(2016, 2017);*/
         loadUsers();
         loadRoles();
-        /*assignUsersToDefaultRoles();
-		calculations = Calculations.getInstance();
+        assignUsersToDefaultRoles();
+		/*calculations = Calculations.getInstance();
 		for (Game g: gameService.findAllGames()) {
 			log.info("Sprawdzam mecz nr. " + g.getId());
 			try {
@@ -146,13 +152,16 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         }
         for (Season season: loadService.getSeasons()) {
             for (ClubSeason clubSeason: season.getClubs()) {
+                for (PlayerSeason playerSeason: clubSeason.getPlayers()) {
+                    playerSeasonService.savePlayerSeason(playerSeason);
+                    log.info("Saved playerSeason id: " + playerSeason.getId());
+                }
                 clubSeasonService.saveClubSeason(clubSeason);
                 log.info("Saved clubSeason id: " + clubSeason.getId());
             }
             for (Match match: season.getMatches()) {
                 saveTeamMatchDetailsToDatabase(match.getHome());
                 saveTeamMatchDetailsToDatabase(match.getAway());
-                //zapisać teamMatchDetails
                 //zapisać mecz
             }
         }
@@ -169,6 +178,8 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
             matchEventService.saveMatchEvent(matchEvent);
             log.info("Saved matchEvent id: " + matchEvent.getId());
         }
+        teamMatchDetailsService.saveTeamMatchDetails(teamMatchDetails);
+        log.info("Saved teamMatchDetails id: " + teamMatchDetails.getId());
     }
 
     /*private void loadMatches(int from, int to){

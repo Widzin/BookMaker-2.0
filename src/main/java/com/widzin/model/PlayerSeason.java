@@ -14,13 +14,14 @@ public class PlayerSeason {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Integer id;
 
     @Version
     private Integer version;
 
-    @OneToOne
-    @JoinColumn(name = "player_id")
+    @ManyToOne
+    //@JoinColumn(name = "player_id", insertable = false, updatable = false)
     private Player player;
 
     private String position;

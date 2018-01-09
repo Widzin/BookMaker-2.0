@@ -1,10 +1,11 @@
-package com.widzin.services;
+package com.widzin.services.implementations;
 
 import com.widzin.bootstrap.SpringJpaBootstrap;
 import com.widzin.model.Calculations;
 import com.widzin.model.Club;
 import com.widzin.model.Game;
 import com.widzin.repositories.GameRepository;
+import com.widzin.services.GameService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

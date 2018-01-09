@@ -1,9 +1,10 @@
-package com.widzin.services;
+package com.widzin.services.implementations;
 
 import com.widzin.model.BetGame;
 import com.widzin.model.Game;
 import com.widzin.model.Ticket;
 import com.widzin.repositories.BetRepository;
+import com.widzin.services.BetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class BetServiceImpl implements BetService{
+public class BetServiceImpl implements BetService {
 
 	private BetRepository betRepository;
 

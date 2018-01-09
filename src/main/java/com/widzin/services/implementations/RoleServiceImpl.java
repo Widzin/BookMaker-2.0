@@ -1,7 +1,8 @@
-package com.widzin.services;
+package com.widzin.services.implementations;
 
 import com.widzin.model.Role;
 import com.widzin.repositories.RoleRepository;
+import com.widzin.services.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;

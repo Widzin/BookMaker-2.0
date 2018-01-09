@@ -1,12 +1,13 @@
-package com.widzin.services;
+package com.widzin.services.implementations;
 
 import com.widzin.model.ClubSeason;
 import com.widzin.repositories.ClubSeasonRepository;
+import com.widzin.services.ClubSeasonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ClubSeasonServiceImpl implements ClubSeasonService{
+public class ClubSeasonServiceImpl implements ClubSeasonService {
 
     private ClubSeasonRepository clubSeasonRepository;
 

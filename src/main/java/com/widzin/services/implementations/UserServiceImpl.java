@@ -1,8 +1,9 @@
-package com.widzin.services;
+package com.widzin.services.implementations;
 
 import com.widzin.model.User;
 
 import com.widzin.repositories.UserRepository;
+import com.widzin.services.UserService;
 import com.widzin.services.security.EncryptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;

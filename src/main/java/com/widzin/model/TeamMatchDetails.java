@@ -1,22 +1,76 @@
 package com.widzin.model;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table
 public class TeamMatchDetails {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Version
+    private Integer version;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    //@JoinColumn(name = "club_season_id")//, insertable = false, updatable = false)
     private ClubSeason clubSeason;
+
     private Integer goals;
     private Integer shots;
     private Integer shotsOnTarget;
-    private List<MatchEvent> goalDetails;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    //@JoinColumn(name = "player_season_id")//, insertable = false, updatable = false)
     private PlayerSeason lineupGoalkeeper;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "player_season_id")
     private List<PlayerSeason> lineupDefense;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "player_season_id")
     private List<PlayerSeason> lineupMidfield;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "player_season_id")
     private List<PlayerSeason> lineupForward;
-    private String formation;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "player_season_id")
     private List<PlayerSeason> lineupSubstitutes;
+
+    private String formation;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "match_event_id")
+    private List<MatchEvent> goalDetails;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "match_event_id")
     private List<MatchEvent> redCardDetails;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "match_event_id")
     private List<MatchEvent> subDetails;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
 
     public ClubSeason getClubSeason() {
         return clubSeason;

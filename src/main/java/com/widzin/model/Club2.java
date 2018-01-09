@@ -1,8 +1,10 @@
 package com.widzin.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Table
 public class Club2 {
 
     @Id
@@ -16,6 +18,9 @@ public class Club2 {
     private String name;
     private String imgUrl;
     private boolean bundesliga;
+
+    @OneToMany(mappedBy = "club2", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<ClubSeason> clubSeasonList;
 
     public Integer getId() {
         return id;
@@ -59,6 +64,14 @@ public class Club2 {
 
     public void setBundesliga(boolean bundesliga) {
         this.bundesliga = bundesliga;
+    }
+
+    public List<ClubSeason> getClubSeasonList() {
+        return clubSeasonList;
+    }
+
+    public void setClubSeasonList(List<ClubSeason> clubSeasonList) {
+        this.clubSeasonList = clubSeasonList;
     }
 
     @Override

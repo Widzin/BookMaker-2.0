@@ -1,12 +1,13 @@
-package com.widzin.services;
+package com.widzin.services.implementations;
 
 import com.widzin.model.Club2;
 import com.widzin.repositories.Club2Repository;
+import com.widzin.services.Club2Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class Club2ServiceImpl implements  Club2Service{
+public class Club2ServiceImpl implements Club2Service {
 
     private Club2Repository club2Repository;
 
