@@ -111,4 +111,13 @@ public class MainLoadService {
         }
         return null;
     }
+
+    public ClubSeason getClubSeasonByPeriodAndName (String period, String clubName) {
+        for (ClubSeason clubSeason: getSeasonByPeriod(period).getClubs()) {
+            if (clubSeason.getClub2().getName().contains(clubName))
+                return clubSeason;
+        }
+
+        return null;
+    }
 }

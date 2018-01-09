@@ -53,42 +53,44 @@ public class MatchesLoadService implements LoadService {
         match.setPeriod(service.getPeriodByMatchDate(xmlMatch.getDate()));
 
         //------------- Setting home team details ------------
-        match.getHome().setName(xmlMatch.getHomeTeam());
+        match.getHome().setClubSeason(
+                service.getClubSeasonByPeriodAndName(match.getPeriod(), xmlMatch.getHomeTeam()));
         match.getHome().setGoals(xmlMatch.getHomeGoals());
         match.getHome().setShots(xmlMatch.getHomeShots());
         match.getHome().setShotsOnTarget(xmlMatch.getHomeShotsOnTarget());
 
         //------------- Setting away team details ------------
-        match.getAway().setName(xmlMatch.getAwayTeam());
+        match.getAway().setClubSeason(
+                service.getClubSeasonByPeriodAndName(match.getPeriod(), xmlMatch.getAwayTeam()));
         match.getAway().setGoals(xmlMatch.getAwayGoals());
         match.getAway().setShots(xmlMatch.getAwayShots());
         match.getAway().setShotsOnTarget(xmlMatch.getAwayShotsOnTarget());
 
         //------------- Setting home squad -------------------
         match.getHome().setLineupGoalkeeper(getPlayersInArray(service, xmlMatch.getHomeLineupGoalkeeper(),
-                match.getHome().getName(), match.getPeriod()).get(0));
+                match.getHome().getClubSeason().getClub2().getName(), match.getPeriod()).get(0));
         match.getHome().setLineupDefense(getPlayersInArray(service, xmlMatch.getHomeLineupDefense(),
-                match.getHome().getName(), match.getPeriod()));
+                match.getHome().getClubSeason().getClub2().getName(), match.getPeriod()));
         match.getHome().setLineupMidfield(getPlayersInArray(service, xmlMatch.getHomeLineupMidfield(),
-                match.getHome().getName(), match.getPeriod()));
+                match.getHome().getClubSeason().getClub2().getName(), match.getPeriod()));
         match.getHome().setLineupForward(getPlayersInArray(service, xmlMatch.getHomeLineupForward(),
-                match.getHome().getName(), match.getPeriod()));
+                match.getHome().getClubSeason().getClub2().getName(), match.getPeriod()));
         match.getHome().setFormation(xmlMatch.getHomeTeamFormation());
         match.getHome().setLineupSubstitutes(getPlayersInArray(service, xmlMatch.getHomeLineupSubstitutes(),
-                match.getHome().getName(), match.getPeriod()));
+                match.getHome().getClubSeason().getClub2().getName(), match.getPeriod()));
 
         //------------- Setting away squad -------------------
         match.getAway().setLineupGoalkeeper(getPlayersInArray(service, xmlMatch.getAwayLineupGoalkeeper(),
-                match.getAway().getName(), match.getPeriod()).get(0));
+                match.getAway().getClubSeason().getClub2().getName(), match.getPeriod()).get(0));
         match.getAway().setLineupDefense(getPlayersInArray(service, xmlMatch.getAwayLineupDefense(),
-                match.getAway().getName(), match.getPeriod()));
+                match.getAway().getClubSeason().getClub2().getName(), match.getPeriod()));
         match.getAway().setLineupMidfield(getPlayersInArray(service, xmlMatch.getAwayLineupMidfield(),
-                match.getAway().getName(), match.getPeriod()));
+                match.getAway().getClubSeason().getClub2().getName(), match.getPeriod()));
         match.getAway().setLineupForward(getPlayersInArray(service, xmlMatch.getAwayLineupForward(),
-                match.getAway().getName(), match.getPeriod()));
+                match.getAway().getClubSeason().getClub2().getName(), match.getPeriod()));
         match.getAway().setFormation(xmlMatch.getAwayTeamFormation());
         match.getAway().setLineupSubstitutes(getPlayersInArray(service, xmlMatch.getAwayLineupSubstitutes(),
-                match.getAway().getName(), match.getPeriod()));
+                match.getAway().getClubSeason().getClub2().getName(), match.getPeriod()));
 
         //-------------- Setting match events ----------------
 

@@ -4,7 +4,7 @@ import java.util.List;
 
 public class TeamMatchDetails {
 
-    private String name;
+    private ClubSeason clubSeason;
     private Integer goals;
     private Integer shots;
     private Integer shotsOnTarget;
@@ -18,12 +18,12 @@ public class TeamMatchDetails {
     private List<MatchEvent> redCardDetails;
     private List<MatchEvent> subDetails;
 
-    public String getName() {
-        return name;
+    public ClubSeason getClubSeason() {
+        return clubSeason;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setClubSeason(ClubSeason clubSeason) {
+        this.clubSeason = clubSeason;
     }
 
     public Integer getGoals() {
@@ -125,7 +125,7 @@ public class TeamMatchDetails {
     @Override
     public String toString() {
         return "TeamMatchDetails{" +
-                "name='" + name + '\'' +
+                "clubSeason=" + clubSeason +
                 ", goals=" + goals +
                 ", shots=" + shots +
                 ", shotsOnTarget=" + shotsOnTarget +
