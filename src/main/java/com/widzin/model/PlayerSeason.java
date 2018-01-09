@@ -3,15 +3,17 @@ package com.widzin.model;
 import com.widzin.bootstrap.loaders.parsers.PlayerParser;
 import com.widzin.bootstrap.loaders.services.MainLoadService;
 import com.widzin.bootstrap.loaders.xmlModels.XMLPlayer;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table
 public class PlayerSeason {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Version
@@ -22,6 +24,8 @@ public class PlayerSeason {
     private Player player;
 
     private String position;
+
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
     private Date fromWhenInClub;
 
     private Integer shirtNumber;

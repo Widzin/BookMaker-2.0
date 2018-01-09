@@ -7,6 +7,7 @@ public class Club2 {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "club2_id")
     private Integer id;
 
     @Version

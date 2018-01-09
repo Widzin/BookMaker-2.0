@@ -4,16 +4,19 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Entity
+@Entity
+@Table
 public class ClubSeason {
 
-    /*@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Version
-    private Integer version;*/
+    private Integer version;
 
+    @OneToOne
+    @JoinColumn(name = "club2_id")
     private Club2 club2;
 
     private Integer points;
@@ -25,6 +28,8 @@ public class ClubSeason {
     private Integer lostGoals;
     private Integer bilans;
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "player_season_id", nullable = false)
     private List<PlayerSeason> players;
 
     public ClubSeason(String name) {
@@ -51,6 +56,22 @@ public class ClubSeason {
         scoredGoals = 0;
         lostGoals = 0;
         bilans = 0;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 
     public Club2 getClub2() {

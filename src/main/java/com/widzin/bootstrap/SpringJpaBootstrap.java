@@ -20,6 +20,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 
     private ClubService clubService;
     private Club2Service club2Service;
+    private ClubSeasonService clubSeasonService;
     private UserService userService;
     private RoleService roleService;
     private GameService gameService;
@@ -45,6 +46,11 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 	@Autowired
     public void setClub2Service(Club2Service club2Service) {
         this.club2Service = club2Service;
+    }
+
+    @Autowired
+    public void setClubSeasonService(ClubSeasonService clubSeasonService) {
+        this.clubSeasonService = clubSeasonService;
     }
 
     @Autowired
@@ -133,10 +139,8 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         }
         for (Season season: loadService.getSeasons()) {
             for (ClubSeason clubSeason: season.getClubs()) {
-                for (PlayerSeason playerSeason: clubSeason.getPlayers()) {
-                    playerSeasonService.savePlayerSeason(playerSeason);
-                    log.info("Saved playerSeason id: " + playerSeason.getId());
-                }
+                clubSeasonService.saveClubSeason(clubSeason);
+                log.info("Saved again clubSeason id: " + clubSeason.getId());
             }
         }
     }
