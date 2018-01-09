@@ -13,6 +13,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -21,6 +22,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     private ClubService clubService;
     private Club2Service club2Service;
     private ClubSeasonService clubSeasonService;
+    private MatchEventService matchEventService;
     private UserService userService;
     private RoleService roleService;
     private GameService gameService;
@@ -51,6 +53,11 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     @Autowired
     public void setClubSeasonService(ClubSeasonService clubSeasonService) {
         this.clubSeasonService = clubSeasonService;
+    }
+
+    @Autowired
+    public void setMatchEventService(MatchEventService matchEventService) {
+        this.matchEventService = matchEventService;
     }
 
     @Autowired
@@ -140,13 +147,27 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         for (Season season: loadService.getSeasons()) {
             for (ClubSeason clubSeason: season.getClubs()) {
                 clubSeasonService.saveClubSeason(clubSeason);
-                log.info("Saved again clubSeason id: " + clubSeason.getId());
+                log.info("Saved clubSeason id: " + clubSeason.getId());
             }
             for (Match match: season.getMatches()) {
-                //zapisać matchEvent
+                saveTeamMatchDetailsToDatabase(match.getHome());
+                saveTeamMatchDetailsToDatabase(match.getAway());
                 //zapisać teamMatchDetails
                 //zapisać mecz
             }
+        }
+    }
+
+    private void saveTeamMatchDetailsToDatabase (TeamMatchDetails teamMatchDetails) {
+        List<MatchEvent> matchEvents = new ArrayList<>();
+
+        matchEvents.addAll(teamMatchDetails.getGoalDetails());
+        matchEvents.addAll(teamMatchDetails.getSubDetails());
+        matchEvents.addAll(teamMatchDetails.getRedCardDetails());
+
+        for (MatchEvent matchEvent: matchEvents) {
+            matchEventService.saveMatchEvent(matchEvent);
+            log.info("Saved matchEvent id: " + matchEvent.getId());
         }
     }
 
