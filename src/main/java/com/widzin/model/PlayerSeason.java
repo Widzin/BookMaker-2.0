@@ -4,10 +4,21 @@ import com.widzin.bootstrap.loaders.parsers.PlayerParser;
 import com.widzin.bootstrap.loaders.services.MainLoadService;
 import com.widzin.bootstrap.loaders.xmlModels.XMLPlayer;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
 public class PlayerSeason {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
+    @Version
+    private Integer version;
+
+    @OneToOne
+    @JoinColumn(name = "player_id")
     private Player player;
 
     private String position;
@@ -19,6 +30,22 @@ public class PlayerSeason {
     public PlayerSeason(Player player, Integer shirtNumber) {
         this.player = player;
         this.shirtNumber = shirtNumber;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 
     public Player getPlayer() {

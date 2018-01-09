@@ -24,6 +24,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     private RoleService roleService;
     private GameService gameService;
     private PlayerService playerService;
+    private PlayerSeasonService playerSeasonService;
     private Calculations calculations;
 
     //----------- Loading services ---------------
@@ -64,6 +65,11 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 	@Autowired
     public void setPlayerService(PlayerService playerService) {
         this.playerService = playerService;
+    }
+
+    @Autowired
+    public void setPlayerSeasonService(PlayerSeasonService playerSeasonService) {
+        this.playerSeasonService = playerSeasonService;
     }
 
     @Override
@@ -124,6 +130,14 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         for (Player player: loadService.getPlayers()) {
             playerService.savePlayer(player);
             log.info("Saved player id: " + player.getId());
+        }
+        for (Season season: loadService.getSeasons()) {
+            for (ClubSeason clubSeason: season.getClubs()) {
+                for (PlayerSeason playerSeason: clubSeason.getPlayers()) {
+                    playerSeasonService.savePlayerSeason(playerSeason);
+                    log.info("Saved playerSeason id: " + playerSeason.getId());
+                }
+            }
         }
     }
 
