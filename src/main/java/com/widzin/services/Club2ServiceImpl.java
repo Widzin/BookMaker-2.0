@@ -16,22 +16,22 @@ public class Club2ServiceImpl implements  Club2Service{
     }
 
     @Override
-    public Iterable<Club2> listAllClubs() {
+    public Iterable<Club2> listAllClubs2() {
         return club2Repository.findAll();
     }
 
     @Override
-    public Club2 getClubById(Integer id) {
+    public Club2 getClub2ById(Integer id) {
         return club2Repository.findOne(id);
     }
 
     @Override
-    public Club2 saveClub(Club2 club2) {
+    public Club2 saveClub2(Club2 club2) {
         return club2Repository.save(club2);
     }
 
     @Override
-    public void deleteClub(Integer id) {
+    public void deleteClub2(Integer id) {
         club2Repository.delete(id);
     }
 }

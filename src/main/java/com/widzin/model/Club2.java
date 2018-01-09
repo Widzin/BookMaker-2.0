@@ -16,6 +16,22 @@ public class Club2 {
     private String imgUrl;
     private boolean bundesliga;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
+
     public Club2(String name) {
         this.name = name;
     }

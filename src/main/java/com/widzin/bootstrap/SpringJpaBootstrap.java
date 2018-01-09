@@ -12,11 +12,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
-import java.nio.file.Files;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @Component
@@ -27,6 +23,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     private UserService userService;
     private RoleService roleService;
     private GameService gameService;
+    private PlayerService playerService;
     private Calculations calculations;
 
     //----------- Loading services ---------------
@@ -60,9 +57,14 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     }
 
     @Autowired
-	public void setGameRepository (GameService gameService) {
+	public void setGameService (GameService gameService) {
 		this.gameService = gameService;
 	}
+
+	@Autowired
+    public void setPlayerService(PlayerService playerService) {
+        this.playerService = playerService;
+    }
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -116,21 +118,14 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 
     private void saveToDatabase() {
         for (Club2 club2: loadService.getClubs()) {
-            club2Service.saveClub(club2);
+            club2Service.saveClub2(club2);
+            log.info("Saved club id: " + club2.getId());
+        }
+        for (Player player: loadService.getPlayers()) {
+            playerService.savePlayer(player);
+            log.info("Saved player id: " + player.getId());
         }
     }
-
-	/*private void loadClub(String clubName, String logoUrl, int playersAmount,
-                          boolean inBundesligaNow, double totalValueOfPlayers) {
-        Club club = new Club();
-        club.setName(clubName);
-        club.setImgUrl(logoUrl);
-        club.setNumberOfPlayers(playersAmount);
-        club.setBundesliga(inBundesligaNow);
-        club.setValueOfPlayers(totalValueOfPlayers);
-        clubService.saveClub(club);
-        log.info("Saved " + club.getName() + " - id: " + club.getId());
-    }*/
 
     /*private void loadMatches(int from, int to){
 		String path = "src\\main\\resources\\static\\data\\Terminarz_" + from + "_" + to + ".data";
