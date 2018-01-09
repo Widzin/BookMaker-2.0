@@ -320,16 +320,16 @@
 	<HomeShots>14</HomeShots>
 	<HomeShotsOnTarget>9</HomeShotsOnTarget>
 	<HomeFouls>11</HomeFouls>
-	<HomeGoalDetails>85': Lars Stindl;45': Andre Hahn;</HomeGoalDetails>
+	<HomeGoalDetails>85': Lars Stindl;45': André Hahn;</HomeGoalDetails>
 	<HomeLineupGoalkeeper>Yann Sommer</HomeLineupGoalkeeper>
 	<HomeLineupDefense>Nico Elvedi; Andreas Christensen; Tony Jantschke;</HomeLineupDefense>
 	<HomeLineupMidfield>Christoph Kramer; Oscar Wendt; Lars Stindl; Ibrahima Traore; Tobias Strobl;</HomeLineupMidfield>
-	<HomeLineupForward>Raffael; Andre Hahn;</HomeLineupForward>
+	<HomeLineupForward>Raffael; André Hahn;</HomeLineupForward>
 	<HomeLineupSubstitutes>Jonas Hofmann; Tobias Sippel; Mahmoud Dahoud; Jannik Vestergaard; Thorgan Hazard; Fabian Johnson; Patrick Herrmann;</HomeLineupSubstitutes>
 	<HomeLineupCoach>Andre Schubert;</HomeLineupCoach>
 	<HomeYellowCards>3</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
-	<HomeSubDetails>84': in Thorgan Hazard;84': out Andre Hahn;61': out Ibrahima Traore;61': in Fabian Johnson;46': out Tony Jantschke;46': in Jannik Vestergaard;</HomeSubDetails>
+	<HomeSubDetails>84': in Thorgan Hazard;84': out André Hahn;61': out Ibrahima Traore;61': in Fabian Johnson;46': out Tony Jantschke;46': in Jannik Vestergaard;</HomeSubDetails>
 	<AwaySubDetails>78': in Joel Pohjanpalo;78': out Charles Aranguiz;64': in Julian Brandt;64': out Kevin Volland;64': in Admir Mehmedi;64': out Hakan Calhanoglu;</AwaySubDetails>
 	<HomeTeamFormation>3-4-1-2</HomeTeamFormation>
 	<AwayTeam>Leverkusen</AwayTeam>
@@ -534,7 +534,7 @@
 	<HomeYellowCards>2</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
 	<HomeSubDetails>89': out Vincenzo Grifo;89': in Amir Abrashi;82': out Florian Niederlechner;82': in Nils Petersen;68': in Janik Haberer;68': out Mike Frantz;</HomeSubDetails>
-	<AwaySubDetails>77': in Patrick Herrmann;77': out Nico Elvedi;70': out Raffael;70': out Thorgan Hazard;70': in Jannik Vestergaard;70': in Andre Hahn;</AwaySubDetails>
+	<AwaySubDetails>77': in Patrick Herrmann;77': out Nico Elvedi;70': out Raffael;70': out Thorgan Hazard;70': in Jannik Vestergaard;70': in André Hahn;</AwaySubDetails>
 	<HomeTeamFormation>4-4-2</HomeTeamFormation>
 	<AwayTeam>Moenchengladbach</AwayTeam>
 	<AwayTeam_Id>72</AwayTeam_Id>
@@ -549,7 +549,7 @@
 	<AwayLineupDefense> Nico Elvedi; Andreas Christensen; Tony Jantschke;</AwayLineupDefense>
 	<AwayLineupMidfield> Christoph Kramer; Oscar Wendt; Lars Stindl; Ibrahima Traore; Tobias Strobl;</AwayLineupMidfield>
 	<AwayLineupForward> Raffael; Thorgan Hazard;</AwayLineupForward>
-	<AwayLineupSubstitutes>Jannik Vestergaard; Patrick Herrmann; Jonas Hofmann; Tobias Sippel; Mahmoud Dahoud; Julian Korb; Andre Hahn;</AwayLineupSubstitutes>
+	<AwayLineupSubstitutes>Jannik Vestergaard; Patrick Herrmann; Jonas Hofmann; Tobias Sippel; Mahmoud Dahoud; Julian Korb; André Hahn;</AwayLineupSubstitutes>
 	<AwayLineupCoach>Andre Schubert;</AwayLineupCoach>
 	<AwayYellowCards>2</AwayYellowCards>
 	<AwayRedCards>0</AwayRedCards>
@@ -1243,7 +1243,7 @@
 	<HomeLineupDefense>Julian Korb; Jannik Vestergaard; Tony Jantschke;</HomeLineupDefense>
 	<HomeLineupMidfield>Andreas Christensen; Christoph Kramer; Fabian Johnson; Ibrahima Traore;</HomeLineupMidfield>
 	<HomeLineupForward>Lars Stindl; Raffael; Thorgan Hazard;</HomeLineupForward>
-	<HomeLineupSubstitutes>Nico Schulz; Jonas Hofmann; Tobias Sippel; Mahmoud Dahoud; Oscar Wendt; Andre Hahn; Tobias Strobl;</HomeLineupSubstitutes>
+	<HomeLineupSubstitutes>Nico Schulz; Jonas Hofmann; Tobias Sippel; Mahmoud Dahoud; Oscar Wendt; André Hahn; Tobias Strobl;</HomeLineupSubstitutes>
 	<HomeLineupCoach>Andre Schubert;</HomeLineupCoach>
 	<HomeYellowCards>0</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
@@ -1823,7 +1823,7 @@
 	<AwayLineupGoalkeeper>Yann Sommer</AwayLineupGoalkeeper>
 	<AwayLineupDefense>Oscar Wendt; Tobias Strobl; Andreas Christensen; Jannik Vestergaard;</AwayLineupDefense>
 	<AwayLineupMidfield>Christoph Kramer; Ibrahima Traore; Lars Stindl; Fabian Johnson;</AwayLineupMidfield>
-	<AwayLineupForward>Thorgan Hazard; Andre Hahn;</AwayLineupForward>
+	<AwayLineupForward>Thorgan Hazard; André Hahn;</AwayLineupForward>
 	<AwayLineupSubstitutes>Julian Korb; Nico Elvedi; Nico Schulz; Tobias Sippel; Jonas Hofmann; Tony Jantschke; Mahmoud Dahoud;</AwayLineupSubstitutes>
 	<AwayLineupCoach>Andre Schubert;</AwayLineupCoach>
 	<AwayYellowCards>2</AwayYellowCards>
@@ -1905,12 +1905,12 @@
 	<HomeLineupGoalkeeper>Yann Sommer</HomeLineupGoalkeeper>
 	<HomeLineupDefense>Tony Jantschke; Nico Elvedi; Julian Korb;</HomeLineupDefense>
 	<HomeLineupMidfield>Mahmoud Dahoud; Oscar Wendt; Fabian Johnson; Christoph Kramer; Andreas Christensen;</HomeLineupMidfield>
-	<HomeLineupForward>Lars Stindl; Andre Hahn;</HomeLineupForward>
+	<HomeLineupForward>Lars Stindl; André Hahn;</HomeLineupForward>
 	<HomeLineupSubstitutes>Tobias Sippel; Jonas Hofmann; Jannik Vestergaard; Thorgan Hazard; Ibrahima Traore; Patrick Herrmann; Nico Schulz;</HomeLineupSubstitutes>
 	<HomeLineupCoach>Andre Schubert;</HomeLineupCoach>
 	<HomeYellowCards>2</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
-	<HomeSubDetails>89': in Nico Schulz;89': out Oscar Wendt;84': out Lars Stindl;84': in Jannik Vestergaard;56': in Thorgan Hazard;56': out Andre Hahn;</HomeSubDetails>
+	<HomeSubDetails>89': in Nico Schulz;89': out Oscar Wendt;84': out Lars Stindl;84': in Jannik Vestergaard;56': in Thorgan Hazard;56': out André Hahn;</HomeSubDetails>
 	<AwaySubDetails>77': out Alfredo Morales;77': in Stefan Lex;62': in Roger;62': out Almog Cohen;58': out Moritz Hartmann;58': in Lukas Hinterseer;</AwaySubDetails>
 	<HomeTeamFormation>3-5-2</HomeTeamFormation>
 	<AwayTeam>Ingolstadt</AwayTeam>
@@ -1931,7 +1931,7 @@
 	<AwayYellowCards>3</AwayYellowCards>
 	<AwayRedCards>0</AwayRedCards>
 	<AwayTeamFormation>4-2-3-1</AwayTeamFormation>
-	<HomeTeamYellowCardDetails>65': Nico Elvedi;53': Andre Hahn;</HomeTeamYellowCardDetails>
+	<HomeTeamYellowCardDetails>65': Nico Elvedi;53': André Hahn;</HomeTeamYellowCardDetails>
 	<AwayTeamYellowCardDetails>85': Tobias Levels;66': Lukas Hinterseer;4': Mathew Leckie;</AwayTeamYellowCardDetails>
 	<HomeTeamRedCardDetails/>
 	<AwayTeamRedCardDetails/>
@@ -2744,7 +2744,7 @@
 	<AwayLineupGoalkeeper>Yann Sommer</AwayLineupGoalkeeper>
 	<AwayLineupDefense>Nico Elvedi; Tony Jantschke; Jannik Vestergaard;</AwayLineupDefense>
 	<AwayLineupMidfield>Fabian Johnson; Mahmoud Dahoud; Ibrahima Traore; Christoph Kramer; Andreas Christensen;</AwayLineupMidfield>
-	<AwayLineupForward>Thorgan Hazard; Andre Hahn;</AwayLineupForward>
+	<AwayLineupForward>Thorgan Hazard; André Hahn;</AwayLineupForward>
 	<AwayLineupSubstitutes>Jonas Hofmann; Patrick Herrmann; Julian Korb; Lars Stindl; Nico Schulz; Oscar Wendt; Tobias Sippel;</AwayLineupSubstitutes>
 	<AwayLineupCoach>Andre Schubert;</AwayLineupCoach>
 	<AwayYellowCards>0</AwayYellowCards>
@@ -3032,7 +3032,7 @@
 	<HomeLineupGoalkeeper> Yann Sommer</HomeLineupGoalkeeper>
 	<HomeLineupDefense> Nico Elvedi; Julian Korb; Andreas Christensen;</HomeLineupDefense>
 	<HomeLineupMidfield> Lars Stindl; Fabian Johnson; Christoph Kramer; Mahmoud Dahoud; Oscar Wendt;</HomeLineupMidfield>
-	<HomeLineupForward> Patrick Herrmann; Andre Hahn;</HomeLineupForward>
+	<HomeLineupForward> Patrick Herrmann; André Hahn;</HomeLineupForward>
 	<HomeLineupSubstitutes> Jonas Hofmann; Jannik Vestergaard; Ibrahima Traore; Tobias Strobl; Tobias Sippel; Nico Schulz; Tony Jantschke;</HomeLineupSubstitutes>
 	<HomeLineupCoach> Andre Schubert;</HomeLineupCoach>
 	<HomeYellowCards>2</HomeYellowCards>
@@ -3552,7 +3552,7 @@
 	<HomeYellowCards>0</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
 	<HomeSubDetails>84': out Rafinha;84': in Joshua Kimmich;80': in Renato Sanches;80': out Arjen Robben;73': in Thomas Mueller;73': out Douglas Costa;</HomeSubDetails>
-	<AwaySubDetails>78': out Andre Hahn;78': in Patrick Herrmann;65': in Nico Schulz;65': out Oscar Wendt;46': in Tony Jantschke;46': out Jonas Hofmann;</AwaySubDetails>
+	<AwaySubDetails>78': out André Hahn;78': in Patrick Herrmann;65': in Nico Schulz;65': out Oscar Wendt;46': in Tony Jantschke;46': out Jonas Hofmann;</AwaySubDetails>
 	<HomeTeamFormation>4-3-3</HomeTeamFormation>
 	<AwayTeam>Moenchengladbach</AwayTeam>
 	<AwayTeam_Id>72</AwayTeam_Id>
@@ -3566,7 +3566,7 @@
 	<AwayLineupGoalkeeper>Yann Sommer</AwayLineupGoalkeeper>
 	<AwayLineupDefense>Julian Korb; Jannik Vestergaard; Nico Elvedi; Oscar Wendt;</AwayLineupDefense>
 	<AwayLineupMidfield>Christoph Kramer; Jonas Hofmann; Lars Stindl; Fabian Johnson; Tobias Strobl;</AwayLineupMidfield>
-	<AwayLineupForward>Andre Hahn;</AwayLineupForward>
+	<AwayLineupForward>André Hahn;</AwayLineupForward>
 	<AwayLineupSubstitutes>Mahmoud Dahoud; Tobias Sippel; Djibril Sow; Tony Jantschke; Nils Rutten; Patrick Herrmann; Nico Schulz;</AwayLineupSubstitutes>
 	<AwayLineupCoach>Andre Schubert;</AwayLineupCoach>
 	<AwayYellowCards>1</AwayYellowCards>
@@ -3702,7 +3702,7 @@
 	<HomeLineupGoalkeeper>Yann Sommer</HomeLineupGoalkeeper>
 	<HomeLineupDefense>Nico Elvedi; Tony Jantschke; Jannik Vestergaard;</HomeLineupDefense>
 	<HomeLineupMidfield>Oscar Wendt; Lars Stindl; Julian Korb; Christoph Kramer; Mahmoud Dahoud;</HomeLineupMidfield>
-	<HomeLineupForward>Fabian Johnson; Andre Hahn;</HomeLineupForward>
+	<HomeLineupForward>Fabian Johnson; André Hahn;</HomeLineupForward>
 	<HomeLineupSubstitutes>Nico Schulz; Jonas Hofmann; Tobias Sippel; Djibril Sow; Tobias Strobl; Nils Rutten; Patrick Herrmann;</HomeLineupSubstitutes>
 	<HomeLineupCoach>Andre Schubert;</HomeLineupCoach>
 	<HomeYellowCards>1</HomeYellowCards>
@@ -4186,7 +4186,7 @@
 	<AwayLineupDefense>Jannik Vestergaard; Tony Jantschke; Tobias Strobl; Christoph Kramer; Nico Elvedi;</AwayLineupDefense>
 	<AwayLineupMidfield>Jonas Hofmann; Oscar Wendt; Patrick Herrmann;</AwayLineupMidfield>
 	<AwayLineupForward>Lars Stindl; Raffael;</AwayLineupForward>
-	<AwayLineupSubstitutes>Mahmoud Dahoud; Tobias Sippel; Andre Hahn; Julian Korb; Thorgan Hazard; Fabian Johnson; Nico Schulz;</AwayLineupSubstitutes>
+	<AwayLineupSubstitutes>Mahmoud Dahoud; Tobias Sippel; André Hahn; Julian Korb; Thorgan Hazard; Fabian Johnson; Nico Schulz;</AwayLineupSubstitutes>
 	<AwayLineupCoach>Andre Schubert;</AwayLineupCoach>
 	<AwayYellowCards>2</AwayYellowCards>
 	<AwayRedCards>1</AwayRedCards>
@@ -4834,11 +4834,11 @@
 	<HomeLineupDefense> Andreas Christensen; Jannik Vestergaard; Nico Elvedi;</HomeLineupDefense>
 	<HomeLineupMidfield> Tobias Strobl; Oscar Wendt; Lars Stindl; Ibrahima Traore; Mahmoud Dahoud;</HomeLineupMidfield>
 	<HomeLineupForward> Thorgan Hazard; Raffael;</HomeLineupForward>
-	<HomeLineupSubstitutes>Fabian Johnson; Nico Schulz; Tobias Sippel; Jonas Hofmann; Tony Jantschke; Andre Hahn; Julian Korb;</HomeLineupSubstitutes>
+	<HomeLineupSubstitutes>Fabian Johnson; Nico Schulz; Tobias Sippel; Jonas Hofmann; Tony Jantschke; André Hahn; Julian Korb;</HomeLineupSubstitutes>
 	<HomeLineupCoach>Andre Schubert;</HomeLineupCoach>
 	<HomeYellowCards>1</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
-	<HomeSubDetails>89': in Tony Jantschke;89': out Mahmoud Dahoud;75': out Ibrahima Traore;75': in Fabian Johnson;72': in Andre Hahn;72': out Thorgan Hazard;</HomeSubDetails>
+	<HomeSubDetails>89': in Tony Jantschke;89': out Mahmoud Dahoud;75': out Ibrahima Traore;75': in Fabian Johnson;72': in André Hahn;72': out Thorgan Hazard;</HomeSubDetails>
 	<AwaySubDetails>90': in Pawel Olkowski;90': out Marcel Risse;73': in Salih Oezcan;73': out Yuya Osako;46': in Artjoms Rudnevs;46': out Matthias Lehmann;</AwaySubDetails>
 	<HomeTeamFormation>3-4-1-2</HomeTeamFormation>
 	<AwayTeam>FC Koeln</AwayTeam>
@@ -5144,11 +5144,11 @@
 	<HomeLineupDefense>Andreas Christensen; Tobias Strobl; Jannik Vestergaard;</HomeLineupDefense>
 	<HomeLineupMidfield>Mahmoud Dahoud; Oscar Wendt; Lars Stindl; Nico Elvedi; Christoph Kramer;</HomeLineupMidfield>
 	<HomeLineupForward>Raffael; Thorgan Hazard;</HomeLineupForward>
-	<HomeLineupSubstitutes>Nico Schulz; Tobias Sippel; Jonas Hofmann; Tony Jantschke; Andre Hahn; Julian Korb; Fabian Johnson;</HomeLineupSubstitutes>
+	<HomeLineupSubstitutes>Nico Schulz; Tobias Sippel; Jonas Hofmann; Tony Jantschke; André Hahn; Julian Korb; Fabian Johnson;</HomeLineupSubstitutes>
 	<HomeLineupCoach>Andre Schubert;</HomeLineupCoach>
 	<HomeYellowCards>0</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
-	<HomeSubDetails>87': out Lars Stindl;87': in Andre Hahn;87': in Tony Jantschke;87': out Christoph Kramer;75': in Fabian Johnson;75': out Thorgan Hazard;</HomeSubDetails>
+	<HomeSubDetails>87': out Lars Stindl;87': in André Hahn;87': in Tony Jantschke;87': out Christoph Kramer;75': in Fabian Johnson;75': out Thorgan Hazard;</HomeSubDetails>
 	<AwaySubDetails>59': in Jeremy Toljan;59': out Steven Zuber;46': in Mark Uth;46': out Ádám Szalai;46': in Nadiem Amiri;46': out Fabian Schaer;</AwaySubDetails>
 	<HomeTeamFormation>3-4-1-2</HomeTeamFormation>
 	<AwayTeam>Hoffenheim</AwayTeam>
@@ -5663,7 +5663,7 @@
 	<HomeYellowCards>1</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
 	<HomeSubDetails>89': in Emre Mor;89': out Ousmane Dembele;78': in Christian Pulisic;78': out Marco Reus;36': out Nuri Sahin;36': in Julian Weigl;</HomeSubDetails>
-	<AwaySubDetails>82': in Andre Hahn;82': out Raffael;78': in Fabian Johnson;78': out Thorgan Hazard;74': in Jannik Vestergaard;74': out Mahmoud Dahoud;</AwaySubDetails>
+	<AwaySubDetails>82': in André Hahn;82': out Raffael;78': in Fabian Johnson;78': out Thorgan Hazard;74': in Jannik Vestergaard;74': out Mahmoud Dahoud;</AwaySubDetails>
 	<HomeTeamFormation>3-4-3</HomeTeamFormation>
 	<AwayTeam>Moenchengladbach</AwayTeam>
 	<AwayTeam_Id>72</AwayTeam_Id>
@@ -5678,7 +5678,7 @@
 	<AwayLineupDefense> Andreas Christensen; Tobias Strobl; Nico Elvedi;</AwayLineupDefense>
 	<AwayLineupMidfield> Mahmoud Dahoud; Oscar Wendt; Julian Korb; Christoph Kramer;</AwayLineupMidfield>
 	<AwayLineupForward> Thorgan Hazard; Lars Stindl; Raffael;</AwayLineupForward>
-	<AwayLineupSubstitutes>Tobias Sippel; Jonas Hofmann; Tony Jantschke; Andre Hahn; Jannik Vestergaard; Fabian Johnson; Nico Schulz;</AwayLineupSubstitutes>
+	<AwayLineupSubstitutes>Tobias Sippel; Jonas Hofmann; Tony Jantschke; André Hahn; Jannik Vestergaard; Fabian Johnson; Nico Schulz;</AwayLineupSubstitutes>
 	<AwayLineupCoach>Andre Schubert;</AwayLineupCoach>
 	<AwayYellowCards>1</AwayYellowCards>
 	<AwayRedCards>0</AwayRedCards>
@@ -6375,13 +6375,13 @@
 	<HomeGoalDetails>76': Andreas Christensen;</HomeGoalDetails>
 	<HomeLineupGoalkeeper>Yann Sommer</HomeLineupGoalkeeper>
 	<HomeLineupDefense>Tony Jantschke; Andreas Christensen; Jannik Vestergaard; Nico Elvedi;</HomeLineupDefense>
-	<HomeLineupMidfield>Tobias Strobl; Mahmoud Dahoud; Oscar Wendt; Andre Hahn;</HomeLineupMidfield>
+	<HomeLineupMidfield>Tobias Strobl; Mahmoud Dahoud; Oscar Wendt; André Hahn;</HomeLineupMidfield>
 	<HomeLineupForward>Lars Stindl; Raffael;</HomeLineupForward>
 	<HomeLineupSubstitutes>Djibril Sow; Tobias Sippel; Josip Drmic; Julian Korb; Thorgan Hazard; Nico Schulz; Jonas Hofmann;</HomeLineupSubstitutes>
 	<HomeLineupCoach>Andre Schubert;</HomeLineupCoach>
 	<HomeYellowCards>2</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
-	<HomeSubDetails>90': in Josip Drmic;90': out Raffael;87': out Oscar Wendt;87': in Nico Schulz;46': out Andre Hahn;46': in Thorgan Hazard;</HomeSubDetails>
+	<HomeSubDetails>90': in Josip Drmic;90': out Raffael;87': out Oscar Wendt;87': in Nico Schulz;46': out André Hahn;46': in Thorgan Hazard;</HomeSubDetails>
 	<AwaySubDetails>88': in Gerrit Holtmann;88': out Levin Mete Oztunali;80': in Pablo De Blasis;80': out Danny Latza;71': in Aaron Seydel;71': out Jairo;</AwaySubDetails>
 	<HomeTeamFormation>4-4-2</HomeTeamFormation>
 	<AwayTeam>Mainz</AwayTeam>
@@ -6402,7 +6402,7 @@
 	<AwayYellowCards>0</AwayYellowCards>
 	<AwayRedCards>1</AwayRedCards>
 	<AwayTeamFormation>4-2-3-1</AwayTeamFormation>
-	<HomeTeamYellowCardDetails>90': Tony Jantschke;12': Andre Hahn;</HomeTeamYellowCardDetails>
+	<HomeTeamYellowCardDetails>90': Tony Jantschke;12': André Hahn;</HomeTeamYellowCardDetails>
 	<AwayTeamYellowCardDetails>90': Jean-Philippe Gbamin;79': Jean-Philippe Gbamin;</AwayTeamYellowCardDetails>
 	<HomeTeamRedCardDetails/>
 	<AwayTeamRedCardDetails>90': Jean-Philippe Gbamin;</AwayTeamRedCardDetails>
@@ -6652,7 +6652,7 @@
 	<AwayGoalDetails/>
 	<AwayLineupGoalkeeper> Yann Sommer</AwayLineupGoalkeeper>
 	<AwayLineupDefense> Nico Elvedi; Andreas Christensen; Jannik Vestergaard; Oscar Wendt;</AwayLineupDefense>
-	<AwayLineupMidfield> Christoph Kramer; Tobias Strobl; Andre Hahn; Mahmoud Dahoud; Thorgan Hazard;</AwayLineupMidfield>
+	<AwayLineupMidfield> Christoph Kramer; Tobias Strobl; André Hahn; Mahmoud Dahoud; Thorgan Hazard;</AwayLineupMidfield>
 	<AwayLineupForward> Raffael;</AwayLineupForward>
 	<AwayLineupSubstitutes> Jonas Hofmann; Djibril Sow; Tobias Sippel; László Bénes; Julian Korb; Josip Drmic; Nico Schulz;</AwayLineupSubstitutes>
 	<AwayLineupCoach> Andre Schubert;</AwayLineupCoach>
@@ -7099,11 +7099,11 @@
 	<HomeLineupDefense>Nico Elvedi; Julian Korb; Andreas Christensen; Jannik Vestergaard;</HomeLineupDefense>
 	<HomeLineupMidfield>Oscar Wendt; Thorgan Hazard; Tobias Strobl; Mahmoud Dahoud;</HomeLineupMidfield>
 	<HomeLineupForward>Lars Stindl; Raffael;</HomeLineupForward>
-	<HomeLineupSubstitutes>Josip Drmic; Nico Schulz; Jonas Hofmann; Djibril Sow; Tobias Sippel; László Bénes; Andre Hahn;</HomeLineupSubstitutes>
+	<HomeLineupSubstitutes>Josip Drmic; Nico Schulz; Jonas Hofmann; Djibril Sow; Tobias Sippel; László Bénes; André Hahn;</HomeLineupSubstitutes>
 	<HomeLineupCoach>Andre Schubert;</HomeLineupCoach>
 	<HomeYellowCards>1</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
-	<HomeSubDetails>83': in Josip Drmic;83': out Nico Elvedi;73': in Andre Hahn;73': out Lars Stindl;</HomeSubDetails>
+	<HomeSubDetails>83': in Josip Drmic;83': out Nico Elvedi;73': in André Hahn;73': out Lars Stindl;</HomeSubDetails>
 	<AwaySubDetails>90': in Robin Knoche;90': out Julian Draxler;87': in Borja Mayoral;87': out Mario Gomez;83': in Jakub Blaszczykowski;83': out Paul Seguin;</AwaySubDetails>
 	<HomeTeamFormation>4-4-2</HomeTeamFormation>
 	<AwayTeam>Wolfsburg</AwayTeam>
@@ -7463,7 +7463,7 @@
 	<HomeYellowCards>1</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
 	<HomeSubDetails>89': out Antonio Colak;89': in Sven Schipplock;82': out Mario Vrancic;82': in Florian Jungwirth;70': in Peter Niemeyer;70': out Jan Rosenthal;</HomeSubDetails>
-	<AwaySubDetails>80': out Raffael;80': in Ba-Muaka Simakala;70': out Jonas Hofmann;70': in Andre Hahn;</AwaySubDetails>
+	<AwaySubDetails>80': out Raffael;80': in Ba-Muaka Simakala;70': out Jonas Hofmann;70': in André Hahn;</AwaySubDetails>
 	<HomeTeamFormation>4-2-3-1</HomeTeamFormation>
 	<AwayTeam>Moenchengladbach</AwayTeam>
 	<AwayTeam_Id>72</AwayTeam_Id>
@@ -7478,7 +7478,7 @@
 	<AwayLineupDefense>Andreas Christensen; Oscar Wendt; Tony Jantschke; Jannik Vestergaard;</AwayLineupDefense>
 	<AwayLineupMidfield>Lars Stindl; Jonas Hofmann; Christoph Kramer; Mahmoud Dahoud; Thorgan Hazard;</AwayLineupMidfield>
 	<AwayLineupForward>Raffael;</AwayLineupForward>
-	<AwayLineupSubstitutes>Timothée Kolodziejczak; Ba-Muaka Simakala; Julian Korb; Djibril Sow; László Bénes; Tobias Sippel; Andre Hahn;</AwayLineupSubstitutes>
+	<AwayLineupSubstitutes>Timothée Kolodziejczak; Ba-Muaka Simakala; Julian Korb; Djibril Sow; László Bénes; Tobias Sippel; André Hahn;</AwayLineupSubstitutes>
 	<AwayLineupCoach>Dieter Hecking;</AwayLineupCoach>
 	<AwayYellowCards>1</AwayYellowCards>
 	<AwayRedCards>0</AwayRedCards>
@@ -8181,7 +8181,7 @@
 	<HomeYellowCards>0</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
 	<HomeSubDetails>77': in Stefan Kiessling;77': out Karim Bellarabi;65': out Charles Aranguiz;65': out Benjamin Henrichs;65': in Tin Jedvaj;65': in Kai Havertz;</HomeSubDetails>
-	<AwaySubDetails>90': in Josip Drmic;90': out Jonas Hofmann;85': in Fabian Johnson;85': out Raffael;70': in Andre Hahn;70': out Thorgan Hazard;</AwaySubDetails>
+	<AwaySubDetails>90': in Josip Drmic;90': out Jonas Hofmann;85': in Fabian Johnson;85': out Raffael;70': in André Hahn;70': out Thorgan Hazard;</AwaySubDetails>
 	<HomeTeamFormation>4-4-2</HomeTeamFormation>
 	<AwayTeam>Moenchengladbach</AwayTeam>
 	<AwayTeam_Id>72</AwayTeam_Id>
@@ -8196,7 +8196,7 @@
 	<AwayLineupDefense>Jannik Vestergaard; Oscar Wendt; Tony Jantschke; Andreas Christensen;</AwayLineupDefense>
 	<AwayLineupMidfield>Mahmoud Dahoud; Thorgan Hazard; Jonas Hofmann; Christoph Kramer;</AwayLineupMidfield>
 	<AwayLineupForward>Raffael; Lars Stindl;</AwayLineupForward>
-	<AwayLineupSubstitutes>Julian Korb; Ba-Muaka Simakala; Fabian Johnson; László Bénes; Andre Hahn; Tobias Sippel; Josip Drmic;</AwayLineupSubstitutes>
+	<AwayLineupSubstitutes>Julian Korb; Ba-Muaka Simakala; Fabian Johnson; László Bénes; André Hahn; Tobias Sippel; Josip Drmic;</AwayLineupSubstitutes>
 	<AwayLineupCoach>Dieter Hecking;</AwayLineupCoach>
 	<AwayYellowCards>0</AwayYellowCards>
 	<AwayRedCards>0</AwayRedCards>
@@ -8586,13 +8586,13 @@
 	<HomeGoalDetails>90': Patrick Herrmann;78': Raffael;73': Lars Stindl;</HomeGoalDetails>
 	<HomeLineupGoalkeeper>Yann Sommer</HomeLineupGoalkeeper>
 	<HomeLineupDefense>Tony Jantschke; Andreas Christensen; Jannik Vestergaard; Oscar Wendt;</HomeLineupDefense>
-	<HomeLineupMidfield>Mahmoud Dahoud; Andre Hahn; Thorgan Hazard; Christoph Kramer;</HomeLineupMidfield>
+	<HomeLineupMidfield>Mahmoud Dahoud; André Hahn; Thorgan Hazard; Christoph Kramer;</HomeLineupMidfield>
 	<HomeLineupForward>Raffael; Lars Stindl;</HomeLineupForward>
 	<HomeLineupSubstitutes>Nico Schulz; Tobias Sippel; László Bénes; Julian Korb; Josip Drmic; Fabian Johnson; Patrick Herrmann;</HomeLineupSubstitutes>
 	<HomeLineupCoach>Dieter Hecking;</HomeLineupCoach>
 	<HomeYellowCards>1</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
-	<HomeSubDetails>90': in Patrick Herrmann;90': out Raffael;88': in Josip Drmic;88': out Lars Stindl;65': in Fabian Johnson;65': out Andre Hahn;</HomeSubDetails>
+	<HomeSubDetails>90': in Patrick Herrmann;90': out Raffael;88': in Josip Drmic;88': out Lars Stindl;65': in Fabian Johnson;65': out André Hahn;</HomeSubDetails>
 	<AwaySubDetails>87': out Amir Abrashi;87': in Julian Schuster;83': out Florian Niederlechner;83': in Aleksandar Ignjovski;83': out Lukas Kuebler;83': in Haavard Nielsen;</AwaySubDetails>
 	<HomeTeamFormation>4-2-2-2</HomeTeamFormation>
 	<AwayTeam>Freiburg</AwayTeam>
@@ -8903,7 +8903,7 @@
 	<HomeYellowCards>2</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
 	<HomeSubDetails>80': in Aron Johannsson;80': out Serge Gnabry;46': out Milos Veljkovic;46': in Claudio Pizarro;46': out Santiago Garcia;46': in Theodor Gebre Selassie;</HomeSubDetails>
-	<AwaySubDetails>85': in Nico Schulz;85': out Mahmoud Dahoud;80': out Andre Hahn;80': in Tobias Strobl;71': in Josip Drmic;71': out Patrick Herrmann;</AwaySubDetails>
+	<AwaySubDetails>85': in Nico Schulz;85': out Mahmoud Dahoud;80': out André Hahn;80': in Tobias Strobl;71': in Josip Drmic;71': out Patrick Herrmann;</AwaySubDetails>
 	<HomeTeamFormation>3-5-2</HomeTeamFormation>
 	<AwayTeam>Moenchengladbach</AwayTeam>
 	<AwayTeam_Id>72</AwayTeam_Id>
@@ -8917,7 +8917,7 @@
 	<AwayLineupGoalkeeper>Yann Sommer</AwayLineupGoalkeeper>
 	<AwayLineupDefense>Jannik Vestergaard; Oscar Wendt; Tony Jantschke; Andreas Christensen;</AwayLineupDefense>
 	<AwayLineupMidfield>Patrick Herrmann; Fabian Johnson; Christoph Kramer; Mahmoud Dahoud;</AwayLineupMidfield>
-	<AwayLineupForward>Andre Hahn; Thorgan Hazard;</AwayLineupForward>
+	<AwayLineupForward>André Hahn; Thorgan Hazard;</AwayLineupForward>
 	<AwayLineupSubstitutes>Josip Drmic; Julian Korb; Ba-Muaka Simakala; Tobias Strobl; Nico Schulz; László Bénes; Tobias Sippel;</AwayLineupSubstitutes>
 	<AwayLineupCoach>Dieter Hecking;</AwayLineupCoach>
 	<AwayYellowCards>2</AwayYellowCards>
@@ -9615,13 +9615,13 @@
 	<HomeGoalDetails>81': Jannik Vestergaard;</HomeGoalDetails>
 	<HomeLineupGoalkeeper>Yann Sommer</HomeLineupGoalkeeper>
 	<HomeLineupDefense>Andreas Christensen; Jannik Vestergaard; Oscar Wendt; Tony Jantschke;</HomeLineupDefense>
-	<HomeLineupMidfield>Christoph Kramer; Mahmoud Dahoud; Fabian Johnson; Andre Hahn;</HomeLineupMidfield>
+	<HomeLineupMidfield>Christoph Kramer; Mahmoud Dahoud; Fabian Johnson; André Hahn;</HomeLineupMidfield>
 	<HomeLineupForward>Lars Stindl; Thorgan Hazard;</HomeLineupForward>
 	<HomeLineupSubstitutes>Jonas Hofmann; Tobias Sippel; László Bénes; Timothée Kolodziejczak; Josip Drmic; Julian Korb; Patrick Herrmann;</HomeLineupSubstitutes>
 	<HomeLineupCoach>Dieter Hecking;</HomeLineupCoach>
 	<HomeYellowCards>4</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
-	<HomeSubDetails>80': out Fabian Johnson;80': in Josip Drmic;61': in Patrick Herrmann;61': out Andre Hahn;61': in Jonas Hofmann;61': out Oscar Wendt;</HomeSubDetails>
+	<HomeSubDetails>80': out Fabian Johnson;80': in Josip Drmic;61': in Patrick Herrmann;61': out André Hahn;61': in Jonas Hofmann;61': out Oscar Wendt;</HomeSubDetails>
 	<AwaySubDetails>83': in Dayot Upamecano;83': out Emil Forsberg;76': out Naby Keita;76': in Rani Khedira;66': in Dominik Kaiser;66': out Oliver Burke;</AwaySubDetails>
 	<HomeTeamFormation>4-4-2</HomeTeamFormation>
 	<AwayTeam>RB Lipsk</AwayTeam>
@@ -10085,7 +10085,7 @@
 	<HomeYellowCards>2</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
 	<HomeSubDetails>78': in Lukas Hinterseer;78': out Pascal Gross;72': in Sonny Kittel;72': out Marcel Tisserand;46': in Roger;46': out Anthony Jung;</HomeSubDetails>
-	<AwaySubDetails>87': in Raffael;87': out Lars Stindl;80': out Josip Drmic;80': in Andre Hahn;61': out Tobias Strobl;61': in Mahmoud Dahoud;</AwaySubDetails>
+	<AwaySubDetails>87': in Raffael;87': out Lars Stindl;80': out Josip Drmic;80': in André Hahn;61': out Tobias Strobl;61': in Mahmoud Dahoud;</AwaySubDetails>
 	<HomeTeamFormation>3-4-3</HomeTeamFormation>
 	<AwayTeam>Moenchengladbach</AwayTeam>
 	<AwayTeam_Id>72</AwayTeam_Id>
@@ -10095,12 +10095,12 @@
 	<AwayShots>10</AwayShots>
 	<AwayShotsOnTarget>4</AwayShotsOnTarget>
 	<AwayFouls>14</AwayFouls>
-	<AwayGoalDetails>90': Andre Hahn;60': Lars Stindl;</AwayGoalDetails>
+	<AwayGoalDetails>90': André Hahn;60': Lars Stindl;</AwayGoalDetails>
 	<AwayLineupGoalkeeper>Yann Sommer</AwayLineupGoalkeeper>
 	<AwayLineupDefense>Tony Jantschke; Andreas Christensen; Jannik Vestergaard; Oscar Wendt;</AwayLineupDefense>
 	<AwayLineupMidfield>Christoph Kramer; Tobias Strobl; Fabian Johnson; Jonas Hofmann;</AwayLineupMidfield>
 	<AwayLineupForward>Josip Drmic; Lars Stindl;</AwayLineupForward>
-	<AwayLineupSubstitutes>Timothée Kolodziejczak; Raffael; Nico Elvedi; Patrick Herrmann; Mahmoud Dahoud; Tobias Sippel; Andre Hahn;</AwayLineupSubstitutes>
+	<AwayLineupSubstitutes>Timothée Kolodziejczak; Raffael; Nico Elvedi; Patrick Herrmann; Mahmoud Dahoud; Tobias Sippel; André Hahn;</AwayLineupSubstitutes>
 	<AwayLineupCoach>Dieter Hecking;</AwayLineupCoach>
 	<AwayYellowCards>0</AwayYellowCards>
 	<AwayRedCards>0</AwayRedCards>
@@ -10491,7 +10491,7 @@
 	<HomeLineupDefense>Andreas Christensen; Jannik Vestergaard; Oscar Wendt; Tony Jantschke;</HomeLineupDefense>
 	<HomeLineupMidfield>Mahmoud Dahoud; Christoph Kramer; Fabian Johnson; Patrick Herrmann;</HomeLineupMidfield>
 	<HomeLineupForward>Raffael; Lars Stindl;</HomeLineupForward>
-	<HomeLineupSubstitutes>Tobias Strobl; Nico Elvedi; Josip Drmic; Jonas Hofmann; Timothée Kolodziejczak; Tobias Sippel; Andre Hahn;</HomeLineupSubstitutes>
+	<HomeLineupSubstitutes>Tobias Strobl; Nico Elvedi; Josip Drmic; Jonas Hofmann; Timothée Kolodziejczak; Tobias Sippel; André Hahn;</HomeLineupSubstitutes>
 	<HomeLineupCoach>Dieter Hecking;</HomeLineupCoach>
 	<HomeYellowCards>0</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
@@ -11063,7 +11063,7 @@
 	<HomeYellowCards>1</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
 	<HomeSubDetails>90': in Pierre-Michel Lasogga;90': out Aaron Hunt;88': out Filip Kostic;88': in Douglas Santos;70': in Michael Gregoritsch;70': out Lewis Holtby;</HomeSubDetails>
-	<AwaySubDetails>77': out Nico Elvedi;77': in Tony Jantschke;67': in Andre Hahn;67': out Patrick Herrmann;57': in Fabian Johnson;57': out Jonas Hofmann;</AwaySubDetails>
+	<AwaySubDetails>77': out Nico Elvedi;77': in Tony Jantschke;67': in André Hahn;67': out Patrick Herrmann;57': in Fabian Johnson;57': out Jonas Hofmann;</AwaySubDetails>
 	<HomeTeamFormation>4-2-3-1</HomeTeamFormation>
 	<AwayTeam>Moenchengladbach</AwayTeam>
 	<AwayTeam_Id>72</AwayTeam_Id>
@@ -11078,7 +11078,7 @@
 	<AwayLineupDefense>Nico Elvedi; Andreas Christensen; Jannik Vestergaard; Oscar Wendt;</AwayLineupDefense>
 	<AwayLineupMidfield>Jonas Hofmann; Christoph Kramer; Tobias Strobl; Patrick Herrmann; Mahmoud Dahoud;</AwayLineupMidfield>
 	<AwayLineupForward>Josip Drmic;</AwayLineupForward>
-	<AwayLineupSubstitutes>Julian Korb; Fabian Johnson; Tobias Sippel; Nico Schulz; Tony Jantschke; Andre Hahn; Timothée Kolodziejczak;</AwayLineupSubstitutes>
+	<AwayLineupSubstitutes>Julian Korb; Fabian Johnson; Tobias Sippel; Nico Schulz; Tony Jantschke; André Hahn; Timothée Kolodziejczak;</AwayLineupSubstitutes>
 	<AwayLineupCoach>Dieter Hecking;</AwayLineupCoach>
 	<AwayYellowCards>2</AwayYellowCards>
 	<AwayRedCards>0</AwayRedCards>
@@ -11520,12 +11520,12 @@
 	<HomeLineupGoalkeeper>Yann Sommer</HomeLineupGoalkeeper>
 	<HomeLineupDefense>Andreas Christensen; Jannik Vestergaard; Oscar Wendt; Nico Elvedi;</HomeLineupDefense>
 	<HomeLineupMidfield>Tobias Strobl; Jonas Hofmann; Patrick Herrmann; Tony Jantschke;</HomeLineupMidfield>
-	<HomeLineupForward>Andre Hahn; Raffael;</HomeLineupForward>
+	<HomeLineupForward>André Hahn; Raffael;</HomeLineupForward>
 	<HomeLineupSubstitutes>Tobias Sippel; Josip Drmic; Timothée Kolodziejczak; Thorgan Hazard; Julian Korb; Nico Schulz; László Bénes;</HomeLineupSubstitutes>
 	<HomeLineupCoach>Dieter Hecking;</HomeLineupCoach>
 	<HomeYellowCards>0</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
-	<HomeSubDetails>81': in László Bénes;81': out Andre Hahn;73': in Josip Drmic;73': out Tony Jantschke;64': out Patrick Herrmann;64': in Thorgan Hazard;</HomeSubDetails>
+	<HomeSubDetails>81': in László Bénes;81': out André Hahn;73': in Josip Drmic;73': out Tony Jantschke;64': out Patrick Herrmann;64': in Thorgan Hazard;</HomeSubDetails>
 	<AwaySubDetails>85': in Renato Sanches;85': out Arjen Robben;77': in Joshua Kimmich;77': out Xabi Alonso;73': out Franck Ribery;73': in Kingsley Coman;</AwaySubDetails>
 	<HomeTeamFormation>4-4-2</HomeTeamFormation>
 	<AwayTeam>Bayern Monachium</AwayTeam>
@@ -11885,7 +11885,7 @@
 	<HomeYellowCards>4</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
 	<HomeSubDetails>90': in Aymen Barkok;90': out Mijat Gacinovic;76': in Michael Hector;76': out Taleb Tawatha;68': in Haris Seferovic;68': out Ante Rebic;</HomeSubDetails>
-	<AwaySubDetails>81': in Andre Hahn;81': out Thorgan Hazard;68': out Jonas Hofmann;68': in Patrick Herrmann;46': in Nico Elvedi;46': out Tony Jantschke;</AwaySubDetails>
+	<AwaySubDetails>81': in André Hahn;81': out Thorgan Hazard;68': out Jonas Hofmann;68': in Patrick Herrmann;46': in Nico Elvedi;46': out Tony Jantschke;</AwaySubDetails>
 	<HomeTeamFormation>5-4-1</HomeTeamFormation>
 	<AwayTeam>Moenchengladbach</AwayTeam>
 	<AwayTeam_Id>72</AwayTeam_Id>
@@ -11900,7 +11900,7 @@
 	<AwayLineupDefense>Tony Jantschke; Andreas Christensen; Jannik Vestergaard; Oscar Wendt;</AwayLineupDefense>
 	<AwayLineupMidfield>Thorgan Hazard; Mahmoud Dahoud; Tobias Strobl; Jonas Hofmann;</AwayLineupMidfield>
 	<AwayLineupForward>Lars Stindl; Raffael;</AwayLineupForward>
-	<AwayLineupSubstitutes>Patrick Herrmann; László Bénes; Tobias Sippel; Andre Hahn; Timothée Kolodziejczak; Josip Drmic; Nico Elvedi;</AwayLineupSubstitutes>
+	<AwayLineupSubstitutes>Patrick Herrmann; László Bénes; Tobias Sippel; André Hahn; Timothée Kolodziejczak; Josip Drmic; Nico Elvedi;</AwayLineupSubstitutes>
 	<AwayLineupCoach>Dieter Hecking;</AwayLineupCoach>
 	<AwayYellowCards>2</AwayYellowCards>
 	<AwayRedCards>1</AwayRedCards>
@@ -12448,11 +12448,11 @@
 	<HomeLineupDefense>Jannik Vestergaard; Oscar Wendt; Nico Elvedi; Andreas Christensen;</HomeLineupDefense>
 	<HomeLineupMidfield>Patrick Herrmann; Jonas Hofmann; Mahmoud Dahoud; László Bénes;</HomeLineupMidfield>
 	<HomeLineupForward>Lars Stindl; Thorgan Hazard;</HomeLineupForward>
-	<HomeLineupSubstitutes>Andre Hahn; Julian Korb; Nico Schulz; Ibrahima Traore; Tobias Sippel; Josip Drmic; Timothée Kolodziejczak;</HomeLineupSubstitutes>
+	<HomeLineupSubstitutes>André Hahn; Julian Korb; Nico Schulz; Ibrahima Traore; Tobias Sippel; Josip Drmic; Timothée Kolodziejczak;</HomeLineupSubstitutes>
 	<HomeLineupCoach>Dieter Hecking;</HomeLineupCoach>
 	<HomeYellowCards>1</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
-	<HomeSubDetails>90': out Thorgan Hazard;90': in Nico Schulz;85': out László Bénes;85': in Andre Hahn;76': in Ibrahima Traore;76': out Patrick Herrmann;</HomeSubDetails>
+	<HomeSubDetails>90': out Thorgan Hazard;90': in Nico Schulz;85': out László Bénes;85': in André Hahn;76': in Ibrahima Traore;76': out Patrick Herrmann;</HomeSubDetails>
 	<AwaySubDetails>81': out Salomon Kalou;81': in Julius Kade;66': out Genki Haraguchi;66': in Sami Allagui;</AwaySubDetails>
 	<HomeTeamFormation>4-4-2</HomeTeamFormation>
 	<AwayTeam>Hertha</AwayTeam>
@@ -12673,7 +12673,7 @@
 	<AwayLineupDefense>Oscar Wendt; Nico Elvedi; Andreas Christensen; Jannik Vestergaard;</AwayLineupDefense>
 	<AwayLineupMidfield>Thorgan Hazard; Jonas Hofmann; Mahmoud Dahoud; Tobias Strobl;</AwayLineupMidfield>
 	<AwayLineupForward>Lars Stindl; Raffael;</AwayLineupForward>
-	<AwayLineupSubstitutes>Josip Drmic; Ibrahima Traore; Patrick Herrmann; László Bénes; Tobias Sippel; Andre Hahn; Timothée Kolodziejczak;</AwayLineupSubstitutes>
+	<AwayLineupSubstitutes>Josip Drmic; Ibrahima Traore; Patrick Herrmann; László Bénes; Tobias Sippel; André Hahn; Timothée Kolodziejczak;</AwayLineupSubstitutes>
 	<AwayLineupCoach>Dieter Hecking;</AwayLineupCoach>
 	<AwayYellowCards>2</AwayYellowCards>
 	<AwayRedCards>0</AwayRedCards>
@@ -13120,7 +13120,7 @@
 	<HomeYellowCards>2</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
 	<HomeSubDetails>85': in Ermin Bicakcic;85': out Benjamin Huebner;74': out Ádám Szalai;74': in Nadiem Amiri;63': out Sandro Wagner;63': in Mark Uth;</HomeSubDetails>
-	<AwaySubDetails>85': out Tobias Strobl;85': in László Bénes;74': in Josip Drmic;74': out Ibrahima Traore;74': in Patrick Herrmann;74': out Andre Hahn;</AwaySubDetails>
+	<AwaySubDetails>85': out Tobias Strobl;85': in László Bénes;74': in Josip Drmic;74': out Ibrahima Traore;74': in Patrick Herrmann;74': out André Hahn;</AwaySubDetails>
 	<HomeTeamFormation>3-5-2</HomeTeamFormation>
 	<AwayTeam>Moenchengladbach</AwayTeam>
 	<AwayTeam_Id>72</AwayTeam_Id>
@@ -13134,7 +13134,7 @@
 	<AwayLineupGoalkeeper>Yann Sommer</AwayLineupGoalkeeper>
 	<AwayLineupDefense>Jannik Vestergaard; Oscar Wendt; Nico Elvedi; Andreas Christensen;</AwayLineupDefense>
 	<AwayLineupMidfield>Lars Stindl; Jonas Hofmann; Tobias Strobl; Mahmoud Dahoud; Ibrahima Traore;</AwayLineupMidfield>
-	<AwayLineupForward>Andre Hahn;</AwayLineupForward>
+	<AwayLineupForward>André Hahn;</AwayLineupForward>
 	<AwayLineupSubstitutes>Timothée Kolodziejczak; Josip Drmic; Julian Korb; Patrick Herrmann; Nico Schulz; Tobias Sippel; László Bénes;</AwayLineupSubstitutes>
 	<AwayLineupCoach>Dieter Hecking;</AwayLineupCoach>
 	<AwayYellowCards>4</AwayYellowCards>
@@ -13730,7 +13730,7 @@
 	<HomeLineupGoalkeeper>Yann Sommer</HomeLineupGoalkeeper>
 	<HomeLineupDefense>Nico Elvedi; Andreas Christensen; Jannik Vestergaard; Oscar Wendt;</HomeLineupDefense>
 	<HomeLineupMidfield>Ibrahima Traore; Tobias Strobl; Mahmoud Dahoud; Jonas Hofmann;</HomeLineupMidfield>
-	<HomeLineupForward>Lars Stindl; Andre Hahn;</HomeLineupForward>
+	<HomeLineupForward>Lars Stindl; André Hahn;</HomeLineupForward>
 	<HomeLineupSubstitutes>Patrick Herrmann; Nico Schulz; Tobias Sippel; László Bénes; Timothée Kolodziejczak; Josip Drmic; Julian Korb;</HomeLineupSubstitutes>
 	<HomeLineupCoach>Dieter Hecking;</HomeLineupCoach>
 	<HomeYellowCards>2</HomeYellowCards>
@@ -14111,7 +14111,7 @@
 	<AwayLineupGoalkeeper>Yann Sommer</AwayLineupGoalkeeper>
 	<AwayLineupDefense>Nico Schulz; Nico Elvedi; Andreas Christensen; Jannik Vestergaard;</AwayLineupDefense>
 	<AwayLineupMidfield>Patrick Herrmann; Mahmoud Dahoud; László Bénes; Jonas Hofmann;</AwayLineupMidfield>
-	<AwayLineupForward>Andre Hahn; Lars Stindl;</AwayLineupForward>
+	<AwayLineupForward>André Hahn; Lars Stindl;</AwayLineupForward>
 	<AwayLineupSubstitutes>Tobias Strobl; Tobias Sippel; Djibril Sow; Timothée Kolodziejczak; Mike Feigenspan; Julian Korb; Ibrahima Traore;</AwayLineupSubstitutes>
 	<AwayLineupCoach>Dieter Hecking;</AwayLineupCoach>
 	<AwayYellowCards>1</AwayYellowCards>
@@ -14550,11 +14550,11 @@
 	<HomeShots>18</HomeShots>
 	<HomeShotsOnTarget>5</HomeShotsOnTarget>
 	<HomeFouls>8</HomeFouls>
-	<HomeGoalDetails>90': Andre Hahn;</HomeGoalDetails>
+	<HomeGoalDetails>90': André Hahn;</HomeGoalDetails>
 	<HomeLineupGoalkeeper>Yann Sommer</HomeLineupGoalkeeper>
 	<HomeLineupDefense>Nico Elvedi; Andreas Christensen; Jannik Vestergaard; Nico Schulz;</HomeLineupDefense>
 	<HomeLineupMidfield>László Bénes; Patrick Herrmann; Jonas Hofmann; Mahmoud Dahoud;</HomeLineupMidfield>
-	<HomeLineupForward>Lars Stindl; Andre Hahn;</HomeLineupForward>
+	<HomeLineupForward>Lars Stindl; André Hahn;</HomeLineupForward>
 	<HomeLineupSubstitutes>Tobias Strobl; Tobias Sippel; Christoph Kramer; Timothée Kolodziejczak; Djibril Sow; Julian Korb; Ibrahima Traore;</HomeLineupSubstitutes>
 	<HomeLineupCoach>Dieter Hecking;</HomeLineupCoach>
 	<HomeYellowCards>2</HomeYellowCards>
@@ -14580,7 +14580,7 @@
 	<AwayYellowCards>2</AwayYellowCards>
 	<AwayRedCards>0</AwayRedCards>
 	<AwayTeamFormation>4-2-3-1</AwayTeamFormation>
-	<HomeTeamYellowCardDetails>90': Andre Hahn;78': Lars Stindl;</HomeTeamYellowCardDetails>
+	<HomeTeamYellowCardDetails>90': André Hahn;78': Lars Stindl;</HomeTeamYellowCardDetails>
 	<AwayTeamYellowCardDetails>87': Dominik Kohr;23': Alfred Finnbogason;</AwayTeamYellowCardDetails>
 	<HomeTeamRedCardDetails/>
 	<AwayTeamRedCardDetails/>
@@ -15114,7 +15114,7 @@
 	<HomeShots>12</HomeShots>
 	<HomeShotsOnTarget>1</HomeShotsOnTarget>
 	<HomeFouls>14</HomeFouls>
-	<HomeGoalDetails>90': ;25': Guido Burgstaller;</HomeGoalDetails>
+	<HomeGoalDetails>25': Guido Burgstaller;</HomeGoalDetails>
 	<HomeLineupGoalkeeper>Ralf Faehrmann</HomeLineupGoalkeeper>
 	<HomeLineupDefense>Benedikt Höwedes; Matija Nastasic; Sead Kolasinac; Thilo Kehrer;</HomeLineupDefense>
 	<HomeLineupMidfield>Leon Goretzka; Nabil Bentaleb; Daniel Caligiuri; Coke;</HomeLineupMidfield>
@@ -15240,7 +15240,7 @@
 	<AwayLineupGoalkeeper>Yann Sommer</AwayLineupGoalkeeper>
 	<AwayLineupDefense>Jannik Vestergaard; Nico Schulz; Nico Elvedi; Andreas Christensen;</AwayLineupDefense>
 	<AwayLineupMidfield>Ibrahima Traore; Jonas Hofmann; Mahmoud Dahoud; Christoph Kramer;</AwayLineupMidfield>
-	<AwayLineupForward>Andre Hahn; Lars Stindl;</AwayLineupForward>
+	<AwayLineupForward>André Hahn; Lars Stindl;</AwayLineupForward>
 	<AwayLineupSubstitutes>László Bénes; Timothée Kolodziejczak; Raffael; Fabian Johnson; Tobias Strobl; Patrick Herrmann; Tobias Sippel;</AwayLineupSubstitutes>
 	<AwayLineupCoach>Dieter Hecking;</AwayLineupCoach>
 	<AwayYellowCards>1</AwayYellowCards>
@@ -15374,11 +15374,11 @@
 	<HomeLineupDefense>Andreas Christensen; Jannik Vestergaard; Nico Schulz; Fabian Johnson;</HomeLineupDefense>
 	<HomeLineupMidfield>Mahmoud Dahoud; Thorgan Hazard; Jonas Hofmann; Christoph Kramer;</HomeLineupMidfield>
 	<HomeLineupForward>Raffael; Lars Stindl;</HomeLineupForward>
-	<HomeLineupSubstitutes>Tobias Sippel; László Bénes; Timothée Kolodziejczak; Andre Hahn; Julian Korb; Tobias Strobl; Patrick Herrmann;</HomeLineupSubstitutes>
+	<HomeLineupSubstitutes>Tobias Sippel; László Bénes; Timothée Kolodziejczak; André Hahn; Julian Korb; Tobias Strobl; Patrick Herrmann;</HomeLineupSubstitutes>
 	<HomeLineupCoach>Dieter Hecking;</HomeLineupCoach>
 	<HomeYellowCards>1</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
-	<HomeSubDetails>80': in Andre Hahn;80': out Thorgan Hazard;74': out Mahmoud Dahoud;74': in László Bénes;74': in Julian Korb;74': out Fabian Johnson;</HomeSubDetails>
+	<HomeSubDetails>80': in André Hahn;80': out Thorgan Hazard;74': out Mahmoud Dahoud;74': in László Bénes;74': in Julian Korb;74': out Fabian Johnson;</HomeSubDetails>
 	<AwaySubDetails>88': in Silas Zehnder;88': out Jérôme Gondorf;80': in Denys Oliynyk;80': out Antonio Colak;58': in Sven Schipplock;58': out Jan Rosenthal;</AwaySubDetails>
 	<HomeTeamFormation>4-4-2</HomeTeamFormation>
 	<AwayTeam>Darmstadt</AwayTeam>

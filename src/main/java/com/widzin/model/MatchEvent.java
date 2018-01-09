@@ -3,10 +3,10 @@ package com.widzin.model;
 public class MatchEvent {
 
     private Integer minute;
-    private String player;
+    private PlayerSeason player;
     private String additionalInformation;
 
-    public MatchEvent(Integer minute, String player, String additionalInformation) {
+    public MatchEvent(Integer minute, PlayerSeason player, String additionalInformation) {
         this.minute = minute;
         this.player = player;
         this.additionalInformation = additionalInformation;
@@ -20,11 +20,11 @@ public class MatchEvent {
         this.minute = minute;
     }
 
-    public String getPlayer() {
+    public PlayerSeason getPlayer() {
         return player;
     }
 
-    public void setPlayer(String player) {
+    public void setPlayer(PlayerSeason player) {
         this.player = player;
     }
 

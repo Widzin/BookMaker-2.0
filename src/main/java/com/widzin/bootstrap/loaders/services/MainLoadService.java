@@ -69,7 +69,7 @@ public class MainLoadService {
         return new ArrayList<>();
     }
 
-    public List<PlayerSeason> getPlayerByNameFromPlayers(List<PlayerSeason> searchedPlayers, String name) {
+    public List<PlayerSeason> getPlayersFromPlayersByName(List<PlayerSeason> searchedPlayers, String name) {
         List<PlayerSeason> playerSeasons = new ArrayList<>();
 
         for (PlayerSeason pls: searchedPlayers) {

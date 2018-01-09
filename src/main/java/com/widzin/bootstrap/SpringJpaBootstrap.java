@@ -142,6 +142,11 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
                 clubSeasonService.saveClubSeason(clubSeason);
                 log.info("Saved again clubSeason id: " + clubSeason.getId());
             }
+            for (Match match: season.getMatches()) {
+                //zapisać matchEvent
+                //zapisać teamMatchDetails
+                //zapisać mecz
+            }
         }
     }
 

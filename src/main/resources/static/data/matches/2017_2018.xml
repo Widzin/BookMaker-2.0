@@ -68,7 +68,7 @@
 	<HomeGoalDetails>8': Nicolai Mueller;</HomeGoalDetails>
 	<HomeLineupGoalkeeper>Christian Mathenia</HomeLineupGoalkeeper>
 	<HomeLineupDefense>Gideon Jung; Rick van Drongelen; Dennis Diekmeier; Kyriakos Papadopoulos;</HomeLineupDefense>
-	<HomeLineupMidfield>Andre Hahn; Filip Kostic; Albin Ekdal; Walace; Nicolai Mueller;</HomeLineupMidfield>
+	<HomeLineupMidfield>André Hahn; Filip Kostic; Albin Ekdal; Walace; Nicolai Mueller;</HomeLineupMidfield>
 	<HomeLineupForward>Bobby Shou Wood;</HomeLineupForward>
 	<HomeLineupSubstitutes>Gotoku Sakai; Sven Schipplock; Lewis Holtby; Aaron Hunt; Vasilije Janjicic; Julian Pollersbeck; Gian-Luca Waldschmidt;</HomeLineupSubstitutes>
 	<HomeLineupCoach>Markus Gisdol;</HomeLineupCoach>
@@ -501,10 +501,10 @@
 	<AwayShots>12</AwayShots>
 	<AwayShotsOnTarget>4</AwayShotsOnTarget>
 	<AwayFouls>9</AwayFouls>
-	<AwayGoalDetails>90': Lewis Holtby;34': Bobby Shou Wood;28': Andre Hahn;</AwayGoalDetails>
+	<AwayGoalDetails>90': Lewis Holtby;34': Bobby Shou Wood;28': André Hahn;</AwayGoalDetails>
 	<AwayLineupGoalkeeper>Christian Mathenia</AwayLineupGoalkeeper>
 	<AwayLineupDefense>Mergim Mavraj; Rick van Drongelen; Dennis Diekmeier; Kyriakos Papadopoulos;</AwayLineupDefense>
-	<AwayLineupMidfield>Aaron Hunt; Albin Ekdal; Filip Kostic; Andre Hahn; Walace;</AwayLineupMidfield>
+	<AwayLineupMidfield>Aaron Hunt; Albin Ekdal; Filip Kostic; André Hahn; Walace;</AwayLineupMidfield>
 	<AwayLineupForward>Bobby Shou Wood;</AwayLineupForward>
 	<AwayLineupSubstitutes>Gotoku Sakai; Sven Schipplock; Gideon Jung; Lewis Holtby; Bakery Jatta; Julian Pollersbeck; Gian-Luca Waldschmidt;</AwayLineupSubstitutes>
 	<AwayLineupCoach>Markus Gisdol;</AwayLineupCoach>
@@ -947,7 +947,7 @@
 	<HomeGoalDetails/>
 	<HomeLineupGoalkeeper>Christian Mathenia</HomeLineupGoalkeeper>
 	<HomeLineupDefense>Dennis Diekmeier; Kyriakos Papadopoulos; Gideon Jung; Rick van Drongelen;</HomeLineupDefense>
-	<HomeLineupMidfield>Albin Ekdal; Walace; Andre Hahn; Lewis Holtby; Filip Kostic;</HomeLineupMidfield>
+	<HomeLineupMidfield>Albin Ekdal; Walace; André Hahn; Lewis Holtby; Filip Kostic;</HomeLineupMidfield>
 	<HomeLineupForward>Bobby Shou Wood;</HomeLineupForward>
 	<HomeLineupSubstitutes>Bakery Jatta; Julian Pollersbeck; Gian-Luca Waldschmidt; Douglas Santos; Sven Schipplock; Gotoku Sakai; Vasilije Janjicic;</HomeLineupSubstitutes>
 	<HomeLineupCoach>Markus Gisdol;</HomeLineupCoach>
@@ -1430,7 +1430,7 @@
 	<AwayGoalDetails/>
 	<AwayLineupGoalkeeper>Christian Mathenia</AwayLineupGoalkeeper>
 	<AwayLineupDefense>Kyriakos Papadopoulos; Gideon Jung; Douglas Santos; Dennis Diekmeier;</AwayLineupDefense>
-	<AwayLineupMidfield>Walace; Bakery Jatta; Lewis Holtby; Andre Hahn; Albin Ekdal;</AwayLineupMidfield>
+	<AwayLineupMidfield>Walace; Bakery Jatta; Lewis Holtby; André Hahn; Albin Ekdal;</AwayLineupMidfield>
 	<AwayLineupForward>Sven Schipplock;</AwayLineupForward>
 	<AwayLineupSubstitutes>Julian Pollersbeck; Gian-Luca Waldschmidt; Mergim Mavraj; Törles Knöll; Vasilije Janjicic; Sejad Salihovic; Gotoku Sakai;</AwayLineupSubstitutes>
 	<AwayLineupCoach>Markus Gisdol;</AwayLineupCoach>
@@ -2134,7 +2134,7 @@
 	<HomeGoalDetails/>
 	<HomeLineupGoalkeeper>Christian Mathenia</HomeLineupGoalkeeper>
 	<HomeLineupDefense>Kyriakos Papadopoulos; Mergim Mavraj; Gotoku Sakai; Dennis Diekmeier;</HomeLineupDefense>
-	<HomeLineupMidfield>Sejad Salihovic; Andre Hahn; Lewis Holtby; Gideon Jung; Walace;</HomeLineupMidfield>
+	<HomeLineupMidfield>Sejad Salihovic; André Hahn; Lewis Holtby; Gideon Jung; Walace;</HomeLineupMidfield>
 	<HomeLineupForward>Bobby Shou Wood;</HomeLineupForward>
 	<HomeLineupSubstitutes>Sven Schipplock; Douglas Santos; Tatsuya Ito; Gian-Luca Waldschmidt; Vasilije Janjicic; Bakery Jatta; Julian Pollersbeck;</HomeLineupSubstitutes>
 	<HomeLineupCoach>Markus Gisdol;</HomeLineupCoach>
@@ -2760,7 +2760,7 @@
 	<HomeYellowCards>2</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
 	<HomeSubDetails>86': in Joel Pohjanpalo;86': out Lucas Alario;84': in Dominik Kohr;84': out Charles Aranguiz;68': in Julian Brandt;68': out Admir Mehmedi;</HomeSubDetails>
-	<AwaySubDetails>82': out Andre Hahn;82': in Tatsuya Ito;46': in Gian-Luca Waldschmidt;46': out Walace;46': in Bakery Jatta;46': out Sejad Salihovic;</AwaySubDetails>
+	<AwaySubDetails>82': out André Hahn;82': in Tatsuya Ito;46': in Gian-Luca Waldschmidt;46': out Walace;46': in Bakery Jatta;46': out Sejad Salihovic;</AwaySubDetails>
 	<HomeTeamFormation>4-4-2</HomeTeamFormation>
 	<AwayTeam>Hamburger</AwayTeam>
 	<AwayTeam_Id>58</AwayTeam_Id>
@@ -2774,7 +2774,7 @@
 	<AwayLineupGoalkeeper>Christian Mathenia</AwayLineupGoalkeeper>
 	<AwayLineupDefense>Dennis Diekmeier; Kyriakos Papadopoulos; Mergim Mavraj; Gotoku Sakai;</AwayLineupDefense>
 	<AwayLineupMidfield>Walace; Gideon Jung; Sejad Salihovic;</AwayLineupMidfield>
-	<AwayLineupForward>Lewis Holtby; Andre Hahn; Bobby Shou Wood;</AwayLineupForward>
+	<AwayLineupForward>Lewis Holtby; André Hahn; Bobby Shou Wood;</AwayLineupForward>
 	<AwayLineupSubstitutes>Gian-Luca Waldschmidt; Julian Pollersbeck; Sven Schipplock; Douglas Santos; Tatsuya Ito; Vasilije Janjicic; Bakery Jatta;</AwayLineupSubstitutes>
 	<AwayLineupCoach>Markus Gisdol;</AwayLineupCoach>
 	<AwayYellowCards>2</AwayYellowCards>
@@ -3062,7 +3062,7 @@
 	<HomeLineupGoalkeeper>Christian Mathenia</HomeLineupGoalkeeper>
 	<HomeLineupDefense>Kyriakos Papadopoulos; Gideon Jung; Gotoku Sakai; Dennis Diekmeier;</HomeLineupDefense>
 	<HomeLineupMidfield>Vasilije Janjicic; Aaron Hunt; Albin Ekdal;</HomeLineupMidfield>
-	<HomeLineupForward>Andre Hahn; Bobby Shou Wood; Tatsuya Ito;</HomeLineupForward>
+	<HomeLineupForward>André Hahn; Bobby Shou Wood; Tatsuya Ito;</HomeLineupForward>
 	<HomeLineupSubstitutes>Sejad Salihovic; Julian Pollersbeck; Douglas Santos; Lewis Holtby; Fiete Arp; Mergim Mavraj; Walace;</HomeLineupSubstitutes>
 	<HomeLineupCoach>Markus Gisdol;</HomeLineupCoach>
 	<HomeYellowCards>1</HomeYellowCards>
@@ -3392,7 +3392,7 @@
 	<AwayGoalDetails>90': penalty Sejad Salihovic;9': Walace;</AwayGoalDetails>
 	<AwayLineupGoalkeeper>Christian Mathenia</AwayLineupGoalkeeper>
 	<AwayLineupDefense>Dennis Diekmeier; Gideon Jung; Mergim Mavraj; Gotoku Sakai;</AwayLineupDefense>
-	<AwayLineupMidfield>Albin Ekdal; Tatsuya Ito; Walace; Andre Hahn; Aaron Hunt;</AwayLineupMidfield>
+	<AwayLineupMidfield>Albin Ekdal; Tatsuya Ito; Walace; André Hahn; Aaron Hunt;</AwayLineupMidfield>
 	<AwayLineupForward>Bobby Shou Wood;</AwayLineupForward>
 	<AwayLineupSubstitutes>Filip Kostic; Julian Pollersbeck; Sven Schipplock; Rick van Drongelen; Sejad Salihovic; Lewis Holtby; Vasilije Janjicic;</AwayLineupSubstitutes>
 	<AwayLineupCoach>Markus Gisdol;</AwayLineupCoach>
@@ -3989,12 +3989,12 @@
 	<HomeLineupGoalkeeper>Christian Mathenia</HomeLineupGoalkeeper>
 	<HomeLineupDefense>Kyriakos Papadopoulos; Mergim Mavraj; Rick van Drongelen; Dennis Diekmeier;</HomeLineupDefense>
 	<HomeLineupMidfield>Gotoku Sakai; Douglas Santos; Gideon Jung;</HomeLineupMidfield>
-	<HomeLineupForward>Andre Hahn; Aaron Hunt; Bobby Shou Wood;</HomeLineupForward>
+	<HomeLineupForward>André Hahn; Aaron Hunt; Bobby Shou Wood;</HomeLineupForward>
 	<HomeLineupSubstitutes>Gian-Luca Waldschmidt; Julian Pollersbeck; Sven Schipplock; Walace; Tatsuya Ito; Lewis Holtby; Filip Kostic;</HomeLineupSubstitutes>
 	<HomeLineupCoach>Markus Gisdol;</HomeLineupCoach>
 	<HomeYellowCards>1</HomeYellowCards>
 	<HomeRedCards>1</HomeRedCards>
-	<HomeSubDetails>76': in Filip Kostic;76': out Andre Hahn;76': in Tatsuya Ito;76': out Rick van Drongelen;62': in Lewis Holtby;62': out Aaron Hunt;</HomeSubDetails>
+	<HomeSubDetails>76': in Filip Kostic;76': out André Hahn;76': in Tatsuya Ito;76': out Rick van Drongelen;62': in Lewis Holtby;62': out Aaron Hunt;</HomeSubDetails>
 	<AwaySubDetails>90': in Joshua Kimmich;90': out Kingsley Coman;55': in Thiago Alcantara;55': out Thomas Mueller;46': in Thomas Mueller;46': out James Rodriguez;</AwaySubDetails>
 	<HomeTeamFormation>4-3-3</HomeTeamFormation>
 	<AwayTeam>Bayern Monachium</AwayTeam>
@@ -4254,7 +4254,7 @@
 	<HomeYellowCards>0</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
 	<HomeSubDetails>90': out Salomon Kalou;90': in Jordan Torunarigha;87': in Arne Maier;87': out Valentino Lazaro;73': in Davie Selke;73': out Vedad Ibisevic;</HomeSubDetails>
-	<AwaySubDetails>67': in Aaron Hunt;67': out Andre Hahn;56': in Tatsuya Ito;56': out Bobby Shou Wood;56': in Fiete Arp;56': out Albin Ekdal;</AwaySubDetails>
+	<AwaySubDetails>67': in Aaron Hunt;67': out André Hahn;56': in Tatsuya Ito;56': out Bobby Shou Wood;56': in Fiete Arp;56': out Albin Ekdal;</AwaySubDetails>
 	<HomeTeamFormation>4-2-3-1</HomeTeamFormation>
 	<AwayTeam>Hamburger</AwayTeam>
 	<AwayTeam_Id>58</AwayTeam_Id>
@@ -4268,7 +4268,7 @@
 	<AwayLineupGoalkeeper>Christian Mathenia</AwayLineupGoalkeeper>
 	<AwayLineupDefense>Mergim Mavraj; Kyriakos Papadopoulos; Rick van Drongelen;</AwayLineupDefense>
 	<AwayLineupMidfield>Dennis Diekmeier; Albin Ekdal; Gotoku Sakai; Douglas Santos;</AwayLineupMidfield>
-	<AwayLineupForward>Bobby Shou Wood; Filip Kostic; Andre Hahn;</AwayLineupForward>
+	<AwayLineupForward>Bobby Shou Wood; Filip Kostic; André Hahn;</AwayLineupForward>
 	<AwayLineupSubstitutes>Sejad Salihovic; Aaron Hunt; Walace; Julian Pollersbeck; Tatsuya Ito; Lewis Holtby; Fiete Arp;</AwayLineupSubstitutes>
 	<AwayLineupCoach>Markus Gisdol;</AwayLineupCoach>
 	<AwayYellowCards>0</AwayYellowCards>
@@ -4814,11 +4814,11 @@
 	<HomeLineupDefense>Kyriakos Papadopoulos; Mergim Mavraj; Douglas Santos; Dennis Diekmeier;</HomeLineupDefense>
 	<HomeLineupMidfield>Tatsuya Ito; Aaron Hunt; Filip Kostic; Albin Ekdal; Gotoku Sakai;</HomeLineupMidfield>
 	<HomeLineupForward>Fiete Arp;</HomeLineupForward>
-	<HomeLineupSubstitutes>Tom Mickel; Andre Hahn; Rick van Drongelen; Gian-Luca Waldschmidt; Walace; Vasilije Janjicic; Bobby Shou Wood;</HomeLineupSubstitutes>
+	<HomeLineupSubstitutes>Tom Mickel; André Hahn; Rick van Drongelen; Gian-Luca Waldschmidt; Walace; Vasilije Janjicic; Bobby Shou Wood;</HomeLineupSubstitutes>
 	<HomeLineupCoach>Markus Gisdol;</HomeLineupCoach>
 	<HomeYellowCards>2</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
-	<HomeSubDetails>90': out Albin Ekdal;90': in Vasilije Janjicic;82': in Andre Hahn;82': out Aaron Hunt;68': out Tatsuya Ito;68': in Gian-Luca Waldschmidt;</HomeSubDetails>
+	<HomeSubDetails>90': out Albin Ekdal;90': in Vasilije Janjicic;82': in André Hahn;82': out Aaron Hunt;68': out Tatsuya Ito;68': in Gian-Luca Waldschmidt;</HomeSubDetails>
 	<AwaySubDetails>82': out Chadrac Akolo;82': in Ailton;75': out Daniel Ginczek;75': in Simon Terodde;66': out Berkay Ozcan;66': in Orel Mangala;</AwaySubDetails>
 	<HomeTeamFormation>4-2-3-1</HomeTeamFormation>
 	<AwayTeam>Stuttgart</AwayTeam>
@@ -5487,7 +5487,7 @@
 	<HomeYellowCards>3</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
 	<HomeSubDetails>90': out Max Meyer;90': in Matija Nastasic;87': in Alessandro Schoepf;87': out Yevhen Konoplyanka;46': out Franco Di Santo;46': in Breel Embolo;</HomeSubDetails>
-	<AwaySubDetails>83': out Filip Kostic;83': in Andre Hahn;69': out Gotoku Sakai;69': in Bobby Shou Wood;35': in Gian-Luca Waldschmidt;35': out Tatsuya Ito;</AwaySubDetails>
+	<AwaySubDetails>83': out Filip Kostic;83': in André Hahn;69': out Gotoku Sakai;69': in Bobby Shou Wood;35': in Gian-Luca Waldschmidt;35': out Tatsuya Ito;</AwaySubDetails>
 	<HomeTeamFormation>3-5-2</HomeTeamFormation>
 	<AwayTeam>Hamburger</AwayTeam>
 	<AwayTeam_Id>58</AwayTeam_Id>
@@ -5502,7 +5502,7 @@
 	<AwayLineupDefense>Mergim Mavraj; Douglas Santos; Dennis Diekmeier; Kyriakos Papadopoulos;</AwayLineupDefense>
 	<AwayLineupMidfield>Aaron Hunt; Filip Kostic; Gideon Jung; Gotoku Sakai; Tatsuya Ito;</AwayLineupMidfield>
 	<AwayLineupForward>Fiete Arp;</AwayLineupForward>
-	<AwayLineupSubstitutes>Rick van Drongelen; Gian-Luca Waldschmidt; Vasilije Janjicic; Sejad Salihovic; Bobby Shou Wood; Tom Mickel; Andre Hahn;</AwayLineupSubstitutes>
+	<AwayLineupSubstitutes>Rick van Drongelen; Gian-Luca Waldschmidt; Vasilije Janjicic; Sejad Salihovic; Bobby Shou Wood; Tom Mickel; André Hahn;</AwayLineupSubstitutes>
 	<AwayLineupCoach>Markus Gisdol;</AwayLineupCoach>
 	<AwayYellowCards>3</AwayYellowCards>
 	<AwayRedCards>0</AwayRedCards>
@@ -5857,7 +5857,7 @@
 	<AwayShots>12</AwayShots>
 	<AwayShotsOnTarget>7</AwayShotsOnTarget>
 	<AwayFouls>19</AwayFouls>
-	<AwayGoalDetails>90': Naldo;86': Daniel Caligiuri;65': Amine Harit;61': Guido Burgstaller;53': ;</AwayGoalDetails>
+	<AwayGoalDetails>90': Naldo;86': Daniel Caligiuri;65': Amine Harit;61': Guido Burgstaller;</AwayGoalDetails>
 	<AwayLineupGoalkeeper>Ralf Faehrmann</AwayLineupGoalkeeper>
 	<AwayLineupDefense>Naldo; Thilo Kehrer; Benjamin Stambouli;</AwayLineupDefense>
 	<AwayLineupMidfield>Max Meyer; Bastian Oczipka; Daniel Caligiuri; Weston McKennie;</AwayLineupMidfield>
@@ -6054,7 +6054,7 @@
 	<HomeYellowCards>2</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
 	<HomeSubDetails>79': out Yoric Ravet;79': in Tim Kleindienst;70': out Marco Terrazzino;70': in Florian Kath;</HomeSubDetails>
-	<AwaySubDetails>90': in Sven Schipplock;90': out Fiete Arp;87': out Bobby Shou Wood;87': in Andre Hahn;70': out Aaron Hunt;70': in Walace;</AwaySubDetails>
+	<AwaySubDetails>90': in Sven Schipplock;90': out Fiete Arp;87': out Bobby Shou Wood;87': in André Hahn;70': out Aaron Hunt;70': in Walace;</AwaySubDetails>
 	<HomeTeamFormation>3-4-3</HomeTeamFormation>
 	<AwayTeam>Hamburger</AwayTeam>
 	<AwayTeam_Id>58</AwayTeam_Id>
@@ -6069,7 +6069,7 @@
 	<AwayLineupDefense>Dennis Diekmeier; Kyriakos Papadopoulos; Mergim Mavraj; Douglas Santos;</AwayLineupDefense>
 	<AwayLineupMidfield>Gideon Jung; Gotoku Sakai; Aaron Hunt; Bobby Shou Wood; Filip Kostic;</AwayLineupMidfield>
 	<AwayLineupForward>Fiete Arp;</AwayLineupForward>
-	<AwayLineupSubstitutes>Tatsuya Ito; Julian Pollersbeck; Andre Hahn; Rick van Drongelen; Sven Schipplock; Vasilije Janjicic; Walace;</AwayLineupSubstitutes>
+	<AwayLineupSubstitutes>Tatsuya Ito; Julian Pollersbeck; André Hahn; Rick van Drongelen; Sven Schipplock; Vasilije Janjicic; Walace;</AwayLineupSubstitutes>
 	<AwayLineupCoach>Markus Gisdol;</AwayLineupCoach>
 	<AwayYellowCards>3</AwayYellowCards>
 	<AwayRedCards>0</AwayRedCards>
@@ -6564,11 +6564,11 @@
 	<HomeLineupDefense>Kyriakos Papadopoulos; Mergim Mavraj; Douglas Santos; Dennis Diekmeier;</HomeLineupDefense>
 	<HomeLineupMidfield>Tatsuya Ito; Aaron Hunt; Filip Kostic; Gideon Jung; Walace;</HomeLineupMidfield>
 	<HomeLineupForward>Fiete Arp;</HomeLineupForward>
-	<HomeLineupSubstitutes>Julian Pollersbeck; Gian-Luca Waldschmidt; Rick van Drongelen; Sven Schipplock; Gotoku Sakai; Albin Ekdal; Andre Hahn;</HomeLineupSubstitutes>
+	<HomeLineupSubstitutes>Julian Pollersbeck; Gian-Luca Waldschmidt; Rick van Drongelen; Sven Schipplock; Gotoku Sakai; Albin Ekdal; André Hahn;</HomeLineupSubstitutes>
 	<HomeLineupCoach>Markus Gisdol;</HomeLineupCoach>
 	<HomeYellowCards>2</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
-	<HomeSubDetails>83': in Andre Hahn;83': out Fiete Arp;78': in Albin Ekdal;78': out Walace;60': out Tatsuya Ito;60': in Gian-Luca Waldschmidt;</HomeSubDetails>
+	<HomeSubDetails>83': in André Hahn;83': out Fiete Arp;78': in Albin Ekdal;78': out Walace;60': out Tatsuya Ito;60': in Gian-Luca Waldschmidt;</HomeSubDetails>
 	<AwaySubDetails>90': in Victor Osimhen;90': out Daniel Didavi;78': out Yunus Malli;78': in Yannick Gerhardt;56': in Paul-Georges Ntep;56': out Divock Origi;</AwaySubDetails>
 	<HomeTeamFormation>4-2-3-1</HomeTeamFormation>
 	<AwayTeam>Wolfsburg</AwayTeam>
@@ -7080,7 +7080,7 @@
 	<HomeLineupDefense>Dennis Diekmeier; Kyriakos Papadopoulos; Mergim Mavraj; Douglas Santos;</HomeLineupDefense>
 	<HomeLineupMidfield>Gideon Jung; Walace; Gian-Luca Waldschmidt; Aaron Hunt; Filip Kostic;</HomeLineupMidfield>
 	<HomeLineupForward>Fiete Arp;</HomeLineupForward>
-	<HomeLineupSubstitutes>Tatsuya Ito; Julian Pollersbeck; Andre Hahn; Rick van Drongelen; Sven Schipplock; Gotoku Sakai; Albin Ekdal;</HomeLineupSubstitutes>
+	<HomeLineupSubstitutes>Tatsuya Ito; Julian Pollersbeck; André Hahn; Rick van Drongelen; Sven Schipplock; Gotoku Sakai; Albin Ekdal;</HomeLineupSubstitutes>
 	<HomeLineupCoach>Markus Gisdol;</HomeLineupCoach>
 	<HomeYellowCards>0</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
@@ -7241,7 +7241,7 @@
 	<HomeYellowCards>0</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
 	<HomeSubDetails>76': in Joshua Kimmich;76': out Franck Ribery;46': in James Rodriguez;46': out Corentin Tolisso;46': in Kingsley Coman;46': out Arturo Vidal;</HomeSubDetails>
-	<AwaySubDetails>84': in Christian Clemens;84': out Matthias Lehmann;76': in Filip Kusic;76': out Jannes Horn;66': out Tim Handwerker;66': in Chris Fuehrich;</AwaySubDetails>
+	<AwaySubDetails>84': in Christian Clemens;84': out Matthias Lehmann;76': in Filip Kusic;76': out Jannes Horn;66': out Tim Handwerker;66': in Chris Führich;</AwaySubDetails>
 	<HomeTeamFormation>4-3-3</HomeTeamFormation>
 	<AwayTeam>FC Koeln</AwayTeam>
 	<AwayTeam_Id>61</AwayTeam_Id>
@@ -7256,7 +7256,7 @@
 	<AwayLineupDefense>Jannes Horn; Pawel Olkowski; Frederik Soerensen; Jorge Mere; Dominique Heintz;</AwayLineupDefense>
 	<AwayLineupMidfield>Tim Handwerker; Milos Jojic; Salih Oezcan; Matthias Lehmann;</AwayLineupMidfield>
 	<AwayLineupForward>Lukas Kluenter;</AwayLineupForward>
-	<AwayLineupSubstitutes>Birk Risa; Filip Kusic; Sven Müller; Anas Ouahim; Yann Bisseck; Chris Fuehrich; Christian Clemens;</AwayLineupSubstitutes>
+	<AwayLineupSubstitutes>Birk Risa; Filip Kusic; Sven Müller; Anas Ouahim; Yann Bisseck; Chris Führich; Christian Clemens;</AwayLineupSubstitutes>
 	<AwayLineupCoach>Stefan Ruthenbeck;</AwayLineupCoach>
 	<AwayYellowCards>0</AwayYellowCards>
 	<AwayRedCards>0</AwayRedCards>
@@ -7459,11 +7459,11 @@
 	<AwayShots>8</AwayShots>
 	<AwayShotsOnTarget>3</AwayShotsOnTarget>
 	<AwayFouls>16</AwayFouls>
-	<AwayGoalDetails>53': Andre Hahn;</AwayGoalDetails>
+	<AwayGoalDetails>53': André Hahn;</AwayGoalDetails>
 	<AwayLineupGoalkeeper>Christian Mathenia</AwayLineupGoalkeeper>
 	<AwayLineupDefense>Mergim Mavraj; Kyriakos Papadopoulos; Rick van Drongelen;</AwayLineupDefense>
 	<AwayLineupMidfield>Gideon Jung; Albin Ekdal; Douglas Santos; Aaron Hunt; Gotoku Sakai; Filip Kostic;</AwayLineupMidfield>
-	<AwayLineupForward>Andre Hahn;</AwayLineupForward>
+	<AwayLineupForward>André Hahn;</AwayLineupForward>
 	<AwayLineupSubstitutes>Fiete Arp; Tatsuya Ito; Vasilije Janjicic; Gian-Luca Waldschmidt; Julian Pollersbeck; Sven Schipplock; Lewis Holtby;</AwayLineupSubstitutes>
 	<AwayLineupCoach>Markus Gisdol;</AwayLineupCoach>
 	<AwayYellowCards>3</AwayYellowCards>
@@ -7596,13 +7596,13 @@
 	<HomeGoalDetails>67': Christian Clemens;</HomeGoalDetails>
 	<HomeLineupGoalkeeper>Timo Horn</HomeLineupGoalkeeper>
 	<HomeLineupDefense>Dominique Heintz; Jannes Horn; Frederik Soerensen; Jorge Mere;</HomeLineupDefense>
-	<HomeLineupMidfield>Milos Jojic; Chris Fuehrich; Matthias Lehmann; Salih Oezcan;</HomeLineupMidfield>
+	<HomeLineupMidfield>Milos Jojic; Chris Führich; Matthias Lehmann; Salih Oezcan;</HomeLineupMidfield>
 	<HomeLineupForward>Lukas Kluenter; Birk Risa;</HomeLineupForward>
 	<HomeLineupSubstitutes>Marco Hoeger; Yann Bisseck; Pawel Olkowski; Christian Clemens; Tim Handwerker; Sven Müller; Konstantin Rausch;</HomeLineupSubstitutes>
 	<HomeLineupCoach>Stefan Ruthenbeck;</HomeLineupCoach>
 	<HomeYellowCards>2</HomeYellowCards>
 	<HomeRedCards>0</HomeRedCards>
-	<HomeSubDetails>71': in Tim Handwerker;71': out Chris Fuehrich;63': in Christian Clemens;63': out Birk Risa;58': in Marco Hoeger;58': out Matthias Lehmann;</HomeSubDetails>
+	<HomeSubDetails>71': in Tim Handwerker;71': out Chris Führich;63': in Christian Clemens;63': out Birk Risa;58': in Marco Hoeger;58': out Matthias Lehmann;</HomeSubDetails>
 	<AwaySubDetails>85': in Nany Dimata;85': out Paul Verhaegh;81': in Victor Osimhen;81': out Yannick Gerhardt;61': in Marcel Tisserand;61': out William;</AwaySubDetails>
 	<HomeTeamFormation>4-2-2-2</HomeTeamFormation>
 	<AwayTeam>Wolfsburg</AwayTeam>

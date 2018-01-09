@@ -36,7 +36,6 @@ public class MatchesLoadService implements LoadService {
 
             for (XMLMatch xmlMatch: xmlMatchesInSeason.getMatches()) {
                 Match match = parseXmlToObject(xmlMatch, loadService);
-                //System.out.println(match.toString());
                 loadService.getSeasonByPeriod(period).addMatch(match);
             }
         } catch (JAXBException ex) {
@@ -59,6 +58,13 @@ public class MatchesLoadService implements LoadService {
         match.getHome().setShots(xmlMatch.getHomeShots());
         match.getHome().setShotsOnTarget(xmlMatch.getHomeShotsOnTarget());
 
+        //------------- Setting away team details ------------
+        match.getAway().setName(xmlMatch.getAwayTeam());
+        match.getAway().setGoals(xmlMatch.getAwayGoals());
+        match.getAway().setShots(xmlMatch.getAwayShots());
+        match.getAway().setShotsOnTarget(xmlMatch.getAwayShotsOnTarget());
+
+        //------------- Setting home squad -------------------
         match.getHome().setLineupGoalkeeper(getPlayersInArray(service, xmlMatch.getHomeLineupGoalkeeper(),
                 match.getHome().getName(), match.getPeriod()).get(0));
         match.getHome().setLineupDefense(getPlayersInArray(service, xmlMatch.getHomeLineupDefense(),
@@ -71,16 +77,7 @@ public class MatchesLoadService implements LoadService {
         match.getHome().setLineupSubstitutes(getPlayersInArray(service, xmlMatch.getHomeLineupSubstitutes(),
                 match.getHome().getName(), match.getPeriod()));
 
-        match.getHome().setGoalDetails(getEventsInArray(xmlMatch.getHomeGoalDetails(), Event.GOAL));
-        match.getHome().setSubDetails(getEventsInArray(xmlMatch.getHomeSubDetails(), Event.SUBSTITUTION));
-        match.getHome().setRedCardDetails(getEventsInArray(xmlMatch.getHomeTeamRedCardDetails(), Event.RED_CARD));
-
-        //------------- Setting away team details ------------
-        match.getAway().setName(xmlMatch.getAwayTeam());
-        match.getAway().setGoals(xmlMatch.getAwayGoals());
-        match.getAway().setShots(xmlMatch.getAwayShots());
-        match.getAway().setShotsOnTarget(xmlMatch.getAwayShotsOnTarget());
-
+        //------------- Setting away squad -------------------
         match.getAway().setLineupGoalkeeper(getPlayersInArray(service, xmlMatch.getAwayLineupGoalkeeper(),
                 match.getAway().getName(), match.getPeriod()).get(0));
         match.getAway().setLineupDefense(getPlayersInArray(service, xmlMatch.getAwayLineupDefense(),
@@ -93,9 +90,18 @@ public class MatchesLoadService implements LoadService {
         match.getAway().setLineupSubstitutes(getPlayersInArray(service, xmlMatch.getAwayLineupSubstitutes(),
                 match.getAway().getName(), match.getPeriod()));
 
-        match.getAway().setGoalDetails(getEventsInArray(xmlMatch.getAwayGoalDetails(), Event.GOAL));
-        match.getAway().setSubDetails(getEventsInArray(xmlMatch.getAwaySubDetails(), Event.SUBSTITUTION));
-        match.getAway().setRedCardDetails(getEventsInArray(xmlMatch.getAwayTeamRedCardDetails(), Event.RED_CARD));
+        //-------------- Setting match events ----------------
+
+        List<PlayerSeason> homePlayers = getPlayersFromOneTeam(match.getHome());
+        List<PlayerSeason> awayPlayers = getPlayersFromOneTeam(match.getAway());
+
+        match.getHome().setGoalDetails(getEventsInArray(xmlMatch.getHomeGoalDetails(), Event.GOAL, service, homePlayers, awayPlayers));
+        match.getHome().setSubDetails(getEventsInArray(xmlMatch.getHomeSubDetails(), Event.SUBSTITUTION, service, homePlayers, awayPlayers));
+        match.getHome().setRedCardDetails(getEventsInArray(xmlMatch.getHomeTeamRedCardDetails(), Event.RED_CARD, service, homePlayers, awayPlayers));
+
+        match.getAway().setGoalDetails(getEventsInArray(xmlMatch.getAwayGoalDetails(), Event.GOAL, service, awayPlayers, homePlayers));
+        match.getAway().setSubDetails(getEventsInArray(xmlMatch.getAwaySubDetails(), Event.SUBSTITUTION, service, awayPlayers, homePlayers));
+        match.getAway().setRedCardDetails(getEventsInArray(xmlMatch.getAwayTeamRedCardDetails(), Event.RED_CARD, service, awayPlayers, homePlayers));
 
         return match;
     }
@@ -105,21 +111,7 @@ public class MatchesLoadService implements LoadService {
         List<PlayerSeason> filteredPlayers = service.getPlayersFromClubAndSeason(clubName, period);
         List<PlayerSeason> players = new ArrayList<>();
         for (String s: stringPlayers) {
-            String beginningName = parser.getPartOfPlayerName(s);
-            List<PlayerSeason> playerSeasonList = service.getPlayerByNameFromPlayers(filteredPlayers, beginningName);
-            if (playerSeasonList.size() > 1) {
-                String lastPartOfName = parser.getRestOfPlayerName(s);
-                List<PlayerSeason> onePlayerInList = service.getPlayerByNameFromPlayers(playerSeasonList, lastPartOfName);
-                if (onePlayerInList.size() == 0) {
-                    System.out.println("");
-                }
-                players.add(onePlayerInList.get(0));
-            } else if (playerSeasonList.size() == 1) {
-                players.add(playerSeasonList.get(0));
-            }
-        }
-        if (players.size() == 0) {
-            System.out.println("Dupa");
+            players.add(getPlayerFromPlayersByName(s, service, filteredPlayers));
         }
         return players;
     }
@@ -131,7 +123,19 @@ public class MatchesLoadService implements LoadService {
             return Arrays.asList(array);
     }
 
-    public List<MatchEvent> getEventsInArray(String array, Event event) {
+    public List<PlayerSeason> getPlayersFromOneTeam(TeamMatchDetails team) {
+        List<PlayerSeason> players = new ArrayList<>();
+
+        players.add(team.getLineupGoalkeeper());
+        players.addAll(team.getLineupDefense());
+        players.addAll(team.getLineupMidfield());
+        players.addAll(team.getLineupForward());
+        players.addAll(team.getLineupSubstitutes());
+
+        return players;
+    }
+
+    public List<MatchEvent> getEventsInArray(String array, Event event, MainLoadService service, List<PlayerSeason> ourPlayers, List<PlayerSeason> theirPlayers) {
         if (array.contains(";")) {
             String[] eventsString = array.split(";");
 
@@ -143,23 +147,28 @@ public class MatchesLoadService implements LoadService {
                 switch (event) {
                     case GOAL:
                         if (parts[1].trim().startsWith(Event.OWN.getEvent()))
-                            me = fromStringToMatchEvent(parts[0], parts[1], Event.OWN.getEvent());
+                            me = fromStringToMatchEvent(parts[0], parts[1], Event.OWN.getEvent(), service, theirPlayers);
                         else if (parts[1].trim().startsWith(Event.PENALTY.getEvent()))
-                            me = fromStringToMatchEvent(parts[0], parts[1], Event.PENALTY.getEvent());
-                        else
-                            me = new MatchEvent(Integer.parseInt(parts[0].trim()),
-                                    parts[1].trim(), Event.GOAL.getEvent());
+                            me = fromStringToMatchEvent(parts[0], parts[1], Event.PENALTY.getEvent(), service, ourPlayers);
+                        else {
+                            PlayerSeason playerSeason = getPlayerFromPlayersByName(parts[1].trim(),
+                                    service, ourPlayers);
 
+                            me = new MatchEvent(Integer.parseInt(parts[0].trim()),
+                                    playerSeason, Event.GOAL.getEvent());
+                        }
                         break;
                     case SUBSTITUTION:
                         if (parts[1].trim().startsWith(Event.IN.getEvent()))
-                            me = fromStringToMatchEvent(parts[0], parts[1], Event.IN.getEvent());
+                            me = fromStringToMatchEvent(parts[0], parts[1], Event.IN.getEvent(), service, ourPlayers);
                         else
-                            me = fromStringToMatchEvent(parts[0], parts[1], Event.OUT.getEvent());
+                            me = fromStringToMatchEvent(parts[0], parts[1], Event.OUT.getEvent(), service, ourPlayers);
                         break;
                     case RED_CARD:
+                        PlayerSeason playerSeason = getPlayerFromPlayersByName(parts[1].trim(),
+                                service, ourPlayers);
                         me = new MatchEvent(Integer.parseInt(parts[0].trim()),
-                                parts[1].trim(), Event.RED_CARD.getEvent());
+                                playerSeason, Event.RED_CARD.getEvent());
                         break;
                 }
                 if (me != null)
@@ -170,10 +179,34 @@ public class MatchesLoadService implements LoadService {
             return new ArrayList<>();
     }
 
-    private MatchEvent fromStringToMatchEvent(String part_0, String part_1, String addInfo) {
+    private MatchEvent fromStringToMatchEvent(String part_0, String part_1, String addInfo, MainLoadService service, List<PlayerSeason> players) {
         String regex = "\\s*\\b" + addInfo + "\\b\\s*";
+
+        PlayerSeason playerSeason = getPlayerFromPlayersByName(part_1.replaceAll(regex, "").trim(),
+                service, players);
+
         return new MatchEvent(Integer.parseInt(part_0.trim()),
-                part_1.replaceAll(regex, "").trim(),
-                addInfo);
+                playerSeason, addInfo);
+    }
+
+    private PlayerSeason getPlayerFromPlayersByName(String name, MainLoadService service, List<PlayerSeason> filteredPlayers) {
+        List<PlayerSeason> players = new ArrayList<>();
+
+        String beginningName = parser.getPartOfPlayerName(name);
+        List<PlayerSeason> playerSeasonList = service.getPlayersFromPlayersByName(filteredPlayers, beginningName);
+        if (playerSeasonList.size() > 1) {
+            String lastPartOfName = parser.getRestOfPlayerName(name);
+            List<PlayerSeason> onePlayerInList = service.getPlayersFromPlayersByName(playerSeasonList, lastPartOfName);
+            if (onePlayerInList.size() == 0 || onePlayerInList.size() > 1) {
+                System.out.println("");
+            }
+            players.add(onePlayerInList.get(0));
+        } else if (playerSeasonList.size() == 1) {
+            players.add(playerSeasonList.get(0));
+        }
+        if (players.size() == 0 || players.size() > 1) {
+            System.out.println("DUPA");
+        }
+        return players.get(0);
     }
 }
