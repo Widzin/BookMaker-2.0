@@ -13,7 +13,6 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
-import java.nio.charset.MalformedInputException;
 import java.util.Date;
 
 public class PlayersAndClubLoadService implements LoadService{
@@ -41,7 +40,7 @@ public class PlayersAndClubLoadService implements LoadService{
 
         if (club2 == null) {
             club = new ClubSeason(clubParser.getClubName(file));
-            loadService.addClub(club.getClub());
+            loadService.addClub(club.getClub2());
         } else
             club = new ClubSeason(club2);
 

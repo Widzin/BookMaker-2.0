@@ -61,7 +61,7 @@ public class MainLoadService {
         for (Season season: seasons) {
             if (season.getPeriod().equalsIgnoreCase(period)) {
                 for (ClubSeason clubSeason: season.getClubs()) {
-                    if (clubSeason.getClub().getName().contains(clubName))
+                    if (clubSeason.getClub2().getName().contains(clubName))
                         return clubSeason.getPlayers();
                 }
             }

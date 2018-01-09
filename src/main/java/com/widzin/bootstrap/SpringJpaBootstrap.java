@@ -5,10 +5,7 @@ import com.widzin.bootstrap.loaders.services.MainLoadService;
 import com.widzin.bootstrap.loaders.services.MatchesLoadService;
 import com.widzin.bootstrap.loaders.services.PlayersAndClubLoadService;
 import com.widzin.model.*;
-import com.widzin.services.ClubService;
-import com.widzin.services.GameService;
-import com.widzin.services.RoleService;
-import com.widzin.services.UserService;
+import com.widzin.services.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -26,6 +23,7 @@ import java.util.List;
 public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
     private ClubService clubService;
+    private Club2Service club2Service;
     private UserService userService;
     private RoleService roleService;
     private GameService gameService;
@@ -42,11 +40,16 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 	//private final int MATCHES_IN_ONE_SEASON = 34;
 
     @Autowired
-	public void setClubRepository (ClubService clubService) {
+	public void setClubService (ClubService clubService) {
 		this.clubService = clubService;
 	}
 
 	@Autowired
+    public void setClub2Service(Club2Service club2Service) {
+        this.club2Service = club2Service;
+    }
+
+    @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
@@ -70,6 +73,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         loadPlayers();
         loadMatches();
         loadLogos();
+        saveToDatabase();
         //loadLogos();
     	/*loadClubs();
 		loadMatches(2015, 2016);
@@ -108,6 +112,12 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 
     private void loadLogos() {
         playersAndClubLoadService.addLogos(Links.LOGOS, loadService);
+    }
+
+    private void saveToDatabase() {
+        for (Club2 club2: loadService.getClubs()) {
+            club2Service.saveClub(club2);
+        }
     }
 
 	/*private void loadClub(String clubName, String logoUrl, int playersAmount,
