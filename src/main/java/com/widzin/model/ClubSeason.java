@@ -28,8 +28,10 @@ public class ClubSeason {
     private Integer bilans;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "club_season_id")
     private List<PlayerSeason> players;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Season season;
 
     public ClubSeason(String name) {
         club2 = new Club2(name);
@@ -151,6 +153,14 @@ public class ClubSeason {
 
     public void addPlayer(PlayerSeason player) {
         players.add(player);
+    }
+
+    public Season getSeason() {
+        return season;
+    }
+
+    public void setSeason(Season season) {
+        this.season = season;
     }
 
     @Override
