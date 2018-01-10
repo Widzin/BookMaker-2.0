@@ -1,9 +1,11 @@
 package com.widzin.bootstrap.loaders.services;
 
 import com.widzin.models.*;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+@Service
 public class MainLoadService {
 
     private List<Season> seasons;

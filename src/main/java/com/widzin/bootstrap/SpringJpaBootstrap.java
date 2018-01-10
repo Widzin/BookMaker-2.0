@@ -39,8 +39,6 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 
 	private Logger log = Logger.getLogger(SpringJpaBootstrap.class);
 
-	//private final int MATCHES_IN_ONE_SEASON = 34;
-
     @Autowired
 	public void setClubService (ClubService clubService) {
 		this.clubService = clubService;
@@ -101,11 +99,26 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         this.playerSeasonService = playerSeasonService;
     }
 
+    @Autowired
+    public void setLoadService(MainLoadService loadService) {
+        this.loadService = loadService;
+    }
+
+    @Autowired
+    public void setMatchesLoadService(MatchesLoadService matchesLoadService) {
+        this.matchesLoadService = matchesLoadService;
+    }
+
+    @Autowired
+    public void setPlayersAndClubLoadService(PlayersAndClubLoadService playersAndClubLoadService) {
+        this.playersAndClubLoadService = playersAndClubLoadService;
+    }
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        loadService = new MainLoadService();
-        matchesLoadService = new MatchesLoadService();
-        playersAndClubLoadService = new PlayersAndClubLoadService();
+//        loadService = new MainLoadService();
+//        matchesLoadService = new MatchesLoadService();
+//        playersAndClubLoadService = new PlayersAndClubLoadService();
 
         loadPlayers();
         loadMatches();

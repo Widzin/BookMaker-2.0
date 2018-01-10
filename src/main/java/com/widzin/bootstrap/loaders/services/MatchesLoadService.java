@@ -4,6 +4,7 @@ import com.widzin.bootstrap.loaders.parsers.MatchParser;
 import com.widzin.bootstrap.loaders.xmlModels.XMLMatch;
 import com.widzin.bootstrap.loaders.xmlModels.XMLMatchesInSeason;
 import com.widzin.models.*;
+import org.springframework.stereotype.Service;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Service
 public class MatchesLoadService implements LoadService {
 
     private final static Integer POINTS_FOR_WIN = 3;

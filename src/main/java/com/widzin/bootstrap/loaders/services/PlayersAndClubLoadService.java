@@ -8,6 +8,7 @@ import com.widzin.bootstrap.loaders.xmlModels.XMLClubLogo;
 import com.widzin.bootstrap.loaders.xmlModels.XMLClubSeason;
 import com.widzin.bootstrap.loaders.xmlModels.XMLPlayer;
 import com.widzin.models.*;
+import org.springframework.stereotype.Service;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -15,6 +16,7 @@ import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.util.Date;
 
+@Service
 public class PlayersAndClubLoadService implements LoadService{
 
     private Season season;
