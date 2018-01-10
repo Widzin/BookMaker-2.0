@@ -1,4 +1,4 @@
-package com.widzin.model;
+package com.widzin.models;
 
 import com.widzin.bootstrap.loaders.parsers.PlayerParser;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -13,7 +13,6 @@ public class Player {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "player_id")
     private Integer id;
 
     @Version
@@ -25,6 +24,9 @@ public class Player {
 
     @OneToMany(mappedBy = "player", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<PlayerSeason> playerSeasonList;
+
+    public Player() {
+    }
 
     public Player(String name, Date birthDate) {
         this.name = name;

@@ -1,4 +1,4 @@
-package com.widzin.model;
+package com.widzin.models;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -32,6 +32,9 @@ public class ClubSeason {
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Season season;
+
+    public ClubSeason() {
+    }
 
     public ClubSeason(String name) {
         club2 = new Club2(name);

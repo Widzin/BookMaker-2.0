@@ -1,6 +1,6 @@
 package com.widzin.controllers;
 
-import com.widzin.model.*;
+import com.widzin.models.*;
 import com.widzin.services.BetService;
 import com.widzin.services.GameService;
 import com.widzin.services.TicketService;

@@ -1,8 +1,8 @@
 package com.widzin.services.implementations;
 
-import com.widzin.model.Game;
+import com.widzin.models.Game;
 import com.widzin.repositories.ClubRepository;
-import com.widzin.model.Club;
+import com.widzin.models.Club;
 import com.widzin.services.ClubService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

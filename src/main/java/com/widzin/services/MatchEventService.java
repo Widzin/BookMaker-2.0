@@ -1,6 +1,6 @@
 package com.widzin.services;
 
-import com.widzin.model.MatchEvent;
+import com.widzin.models.MatchEvent;
 
 public interface MatchEventService {
     Iterable<MatchEvent> listAllMatchEvents();

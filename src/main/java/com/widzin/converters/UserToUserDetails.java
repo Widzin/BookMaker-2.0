@@ -1,6 +1,6 @@
 package com.widzin.converters;
 
-import com.widzin.model.User;
+import com.widzin.models.User;
 import com.widzin.services.security.UserDetailsImpl;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

@@ -1,6 +1,6 @@
 package com.widzin.bootstrap.loaders.services;
 
-import com.widzin.model.*;
+import com.widzin.models.*;
 
 import java.util.*;
 

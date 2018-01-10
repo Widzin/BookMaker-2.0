@@ -1,6 +1,6 @@
 package com.widzin.services.implementations;
 
-import com.widzin.model.User;
+import com.widzin.models.User;
 
 import com.widzin.repositories.UserRepository;
 import com.widzin.services.UserService;

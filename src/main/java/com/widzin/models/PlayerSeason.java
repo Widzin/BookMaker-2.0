@@ -1,4 +1,4 @@
-package com.widzin.model;
+package com.widzin.models;
 
 import com.widzin.bootstrap.loaders.parsers.PlayerParser;
 import com.widzin.bootstrap.loaders.services.MainLoadService;
@@ -30,6 +30,9 @@ public class PlayerSeason {
 
     private Integer shirtNumber;
     private Double value;
+
+    public PlayerSeason() {
+    }
 
     public PlayerSeason(Player player, Integer shirtNumber) {
         this.player = player;

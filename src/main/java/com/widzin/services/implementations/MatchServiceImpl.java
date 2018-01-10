@@ -1,6 +1,6 @@
 package com.widzin.services.implementations;
 
-import com.widzin.model.Match;
+import com.widzin.models.Match;
 import com.widzin.repositories.MatchRepository;
 import com.widzin.services.MatchService;
 import org.springframework.beans.factory.annotation.Autowired;

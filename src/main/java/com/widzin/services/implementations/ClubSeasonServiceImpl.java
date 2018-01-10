@@ -1,10 +1,14 @@
 package com.widzin.services.implementations;
 
-import com.widzin.model.ClubSeason;
+import com.widzin.models.ClubSeason;
 import com.widzin.repositories.ClubSeasonRepository;
 import com.widzin.services.ClubSeasonService;
+import com.widzin.services.ClubService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ClubSeasonServiceImpl implements ClubSeasonService {
@@ -24,6 +28,29 @@ public class ClubSeasonServiceImpl implements ClubSeasonService {
     @Override
     public ClubSeason getClubSeasonById(Integer id) {
         return clubSeasonRepository.findOne(id);
+    }
+
+    @Override
+    public List<ClubSeason> getClubSeasonsByClub2Id(Integer id) {
+        Iterable<ClubSeason> allClubSeasons = listAllClubsSeason();
+
+        List<ClubSeason> clubSeasons = new ArrayList<>();
+        for (ClubSeason clubSeason: allClubSeasons) {
+            if (clubSeason.getClub2().getId() == id)
+                clubSeasons.add(clubSeason);
+        }
+
+        return clubSeasons;
+    }
+
+    @Override
+    public ClubSeason getLastClubSeason(Integer id) {
+        Integer maxId = 0;
+        for (ClubSeason clubSeason: getClubSeasonsByClub2Id(id)) {
+            if (maxId < clubSeason.getId())
+                maxId = clubSeason.getId();
+        }
+        return getClubSeasonById(maxId);
     }
 
     @Override

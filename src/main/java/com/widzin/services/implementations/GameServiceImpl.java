@@ -1,9 +1,9 @@
 package com.widzin.services.implementations;
 
 import com.widzin.bootstrap.SpringJpaBootstrap;
-import com.widzin.model.Calculations;
-import com.widzin.model.Club;
-import com.widzin.model.Game;
+import com.widzin.models.Calculations;
+import com.widzin.models.Club;
+import com.widzin.models.Game;
 import com.widzin.repositories.GameRepository;
 import com.widzin.services.GameService;
 import org.apache.log4j.Logger;

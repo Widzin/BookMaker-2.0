@@ -1,6 +1,6 @@
 package com.widzin.services.implementations;
 
-import com.widzin.model.Club2;
+import com.widzin.models.Club2;
 import com.widzin.repositories.Club2Repository;
 import com.widzin.services.Club2Service;
 import org.springframework.beans.factory.annotation.Autowired;

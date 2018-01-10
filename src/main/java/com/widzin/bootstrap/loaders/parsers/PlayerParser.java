@@ -1,8 +1,8 @@
 package com.widzin.bootstrap.loaders.parsers;
 
 import com.widzin.bootstrap.loaders.xmlModels.XMLPlayer;
-import com.widzin.model.PlayerSeason;
-import com.widzin.model.Position;
+import com.widzin.models.PlayerSeason;
+import com.widzin.models.Position;
 import org.apache.commons.lang.LocaleUtils;
 
 import java.util.Date;

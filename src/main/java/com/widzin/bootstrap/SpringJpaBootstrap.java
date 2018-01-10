@@ -4,7 +4,7 @@ import com.widzin.bootstrap.loaders.Links;
 import com.widzin.bootstrap.loaders.services.MainLoadService;
 import com.widzin.bootstrap.loaders.services.MatchesLoadService;
 import com.widzin.bootstrap.loaders.services.PlayersAndClubLoadService;
-import com.widzin.model.*;
+import com.widzin.models.*;
 import com.widzin.services.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

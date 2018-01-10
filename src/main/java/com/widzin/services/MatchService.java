@@ -1,6 +1,6 @@
 package com.widzin.services;
 
-import com.widzin.model.Match;
+import com.widzin.models.Match;
 
 public interface MatchService {
     Iterable<Match> listAllMatches();

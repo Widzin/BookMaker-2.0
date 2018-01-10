@@ -7,7 +7,7 @@ import com.widzin.bootstrap.loaders.xmlModels.XMLAllLogos;
 import com.widzin.bootstrap.loaders.xmlModels.XMLClubLogo;
 import com.widzin.bootstrap.loaders.xmlModels.XMLClubSeason;
 import com.widzin.bootstrap.loaders.xmlModels.XMLPlayer;
-import com.widzin.model.*;
+import com.widzin.models.*;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;

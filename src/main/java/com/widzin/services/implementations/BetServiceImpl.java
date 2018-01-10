@@ -1,8 +1,8 @@
 package com.widzin.services.implementations;
 
-import com.widzin.model.BetGame;
-import com.widzin.model.Game;
-import com.widzin.model.Ticket;
+import com.widzin.models.BetGame;
+import com.widzin.models.Game;
+import com.widzin.models.Ticket;
 import com.widzin.repositories.BetRepository;
 import com.widzin.services.BetService;
 import org.springframework.beans.factory.annotation.Autowired;

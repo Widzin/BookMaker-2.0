@@ -1,6 +1,6 @@
 package com.widzin.services;
 
-import com.widzin.model.Club2;
+import com.widzin.models.Club2;
 
 public interface Club2Service {
     Iterable<Club2> listAllClubs2();

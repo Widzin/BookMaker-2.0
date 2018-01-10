@@ -1,4 +1,4 @@
-package com.widzin.model;
+package com.widzin.models;
 
 import org.springframework.format.annotation.DateTimeFormat;
 

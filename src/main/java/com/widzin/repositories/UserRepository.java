@@ -1,6 +1,6 @@
 package com.widzin.repositories;
 
-import com.widzin.model.User;
+import com.widzin.models.User;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;

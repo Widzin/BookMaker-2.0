@@ -20,37 +20,37 @@
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Matches:</label>
                                 <div class="col-sm-8">
-                                    <p class="form-control-static" th:text="${club.matches}">Matches</p>
+                                    <p class="form-control-static" th:text="${clubSeason.matches}">Matches</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Points:</label>
                                 <div class="col-sm-8">
-                                    <p class="form-control-static" th:text="${club.points}">Points</p>
+                                    <p class="form-control-static" th:text="${clubSeason.points}">Points</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Bilans: (Win-Draw-Lost)</label>
                                 <div class="col-sm-8">
-                                    <p class="form-control-static" th:text="${club.wins} + '-' + ${club.draws} + '-' + ${club.loses}">Bilans</p>
+                                    <p class="form-control-static" th:text="${clubSeason.wins} + '-' + ${clubSeason.draws} + '-' + ${clubSeason.loses}">Bilans</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Goals:</label>
                                 <div class="col-sm-8">
-                                    <p class="form-control-static" th:text="${club.bilans} + '  (' + ${club.scoredGoals} + ' - ' + ${club.lostGoals} + ')'">Goals</p>
+                                    <p class="form-control-static" th:text="${clubSeason.bilans} + '  (' + ${clubSeason.scoredGoals} + ' - ' + ${clubSeason.lostGoals} + ')'">Goals</p>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-4 control-label">Value: (mln €)</label>
+                                <label class="col-sm-4 control-label">Value: </label>
                                 <div class="col-sm-8">
-                                    <p class="form-control-static" th:text="${club.valueOfPlayers}">Value</p>
+                                    <p class="form-control-static" th:text="${#numbers.formatDecimal(valueOfPlayers, 1, 2)} + '(mln €)'">Value</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Players:</label>
                                 <div class="col-sm-8">
-                                    <p class="form-control-static" th:text="${club.numberOfPlayers}">Players</p>
+                                    <p class="form-control-static" th:text="${numberOfPlayers}">Players</p>
                                 </div>
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                         </div>
                     </div>
                 </form>
-                <br />
+                <!--<br />
                 <br />
                 <div class="col-lg-12" th:if="${not #lists.isEmpty(nextGames)}">
                     <div class="row text-center">
@@ -75,7 +75,7 @@
                             <th>Date</th>
                             <th>Home club</th>
                             <th>Away club</th>
-                            <th sec:authorize="hasAnyAuthority('USER','ADMIN')">Show previous games</th>
+                            <th>Show previous games</th>
                         </tr>
                         <tr th:each="game : ${nextGames}">
                             <td th:text="${#dates.format(game.date, 'yyyy/MM/dd')}">Date</td>
@@ -123,7 +123,7 @@
                             </td>
                         </tr>
                     </table>
-                </div>
+                </div>-->
                 <form class="form-horizontal" th:object="${club}" th:action="@{/historyOfClub/} + ${club.id}" method="POST">
                     <div class="form-group">
                         <div class="col-lg-offset-10 col-lg-2" style="padding-top: 30px;">

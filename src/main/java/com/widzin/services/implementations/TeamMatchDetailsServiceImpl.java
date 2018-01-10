@@ -1,6 +1,6 @@
 package com.widzin.services.implementations;
 
-import com.widzin.model.TeamMatchDetails;
+import com.widzin.models.TeamMatchDetails;
 import com.widzin.repositories.TeamMatchDetailsRepository;
 import com.widzin.services.TeamMatchDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;

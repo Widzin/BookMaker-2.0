@@ -1,6 +1,6 @@
 package com.widzin.services;
 
-import com.widzin.model.PlayerSeason;
+import com.widzin.models.PlayerSeason;
 
 public interface PlayerSeasonService {
     Iterable<PlayerSeason> listAllPlayerSeasons();

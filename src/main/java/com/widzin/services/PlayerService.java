@@ -1,6 +1,6 @@
 package com.widzin.services;
 
-import com.widzin.model.Player;
+import com.widzin.models.Player;
 
 public interface PlayerService {
     Iterable<Player> listAllPlayers();

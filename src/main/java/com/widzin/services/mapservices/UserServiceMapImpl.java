@@ -1,8 +1,8 @@
 package com.widzin.services.mapservices;
 
-import com.widzin.model.DomainObject;
+import com.widzin.models.DomainObject;
 import com.widzin.services.security.EncryptionService;
-import com.widzin.model.User;
+import com.widzin.models.User;
 import com.widzin.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;

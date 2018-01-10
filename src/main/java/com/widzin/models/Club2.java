@@ -1,4 +1,4 @@
-package com.widzin.model;
+package com.widzin.models;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,7 +9,6 @@ public class Club2 {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "club2_id")
     private Integer id;
 
     @Version

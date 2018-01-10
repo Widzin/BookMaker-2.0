@@ -1,4 +1,4 @@
-package com.widzin.model;
+package com.widzin.models;
 
 public enum Position {
     BR("Bramkarz"),

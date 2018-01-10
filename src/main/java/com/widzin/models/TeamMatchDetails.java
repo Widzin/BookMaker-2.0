@@ -1,4 +1,4 @@
-package com.widzin.model;
+package com.widzin.models;
 
 import javax.persistence.*;
 import java.util.List;

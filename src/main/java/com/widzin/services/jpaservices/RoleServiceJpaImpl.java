@@ -1,6 +1,6 @@
 package com.widzin.services.jpaservices;
 
-import com.widzin.model.Role;
+import com.widzin.models.Role;
 import com.widzin.services.RoleService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;

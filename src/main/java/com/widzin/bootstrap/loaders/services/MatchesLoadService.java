@@ -3,7 +3,7 @@ package com.widzin.bootstrap.loaders.services;
 import com.widzin.bootstrap.loaders.parsers.MatchParser;
 import com.widzin.bootstrap.loaders.xmlModels.XMLMatch;
 import com.widzin.bootstrap.loaders.xmlModels.XMLMatchesInSeason;
-import com.widzin.model.*;
+import com.widzin.models.*;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;

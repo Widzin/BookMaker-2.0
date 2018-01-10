@@ -1,8 +1,8 @@
 package com.widzin.services;
 
-import com.widzin.model.BetGame;
-import com.widzin.model.Game;
-import com.widzin.model.Ticket;
+import com.widzin.models.BetGame;
+import com.widzin.models.Game;
+import com.widzin.models.Ticket;
 
 import java.util.List;
 

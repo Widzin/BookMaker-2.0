@@ -1,6 +1,6 @@
 package com.widzin.services;
 
-import com.widzin.model.TeamMatchDetails;
+import com.widzin.models.TeamMatchDetails;
 
 public interface TeamMatchDetailsService {
     Iterable<TeamMatchDetails> listAllTeamMatchDetails();

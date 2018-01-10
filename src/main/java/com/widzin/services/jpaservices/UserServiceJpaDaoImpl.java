@@ -1,6 +1,6 @@
 package com.widzin.services.jpaservices;
 
-import com.widzin.model.User;
+import com.widzin.models.User;
 import com.widzin.services.UserService;
 import com.widzin.services.security.EncryptionService;
 import org.springframework.beans.factory.annotation.Autowired;

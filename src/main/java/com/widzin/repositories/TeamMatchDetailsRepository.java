@@ -1,6 +1,6 @@
 package com.widzin.repositories;
 
-import com.widzin.model.TeamMatchDetails;
+import com.widzin.models.TeamMatchDetails;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
