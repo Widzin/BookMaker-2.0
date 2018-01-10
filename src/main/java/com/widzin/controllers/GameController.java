@@ -52,12 +52,12 @@ public class GameController {
 		this.userService = userService;
 	}
 
-	@RequestMapping("/game/new")
+	/*@RequestMapping("/game/new")
 	public String newGame(Model model){
 		model.addAttribute("game", new Game());
 		model.addAttribute("clubs", clubService.getListOfCurrentClubs());
 		return "gameform";
-	}
+	}*/
 
 	@RequestMapping(value = "/createGame", method = RequestMethod.POST)
 	public String saveGame(@RequestParam("text") String text, Game game){
