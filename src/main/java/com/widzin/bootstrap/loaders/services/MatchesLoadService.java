@@ -53,6 +53,7 @@ public class MatchesLoadService implements LoadService {
 
         //------------- Setting match details ----------------
         match.setDate(xmlMatch.getDate());
+        match.setPlayed(true);
         match.setRound(xmlMatch.getRound());
         match.setPeriod(service.getPeriodByMatchDate(xmlMatch.getDate()));
 

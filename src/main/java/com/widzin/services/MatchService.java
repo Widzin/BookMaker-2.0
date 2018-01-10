@@ -8,6 +8,8 @@ public interface MatchService {
     Iterable<Match> listAllMatches();
     Match getMatchById(Integer id);
     List<Match> listAllMatchesWithClub(Integer clubId);
+    List<Match> listAllPlayedMatchesWithClub(Integer clubId);
+    List<Match> listAllNotPlayedMatchesWithClub(Integer clubId);
     Match saveMatch(Match match);
     void deleteMatch(Integer id);
 }

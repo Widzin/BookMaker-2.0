@@ -8,6 +8,7 @@ import java.util.Date;
 @Entity
 @Table(name = "bundesliga_match")
 public class Match {
+    private static final int NUMBER_OF_RATES = 3;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +29,12 @@ public class Match {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private TeamMatchDetails away;
 
+    private boolean played;
+    private Double[] rates;
+
     public Match() {
+        played = false;
+        rates = new Double[NUMBER_OF_RATES];
         home = new TeamMatchDetails();
         away = new TeamMatchDetails();
     }
@@ -87,6 +93,22 @@ public class Match {
 
     public void setAway(TeamMatchDetails away) {
         this.away = away;
+    }
+
+    public boolean isPlayed() {
+        return played;
+    }
+
+    public void setPlayed(boolean played) {
+        this.played = played;
+    }
+
+    public Double[] getRates() {
+        return rates;
+    }
+
+    public void setRates(Double[] rates) {
+        this.rates = rates;
     }
 
     @Override

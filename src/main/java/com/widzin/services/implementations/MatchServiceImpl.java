@@ -45,6 +45,30 @@ public class MatchServiceImpl implements MatchService {
     }
 
     @Override
+    public List<Match> listAllPlayedMatchesWithClub(Integer clubId) {
+        List<Match> allPlayedMatches = new ArrayList<>();
+
+        for (Match match: listAllMatchesWithClub(clubId)) {
+            if (match.isPlayed())
+                allPlayedMatches.add(match);
+        }
+
+        return allPlayedMatches;
+    }
+
+    @Override
+    public List<Match> listAllNotPlayedMatchesWithClub(Integer clubId) {
+        List<Match> allPlayedMatches = new ArrayList<>();
+
+        for (Match match: listAllMatchesWithClub(clubId)) {
+            if (!match.isPlayed())
+                allPlayedMatches.add(match);
+        }
+
+        return allPlayedMatches;
+    }
+
+    @Override
     public Match saveMatch(Match match) {
         return matchRepository.save(match);
     }

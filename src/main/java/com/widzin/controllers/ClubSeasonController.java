@@ -62,7 +62,7 @@ public class ClubSeasonController {
         model.addAttribute("valueOfPlayers", fullValueOfPlayers);
         model.addAttribute("numberOfPlayers", lastClubSeason.getPlayers().size());
 
-        List<Match> allThisClubMatches = matchService.listAllMatchesWithClub(id);
+        List<Match> allThisClubMatches = matchService.listAllPlayedMatchesWithClub(id);
         if (allThisClubMatches.size() > 5) {
             List<Match> lastFiveGames = allThisClubMatches.subList(
                     allThisClubMatches.size() - 5,
@@ -76,7 +76,7 @@ public class ClubSeasonController {
             model.addAttribute("lastMatches", allThisClubMatches);
         }
 
-        //model.addAttribute("nextGames", clubSeasonService.getNextMatche);
+        model.addAttribute("nextMatches", matchService.listAllNotPlayedMatchesWithClub(id));
         return "clubshow";
     }
 
