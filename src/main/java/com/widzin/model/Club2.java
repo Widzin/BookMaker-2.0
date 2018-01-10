@@ -21,6 +21,9 @@ public class Club2 {
     @OneToMany(mappedBy = "club2", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ClubSeason> clubSeasonList;
 
+    public Club2() {
+    }
+
     public Integer getId() {
         return id;
     }

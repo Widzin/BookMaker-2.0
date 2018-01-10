@@ -19,11 +19,11 @@ public class ClubController {
 		this.clubService = clubService;
 	}
 
-	@RequestMapping(value = "/clubs", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/clubs", method = RequestMethod.GET)
 	public String list(Model model){
 		model.addAttribute("clubs", clubService.listAllClubs());
 		return "clubs";
-	}
+	}*/
 
 	@RequestMapping("/club/show/{id}")
 	public String showClub(@PathVariable Integer id, Model model) {
