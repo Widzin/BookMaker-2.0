@@ -1,12 +1,12 @@
 package com.widzin.services.implementations;
 
+import com.google.common.collect.Lists;
 import com.widzin.models.Match;
 import com.widzin.repositories.MatchRepository;
 import com.widzin.services.MatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.MutableAttributeSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +28,12 @@ public class MatchServiceImpl implements MatchService {
     @Override
     public Match getMatchById(Integer id) {
         return matchRepository.findOne(id);
+    }
+
+    @Override
+    public Match getLastMatch() {
+        List<Match> allMatches = Lists.newArrayList(listAllMatches());
+        return allMatches.get(allMatches.size() - 1);
     }
 
     @Override
@@ -66,6 +72,16 @@ public class MatchServiceImpl implements MatchService {
         }
 
         return allPlayedMatches;
+    }
+
+    @Override
+    public Integer listAllMatchesFromPeriodAndRoundSize(String period, Integer round) {
+        Integer counter = 0;
+        for (Match match: Lists.newArrayList(listAllMatches())) {
+            if (match.getPeriod().equals(period) && match.getRound() == round)
+                counter++;
+        }
+        return counter;
     }
 
     @Override

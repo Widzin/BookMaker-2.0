@@ -59,7 +59,7 @@ public class GameController {
 		return "gameform";
 	}*/
 
-	@RequestMapping(value = "/createGame", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/createGame", method = RequestMethod.POST)
 	public String saveGame(@RequestParam("text") String text, Game game){
 		if (game.getHome().getId() == game.getAway().getId()){
 			return "redirect:/game/new?errorId";
@@ -80,7 +80,7 @@ public class GameController {
 				return "redirect:/game/new?errorDt";
 			}
 		}
-	}
+	}*/
 
 	@RequestMapping("/game/next")
 	public String showNextGames(Model model){

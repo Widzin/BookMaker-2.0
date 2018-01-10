@@ -1,6 +1,7 @@
 package com.widzin.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -53,6 +54,17 @@ public class TeamMatchDetails {
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "match_event_id")
     private List<MatchEvent> subDetails;
+
+    public TeamMatchDetails() {
+        /*lineupDefense = new ArrayList<>();
+        lineupMidfield = new ArrayList<>();
+        lineupForward = new ArrayList<>();
+        lineupSubstitutes = new ArrayList<>();
+
+        goalDetails = new ArrayList<>();
+        redCardDetails = new ArrayList<>();
+        subDetails = new ArrayList<>();*/
+    }
 
     public Integer getId() {
         return id;

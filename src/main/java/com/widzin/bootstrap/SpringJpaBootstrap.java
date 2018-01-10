@@ -116,10 +116,6 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-//        loadService = new MainLoadService();
-//        matchesLoadService = new MatchesLoadService();
-//        playersAndClubLoadService = new PlayersAndClubLoadService();
-
         loadPlayers();
         loadMatches();
         loadLogos();
@@ -129,8 +125,6 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         assignUsersToDefaultRoles();
         setCalculationsOnLoad();
 	}
-
-
 
     private void loadPlayers() {
         playersAndClubLoadService.startParsing(Links.PLAYERS_2015_2016, loadService);
