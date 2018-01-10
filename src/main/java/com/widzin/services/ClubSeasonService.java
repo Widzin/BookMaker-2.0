@@ -10,5 +10,6 @@ public interface ClubSeasonService {
     List<ClubSeason> getClubSeasonsByClub2Id(Integer id);
     ClubSeason getLastClubSeason(Integer id);
     ClubSeason saveClubSeason(ClubSeason clubSeason);
+    List<ClubSeason> sortListForTable(List<ClubSeason> list);
     void deleteClubSeason(Integer id);
 }

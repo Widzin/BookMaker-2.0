@@ -17,11 +17,14 @@ public class Season {
 
     private String period;
 
-    @OneToMany(mappedBy = "season", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private List<ClubSeason> clubs;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private List<Match> matches;
+
+    public Season() {
+    }
 
     public Season(String period) {
         this.period = period;

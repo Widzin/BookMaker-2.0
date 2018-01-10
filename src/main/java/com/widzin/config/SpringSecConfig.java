@@ -49,14 +49,15 @@ public class SpringSecConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
            httpSecurity
-				   .authorizeRequests().antMatchers("/", "/clubs", "/register", "/login").permitAll()
+				   .authorizeRequests().antMatchers("/", "/clubs", "/table",
+                                    "/register", "/login").permitAll()
 				   .and()
 				   .authorizeRequests().antMatchers("/club/edit/*", "/club/delete/*", "/user/show/*",
 				   					"/createMatch", "/game/new", "/game/play/*")
 				   					.hasAuthority("ADMIN")
 				   .and()
 				   .authorizeRequests().antMatchers("/users", "/club/show/*",  "/insertMoney/*",
-				   					"/table", "/historyOfClub/*", "/game/next", "/game/between/*","/profile",
+				   					"/historyOfClub/*", "/game/next", "/game/between/*","/profile",
 				   					"/user/*/tickets", "/user/*/ticket/*")
 				   					.hasAnyAuthority("USER", "ADMIN")
 				   .and()

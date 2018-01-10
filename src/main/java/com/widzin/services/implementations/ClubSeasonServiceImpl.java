@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -73,5 +74,15 @@ public class ClubSeasonServiceImpl implements ClubSeasonService {
     @Override
     public void deleteClubSeason(Integer id) {
         clubSeasonRepository.delete(id);
+    }
+
+    public List<ClubSeason> sortListForTable (List<ClubSeason> list) {
+        Comparator<ClubSeason> c = (p, o) -> (-1)*p.getPoints().compareTo(o.getPoints());
+        c = c.thenComparing((p, o) -> (-1)*p.getBilans().compareTo(o.getBilans()));
+        c = c.thenComparing((p, o) -> (-1)*p.getScoredGoals().compareTo(o.getScoredGoals()));
+        c = c.thenComparing((p, o) -> (-1)*p.getWins().compareTo(o.getWins()));
+
+        list.sort(c);
+        return list;
     }
 }

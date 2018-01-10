@@ -42,4 +42,10 @@ public class Club2Controller {
         club2Service.saveClub2(club2);
         return "redirect:/club/show/" + club2.getId();
     }
+
+    @RequestMapping("/club/delete/{id}")
+    public String delete(@PathVariable Integer id) {
+        club2Service.deleteClub2(id);
+        return "redirect:/clubs";
+    }
 }

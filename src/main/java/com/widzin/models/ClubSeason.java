@@ -30,9 +30,6 @@ public class ClubSeason {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private List<PlayerSeason> players;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Season season;
-
     public ClubSeason() {
     }
 
@@ -156,14 +153,6 @@ public class ClubSeason {
 
     public void addPlayer(PlayerSeason player) {
         players.add(player);
-    }
-
-    public Season getSeason() {
-        return season;
-    }
-
-    public void setSeason(Season season) {
-        this.season = season;
     }
 
     @Override

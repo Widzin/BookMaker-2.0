@@ -51,17 +51,17 @@ public class ClubController {
 		return "redirect:/club/show/" + club.getId();
 	}*/
 
-	@RequestMapping("/club/delete/{id}")
-	public String delete(@PathVariable Integer id) {
-		clubService.deleteClub(id);
-		return "redirect:/clubs";
-	}
+    /*@RequestMapping("/club/delete/{id}")
+    public String delete(@PathVariable Integer id) {
+        clubService.deleteClub(id);
+        return "redirect:/clubs";
+    }*/
 
-	@RequestMapping("/table")
+	/*@RequestMapping("/table")
 	public String showTable(Model model){
 		model.addAttribute("clubs", clubService.getForTableThisSeason());
 		return "table";
-	}
+	}*/
 
 	@RequestMapping(value = "/historyOfClub/{id}", method = RequestMethod.POST)
 	public String showHistory(@PathVariable Integer id, Model model){

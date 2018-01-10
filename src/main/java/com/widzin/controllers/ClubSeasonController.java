@@ -1,12 +1,10 @@
 package com.widzin.controllers;
 
-import com.widzin.models.Club2;
-import com.widzin.models.ClubSeason;
-import com.widzin.models.Match;
-import com.widzin.models.PlayerSeason;
+import com.widzin.models.*;
 import com.widzin.services.Club2Service;
 import com.widzin.services.ClubSeasonService;
 import com.widzin.services.MatchService;
+import com.widzin.services.SeasonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +20,7 @@ public class ClubSeasonController {
     private ClubSeasonService clubSeasonService;
     private Club2Service club2Service;
     private MatchService matchService;
+    private SeasonService seasonService;
 
     @Autowired
     public void setClubSeasonService(ClubSeasonService clubSeasonService) {
@@ -36,6 +35,11 @@ public class ClubSeasonController {
     @Autowired
     public void setMatchService(MatchService matchService) {
         this.matchService = matchService;
+    }
+
+    @Autowired
+    public void setSeasonService(SeasonService seasonService) {
+        this.seasonService = seasonService;
     }
 
     @RequestMapping("/club/show/{id}")
@@ -73,5 +77,13 @@ public class ClubSeasonController {
 
         //model.addAttribute("nextGames", clubSeasonService.getNextMatche);
         return "clubshow";
+    }
+
+    @RequestMapping("/table")
+    public String showTable(Model model){
+        Season lastSeason = seasonService.getLastSeason();
+        List<ClubSeason> clubSeasons = lastSeason.getClubs();
+        model.addAttribute("clubs", clubSeasonService.sortListForTable(clubSeasons));
+        return "table";
     }
 }

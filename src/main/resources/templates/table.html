@@ -26,10 +26,10 @@
                         </tr>
                         <tr th:each="club, iterStat : ${clubs}" th:class="${iterStat.odd}? 'odd'">
                             <td th:text="${iterStat.count}"><a href="/club/@{club.id}">Nr</a></td>
-                            <td th:text="${club.name}">Name</td>
+                            <td th:text="${club.club2.name}">Name</td>
                             <td th:text="${club.matches}" class="row text-center">Matches</td>
                             <td th:text="${club.wins} + '-' + ${club.draws} + '-' + ${club.loses}">Bilans</td>
-                            <td th:text="${club.bilans} + '  (' + ${club.scoredGoals} + ' - ' + ${club.lostGoals} + ')'">Goals</td>
+                            <td th:text="${club.scoredGoals} + ' - ' + ${club.lostGoals}">Goals</td>
                             <td th:text="${club.points}" class="row text-center">Points</td>
                         </tr>
                     </table>
