@@ -5,37 +5,37 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.util.Date;
 
-/*@Entity
-@Table*/
-public class Match {
+@Entity
+@Table
+public class Game2 {
 
-    /*@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Version
     private Integer version;
 
-    @DateTimeFormat(pattern = "yyyy/MM/dd")*/
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
     private Date date;
 
     private Integer round;
     private String period;
 
-    /*@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "team_match_details_id", insertable = false, updatable = false)*/
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    //@JoinColumn(name = "team_match_details_id", insertable = false, updatable = false)
     private TeamMatchDetails home;
 
-    /*@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "team_match_details_id", insertable = false, updatable = false)*/
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    //@JoinColumn(name = "team_match_details_id", insertable = false, updatable = false)
     private TeamMatchDetails away;
 
-    public Match() {
+    public Game2() {
         home = new TeamMatchDetails();
         away = new TeamMatchDetails();
     }
 
-    /*public Integer getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -49,7 +49,7 @@ public class Match {
 
     public void setVersion(Integer version) {
         this.version = version;
-    }*/
+    }
 
     public Date getDate() {
         return date;
@@ -93,7 +93,7 @@ public class Match {
 
     @Override
     public String toString() {
-        return "Match{" +
+        return "Game2{" +
                 "date=" + date +
                 ", round=" + round +
                 ", period='" + period + '\'' +

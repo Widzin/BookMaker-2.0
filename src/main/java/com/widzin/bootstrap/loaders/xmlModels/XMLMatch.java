@@ -5,9 +5,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import java.util.Date;
 
-@XmlRootElement(name = "Match")
+@XmlRootElement(name = "Game2")
 public class XMLMatch {
-    // -------------------- Match details -------------------------------
+    // -------------------- Game2 details -------------------------------
     @XmlElement(name = "Id")
     private Integer id;
 
@@ -219,7 +219,7 @@ public class XMLMatch {
 
     @Override
     public String toString() {
-        return "Match{" +
+        return "Game2{" +
                 "id=" + id +
                 ", date=" + date +
                 ", round=" + round +

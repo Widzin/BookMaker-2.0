@@ -39,8 +39,8 @@ public class MatchesLoadService implements LoadService {
             XMLMatchesInSeason xmlMatchesInSeason = (XMLMatchesInSeason) unmarshaller.unmarshal(file);
 
             for (XMLMatch xmlMatch: xmlMatchesInSeason.getMatches()) {
-                Match match = parseXmlToObject(xmlMatch, loadService);
-                loadService.getSeasonByPeriod(period).addMatch(match);
+                Game2 game2 = parseXmlToObject(xmlMatch, loadService);
+                loadService.getSeasonByPeriod(period).addMatch(game2);
             }
         } catch (JAXBException ex) {
             ex.printStackTrace();
@@ -48,102 +48,102 @@ public class MatchesLoadService implements LoadService {
         }
     }
 
-    public Match parseXmlToObject(XMLMatch xmlMatch, MainLoadService service) {
-        Match match = new Match();
+    public Game2 parseXmlToObject(XMLMatch xmlMatch, MainLoadService service) {
+        Game2 game2 = new Game2();
 
-        //------------- Setting match details ----------------
-        match.setDate(xmlMatch.getDate());
-        match.setRound(xmlMatch.getRound());
-        match.setPeriod(service.getPeriodByMatchDate(xmlMatch.getDate()));
+        //------------- Setting game2 details ----------------
+        game2.setDate(xmlMatch.getDate());
+        game2.setRound(xmlMatch.getRound());
+        game2.setPeriod(service.getPeriodByMatchDate(xmlMatch.getDate()));
 
         //------------- Setting home team details ------------
-        match.getHome().setClubSeason(
-                service.getClubSeasonByPeriodAndName(match.getPeriod(), xmlMatch.getHomeTeam()));
-        match.getHome().setGoals(xmlMatch.getHomeGoals());
-        match.getHome().setShots(xmlMatch.getHomeShots());
-        match.getHome().setShotsOnTarget(xmlMatch.getHomeShotsOnTarget());
+        game2.getHome().setClubSeason(
+                service.getClubSeasonByPeriodAndName(game2.getPeriod(), xmlMatch.getHomeTeam()));
+        game2.getHome().setGoals(xmlMatch.getHomeGoals());
+        game2.getHome().setShots(xmlMatch.getHomeShots());
+        game2.getHome().setShotsOnTarget(xmlMatch.getHomeShotsOnTarget());
 
         //------------- Setting away team details ------------
-        match.getAway().setClubSeason(
-                service.getClubSeasonByPeriodAndName(match.getPeriod(), xmlMatch.getAwayTeam()));
-        match.getAway().setGoals(xmlMatch.getAwayGoals());
-        match.getAway().setShots(xmlMatch.getAwayShots());
-        match.getAway().setShotsOnTarget(xmlMatch.getAwayShotsOnTarget());
+        game2.getAway().setClubSeason(
+                service.getClubSeasonByPeriodAndName(game2.getPeriod(), xmlMatch.getAwayTeam()));
+        game2.getAway().setGoals(xmlMatch.getAwayGoals());
+        game2.getAway().setShots(xmlMatch.getAwayShots());
+        game2.getAway().setShotsOnTarget(xmlMatch.getAwayShotsOnTarget());
 
         //------------- Setting home squad -------------------
-        match.getHome().setLineupGoalkeeper(getPlayersInArray(service, xmlMatch.getHomeLineupGoalkeeper(),
-                match.getHome().getClubSeason().getClub2().getName(), match.getPeriod()).get(0));
-        match.getHome().setLineupDefense(getPlayersInArray(service, xmlMatch.getHomeLineupDefense(),
-                match.getHome().getClubSeason().getClub2().getName(), match.getPeriod()));
-        match.getHome().setLineupMidfield(getPlayersInArray(service, xmlMatch.getHomeLineupMidfield(),
-                match.getHome().getClubSeason().getClub2().getName(), match.getPeriod()));
-        match.getHome().setLineupForward(getPlayersInArray(service, xmlMatch.getHomeLineupForward(),
-                match.getHome().getClubSeason().getClub2().getName(), match.getPeriod()));
-        match.getHome().setFormation(xmlMatch.getHomeTeamFormation());
-        match.getHome().setLineupSubstitutes(getPlayersInArray(service, xmlMatch.getHomeLineupSubstitutes(),
-                match.getHome().getClubSeason().getClub2().getName(), match.getPeriod()));
+        game2.getHome().setLineupGoalkeeper(getPlayersInArray(service, xmlMatch.getHomeLineupGoalkeeper(),
+                game2.getHome().getClubSeason().getClub2().getName(), game2.getPeriod()).get(0));
+        game2.getHome().setLineupDefense(getPlayersInArray(service, xmlMatch.getHomeLineupDefense(),
+                game2.getHome().getClubSeason().getClub2().getName(), game2.getPeriod()));
+        game2.getHome().setLineupMidfield(getPlayersInArray(service, xmlMatch.getHomeLineupMidfield(),
+                game2.getHome().getClubSeason().getClub2().getName(), game2.getPeriod()));
+        game2.getHome().setLineupForward(getPlayersInArray(service, xmlMatch.getHomeLineupForward(),
+                game2.getHome().getClubSeason().getClub2().getName(), game2.getPeriod()));
+        game2.getHome().setFormation(xmlMatch.getHomeTeamFormation());
+        game2.getHome().setLineupSubstitutes(getPlayersInArray(service, xmlMatch.getHomeLineupSubstitutes(),
+                game2.getHome().getClubSeason().getClub2().getName(), game2.getPeriod()));
 
         //------------- Setting away squad -------------------
-        match.getAway().setLineupGoalkeeper(getPlayersInArray(service, xmlMatch.getAwayLineupGoalkeeper(),
-                match.getAway().getClubSeason().getClub2().getName(), match.getPeriod()).get(0));
-        match.getAway().setLineupDefense(getPlayersInArray(service, xmlMatch.getAwayLineupDefense(),
-                match.getAway().getClubSeason().getClub2().getName(), match.getPeriod()));
-        match.getAway().setLineupMidfield(getPlayersInArray(service, xmlMatch.getAwayLineupMidfield(),
-                match.getAway().getClubSeason().getClub2().getName(), match.getPeriod()));
-        match.getAway().setLineupForward(getPlayersInArray(service, xmlMatch.getAwayLineupForward(),
-                match.getAway().getClubSeason().getClub2().getName(), match.getPeriod()));
-        match.getAway().setFormation(xmlMatch.getAwayTeamFormation());
-        match.getAway().setLineupSubstitutes(getPlayersInArray(service, xmlMatch.getAwayLineupSubstitutes(),
-                match.getAway().getClubSeason().getClub2().getName(), match.getPeriod()));
+        game2.getAway().setLineupGoalkeeper(getPlayersInArray(service, xmlMatch.getAwayLineupGoalkeeper(),
+                game2.getAway().getClubSeason().getClub2().getName(), game2.getPeriod()).get(0));
+        game2.getAway().setLineupDefense(getPlayersInArray(service, xmlMatch.getAwayLineupDefense(),
+                game2.getAway().getClubSeason().getClub2().getName(), game2.getPeriod()));
+        game2.getAway().setLineupMidfield(getPlayersInArray(service, xmlMatch.getAwayLineupMidfield(),
+                game2.getAway().getClubSeason().getClub2().getName(), game2.getPeriod()));
+        game2.getAway().setLineupForward(getPlayersInArray(service, xmlMatch.getAwayLineupForward(),
+                game2.getAway().getClubSeason().getClub2().getName(), game2.getPeriod()));
+        game2.getAway().setFormation(xmlMatch.getAwayTeamFormation());
+        game2.getAway().setLineupSubstitutes(getPlayersInArray(service, xmlMatch.getAwayLineupSubstitutes(),
+                game2.getAway().getClubSeason().getClub2().getName(), game2.getPeriod()));
 
-        //-------------- Setting match events ----------------
+        //-------------- Setting game2 events ----------------
 
-        List<PlayerSeason> homePlayers = getPlayersFromOneTeam(match.getHome());
-        List<PlayerSeason> awayPlayers = getPlayersFromOneTeam(match.getAway());
+        List<PlayerSeason> homePlayers = getPlayersFromOneTeam(game2.getHome());
+        List<PlayerSeason> awayPlayers = getPlayersFromOneTeam(game2.getAway());
 
-        match.getHome().setGoalDetails(getEventsInArray(xmlMatch.getHomeGoalDetails(), Event.GOAL, service, homePlayers, awayPlayers));
-        match.getHome().setSubDetails(getEventsInArray(xmlMatch.getHomeSubDetails(), Event.SUBSTITUTION, service, homePlayers, awayPlayers));
-        match.getHome().setRedCardDetails(getEventsInArray(xmlMatch.getHomeTeamRedCardDetails(), Event.RED_CARD, service, homePlayers, awayPlayers));
+        game2.getHome().setGoalDetails(getEventsInArray(xmlMatch.getHomeGoalDetails(), Event.GOAL, service, homePlayers, awayPlayers));
+        game2.getHome().setSubDetails(getEventsInArray(xmlMatch.getHomeSubDetails(), Event.SUBSTITUTION, service, homePlayers, awayPlayers));
+        game2.getHome().setRedCardDetails(getEventsInArray(xmlMatch.getHomeTeamRedCardDetails(), Event.RED_CARD, service, homePlayers, awayPlayers));
 
-        match.getAway().setGoalDetails(getEventsInArray(xmlMatch.getAwayGoalDetails(), Event.GOAL, service, awayPlayers, homePlayers));
-        match.getAway().setSubDetails(getEventsInArray(xmlMatch.getAwaySubDetails(), Event.SUBSTITUTION, service, awayPlayers, homePlayers));
-        match.getAway().setRedCardDetails(getEventsInArray(xmlMatch.getAwayTeamRedCardDetails(), Event.RED_CARD, service, awayPlayers, homePlayers));
+        game2.getAway().setGoalDetails(getEventsInArray(xmlMatch.getAwayGoalDetails(), Event.GOAL, service, awayPlayers, homePlayers));
+        game2.getAway().setSubDetails(getEventsInArray(xmlMatch.getAwaySubDetails(), Event.SUBSTITUTION, service, awayPlayers, homePlayers));
+        game2.getAway().setRedCardDetails(getEventsInArray(xmlMatch.getAwayTeamRedCardDetails(), Event.RED_CARD, service, awayPlayers, homePlayers));
 
         //-------------- Adding stats to clubs ---------------
 
-        if (match.getHome().getGoals() > match.getAway().getGoals()) {
-            match.getHome().getClubSeason().addWin();
-            match.getAway().getClubSeason().addLose();
+        if (game2.getHome().getGoals() > game2.getAway().getGoals()) {
+            game2.getHome().getClubSeason().addWin();
+            game2.getAway().getClubSeason().addLose();
 
-            match.getHome().getClubSeason().addPoints(POINTS_FOR_WIN);
-            match.getAway().getClubSeason().addPoints(POINTS_FOR_LOST);
-        } else if (match.getHome().getGoals() < match.getAway().getGoals()) {
-            match.getHome().getClubSeason().addLose();
-            match.getAway().getClubSeason().addWin();
+            game2.getHome().getClubSeason().addPoints(POINTS_FOR_WIN);
+            game2.getAway().getClubSeason().addPoints(POINTS_FOR_LOST);
+        } else if (game2.getHome().getGoals() < game2.getAway().getGoals()) {
+            game2.getHome().getClubSeason().addLose();
+            game2.getAway().getClubSeason().addWin();
 
-            match.getHome().getClubSeason().addPoints(POINTS_FOR_LOST);
-            match.getAway().getClubSeason().addPoints(POINTS_FOR_WIN);
+            game2.getHome().getClubSeason().addPoints(POINTS_FOR_LOST);
+            game2.getAway().getClubSeason().addPoints(POINTS_FOR_WIN);
         } else {
-            match.getHome().getClubSeason().addDraw();
-            match.getAway().getClubSeason().addDraw();
+            game2.getHome().getClubSeason().addDraw();
+            game2.getAway().getClubSeason().addDraw();
 
-            match.getHome().getClubSeason().addPoints(POINTS_FOR_DRAW);
-            match.getAway().getClubSeason().addPoints(POINTS_FOR_DRAW);
+            game2.getHome().getClubSeason().addPoints(POINTS_FOR_DRAW);
+            game2.getAway().getClubSeason().addPoints(POINTS_FOR_DRAW);
         }
 
-        match.getHome().getClubSeason().addMatch();
-        match.getAway().getClubSeason().addMatch();
+        game2.getHome().getClubSeason().addMatch();
+        game2.getAway().getClubSeason().addMatch();
 
-        match.getHome().getClubSeason().addScoredGoals(match.getHome().getGoals());
-        match.getAway().getClubSeason().addScoredGoals(match.getAway().getGoals());
+        game2.getHome().getClubSeason().addScoredGoals(game2.getHome().getGoals());
+        game2.getAway().getClubSeason().addScoredGoals(game2.getAway().getGoals());
 
-        match.getHome().getClubSeason().addLostGoals(match.getAway().getGoals());
-        match.getAway().getClubSeason().addLostGoals(match.getHome().getGoals());
+        game2.getHome().getClubSeason().addLostGoals(game2.getAway().getGoals());
+        game2.getAway().getClubSeason().addLostGoals(game2.getHome().getGoals());
 
-        match.getHome().getClubSeason().setBilans();
-        match.getAway().getClubSeason().setBilans();
+        game2.getHome().getClubSeason().setBilans();
+        game2.getAway().getClubSeason().setBilans();
 
-        return match;
+        return game2;
     }
 
     public List<PlayerSeason> getPlayersInArray(MainLoadService service, String array, String clubName, String period) {

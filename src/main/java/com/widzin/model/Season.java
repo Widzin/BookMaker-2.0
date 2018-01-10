@@ -9,14 +9,14 @@ public class Season {
 
     private List<ClubSeason> clubs;
 
-    private List<Match> matches;
+    private List<Game2> game2s;
 
 
 
     public Season(String period) {
         this.period = period;
         clubs = new ArrayList<>();
-        matches = new ArrayList<>();
+        game2s = new ArrayList<>();
     }
 
     public String getPeriod() {
@@ -31,23 +31,23 @@ public class Season {
         return clubs;
     }
 
-    public List<Match> getMatches() {
-        return matches;
+    public List<Game2> getGame2s() {
+        return game2s;
     }
 
     public void addClub(ClubSeason club) {
         clubs.add(club);
     }
 
-    public void addMatch(Match match) {
-        matches.add(match);
+    public void addMatch(Game2 game2) {
+        game2s.add(game2);
     }
 
     @Override
     public String toString() {
         return "Season{" +
                 "period='" + period + '\'' +
-                ", matches=" + matches +
+                ", game2s=" + game2s +
                 ", clubs=" + clubs +
                 '}';
     }

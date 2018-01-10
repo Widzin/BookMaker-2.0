@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head lang="en">
 
-    <title>Create match</title>
+    <title>Create game2</title>
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
@@ -10,7 +10,7 @@
         <div id="main">
             <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
             <div th:if="${param.errorId}" class="row text-center">
-                <label style="color:red">Can't make a match between the same teams.</label>
+                <label style="color:red">Can't make a game2 between the same teams.</label>
             </div>
             <div th:if="${param.errorDt}" class="row text-center">
                 <label style="color:red">Bad date input.</label>

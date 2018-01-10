@@ -22,7 +22,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     private ClubService clubService;
     private Club2Service club2Service;
     private ClubSeasonService clubSeasonService;
-    //private MatchService matchService;
+    private Game2Service game2Service;
     private MatchEventService matchEventService;
     private TeamMatchDetailsService teamMatchDetailsService;
     private UserService userService;
@@ -57,10 +57,10 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         this.clubSeasonService = clubSeasonService;
     }
 
-    /*@Autowired
-    public void setMatchService(MatchService matchService) {
-        this.matchService = matchService;
-    }*/
+    @Autowired
+    public void setGame2Service(Game2Service game2Service) {
+        this.game2Service = game2Service;
+    }
 
     @Autowired
     public void setMatchEventService(MatchEventService matchEventService) {
@@ -165,11 +165,11 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
                 clubSeasonService.saveClubSeason(clubSeason);
                 log.info("Saved clubSeason id: " + clubSeason.getId());
             }
-            for (Match match: season.getMatches()) {
-                saveTeamMatchDetailsToDatabase(match.getHome());
-                saveTeamMatchDetailsToDatabase(match.getAway());
-                //matchService.saveMatch(match);
-                //log.info("Saved match id: " + match.getId());
+            for (Game2 game2 : season.getGame2s()) {
+                saveTeamMatchDetailsToDatabase(game2.getHome());
+                saveTeamMatchDetailsToDatabase(game2.getAway());
+                game2Service.saveGame2(game2);
+                log.info("Saved game2 id: " + game2.getId());
             }
         }
     }
