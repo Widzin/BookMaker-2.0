@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Collections;
 import java.util.List;
@@ -85,5 +86,14 @@ public class ClubSeasonController {
         List<ClubSeason> clubSeasons = lastSeason.getClubs();
         model.addAttribute("clubs", clubSeasonService.sortListForTable(clubSeasons));
         return "table";
+    }
+
+    @RequestMapping(value = "/club/{id}/history", method = RequestMethod.POST)
+    public String showHistory(@PathVariable Integer id, Model model){
+        List<Match> allThisClubMatches = matchService.listAllMatchesWithClub(id);
+        Collections.reverse(allThisClubMatches);
+        model.addAttribute("club", club2Service.getClub2ById(id));
+        model.addAttribute("allMatches", allThisClubMatches);
+        return "history";
     }
 }
