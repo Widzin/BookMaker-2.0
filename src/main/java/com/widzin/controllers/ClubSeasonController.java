@@ -47,22 +47,30 @@ public class ClubSeasonController {
         model.addAttribute("clubSeason", lastClubSeason);
 
         Double fullValueOfPlayers = 0.0;
-        for (PlayerSeason playerSeason: lastClubSeason.getPlayers()) {
-            fullValueOfPlayers += playerSeason.getValue();
+        if (lastClubSeason.getPlayers().size() > 0) {
+            for (PlayerSeason playerSeason: lastClubSeason.getPlayers()) {
+                fullValueOfPlayers += playerSeason.getValue();
+            }
         }
-
         fullValueOfPlayers /= Math.pow(10, 6);
 
         model.addAttribute("valueOfPlayers", fullValueOfPlayers);
         model.addAttribute("numberOfPlayers", lastClubSeason.getPlayers().size());
 
         List<Match> allThisClubMatches = matchService.listAllMatchesWithClub(id);
-        List<Match> lastFiveGames = allThisClubMatches.subList(
-                allThisClubMatches.size() - 5,
-                allThisClubMatches.size());
+        if (allThisClubMatches.size() > 5) {
+            List<Match> lastFiveGames = allThisClubMatches.subList(
+                    allThisClubMatches.size() - 5,
+                    allThisClubMatches.size());
+            Collections.reverse(lastFiveGames);
+            model.addAttribute("lastMatches", lastFiveGames);
+        } else {
+            if (allThisClubMatches.size() > 1) {
+                Collections.reverse(allThisClubMatches);
+            }
+            model.addAttribute("lastMatches", allThisClubMatches);
+        }
 
-        Collections.reverse(lastFiveGames);
-        model.addAttribute("lastMatches", lastFiveGames);
         //model.addAttribute("nextGames", clubSeasonService.getNextMatche);
         return "clubshow";
     }

@@ -1,6 +1,8 @@
 package com.widzin.services.implementations;
 
+import com.widzin.models.Club2;
 import com.widzin.models.ClubSeason;
+import com.widzin.repositories.Club2Repository;
 import com.widzin.repositories.ClubSeasonRepository;
 import com.widzin.services.ClubSeasonService;
 import com.widzin.services.ClubService;
@@ -14,10 +16,16 @@ import java.util.List;
 public class ClubSeasonServiceImpl implements ClubSeasonService {
 
     private ClubSeasonRepository clubSeasonRepository;
+    private Club2Repository club2Repository;
 
     @Autowired
     public void setClubSeasonRepository(ClubSeasonRepository clubSeasonRepository) {
         this.clubSeasonRepository = clubSeasonRepository;
+    }
+
+    @Autowired
+    public void setClub2Repository(Club2Repository club2Repository) {
+        this.club2Repository = club2Repository;
     }
 
     @Override
@@ -33,8 +41,8 @@ public class ClubSeasonServiceImpl implements ClubSeasonService {
     @Override
     public List<ClubSeason> getClubSeasonsByClub2Id(Integer id) {
         Iterable<ClubSeason> allClubSeasons = listAllClubsSeason();
-
         List<ClubSeason> clubSeasons = new ArrayList<>();
+
         for (ClubSeason clubSeason: allClubSeasons) {
             if (clubSeason.getClub2().getId() == id)
                 clubSeasons.add(clubSeason);
@@ -45,8 +53,12 @@ public class ClubSeasonServiceImpl implements ClubSeasonService {
 
     @Override
     public ClubSeason getLastClubSeason(Integer id) {
+        List<ClubSeason> clubSeasons = getClubSeasonsByClub2Id(id);
+        if (clubSeasons.size() == 0)
+            return new ClubSeason(club2Repository.findOne(id));
+
         Integer maxId = 0;
-        for (ClubSeason clubSeason: getClubSeasonsByClub2Id(id)) {
+        for (ClubSeason clubSeason: clubSeasons) {
             if (maxId < clubSeason.getId())
                 maxId = clubSeason.getId();
         }

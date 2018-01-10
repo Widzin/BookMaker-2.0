@@ -25,6 +25,12 @@ public class Club2Controller {
         return "clubs";
     }
 
+    @RequestMapping("/club/new")
+    public String newClub(Model model) {
+        model.addAttribute("club", new Club2());
+        return "clubform";
+    }
+
     @RequestMapping("/club/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {
         model.addAttribute("club", club2Service.getClub2ById(id));

@@ -39,11 +39,11 @@ public class ClubController {
 		return "clubform";
 	}*/
 
-	@RequestMapping("/club/new")
+	/*@RequestMapping("/club/new")
 	public String newClub(Model model) {
 		model.addAttribute("club", new Club());
 		return "clubform";
-	}
+	}*/
 
 	/*@RequestMapping(value = "/club", method = RequestMethod.POST)
 	public String saveClub(Club club) {
