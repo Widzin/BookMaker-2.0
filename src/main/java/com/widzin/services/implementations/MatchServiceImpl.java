@@ -1,6 +1,7 @@
 package com.widzin.services.implementations;
 
 import com.google.common.collect.Lists;
+import com.widzin.models.Calculations;
 import com.widzin.models.Match;
 import com.widzin.repositories.MatchRepository;
 import com.widzin.services.MatchService;
@@ -51,6 +52,18 @@ public class MatchServiceImpl implements MatchService {
     }
 
     @Override
+    public List<Match> listAllMatchesWithClubSeason(Integer clubSeasonId) {
+        List<Match> matches = new ArrayList<>();
+
+        for (Match match: Lists.newArrayList(listAllMatches())) {
+            if (match.getHome().getClubSeason().getId() == clubSeasonId
+                    || match.getAway().getClubSeason().getId() == clubSeasonId)
+                matches.add(match);
+        }
+        return matches;
+    }
+
+    @Override
     public List<Match> listAllPlayedMatchesWithClub(Integer clubId) {
         List<Match> allPlayedMatches = new ArrayList<>();
 
@@ -82,6 +95,22 @@ public class MatchServiceImpl implements MatchService {
                 counter++;
         }
         return counter;
+    }
+
+    @Override
+    public List<Match> listAllNextMatches() {
+        Calculations calculations = Calculations.getInstance();
+        List<Match> nextMatches = new ArrayList<>();
+
+        for (Match match: Lists.newArrayList(listAllMatches())) {
+            if (!match.isPlayed()) {
+                //policz rate'y
+                //zapisz
+                nextMatches.add(match);
+            }
+
+        }
+        return nextMatches;
     }
 
     @Override

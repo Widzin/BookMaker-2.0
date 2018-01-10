@@ -1,9 +1,12 @@
 package com.widzin.models;
 
+import com.widzin.services.MatchService;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 public class Calculations {
 	private static Calculations instance = null;
@@ -26,8 +29,10 @@ public class Calculations {
 	private int numberOfAllMatches;
 
 	//club for which would be calculated rates
-	private Club home;
-	private Club away;
+	//private Club home;
+	//private Club away;
+	private ClubSeason home;
+	private ClubSeason away;
 
 	//details from this clubs
 	private int goalsScoredByHomeTeam;
@@ -45,7 +50,14 @@ public class Calculations {
 	//changed matches
 	private boolean addedNewMatch;
 
-	private SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+	private MatchService matchService;
+
+	@Autowired
+    public void setMatchService(MatchService matchService) {
+        this.matchService = matchService;
+    }
+
+    private SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
 
 	protected Calculations() {
 		allGoalsScoredAtHome = 0;
@@ -97,73 +109,100 @@ public class Calculations {
 		this.addedNewMatch = addedNewMatch;
 	}
 
-	public void prepareMatch(Club home, Club away) {
-		this.home = home;
-		this.away = away;
-		setHomeDetails(2016);
-		setAwayDetails(2016);
-		setMatchesBetween();
+    /*public void prepareMatch(Club home, Club away) {
+        //this.home = home;
+        //this.away = away;
+        setHomeDetails(2016);
+        setAwayDetails(2016);
+        setMatchesBetween();
+    }*/
+
+	public void prepareMatch(ClubSeason home, ClubSeason away) {
+		setHomeDetails(home);
+		setAwayDetails(away);
+		setMatchesBetween(home.getClub2(), away.getClub2());
 	}
 
-	private void setHomeDetails(int year) {
-		for (Game g: home.getGamesAtHome()){
-			try {
-				if (g.isPlayed() && g.getDate().after(ft.parse(year + "-07-10"))) {
-					numberOfMatchesAtHome++;
-					goalsScoredByHomeTeam += g.getHomeScore();
-					goalsLostByHomeTeam += g.getAwayScore();
-				}
-			} catch (ParseException e) {
-				System.out.println("Something went wrong");
-			}
-		}
+	private void setHomeDetails(ClubSeason clubSeason) {
+        for (Match match: matchService.listAllMatchesWithClubSeason(clubSeason.getId())) {
+            if (match.isPlayed()
+                    && match.getHome().getClubSeason().getId() == clubSeason.getId()) {
+                numberOfMatchesAtHome++;
+                goalsScoredByHomeTeam += match.getHome().getGoals();
+                goalsLostByHomeTeam += match.getAway().getGoals();
+            }
+        }
+	    //-----------------------------------------------
+//		for (Game g: home.getGamesAtHome()){
+//			try {
+//				if (g.isPlayed() && g.getDate().after(ft.parse(year + "-07-10"))) {
+//					numberOfMatchesAtHome++;
+//					goalsScoredByHomeTeam += g.getHomeScore();
+//					goalsLostByHomeTeam += g.getAwayScore();
+//				}
+//			} catch (ParseException e) {
+//				System.out.println("Something went wrong");
+//			}
+//		}
 		if (numberOfMatchesAtHome < 34) {
-			setHomeDetails(year - 1);
+			//setHomeDetails(year - 1);
 		}
 	}
 
-	private void setAwayDetails(int year) {
-		for (Game g: away.getGamesAway()){
-			try {
-				if (g.isPlayed() && g.getDate().after(ft.parse(year + "-07-10"))) {
-					numberOfMatchesAway++;
-					goalsScoredByAwayTeam += g.getAwayScore();
-					goalsLostByAwayTeam += g.getHomeScore();
-				}
-			} catch (ParseException e) {
-				System.out.println("Something went wrong");
-			}
-		}
+	private void setAwayDetails(ClubSeason clubSeason) {
+        for (Match match: matchService.listAllMatchesWithClubSeason(clubSeason.getId())) {
+            if (match.isPlayed()
+                    && match.getAway().getClubSeason().getId() == clubSeason.getId()) {
+                numberOfMatchesAway++;
+                goalsScoredByAwayTeam += match.getAway().getGoals();
+                goalsLostByAwayTeam += match.getHome().getGoals();
+            }
+        }
+//		for (Game g: away.getGamesAway()){
+//			try {
+//				if (g.isPlayed() && g.getDate().after(ft.parse(year + "-07-10"))) {
+//					numberOfMatchesAway++;
+//					goalsScoredByAwayTeam += g.getAwayScore();
+//					goalsLostByAwayTeam += g.getHomeScore();
+//				}
+//			} catch (ParseException e) {
+//				System.out.println("Something went wrong");
+//			}
+//		}
 		if (numberOfMatchesAway < 34) {
-			setAwayDetails(year - 1);
+			//setAwayDetails(year - 1);
 		}
 	}
 
-	private void setMatchesBetween() {
-		for (Game g: home.getGamesAtHome()) {
-			if (g.getAway().getId() == away.getId()) {
-				if (g.isPlayed()) {
-					if (g.getHomeScore() > g.getAwayScore())
-						winsByHome++;
-					else if (g.getHomeScore() < g.getAwayScore())
-						winsByAway++;
-					else
-						drawsBetween++;
-				}
-			}
-		}
-		for (Game g: away.getGamesAtHome()) {
-			if (g.getAway().getId() == home.getId()) {
-				if (g.isPlayed()) {
-					if (g.getHomeScore() > g.getAwayScore())
-						winsByAway++;
-					else if (g.getHomeScore() < g.getAwayScore())
-						winsByHome++;
-					else
-						drawsBetween++;
-				}
-			}
-		}
+	private void setMatchesBetween(Club2 home, Club2 away) {
+	    List<Match> allHomeMatches = matchService
+                .listAllMatchesWithClub(home.getId());
+	    List<Match> allAwayMatches = matchService
+                .listAllMatchesWithClub(away.getId());
+//		for (Game g: home.getGamesAtHome()) {
+//			if (g.getAway().getId() == away.getId()) {
+//				if (g.isPlayed()) {
+//					if (g.getHomeScore() > g.getAwayScore())
+//						winsByHome++;
+//					else if (g.getHomeScore() < g.getAwayScore())
+//						winsByAway++;
+//					else
+//						drawsBetween++;
+//				}
+//			}
+//		}
+//		for (Game g: away.getGamesAtHome()) {
+//			if (g.getAway().getId() == home.getId()) {
+//				if (g.isPlayed()) {
+//					if (g.getHomeScore() > g.getAwayScore())
+//						winsByAway++;
+//					else if (g.getHomeScore() < g.getAwayScore())
+//						winsByHome++;
+//					else
+//						drawsBetween++;
+//				}
+//			}
+//		}
 	}
 
 	public Double[] calculateRates() {

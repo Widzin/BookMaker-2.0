@@ -52,7 +52,7 @@ public class TicketController {
 		list.add(0);
 		checked.setCheckedGames(list);
 		model.addAttribute("checked", checked);
-		return "nextgames";
+		return "nextmatches";
 	}
 
 	private Logger log = Logger.getLogger(GameController.class);
@@ -83,7 +83,7 @@ public class TicketController {
 		    model.addAttribute("disabled", true);
 		else
             model.addAttribute("disabled", false);
-		return "chosengames";
+		return "chosenmatches";
 	}
 
 	@RequestMapping("/user/{id}/tickets")

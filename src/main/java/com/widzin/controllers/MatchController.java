@@ -2,7 +2,6 @@ package com.widzin.controllers;
 
 import com.widzin.models.ClubSeason;
 import com.widzin.models.Match;
-import com.widzin.models.TeamMatchDetails;
 import com.widzin.services.ClubSeasonService;
 import com.widzin.services.MatchService;
 import com.widzin.services.SeasonService;
@@ -51,22 +50,22 @@ public class MatchController {
         this.seasonService = seasonService;
     }
 
-    @RequestMapping("/game/new")
+    @RequestMapping("/match/new")
     public String newGame(Model model){
         List<ClubSeason> lastClubSeasons = seasonService.getLastSeason().getClubs();
 
         model.addAttribute("match", new Match());
         model.addAttribute("clubSeasons", lastClubSeasons);
-        return "gameform";
+        return "matchform";
     }
 
-    @RequestMapping(value = "/createGame", method = RequestMethod.POST)
+    @RequestMapping(value = "/match/create", method = RequestMethod.POST)
     public String saveGame(@RequestParam("dataText") String text,
                            @RequestParam("homeTeam") Integer homeTeamId,
                            @RequestParam("awayTeam") Integer awayTeamId,
                            Match match){
         if (homeTeamId == awayTeamId){
-            return "redirect:/game/new?errorId";
+            return "redirect:/match/new?errorId";
         } else {
             try {
                 match.getHome().setClubSeason(
@@ -96,12 +95,18 @@ public class MatchController {
                 match.setDate(date);
 
                 matchService.saveMatch(match);
-                return "redirect:/game/next";
+                return "redirect:/match/next";
             } catch (ParseException ex) {
-                return "redirect:/game/new?errorDt";
+                return "redirect:/match/new?errorDt";
             }
         }
     }
 
-
+    @RequestMapping("/match/next")
+    public String showNextGames(Model model){
+        model.addAttribute("matches", matchService.listAllNextMatches());
+        model.addAttribute("betting", false);
+        //model.addAttribute("ticket", new Ticket());
+        return "nextmatches";
+    }
 }

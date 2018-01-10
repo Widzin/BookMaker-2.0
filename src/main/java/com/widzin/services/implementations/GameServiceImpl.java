@@ -58,10 +58,10 @@ public class GameServiceImpl implements GameService {
 		for (Game g: gameRepository.findAll()) {
 			if (!g.isPlayed()){
 				if (g.getRates()[0] == null || calculations.isAddedNewMatch()) {
-					calculations.prepareMatch(g.getHome(), g.getAway());
+					/*calculations.prepareMatch(g.getHome(), g.getAway());
 					g.setRates(calculations.calculateRates());
 					gameRepository.save(g);
-					log.info("Policzyłem: " + g.getRates()[0] + " - " + g.getRates()[1] + " - " + g.getRates()[2]);
+					log.info("Policzyłem: " + g.getRates()[0] + " - " + g.getRates()[1] + " - " + g.getRates()[2]);*/
 				}
 				list.add(g);
 				calculations.resetClubs();

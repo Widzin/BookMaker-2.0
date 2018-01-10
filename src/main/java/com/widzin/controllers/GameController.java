@@ -11,11 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -82,21 +78,21 @@ public class GameController {
 		}
 	}*/
 
-	@RequestMapping("/game/next")
+	/*@RequestMapping("/game/next")
 	public String showNextGames(Model model){
 		model.addAttribute("games", gameService.getNextMatches());
 		model.addAttribute("betting", false);
 		model.addAttribute("ticket", new Ticket());
 		return "nextgames";
-	}
+	}*/
 
-	@RequestMapping("/game/play/{id}")
+	@RequestMapping("/match/play/{id}")
 	public String playGame(@PathVariable Integer id, Model model){
 		model.addAttribute("game", gameService.findById(id));
-		return "gameplay";
+		return "matchplay";
 	}
 
-	@RequestMapping(value = "/game/play/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/match/play/{id}", method = RequestMethod.POST)
 	public String setScoresInGame(@PathVariable Integer id, @RequestParam("homeScore") Integer homeScore,
 								  @RequestParam("awayScore") Integer awayScore) {
 		if (homeScore != null && awayScore != null) {
@@ -199,7 +195,7 @@ public class GameController {
 
 	private Logger log = Logger.getLogger(GameController.class);
 
-	@RequestMapping("/game/between/{text}")
+	@RequestMapping("/match/between/{text}")
 	public String showHistoryBetween(@PathVariable("text") String between, Model model){
 		String[] parts = between.split("i");
 		Integer idHome = Integer.parseInt(parts[0]);
