@@ -1,16 +1,19 @@
 package com.widzin.controllers;
 
-import com.widzin.models.*;
+import com.widzin.models.Club2;
+import com.widzin.models.ClubSeason;
+import com.widzin.models.Match;
+import com.widzin.models.PlayerSeason;
 import com.widzin.services.Club2Service;
 import com.widzin.services.ClubSeasonService;
-import com.widzin.services.SeasonService;
+import com.widzin.services.MatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -18,7 +21,7 @@ public class ClubSeasonController {
 
     private ClubSeasonService clubSeasonService;
     private Club2Service club2Service;
-    private SeasonService seasonService;
+    private MatchService matchService;
 
     @Autowired
     public void setClubSeasonService(ClubSeasonService clubSeasonService) {
@@ -31,8 +34,8 @@ public class ClubSeasonController {
     }
 
     @Autowired
-    public void setSeasonService(SeasonService seasonService) {
-        this.seasonService = seasonService;
+    public void setMatchService(MatchService matchService) {
+        this.matchService = matchService;
     }
 
     @RequestMapping("/club/show/{id}")
@@ -53,11 +56,14 @@ public class ClubSeasonController {
         model.addAttribute("valueOfPlayers", fullValueOfPlayers);
         model.addAttribute("numberOfPlayers", lastClubSeason.getPlayers().size());
 
-        /*List<Match> allThisClubMatches = new ArrayList<>();
+        List<Match> allThisClubMatches = matchService.listAllMatchesWithClub(id);
+        List<Match> lastFiveGames = allThisClubMatches.subList(
+                allThisClubMatches.size() - 5,
+                allThisClubMatches.size());
 
-
-        model.addAttribute("lastGames", clubSeasonService.getLastFiveMatches(clubSeasonService.getClubById(id)));
-        model.addAttribute("nextGames", clubSeasonService.getNextMatchesForClub(clubSeasonService.getClubById(id)));*/
+        Collections.reverse(lastFiveGames);
+        model.addAttribute("lastMatches", lastFiveGames);
+        //model.addAttribute("nextGames", clubSeasonService.getNextMatche);
         return "clubshow";
     }
 }

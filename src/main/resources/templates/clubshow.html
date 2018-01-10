@@ -44,7 +44,7 @@
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Value: </label>
                                 <div class="col-sm-8">
-                                    <p class="form-control-static" th:text="${#numbers.formatDecimal(valueOfPlayers, 1, 2)} + '(mln €)'">Value</p>
+                                    <p class="form-control-static" th:text="${#numbers.formatDecimal(valueOfPlayers, 1, 2)} + ' (mln €)'">Value</p>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -93,9 +93,9 @@
                         </tr>
                     </table>
                 </div>
+                <br />-->
                 <br />
-                <br />
-                <div class="col-lg-12" th:if="${not #lists.isEmpty(lastGames)}">
+                <div class="col-lg-12" th:if="${not #lists.isEmpty(lastMatches)}">
                     <div class="row text-center">
                         <h3>Last five matches</h3>
                     </div>
@@ -107,23 +107,23 @@
                             <th>Away club</th>
                             <th sec:authorize="hasAnyAuthority('USER','ADMIN')">Show previous games</th>
                         </tr>
-                        <tr th:each="game : ${lastGames}">
-                            <td th:text="${#dates.format(game.date, 'yyyy/MM/dd')}">Date</td>
-                            <td th:switch="${game.home.name}">
-                                <b th:case="${club.name}" th:text="${game.home.name}"/>
-                                <span th:case="*" th:text="${game.home.name}"/>
+                        <tr th:each="match : ${lastMatches}">
+                            <td th:text="${#dates.format(match.date, 'yyyy/MM/dd')}">Date</td>
+                            <td th:switch="${match.home.clubSeason.club2.name}">
+                                <b th:case="${club.name}" th:text="${match.home.clubSeason.club2.name}"/>
+                                <span th:case="*" th:text="${match.home.clubSeason.club2.name}"/>
                             </td>
-                            <td th:text="${game.homeScore} + ':' + ${game.awayScore}">Score</td>
-                            <td th:switch="${game.away.name}">
-                                <b th:case="${club.name}" th:text="${game.away.name}"/>
-                                <span th:case="*" th:text="${game.away.name}"/>
+                            <td th:text="${match.home.goals} + ':' + ${match.away.goals}">Score</td>
+                            <td th:switch="${match.away.clubSeason.club2.name}">
+                                <b th:case="${club.name}" th:text="${match.away.clubSeason.club2.name}"/>
+                                <span th:case="*" th:text="${match.away.clubSeason.club2.name}"/>
                             </td>
                             <td sec:authorize="hasAnyAuthority('USER','ADMIN')">
-                                <a th:href="${'/game/between/' + game.home.id + 'i' + game.away.id}">Show</a>
+                                <a th:href="${'/game/between/' + match.home.clubSeason.club2.id + 'i' + match.away.clubSeason.club2.id}">Show</a>
                             </td>
                         </tr>
                     </table>
-                </div>-->
+                </div>
                 <form class="form-horizontal" th:object="${club}" th:action="@{/historyOfClub/} + ${club.id}" method="POST">
                     <div class="form-group">
                         <div class="col-lg-offset-10 col-lg-2" style="padding-top: 30px;">
