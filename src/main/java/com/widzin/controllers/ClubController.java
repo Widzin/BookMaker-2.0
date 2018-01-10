@@ -33,11 +33,11 @@ public class ClubController {
 		return "clubshow";
 	}*/
 
-	@RequestMapping("/club/edit/{id}")
+	/*@RequestMapping("/club/edit/{id}")
 	public String edit(@PathVariable Integer id, Model model) {
 		model.addAttribute("club", clubService.getClubById(id));
 		return "clubform";
-	}
+	}*/
 
 	@RequestMapping("/club/new")
 	public String newClub(Model model) {
@@ -45,11 +45,11 @@ public class ClubController {
 		return "clubform";
 	}
 
-	@RequestMapping(value = "/club", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/club", method = RequestMethod.POST)
 	public String saveClub(Club club) {
 		clubService.saveClub(club);
 		return "redirect:/club/show/" + club.getId();
-	}
+	}*/
 
 	@RequestMapping("/club/delete/{id}")
 	public String delete(@PathVariable Integer id) {
