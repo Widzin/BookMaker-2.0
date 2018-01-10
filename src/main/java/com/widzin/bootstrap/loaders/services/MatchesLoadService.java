@@ -15,6 +15,10 @@ import java.util.List;
 
 public class MatchesLoadService implements LoadService {
 
+    private final static Integer POINTS_FOR_WIN = 3;
+    private final static Integer POINTS_FOR_DRAW = 1;
+    private final static Integer POINTS_FOR_LOST = 0;
+
     private MatchParser parser;
 
     @Override
@@ -104,6 +108,40 @@ public class MatchesLoadService implements LoadService {
         match.getAway().setGoalDetails(getEventsInArray(xmlMatch.getAwayGoalDetails(), Event.GOAL, service, awayPlayers, homePlayers));
         match.getAway().setSubDetails(getEventsInArray(xmlMatch.getAwaySubDetails(), Event.SUBSTITUTION, service, awayPlayers, homePlayers));
         match.getAway().setRedCardDetails(getEventsInArray(xmlMatch.getAwayTeamRedCardDetails(), Event.RED_CARD, service, awayPlayers, homePlayers));
+
+        //-------------- Adding stats to clubs ---------------
+
+        if (match.getHome().getGoals() > match.getAway().getGoals()) {
+            match.getHome().getClubSeason().addWin();
+            match.getAway().getClubSeason().addLose();
+
+            match.getHome().getClubSeason().addPoints(POINTS_FOR_WIN);
+            match.getAway().getClubSeason().addPoints(POINTS_FOR_LOST);
+        } else if (match.getHome().getGoals() < match.getAway().getGoals()) {
+            match.getHome().getClubSeason().addLose();
+            match.getAway().getClubSeason().addWin();
+
+            match.getHome().getClubSeason().addPoints(POINTS_FOR_LOST);
+            match.getAway().getClubSeason().addPoints(POINTS_FOR_WIN);
+        } else {
+            match.getHome().getClubSeason().addDraw();
+            match.getAway().getClubSeason().addDraw();
+
+            match.getHome().getClubSeason().addPoints(POINTS_FOR_DRAW);
+            match.getAway().getClubSeason().addPoints(POINTS_FOR_DRAW);
+        }
+
+        match.getHome().getClubSeason().addMatch();
+        match.getAway().getClubSeason().addMatch();
+
+        match.getHome().getClubSeason().addScoredGoals(match.getHome().getGoals());
+        match.getAway().getClubSeason().addScoredGoals(match.getAway().getGoals());
+
+        match.getHome().getClubSeason().addLostGoals(match.getAway().getGoals());
+        match.getAway().getClubSeason().addLostGoals(match.getHome().getGoals());
+
+        match.getHome().getClubSeason().setBilans();
+        match.getAway().getClubSeason().setBilans();
 
         return match;
     }

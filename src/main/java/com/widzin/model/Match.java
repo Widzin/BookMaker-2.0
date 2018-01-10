@@ -1,17 +1,16 @@
 package com.widzin.model;
 
-import com.widzin.bootstrap.loaders.parsers.MatchParser;
-import com.widzin.bootstrap.loaders.parsers.ParsingMethods;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
 
-//@Entity
+/*@Entity
+@Table*/
 public class Match {
 
     /*@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Version
@@ -23,16 +22,34 @@ public class Match {
     private Integer round;
     private String period;
 
-    //@OneToOne(mappedBy = "match")
+    /*@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "team_match_details_id", insertable = false, updatable = false)*/
     private TeamMatchDetails home;
 
-    //@OneToOne(mappedBy = "match")
+    /*@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "team_match_details_id", insertable = false, updatable = false)*/
     private TeamMatchDetails away;
 
     public Match() {
         home = new TeamMatchDetails();
         away = new TeamMatchDetails();
     }
+
+    /*public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }*/
 
     public Date getDate() {
         return date;

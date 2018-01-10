@@ -21,7 +21,6 @@ public class PlayerSeason {
     private Integer version;
 
     @ManyToOne
-    //@JoinColumn(name = "player_id", insertable = false, updatable = false)
     private Player player;
 
     private String position;

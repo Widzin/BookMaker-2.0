@@ -86,64 +86,64 @@ public class ClubSeason {
         return points;
     }
 
-    public void setPoints(Integer points) {
-        this.points = points;
+    public void addPoints(Integer points) {
+        this.points += points;
     }
 
     public Integer getMatches() {
         return matches;
     }
 
-    public void setMatches(Integer matches) {
-        this.matches = matches;
+    public void addMatch() {
+        this.matches ++;
     }
 
     public Integer getWins() {
         return wins;
     }
 
-    public void setWins(Integer wins) {
-        this.wins = wins;
+    public void addWin() {
+        this.wins ++;
     }
 
     public Integer getDraws() {
         return draws;
     }
 
-    public void setDraws(Integer draws) {
-        this.draws = draws;
+    public void addDraw() {
+        this.draws ++;
     }
 
     public Integer getLoses() {
         return loses;
     }
 
-    public void setLoses(Integer loses) {
-        this.loses = loses;
+    public void addLose() {
+        this.loses ++;
     }
 
     public Integer getScoredGoals() {
         return scoredGoals;
     }
 
-    public void setScoredGoals(Integer scoredGoals) {
-        this.scoredGoals = scoredGoals;
+    public void addScoredGoals(Integer scoredGoals) {
+        this.scoredGoals += scoredGoals;
     }
 
     public Integer getLostGoals() {
         return lostGoals;
     }
 
-    public void setLostGoals(Integer lostGoals) {
-        this.lostGoals = lostGoals;
+    public void addLostGoals(Integer lostGoals) {
+        this.lostGoals += lostGoals;
     }
 
     public Integer getBilans() {
         return bilans;
     }
 
-    public void setBilans(Integer bilans) {
-        this.bilans = bilans;
+    public void setBilans() {
+        this.bilans = scoredGoals - lostGoals;
     }
 
     public List<PlayerSeason> getPlayers() {
