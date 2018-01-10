@@ -15,7 +15,6 @@ public class TeamMatchDetails {
     private Integer version;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    //@JoinColumn(name = "club_season_id")//, insertable = false, updatable = false)
     private ClubSeason clubSeason;
 
     private Integer goals;
@@ -23,7 +22,6 @@ public class TeamMatchDetails {
     private Integer shotsOnTarget;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    //@JoinColumn(name = "player_season_id")//, insertable = false, updatable = false)
     private PlayerSeason lineupGoalkeeper;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)

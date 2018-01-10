@@ -6,8 +6,8 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table
-public class Game2 {
+@Table(name = "bundesliga_match")
+public class Match {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,14 +23,12 @@ public class Game2 {
     private String period;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    //@JoinColumn(name = "team_match_details_id", insertable = false, updatable = false)
     private TeamMatchDetails home;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    //@JoinColumn(name = "team_match_details_id", insertable = false, updatable = false)
     private TeamMatchDetails away;
 
-    public Game2() {
+    public Match() {
         home = new TeamMatchDetails();
         away = new TeamMatchDetails();
     }
@@ -93,7 +91,7 @@ public class Game2 {
 
     @Override
     public String toString() {
-        return "Game2{" +
+        return "Match{" +
                 "date=" + date +
                 ", round=" + round +
                 ", period='" + period + '\'' +

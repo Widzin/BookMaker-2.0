@@ -35,14 +35,14 @@ public class PlayersAndClubLoadService implements LoadService{
 
     @Override
     public void parse(File file, final MainLoadService loadService) {
-        ClubSeason club;
+        ClubSeason clubSeason;
         Club2 club2 = loadService.getClubFromService(clubParser.getClubName(file));
 
         if (club2 == null) {
-            club = new ClubSeason(clubParser.getClubName(file));
-            loadService.addClub(club.getClub2());
+            clubSeason = new ClubSeason(clubParser.getClubName(file));
+            loadService.addClub(clubSeason.getClub2());
         } else
-            club = new ClubSeason(club2);
+            clubSeason = new ClubSeason(club2);
 
         try {
             JAXBContext jc = JAXBContext.newInstance(XMLClubSeason.class);
@@ -62,12 +62,12 @@ public class PlayersAndClubLoadService implements LoadService{
 
                 PlayerSeason playerSeason = new PlayerSeason(player, xmlPlayer.getNumber());
                 playerParser.parseFull(playerSeason, xmlPlayer);
-                club.addPlayer(playerSeason);
+                clubSeason.addPlayer(playerSeason);
             }
         } catch (JAXBException ex) {
             System.out.println("Cannot create instance of XMLClubSeason Class");
         }
-        season.addClub(club);
+        season.addClub(clubSeason);
     }
 
     private Date getBirthDate(XMLPlayer xmlPlayer) {

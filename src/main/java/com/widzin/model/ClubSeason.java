@@ -16,7 +16,6 @@ public class ClubSeason {
     private Integer version;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    //@JoinColumn(name = "club2_id", insertable = false, updatable = false)
     private Club2 club2;
 
     private Integer points;

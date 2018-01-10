@@ -17,7 +17,6 @@ public class Club2 {
 
     private String name;
     private String imgUrl;
-    private boolean bundesliga;
 
     @OneToMany(mappedBy = "club2", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ClubSeason> clubSeasonList;
@@ -58,14 +57,6 @@ public class Club2 {
         this.imgUrl = imgUrl;
     }
 
-    public boolean isBundesliga() {
-        return bundesliga;
-    }
-
-    public void setBundesliga(boolean bundesliga) {
-        this.bundesliga = bundesliga;
-    }
-
     public List<ClubSeason> getClubSeasonList() {
         return clubSeasonList;
     }
@@ -79,7 +70,6 @@ public class Club2 {
         return "Club2{" +
                 "name='" + name + '\'' +
                 ", imgUrl='" + imgUrl + '\'' +
-                ", bundesliga=" + bundesliga +
                 '}';
     }
 }
