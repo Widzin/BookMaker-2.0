@@ -21,6 +21,9 @@
             <div th:if="${param.toMuchMoney}" class="row text-center">
                 <label style="color:red">Operation unsuccesful. You don't have so much money.</label>
             </div>
+            <div th:if="${param.notHisBets}" class="row text-center">
+                <label style="color:red">Operation unsuccesful. It wasn't your bet.</label>
+            </div>
             <br />
             <h1 style="text-align: center"><strong><i>Evaluate...</i></strong></h1>
             <br />

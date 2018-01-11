@@ -118,7 +118,7 @@ public class UserController {
 
 	@RequestMapping(value = "/insertMoney/{id}", method = RequestMethod.POST)
 	public ModelAndView insertMoney(@RequestParam("insert") String text, @PathVariable Integer id){
-		ModelAndView model = new ModelAndView("redirect:/profile");
+		ModelAndView model = new ModelAndView("redirect:/profile?badInput");
 		try {
 			Double money = Double.parseDouble(text);
 			if (money > 0) {
@@ -126,6 +126,7 @@ public class UserController {
 				user.setInsertedMoney(money);
 				user.addMoneyNow(money);
 				userService.saveOrUpdate(user);
+                model = new ModelAndView("redirect:/profile");
 			}
 		} finally {
 			return model;
@@ -160,7 +161,9 @@ public class UserController {
 
     @RequestMapping("/user/{userId}/ticket/{ticketId}")
     public String showUserBetsDetails(@PathVariable("userId") Integer userId,
-                                      @PathVariable("ticketId") Integer ticketId, Model model){
+                                      @PathVariable("ticketId") Integer ticketId,
+                                      Model model,
+                                      Principal principal){
         User user = userService.getById(userId);
         for (Ticket t: user.getTickets()) {
             if (t.getId() == ticketId) {
@@ -169,11 +172,12 @@ public class UserController {
                 return "betshow";
             }
         }
-        if (user.getId() == 1) {
+        User thisUser = userService.findByUsername(principal.getName()).get();
+        if (user.getId() == 1 && thisUser.getId() == 1) {
             Ticket ticket = ticketService.findById(ticketId);
             model.addAttribute("bets", ticket.getBets());
             return "betshow";
         }
-        return "redirect:/historyOfBets?error";
+        return "redirect:/?notHisBets";
     }
 }

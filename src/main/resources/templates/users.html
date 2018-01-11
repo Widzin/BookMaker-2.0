@@ -26,15 +26,15 @@
                     </thead>
                     <tbody>
                     <tr th:each="user : ${users}">
-                        <td th:text="${user.id}"><a href="/user/@{user.id}">Id</a></td>
-                        <td th:text="${user.username}">Nickname</td>
-                        <td sec:authorize="hasAuthority('ADMIN')" th:text="${#numbers.formatDecimal(user.moneyNow,1,2)}">Money</td>
-                        <td th:text="${user.mainRole}">Role</td>
+                        <td th:text="${user.id}"><a href="/user/@{user.id}"/></td>
+                        <td th:text="${user.username}"/>
+                        <td sec:authorize="hasAuthority('ADMIN')" th:text="${#numbers.formatDecimal(user.moneyNow,1,2)}"/>
+                        <td th:text="${user.mainRole}"/>
                         <td>
-                            <a th:href="${'/user/show/' + user.id}">View</a>
+                            <a th:href="${'/user/show/' + user.id}"/>
                         </td>
                         <td sec:authorize="hasAuthority('ADMIN')">
-                            <a th:href="${'/user/delete/' + user.id}">Delete</a>
+                            <a th:href="${'/user/delete/' + user.id}"/>
                         </td>
                     </tr>
                     </tbody>

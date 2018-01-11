@@ -31,11 +31,11 @@
                 </thead>
                 <tbody>
                 <tr th:each="ticket, iterStat : ${tickets}" th:class="${iterStat.odd}? 'odd'">
-                    <td th:text="${iterStat.count}"><a href="/ticket/@{ticket.id}" style="text-align: center">Nr</a></td>
-                    <td th:text="${#numbers.formatDecimal(ticket.moneyInserted,1,2)}" style="text-align: center">Money inserted</td>
-                    <td th:text="${#numbers.formatDecimal(ticket.rate,1,2)}">Rate</td>
-                    <td th:text="${#numbers.formatDecimal(ticket.moneyToWin,1,2)}" style="text-align: center">Money to Win</td>
-                    <td th:text="${#numbers.formatDecimal(ticket.moneyToWin * 0.88,1,2)}" style="text-align: center">Money to Win</td>
+                    <td th:text="${iterStat.count}"><a href="/ticket/@{ticket.id}" style="text-align: center"/></td>
+                    <td th:text="${#numbers.formatDecimal(ticket.moneyInserted,1,2)}" style="text-align: center"/>
+                    <td th:text="${#numbers.formatDecimal(ticket.rate,1,2)}"/>
+                    <td th:text="${#numbers.formatDecimal(ticket.moneyToWin,1,2)}" style="text-align: center"/>
+                    <td th:text="${#numbers.formatDecimal(ticket.moneyToWin * 0.88,1,2)}" style="text-align: center"/>
                     <span th:switch="${ticket.finished}">
                     <td th:case="true" style="text-align: center">Finished</td>
                     <td th:case="false" style="text-align: center">Not finished yet</td>
