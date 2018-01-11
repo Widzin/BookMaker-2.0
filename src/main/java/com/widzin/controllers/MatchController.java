@@ -1,5 +1,6 @@
 package com.widzin.controllers;
 
+import com.google.common.collect.Lists;
 import com.widzin.models.ClubSeason;
 import com.widzin.models.Match;
 import com.widzin.services.*;
@@ -108,7 +109,8 @@ public class MatchController {
 
     @RequestMapping("/match/next")
     public String showNextGames(Model model){
-        model.addAttribute("matches", matchService.listAllNextMatches());
+        model.addAttribute("matches", matchService.listAllNextMatches
+                (Lists.newArrayList(seasonService.listAllSeasons())));
         model.addAttribute("betting", false);
         return "nextmatches";
     }

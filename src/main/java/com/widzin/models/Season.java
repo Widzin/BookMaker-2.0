@@ -74,10 +74,6 @@ public class Season {
 
     @Override
     public String toString() {
-        return "Season{" +
-                "period='" + period + '\'' +
-                ", matches=" + matches +
-                ", clubs=" + clubs +
-                '}';
+        return "";
     }
 }

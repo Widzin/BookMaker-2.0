@@ -1,5 +1,6 @@
 package com.widzin.controllers;
 
+import com.google.common.collect.Lists;
 import com.widzin.models.*;
 import com.widzin.services.*;
 import org.apache.log4j.Logger;
@@ -21,6 +22,7 @@ public class TicketController {
     private MatchService matchService;
 	private BetService betService;
 	private UserService userService;
+	private SeasonService seasonService;
 
 	@Autowired
 	public void setTicketService (TicketService ticketService) {
@@ -47,9 +49,15 @@ public class TicketController {
 		this.userService = userService;
 	}
 
-	@RequestMapping("/ticket/new")
+	@Autowired
+    public void setSeasonService(SeasonService seasonService) {
+        this.seasonService = seasonService;
+    }
+
+    @RequestMapping("/ticket/new")
 	public String showMatchesToBet(Model model){
-		model.addAttribute("matches", matchService.listAllNextMatches());
+		model.addAttribute("matches", matchService.listAllNextMatches
+                (Lists.newArrayList(seasonService.listAllSeasons())));
 		model.addAttribute("betting", true);
 		Checked checked = new Checked(new ArrayList<>());
 		//List<Integer> list = new ArrayList<>();

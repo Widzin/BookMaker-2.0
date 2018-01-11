@@ -4,9 +4,13 @@ import com.google.common.collect.Lists;
 import com.widzin.models.Calculations;
 import com.widzin.models.ClubSeason;
 import com.widzin.models.Match;
+import com.widzin.models.Season;
 import com.widzin.repositories.ClubSeasonRepository;
 import com.widzin.repositories.MatchRepository;
+import com.widzin.repositories.SeasonRepository;
 import com.widzin.services.MatchService;
+import com.widzin.services.SeasonService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +24,11 @@ public class MatchServiceImpl implements MatchService {
     private final static Integer POINTS_FOR_DRAW = 1;
     private final static Integer POINTS_FOR_LOST = 0;
 
+    private Logger log = Logger.getLogger(MatchServiceImpl.class);
+
     private MatchRepository matchRepository;
     private ClubSeasonRepository clubSeasonRepository;
+    private SeasonRepository seasonRepository;
 
     @Autowired
     public void setMatchRepository(MatchRepository matchRepository) {
@@ -31,6 +38,11 @@ public class MatchServiceImpl implements MatchService {
     @Autowired
     public void setClubSeasonRepository(ClubSeasonRepository clubSeasonRepository) {
         this.clubSeasonRepository = clubSeasonRepository;
+    }
+
+    @Autowired
+    public void setSeasonRepository(SeasonRepository seasonRepository) {
+        this.seasonRepository = seasonRepository;
     }
 
     @Override
@@ -110,15 +122,22 @@ public class MatchServiceImpl implements MatchService {
     }
 
     @Override
-    public List<Match> listAllNextMatches() {
+    public List<Match> listAllNextMatches(List<Season> seasons) {
         Calculations calculations = Calculations.getInstance();
         List<Match> nextMatches = new ArrayList<>();
 
         for (Match match: Lists.newArrayList(listAllMatches())) {
             if (!match.isPlayed()) {
-                //policz rate'y
-                //zapisz
+                if (match.getRates()[0] == null || calculations.isAddedNewMatch()) {
+                    calculations.prepareMatch(match.getHome().getClubSeason(),
+                            match.getAway().getClubSeason(), seasons);
+                    match.setRates((calculations.calculateRates()));
+                    saveMatch(match);
+                    log.info("Policzono: " + match.getRates()[0]
+                    + " - " + match.getRates()[1] + " - " + match.getRates()[2]);
+                }
                 nextMatches.add(match);
+                calculations.resetClubs();
             }
 
         }

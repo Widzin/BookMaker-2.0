@@ -2,6 +2,7 @@ package com.widzin.services;
 
 import com.widzin.models.ClubSeason;
 import com.widzin.models.Match;
+import com.widzin.models.Season;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public interface MatchService {
     List<Match> listAllPlayedMatchesWithClub(Integer clubId);
     List<Match> listAllNotPlayedMatchesWithClub(Integer clubId);
     Integer listAllMatchesFromPeriodAndRoundSize(String period, Integer round);
-    List<Match> listAllNextMatches();
+    List<Match> listAllNextMatches(List<Season> seasons);
     void updateClubsAfterMatch(int matchId, int homeScore, int awayScore);
     void updateClubAfterMatch(ClubSeason clubSeason, int hisScore, int enemyScore);
     List<Match> listAllMatchesBetween(int homeId, int awayId);
