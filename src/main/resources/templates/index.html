@@ -10,13 +10,16 @@
         <div id="main">
             <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
             <div th:if="${param.success}" class="row text-center">
-                <label style="color:green">Operation success</label>
+                <label style="color:green">Operation success.</label>
             </div>
             <div th:if="${param.matchPlayed}" class="row text-center">
-                <label style="color:green">Match played succesfully</label>
+                <label style="color:green">Match played succesfully.</label>
             </div>
-            <div th:if="${param.error}" class="row text-center">
-                <label style="color:red">Operation unsuccesful. Please check your money in profile</label>
+            <div th:if="${param.cannotParseMoney}" class="row text-center">
+                <label style="color:red">Operation unsuccesful. Please write only digits in label.</label>
+            </div>
+            <div th:if="${param.toMuchMoney}" class="row text-center">
+                <label style="color:red">Operation unsuccesful. You don't have so much money.</label>
             </div>
             <br />
             <h1 style="text-align: center"><strong><i>Evaluate...</i></strong></h1>

@@ -10,14 +10,14 @@
         <div id="main">
             <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
             <!--<div th:if="${not #lists.isEmpty(bets)}">-->
-            <div th:if="${not #lists.isEmpty(chosenMatches)}">
+            <div th:if="${not #lists.isEmpty(bets)}">
                 <div th:if="${param.error}" class="row text-center">
                     <label style="color:red">Wrong input of money.</label>
                 </div>
                 <div class="row text-center">
                     <h2>Games to bet</h2>
                 </div>
-                <form class="form-horizontal" th:object="${ticket}" th:action="@{/ticket/makeFull/} + ${ticket.id}" method="POST">
+                <form class="form-horizontal" th:object="${ticket}" th:action="@{/ticket/create}" method="POST">
                     <input type="hidden" th:field="*{id}"/>
                     <input type="hidden" th:field="*{version}"/>
                     <table id="myTable" class="table table-striped">
@@ -35,14 +35,14 @@
                         </thead>
                         <tbody>
                         <!--<tr th:each="bet : ${bets}">-->
-                        <tr th:each="match : ${chosenMatches}">
-                            <td th:text="${#dates.format(match.date, 'yyyy/MM/dd')}"/>
-                            <td th:text="${match.round}"/>
-                            <td th:text="${match.home.clubSeason.club2.name}"/>
-                            <td th:text="${match.away.clubSeason.club2.name}"/>
-                            <!--<td th:text="${#numbers.formatDecimal(match.rates[0],1,2)}"/>
-                            <td th:text="${#numbers.formatDecimal(match.rates[1],1,2)}"/>
-                            <td th:text="${#numbers.formatDecimal(match.rates[2],1,2)}"/>-->
+                        <tr th:each="bet : ${bets}">
+                            <td th:text="${#dates.format(bet.match.date, 'yyyy/MM/dd')}"/>
+                            <td th:text="${bet.match.round}"/>
+                            <td th:text="${bet.match.home.clubSeason.club2.name}"/>
+                            <td th:text="${bet.match.away.clubSeason.club2.name}"/>
+                            <!--<td th:text="${#numbers.formatDecimal(bet.match.rates[0],1,2)}"/>
+                            <td th:text="${#numbers.formatDecimal(bet.match.rates[1],1,2)}"/>
+                            <td th:text="${#numbers.formatDecimal(bet.match.rates[2],1,2)}"/>-->
                             <td>
                                 <select name="result">
                                     <option th:each="result : ${options}"
@@ -76,7 +76,7 @@
 
                 </form>
             </div>
-            <div th:if="${#lists.isEmpty(chosenMatches)}" class="row text-center">
+            <div th:if="${#lists.isEmpty(bets)}" class="row text-center">
                 <h2>There is no chosen matches to bet.</h2>
             </div>
         </div>
