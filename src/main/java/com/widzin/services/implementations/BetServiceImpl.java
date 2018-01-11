@@ -2,6 +2,7 @@ package com.widzin.services.implementations;
 
 import com.widzin.models.BetGame;
 import com.widzin.models.Game;
+import com.widzin.models.Match;
 import com.widzin.models.Ticket;
 import com.widzin.repositories.BetRepository;
 import com.widzin.services.BetService;
@@ -27,10 +28,10 @@ public class BetServiceImpl implements BetService {
 	}
 
 	@Override
-	public List<BetGame> getBetsFromGameAndTicket (Game game, Ticket ticket) {
+	public List<BetGame> getBetsFromGameAndTicket (Match match, Ticket ticket) {
 		List<BetGame> bets = new ArrayList<>();
 		for (BetGame bg: ticket.getBets()){
-			if (bg.getOneGame().getId() == game.getId())
+			if (bg.getMatch().getId() == match.getId())
 				bets.add(bg);
 		}
 		return bets;

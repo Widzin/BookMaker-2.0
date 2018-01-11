@@ -1,9 +1,6 @@
 package com.widzin.services.implementations;
 
-import com.widzin.models.BetGame;
-import com.widzin.models.Game;
-import com.widzin.models.Result;
-import com.widzin.models.Ticket;
+import com.widzin.models.*;
 import com.widzin.repositories.TicketRepository;
 import com.widzin.services.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +26,10 @@ public class TicketServiceImpl implements TicketService {
 	}
 
 	@Override
-	public List<Game> getAllGamesFromTicket (Ticket ticket) {
-		List<Game> games = new ArrayList<>();
+	public List<Match> getAllMatchesFromTicket (Ticket ticket) {
+		List<Match> games = new ArrayList<>();
 		for (BetGame bg: ticket.getBets()){
-			games.add(bg.getOneGame());
+			games.add(bg.getMatch());
 		}
 		return games;
 	}
@@ -58,11 +55,11 @@ public class TicketServiceImpl implements TicketService {
 	}
 
 	@Override
-	public List<Ticket> getAllTicketsWithMatch (Game game) {
+	public List<Ticket> getAllTicketsWithMatch (Match match) {
 		List<Ticket> tickets = new ArrayList<>();
 		for(Ticket t: ticketRepository.findAll()){
 			for (BetGame bg: t.getBets()){
-				if (bg.getOneGame().getId() == game.getId())
+				if (bg.getMatch().getId() == match.getId())
 					tickets.add(t);
 			}
 		}

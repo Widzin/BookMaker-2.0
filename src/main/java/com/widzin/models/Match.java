@@ -3,7 +3,10 @@ package com.widzin.models;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "bundesliga_match")
@@ -32,9 +35,13 @@ public class Match {
     private boolean played;
     private Double[] rates;
 
+    @OneToMany(mappedBy = "match", cascade = {CascadeType.ALL})
+    private List<BetGame> betGameList;
+
     public Match() {
         played = false;
         rates = new Double[NUMBER_OF_RATES];
+        betGameList = new ArrayList<>();
         home = new TeamMatchDetails();
         away = new TeamMatchDetails();
     }
@@ -111,14 +118,27 @@ public class Match {
         this.rates = rates;
     }
 
+    public List<BetGame> getBetGameList() {
+        return betGameList;
+    }
+
+    public void addBetGameList(BetGame betGame) {
+        betGameList.add(betGame);
+    }
+
     @Override
     public String toString() {
         return "Match{" +
-                "date=" + date +
+                "id=" + id +
+                ", version=" + version +
+                ", date=" + date +
                 ", round=" + round +
                 ", period='" + period + '\'' +
                 ", home=" + home +
                 ", away=" + away +
+                ", played=" + played +
+                ", rates=" + Arrays.toString(rates) +
+                ", betGameList=" + betGameList +
                 '}';
     }
 }

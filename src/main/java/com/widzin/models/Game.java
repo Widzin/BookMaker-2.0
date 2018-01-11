@@ -33,12 +33,12 @@ public class Game {
 
 	private Double[] rates;
 
-	@OneToMany(mappedBy = "oneGame", cascade = {CascadeType.ALL})
-	private List<BetGame> betGameList;
+//	@OneToMany(mappedBy = "oneGame", cascade = {CascadeType.ALL})
+//	private List<BetGame> betGameList;
 
 	public Game () {
 		this.played = false;
-		betGameList = new ArrayList<>();
+		//betGameList = new ArrayList<>();
 		rates = new Double[NUMBER_OF_RATES];
 	}
 
@@ -49,7 +49,7 @@ public class Game {
 		this.awayScore = awayScore;
 		this.date = date;
 		this.played = true;
-		betGameList = new ArrayList<>();
+		//betGameList = new ArrayList<>();
 		rates = new Double[NUMBER_OF_RATES];
 	}
 
@@ -130,13 +130,13 @@ public class Game {
 		this.awayScore = awayScore;
 	}
 
-	public List<BetGame> getBetGameList () {
-		return betGameList;
-	}
-
-	public void addBetGameList (BetGame betGame) {
-		betGameList.add(betGame);
-	}
+//	public List<BetGame> getBetGameList () {
+//		return betGameList;
+//	}
+//
+//	public void addBetGameList (BetGame betGame) {
+//		betGameList.add(betGame);
+//	}
 
 	@Override
 	public String toString() {

@@ -110,7 +110,6 @@ public class MatchController {
     public String showNextGames(Model model){
         model.addAttribute("matches", matchService.listAllNextMatches());
         model.addAttribute("betting", false);
-        //model.addAttribute("ticket", new Ticket());
         return "nextmatches";
     }
 

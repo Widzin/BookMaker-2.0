@@ -20,7 +20,8 @@ public class UserController {
 	private RoleService roleService;
 	private TicketService ticketService;
 	private BetService betService;
-	private GameService gameService;
+	//private GameService gameService;
+    private MatchService matchService;
 
 	@Autowired
 	public void setUserService (UserService userService) {
@@ -42,12 +43,17 @@ public class UserController {
 		this.betService = betService;
 	}
 
-	@Autowired
-	public void setGameService (GameService gameService) {
-		this.gameService = gameService;
-	}
+//	@Autowired
+//	public void setGameService (GameService gameService) {
+//		this.gameService = gameService;
+//	}
 
-	@RequestMapping(value = "/users", method = RequestMethod.GET)
+    @Autowired
+    public void setMatchService(MatchService matchService) {
+        this.matchService = matchService;
+    }
+
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
 	public String listUsers(Model model){
 		model.addAttribute("users", userService.listAll());
 		return "users";
@@ -141,8 +147,8 @@ public class UserController {
 					ticket.getBets().get(i).setBet(results.get(i));
 					betService.saveBet(ticket.getBets().get(i));
 				}
-				for (Game g: ticketService.getAllGamesFromTicket(ticket)){
-					gameService.saveMatch(g);
+				for (Match match: ticketService.getAllMatchesFromTicket(ticket)){
+					matchService.saveMatch(match);
 				}
 				ticket.calculateTicket();
 				ticket.setTicketOwner(user);

@@ -12,7 +12,7 @@ public class BetGame {
 	private Integer version;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	private Game oneGame;
+	private Match match;
 	private Result result;
 	private Double rate;
 	private Boolean matched;
@@ -36,12 +36,12 @@ public class BetGame {
 		this.version = version;
 	}
 
-	public Game getOneGame () {
-		return oneGame;
+	public Match getMatch () {
+		return match;
 	}
 
-	public void setOneGame (Game oneGame) {
-		this.oneGame = oneGame;
+	public void setMatch (Match match) {
+		this.match = match;
 	}
 
 	public Result getResult () {
@@ -56,13 +56,13 @@ public class BetGame {
 		this.result = result;
 		switch (this.result){
 			case home:
-				rate = oneGame.getRates()[0];
+				rate = match.getRates()[0];
 				break;
 			case draw:
-				rate = oneGame.getRates()[1];
+				rate = match.getRates()[1];
 				break;
 			case guest:
-				rate = oneGame.getRates()[2];
+				rate = match.getRates()[2];
 				break;
 		}
 	}
@@ -85,6 +85,8 @@ public class BetGame {
 
 	@Override
 	public String toString(){
-		return oneGame.getHome().getName() + " - " + oneGame.getAway().getName() + "\tRate: " + rate + ", Result: " + result;
+		return match.getHome().getClubSeason().getClub2().getName()
+                + " - " + match.getAway().getClubSeason().getClub2().getName()
+                + "\tRate: " + rate + ", Result: " + result;
 	}
 }

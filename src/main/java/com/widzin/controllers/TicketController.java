@@ -1,10 +1,7 @@
 package com.widzin.controllers;
 
 import com.widzin.models.*;
-import com.widzin.services.BetService;
-import com.widzin.services.GameService;
-import com.widzin.services.TicketService;
-import com.widzin.services.UserService;
+import com.widzin.services.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +16,8 @@ import java.util.List;
 public class TicketController {
 
 	private TicketService ticketService;
-	private GameService gameService;
+	//private GameService gameService;
+    private MatchService matchService;
 	private BetService betService;
 	private UserService userService;
 
@@ -28,12 +26,17 @@ public class TicketController {
 		this.ticketService = ticketService;
 	}
 
-	@Autowired
-	public void setGameService (GameService gameService) {
-		this.gameService = gameService;
-	}
+//	@Autowired
+//	public void setGameService (GameService gameService) {
+//		this.gameService = gameService;
+//	}
 
-	@Autowired
+    @Autowired
+    public void setMatchService(MatchService matchService) {
+        this.matchService = matchService;
+    }
+
+    @Autowired
 	public void setBetService (BetService betService) {
 		this.betService = betService;
 	}
@@ -45,11 +48,11 @@ public class TicketController {
 
 	@RequestMapping("/ticket/new")
 	public String showMatchesToBet(Model model){
-		model.addAttribute("games", gameService.getNextMatches());
+		model.addAttribute("matches", matchService.listAllNextMatches());
 		model.addAttribute("betting", true);
 		Checked checked = new Checked();
 		List<Integer> list = new ArrayList<>();
-		list.add(0);
+		//list.add(0);
 		checked.setCheckedGames(list);
 		model.addAttribute("checked", checked);
 		return "nextmatches";
@@ -63,10 +66,10 @@ public class TicketController {
 		List<Integer> checkedGames = checked.getCheckedGames();
 		User user = userService.findByUsername(principal.getName()).get();
 		Ticket ticket = new Ticket();
-		for (Integer i: checkedGames) {
+		for (Integer id: checkedGames) {
 			BetGame betGame = new BetGame();
-			betGame.setOneGame(gameService.findById(i));
-			gameService.findById(i).addBetGameList(betGame);
+			betGame.setMatch(matchService.getMatchById(id));
+            matchService.getMatchById(id).addBetGameList(betGame);
 			betGame.setTicket(ticket);
 			ticket.addBets(betGame);
 			ticket.setTicketOwner(user);

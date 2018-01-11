@@ -103,7 +103,7 @@ public class GameController {
 		}
 	}*/
 
-	private void updateClubsAfterMatch(Integer id, Integer homeScore, Integer awayScore){
+	/*private void updateClubsAfterMatch(Integer id, Integer homeScore, Integer awayScore){
 		Game game = gameService.findById(id);
 		game.setHomeScore(homeScore);
 		game.setAwayScore(awayScore);
@@ -191,7 +191,7 @@ public class GameController {
 				userService.saveOrUpdate(admin);
 			}
 		}
-	}
+	}*/
 
 	private Logger log = Logger.getLogger(GameController.class);
 
