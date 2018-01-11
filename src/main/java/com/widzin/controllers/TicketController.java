@@ -73,26 +73,22 @@ public class TicketController {
 	public String showChosenMatches(@ModelAttribute(value = "checked") Checked checked,
                                     Model model, Principal principal){
 		List<Integer> chosenMatchesId = checked.getCheckedGames();
-		//List<Match> chosenMatches = new ArrayList<>();
 		User user = userService.findByUsername(principal.getName()).get();
 		Ticket ticket = new Ticket();
 		for (Integer id: chosenMatchesId) {
-            //chosenMatches.add(matchService.getMatchById(id));
 			BetGame betGame = new BetGame();
 			betGame.setMatch(matchService.getMatchById(id));
             matchService.getMatchById(id).addBetGameToList(betGame);
-            //matchService.saveMatch(matchService.getMatchById(id));
 			betGame.setTicket(ticket);
 			ticket.addBet(betGame);
 			ticket.setTicketOwner(user);
 		}
 		ticketService.saveTicket(ticket);
-		for (BetGame bg: ticket.getBets()){
-			betService.saveBet(bg);
-		}
+        for (BetGame bg: ticket.getBets()){
+            betService.saveBet(bg);
+        }
 		model.addAttribute("bets", ticket.getBets());
-        model.addAttribute("ticket", new Ticket());
-		//model.addAttribute("chosenMatches", chosenMatches);
+        model.addAttribute("ticket", ticket);
 		model.addAttribute("options", ticketService.getAllOptions());
 		model.addAttribute("user", user);
 		if (user.getMoneyNow() == 0.0)
@@ -102,15 +98,16 @@ public class TicketController {
 		return "chosenmatches";
 	}
 
-    @RequestMapping(value = "/ticket/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/ticket/create/{id}", method = RequestMethod.POST)
     public ModelAndView createTicket(@RequestParam("result") List<Result> results,
                                      @RequestParam("money") String text,
-                                     Ticket ticket,
+                                     @PathVariable Integer id,
                                      Principal principal){
         ModelAndView model = new ModelAndView("redirect:/?cannotParseMoney");
         try {
             Double money = Double.parseDouble(text);
             User user = userService.findByUsername(principal.getName()).get();
+            Ticket ticket = ticketService.findById(id);
             if (money <= user.getMoneyNow()) {
                 ticket.setMoneyInserted(money);
                 for (int i = 0; i < ticket.getBets().size(); i++) {
