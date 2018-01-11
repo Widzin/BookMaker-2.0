@@ -17,6 +17,7 @@ public interface MatchService {
     List<Match> listAllNextMatches();
     void updateClubsAfterMatch(int matchId, int homeScore, int awayScore);
     void updateClubAfterMatch(ClubSeason clubSeason, int hisScore, int enemyScore);
+    List<Match> listAllMatchesBetween(int homeId, int awayId);
     Match saveMatch(Match match);
     void deleteMatch(Integer id);
 }

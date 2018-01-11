@@ -40,7 +40,7 @@
                                 <a th:href="${'/match/play/' + match.id}">Play</a>
                             </td>
                             <td sec:authorize="hasAnyAuthority('USER','ADMIN')">
-                                <a th:href="${'/match/between/' + match.home.clubSeason.club2.id + 'i' + match.away.clubSeason.club2.id}">Show</a>
+                                <a th:href="${'/match/between/' + match.home.clubSeason.club2.id + '/' + match.away.clubSeason.club2.id}">Show</a>
                             </td>
                             <td sec:authorize="hasAuthority('USER')" th:if="${betting == true}">
                                 <input type="checkbox" th:field="*{checkedGames}" th:value="${match.id}"/>

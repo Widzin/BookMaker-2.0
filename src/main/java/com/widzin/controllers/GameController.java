@@ -195,7 +195,7 @@ public class GameController {
 
 	private Logger log = Logger.getLogger(GameController.class);
 
-	@RequestMapping("/match/between/{text}")
+	/*@RequestMapping("/match/between/{text}")
 	public String showHistoryBetween(@PathVariable("text") String between, Model model){
 		String[] parts = between.split("i");
 		Integer idHome = Integer.parseInt(parts[0]);
@@ -204,6 +204,6 @@ public class GameController {
 		model.addAttribute("home", clubService.getClubById(idHome));
 		model.addAttribute("away", clubService.getClubById(idAway));
 		return "between";
-	}
+	}*/
 
 }

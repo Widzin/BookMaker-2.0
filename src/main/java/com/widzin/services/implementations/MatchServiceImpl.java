@@ -169,6 +169,17 @@ public class MatchServiceImpl implements MatchService {
     }
 
     @Override
+    public List<Match> listAllMatchesBetween(int homeId, int awayId) {
+        List<Match> matches = new ArrayList<>();
+        for (Match match: listAllPlayedMatchesWithClub(homeId)) {
+            if (match.getHome().getClubSeason().getClub2().getId() == awayId
+                    || match.getAway().getClubSeason().getClub2().getId() == awayId)
+                matches.add(match);
+        }
+        return matches;
+    }
+
+    @Override
     public Match saveMatch(Match match) {
         return matchRepository.save(match);
     }

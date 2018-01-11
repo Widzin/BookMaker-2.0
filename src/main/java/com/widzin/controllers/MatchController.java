@@ -2,10 +2,7 @@ package com.widzin.controllers;
 
 import com.widzin.models.ClubSeason;
 import com.widzin.models.Match;
-import com.widzin.services.ClubSeasonService;
-import com.widzin.services.MatchService;
-import com.widzin.services.SeasonService;
-import com.widzin.services.TeamMatchDetailsService;
+import com.widzin.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +25,7 @@ public class MatchController {
 
     private MatchService matchService;
     private TeamMatchDetailsService teamMatchDetailsService;
+    private Club2Service club2Service;
     private ClubSeasonService clubSeasonService;
     private SeasonService seasonService;
 
@@ -39,6 +37,11 @@ public class MatchController {
     @Autowired
     public void setTeamMatchDetailsService(TeamMatchDetailsService teamMatchDetailsService) {
         this.teamMatchDetailsService = teamMatchDetailsService;
+    }
+
+    @Autowired
+    public void setClub2Service(Club2Service club2Service) {
+        this.club2Service = club2Service;
     }
 
     @Autowired
@@ -126,5 +129,15 @@ public class MatchController {
         } else {
             return "redirect:/game/play/" + id + "?error";
         }
+    }
+
+    @RequestMapping("/match/between/{idHome}/{idAway}")
+    public String showHistoryBetween(@PathVariable("idHome") Integer homeId,
+                                     @PathVariable("idAway") Integer awayId,
+                                     Model model){
+        model.addAttribute("matches", matchService.listAllMatchesBetween(homeId, awayId));
+        model.addAttribute("home", club2Service.getClub2ById(homeId));
+        model.addAttribute("away", club2Service.getClub2ById(awayId));
+        return "between";
     }
 }
