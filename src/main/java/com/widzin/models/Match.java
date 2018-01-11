@@ -122,7 +122,7 @@ public class Match {
         return betGameList;
     }
 
-    public void addBetGameList(BetGame betGame) {
+    public void addBetGameToList(BetGame betGame) {
         betGameList.add(betGame);
     }
 

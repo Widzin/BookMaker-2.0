@@ -6,7 +6,14 @@ public class Checked {
 
 	private List<Integer> checkedGames;
 
-	public List<Integer> getCheckedGames() {
+    public Checked() {
+    }
+
+    public Checked(List<Integer> checkedGames) {
+        this.checkedGames = checkedGames;
+    }
+
+    public List<Integer> getCheckedGames() {
 		return checkedGames;
 	}
 

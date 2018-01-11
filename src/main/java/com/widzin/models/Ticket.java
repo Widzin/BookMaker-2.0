@@ -51,7 +51,7 @@ public class Ticket {
 		return bets;
 	}
 
-	public void addBets (BetGame bet) {
+	public void addBet (BetGame bet) {
 		bets.add(bet);
 	}
 

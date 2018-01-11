@@ -50,10 +50,10 @@ public class TicketController {
 	public String showMatchesToBet(Model model){
 		model.addAttribute("matches", matchService.listAllNextMatches());
 		model.addAttribute("betting", true);
-		Checked checked = new Checked();
-		List<Integer> list = new ArrayList<>();
+		Checked checked = new Checked(new ArrayList<>());
+		//List<Integer> list = new ArrayList<>();
 		//list.add(0);
-		checked.setCheckedGames(list);
+		//checked.setCheckedGames();
 		model.addAttribute("checked", checked);
 		return "nextmatches";
 	}
@@ -63,23 +63,27 @@ public class TicketController {
 	@RequestMapping(value = "/ticket/make", method = RequestMethod.POST)
 	public String showChosenMatches(@ModelAttribute(value = "checked") Checked checked, Model model,
 									Principal principal){
-		List<Integer> checkedGames = checked.getCheckedGames();
+		List<Integer> chosenMatchesId = checked.getCheckedGames();
+		List<Match> chosenMatches = new ArrayList<>();
 		User user = userService.findByUsername(principal.getName()).get();
-		Ticket ticket = new Ticket();
-		for (Integer id: checkedGames) {
-			BetGame betGame = new BetGame();
+		//Ticket ticket = new Ticket();
+		for (Integer id: chosenMatchesId) {
+            chosenMatches.add(matchService.getMatchById(id));
+			/*BetGame betGame = new BetGame();
 			betGame.setMatch(matchService.getMatchById(id));
-            matchService.getMatchById(id).addBetGameList(betGame);
+            .addBetGameToList(betGame);
+            //matchService.saveMatch(matchService.getMatchById(id));
 			betGame.setTicket(ticket);
-			ticket.addBets(betGame);
-			ticket.setTicketOwner(user);
+			ticket.addBet(betGame);
+			ticket.setTicketOwner(user);*/
 		}
-		ticketService.saveTicket(ticket);
+		/*ticketService.saveTicket(ticket);
 		for (BetGame bg: ticket.getBets()){
 			betService.saveBet(bg);
 		}
-		model.addAttribute("ticket", ticket);
-		model.addAttribute("bets", ticket.getBets());
+		model.addAttribute("bets", ticket.getBets());*/
+        model.addAttribute("ticket", new Ticket());
+		model.addAttribute("chosenMatches", chosenMatches);
 		model.addAttribute("options", ticketService.getAllOptions());
 		model.addAttribute("user", user);
 		if (user.getMoneyNow() == 0.0)
