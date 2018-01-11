@@ -49,6 +49,10 @@ public class TeamMatchDetails {
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "match_event_id")
+    private List<MatchEvent> yellowCardDetails;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "match_event_id")
     private List<MatchEvent> redCardDetails;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
@@ -56,14 +60,6 @@ public class TeamMatchDetails {
     private List<MatchEvent> subDetails;
 
     public TeamMatchDetails() {
-        /*lineupDefense = new ArrayList<>();
-        lineupMidfield = new ArrayList<>();
-        lineupForward = new ArrayList<>();
-        lineupSubstitutes = new ArrayList<>();
-
-        goalDetails = new ArrayList<>();
-        redCardDetails = new ArrayList<>();
-        subDetails = new ArrayList<>();*/
     }
 
     public Integer getId() {
@@ -170,6 +166,14 @@ public class TeamMatchDetails {
         this.lineupSubstitutes = lineupSubstitutes;
     }
 
+    public List<MatchEvent> getYellowCardDetails() {
+        return yellowCardDetails;
+    }
+
+    public void setYellowCardDetails(List<MatchEvent> yellowCardDetails) {
+        this.yellowCardDetails = yellowCardDetails;
+    }
+
     public List<MatchEvent> getRedCardDetails() {
         return redCardDetails;
     }
@@ -189,17 +193,20 @@ public class TeamMatchDetails {
     @Override
     public String toString() {
         return "TeamMatchDetails{" +
-                "clubSeason=" + clubSeason +
+                "id=" + id +
+                ", version=" + version +
+                ", clubSeason=" + clubSeason +
                 ", goals=" + goals +
                 ", shots=" + shots +
                 ", shotsOnTarget=" + shotsOnTarget +
-                ", goalDetails=" + goalDetails +
                 ", lineupGoalkeeper=" + lineupGoalkeeper +
                 ", lineupDefense=" + lineupDefense +
                 ", lineupMidfield=" + lineupMidfield +
                 ", lineupForward=" + lineupForward +
-                ", formation='" + formation + '\'' +
                 ", lineupSubstitutes=" + lineupSubstitutes +
+                ", formation='" + formation + '\'' +
+                ", goalDetails=" + goalDetails +
+                ", yellowCardDetails=" + yellowCardDetails +
                 ", redCardDetails=" + redCardDetails +
                 ", subDetails=" + subDetails +
                 '}';

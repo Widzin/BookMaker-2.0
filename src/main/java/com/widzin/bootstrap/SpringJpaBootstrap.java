@@ -176,6 +176,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 
         matchEvents.addAll(teamMatchDetails.getGoalDetails());
         matchEvents.addAll(teamMatchDetails.getSubDetails());
+        matchEvents.addAll(teamMatchDetails.getYellowCardDetails());
         matchEvents.addAll(teamMatchDetails.getRedCardDetails());
 
         for (MatchEvent matchEvent: matchEvents) {

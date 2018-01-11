@@ -52,6 +52,9 @@ public class XMLMatch {
     @XmlElement(name = "HomeLineupSubstitutes")
     private String homeLineupSubstitutes;
 
+    @XmlElement(name = "HomeTeamYellowCardDetails")
+    private String homeTeamYellowCardDetails;
+
     @XmlElement(name = "HomeTeamRedCardDetails")
     private String homeTeamRedCardDetails;
 
@@ -91,6 +94,9 @@ public class XMLMatch {
 
     @XmlElement(name = "AwayLineupSubstitutes")
     private String awayLineupSubstitutes;
+
+    @XmlElement(name = "AwayTeamYellowCardDetails")
+    private String awayTeamYellowCardDetails;
 
     @XmlElement(name = "AwayTeamRedCardDetails")
     private String awayTeamRedCardDetails;
@@ -157,6 +163,10 @@ public class XMLMatch {
         return homeLineupSubstitutes;
     }
 
+    public String getHomeTeamYellowCardDetails() {
+        return homeTeamYellowCardDetails;
+    }
+
     public String getHomeTeamRedCardDetails() {
         return homeTeamRedCardDetails;
     }
@@ -209,6 +219,10 @@ public class XMLMatch {
         return awayLineupSubstitutes;
     }
 
+    public String getAwayTeamYellowCardDetails() {
+        return awayTeamYellowCardDetails;
+    }
+
     public String getAwayTeamRedCardDetails() {
         return awayTeamRedCardDetails;
     }
@@ -219,7 +233,7 @@ public class XMLMatch {
 
     @Override
     public String toString() {
-        return "Match{" +
+        return "XMLMatch{" +
                 "id=" + id +
                 ", date=" + date +
                 ", round=" + round +
@@ -234,6 +248,7 @@ public class XMLMatch {
                 ", homeLineupForward='" + homeLineupForward + '\'' +
                 ", homeTeamFormation='" + homeTeamFormation + '\'' +
                 ", homeLineupSubstitutes='" + homeLineupSubstitutes + '\'' +
+                ", homeTeamYellowCardDetails='" + homeTeamYellowCardDetails + '\'' +
                 ", homeTeamRedCardDetails='" + homeTeamRedCardDetails + '\'' +
                 ", homeSubDetails='" + homeSubDetails + '\'' +
                 ", awayTeam='" + awayTeam + '\'' +
@@ -247,6 +262,7 @@ public class XMLMatch {
                 ", awayLineupForward='" + awayLineupForward + '\'' +
                 ", awayTeamFormation='" + awayTeamFormation + '\'' +
                 ", awayLineupSubstitutes='" + awayLineupSubstitutes + '\'' +
+                ", awayTeamYellowCardDetails='" + awayTeamYellowCardDetails + '\'' +
                 ", awayTeamRedCardDetails='" + awayTeamRedCardDetails + '\'' +
                 ", awaySubDetails='" + awaySubDetails + '\'' +
                 '}';

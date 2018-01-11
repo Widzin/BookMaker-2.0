@@ -106,10 +106,12 @@ public class MatchesLoadService implements LoadService {
 
         match.getHome().setGoalDetails(getEventsInArray(xmlMatch.getHomeGoalDetails(), Event.GOAL, service, homePlayers, awayPlayers));
         match.getHome().setSubDetails(getEventsInArray(xmlMatch.getHomeSubDetails(), Event.SUBSTITUTION, service, homePlayers, awayPlayers));
+        match.getHome().setYellowCardDetails(getEventsInArray(xmlMatch.getHomeTeamYellowCardDetails(), Event.YELLOW_CARD, service, homePlayers, awayPlayers));
         match.getHome().setRedCardDetails(getEventsInArray(xmlMatch.getHomeTeamRedCardDetails(), Event.RED_CARD, service, homePlayers, awayPlayers));
 
         match.getAway().setGoalDetails(getEventsInArray(xmlMatch.getAwayGoalDetails(), Event.GOAL, service, awayPlayers, homePlayers));
         match.getAway().setSubDetails(getEventsInArray(xmlMatch.getAwaySubDetails(), Event.SUBSTITUTION, service, awayPlayers, homePlayers));
+        match.getAway().setYellowCardDetails(getEventsInArray(xmlMatch.getAwayTeamYellowCardDetails(), Event.YELLOW_CARD, service, awayPlayers, homePlayers));
         match.getAway().setRedCardDetails(getEventsInArray(xmlMatch.getAwayTeamRedCardDetails(), Event.RED_CARD, service, awayPlayers, homePlayers));
 
         //-------------- Adding stats to goalkeepers ---------
