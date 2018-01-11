@@ -2,9 +2,10 @@ package com.widzin.models;
 
 public enum Event {
     GOAL("goal"),
+    YELLOW_CARD("yellow card"),
     RED_CARD("red card"),
     SUBSTITUTION("substitution"),
-    OWN("Own"),
+    OWN("own"),
     PENALTY("penalty"),
     IN("in"),
     OUT("out");

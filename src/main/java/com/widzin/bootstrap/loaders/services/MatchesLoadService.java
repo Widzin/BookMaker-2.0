@@ -112,6 +112,12 @@ public class MatchesLoadService implements LoadService {
         match.getAway().setSubDetails(getEventsInArray(xmlMatch.getAwaySubDetails(), Event.SUBSTITUTION, service, awayPlayers, homePlayers));
         match.getAway().setRedCardDetails(getEventsInArray(xmlMatch.getAwayTeamRedCardDetails(), Event.RED_CARD, service, awayPlayers, homePlayers));
 
+        //-------------- Adding stats to goalkeepers ---------
+        if (match.getHome().getGoals() == 0)
+            match.getAway().getLineupGoalkeeper().addCleanSheets();
+        if (match.getAway().getGoals() == 0)
+            match.getHome().getLineupGoalkeeper().addCleanSheets();
+
         //-------------- Adding stats to clubs ---------------
 
         if (match.getHome().getGoals() > match.getAway().getGoals()) {
@@ -173,6 +179,9 @@ public class MatchesLoadService implements LoadService {
         players.addAll(team.getLineupDefense());
         players.addAll(team.getLineupMidfield());
         players.addAll(team.getLineupForward());
+        for (PlayerSeason playerSeason: players) {
+            playerSeason.addMatches();
+        }
         players.addAll(team.getLineupSubstitutes());
 
         return players;
@@ -196,7 +205,7 @@ public class MatchesLoadService implements LoadService {
                         else {
                             PlayerSeason playerSeason = getPlayerFromPlayersByName(parts[1].trim(),
                                     service, ourPlayers);
-
+                            playerSeason.addGoals();
                             me = new MatchEvent(Integer.parseInt(parts[0].trim()),
                                     playerSeason, Event.GOAL.getEvent());
                         }
@@ -207,11 +216,19 @@ public class MatchesLoadService implements LoadService {
                         else
                             me = fromStringToMatchEvent(parts[0], parts[1], Event.OUT.getEvent(), service, ourPlayers);
                         break;
-                    case RED_CARD:
-                        PlayerSeason playerSeason = getPlayerFromPlayersByName(parts[1].trim(),
+                    case YELLOW_CARD:
+                        PlayerSeason playerSeason1 = getPlayerFromPlayersByName(parts[1].trim(),
                                 service, ourPlayers);
+                        playerSeason1.addYellowCards();
                         me = new MatchEvent(Integer.parseInt(parts[0].trim()),
-                                playerSeason, Event.RED_CARD.getEvent());
+                                playerSeason1, Event.YELLOW_CARD.getEvent());
+                        break;
+                    case RED_CARD:
+                        PlayerSeason playerSeason2 = getPlayerFromPlayersByName(parts[1].trim(),
+                                service, ourPlayers);
+                        playerSeason2.addRedCards();
+                        me = new MatchEvent(Integer.parseInt(parts[0].trim()),
+                                playerSeason2, Event.RED_CARD.getEvent());
                         break;
                 }
                 if (me != null)
@@ -227,6 +244,18 @@ public class MatchesLoadService implements LoadService {
 
         PlayerSeason playerSeason = getPlayerFromPlayersByName(part_1.replaceAll(regex, "").trim(),
                 service, players);
+
+        switch (addInfo){
+            case "penalty":
+                playerSeason.addGoals();
+                break;
+            case "own":
+                playerSeason.addOwnGoals();
+                break;
+            case "in":
+                playerSeason.addMatches();
+                break;
+        }
 
         return new MatchEvent(Integer.parseInt(part_0.trim()),
                 playerSeason, addInfo);
@@ -246,9 +275,6 @@ public class MatchesLoadService implements LoadService {
             players.add(onePlayerInList.get(0));
         } else if (playerSeasonList.size() == 1) {
             players.add(playerSeasonList.get(0));
-        }
-        if (players.size() == 0 || players.size() > 1) {
-            System.out.println("DUPA");
         }
         return players.get(0);
     }

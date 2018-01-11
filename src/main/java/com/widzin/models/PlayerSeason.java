@@ -31,12 +31,31 @@ public class PlayerSeason {
     private Integer shirtNumber;
     private Double value;
 
+    private Integer matches;
+    private Integer goals;
+    private Integer ownGoals;
+    private Integer cleanSheets;
+    private Integer yellowCards;
+    private Integer redCards;
+
     public PlayerSeason() {
+        matches = 0;
+        goals = 0;
+        ownGoals = 0;
+        cleanSheets = 0;
+        yellowCards = 0;
+        redCards = 0;
     }
 
     public PlayerSeason(Player player, Integer shirtNumber) {
         this.player = player;
         this.shirtNumber = shirtNumber;
+        matches = 0;
+        goals = 0;
+        ownGoals = 0;
+        cleanSheets = 0;
+        yellowCards = 0;
+        redCards = 0;
     }
 
     public Integer getId() {
@@ -93,6 +112,54 @@ public class PlayerSeason {
 
     public void setValue(Double value) {
         this.value = value;
+    }
+
+    public Integer getMatches() {
+        return matches;
+    }
+
+    public void addMatches() {
+        matches ++;
+    }
+
+    public Integer getGoals() {
+        return goals;
+    }
+
+    public void addGoals() {
+        goals ++;
+    }
+
+    public Integer getOwnGoals() {
+        return ownGoals;
+    }
+
+    public void addOwnGoals() {
+        ownGoals ++;
+    }
+
+    public Integer getCleanSheets() {
+        return cleanSheets;
+    }
+
+    public void addCleanSheets() {
+        cleanSheets ++;
+    }
+
+    public Integer getYellowCards() {
+        return yellowCards;
+    }
+
+    public void addYellowCards() {
+        yellowCards ++;
+    }
+
+    public Integer getRedCards() {
+        return redCards;
+    }
+
+    public void addRedCards() {
+        redCards ++;
     }
 
     @Override

@@ -2176,7 +2176,7 @@
 	<AwayShots>11</AwayShots>
 	<AwayShotsOnTarget>3</AwayShotsOnTarget>
 	<AwayFouls>14</AwayFouls>
-	<AwayGoalDetails>69':Own Robert Bauer;</AwayGoalDetails>
+	<AwayGoalDetails>69':own Robert Bauer;</AwayGoalDetails>
 	<AwayLineupGoalkeeper>Koen Casteels</AwayLineupGoalkeeper>
 	<AwayLineupDefense>Philipp Wollscheid; Jannes Horn; Vieirinha; Jeffrey Bruma;</AwayLineupDefense>
 	<AwayLineupMidfield>Jakub Blaszczykowski; Julian Draxler; Maximilian Arnold; Paul Seguin; Yannick Gerhardt;</AwayLineupMidfield>
@@ -3255,7 +3255,7 @@
 	<AwayShots>13</AwayShots>
 	<AwayShotsOnTarget>4</AwayShotsOnTarget>
 	<AwayFouls>9</AwayFouls>
-	<AwayGoalDetails>69': Haris Seferovic;61': Shani Tarashaj;35':Own Lewis Holtby;</AwayGoalDetails>
+	<AwayGoalDetails>69': Haris Seferovic;61': Shani Tarashaj;35':own Lewis Holtby;</AwayGoalDetails>
 	<AwayLineupGoalkeeper>Lukas Hradecky</AwayLineupGoalkeeper>
 	<AwayLineupDefense>Timothy Chandler; David Abraham; Jesús Vallejo; Bastian Oczipka;</AwayLineupDefense>
 	<AwayLineupMidfield>Shani Tarashaj; Omar Mascarell; Makoto Hasebe; Marco Fabián; Mijat Gacinovic;</AwayLineupMidfield>
@@ -4315,7 +4315,7 @@
 	<HomeShots>21</HomeShots>
 	<HomeShotsOnTarget>5</HomeShotsOnTarget>
 	<HomeFouls>7</HomeFouls>
-	<HomeGoalDetails>34':Own Steven Zuber;</HomeGoalDetails>
+	<HomeGoalDetails>34':own Steven Zuber;</HomeGoalDetails>
 	<HomeLineupGoalkeeper>Manuel Neuer</HomeLineupGoalkeeper>
 	<HomeLineupDefense>Rafinha; Jérôme Boateng; Mats Hummels; Juan Bernat;</HomeLineupDefense>
 	<HomeLineupMidfield>Thiago Alcantara; Xabi Alonso; Arturo Vidal;</HomeLineupMidfield>
@@ -4644,7 +4644,7 @@
 	<AwayShots>11</AwayShots>
 	<AwayShotsOnTarget>4</AwayShotsOnTarget>
 	<AwayFouls>15</AwayFouls>
-	<AwayGoalDetails>81': Will Orban;67': Emil Forsberg;4':Own Julian Baumgartlinger;</AwayGoalDetails>
+	<AwayGoalDetails>81': Will Orban;67': Emil Forsberg;4':own Julian Baumgartlinger;</AwayGoalDetails>
 	<AwayLineupGoalkeeper>Péter Gulácsi</AwayLineupGoalkeeper>
 	<AwayLineupDefense>Will Orban; Marvin Compper; Marcel Halstenberg; Stefan Ilsanker;</AwayLineupDefense>
 	<AwayLineupMidfield>Marcel Sabitzer; Emil Forsberg; Diego Demme; Naby Keita;</AwayLineupMidfield>
@@ -5857,7 +5857,7 @@
 	<HomeShots>14</HomeShots>
 	<HomeShotsOnTarget>5</HomeShotsOnTarget>
 	<HomeFouls>16</HomeFouls>
-	<HomeGoalDetails>47':Own  Sead Kolasinac;2': penalty Timo Werner;</HomeGoalDetails>
+	<HomeGoalDetails>47':own  Sead Kolasinac;2': penalty Timo Werner;</HomeGoalDetails>
 	<HomeLineupGoalkeeper> Péter Gulácsi</HomeLineupGoalkeeper>
 	<HomeLineupDefense> Marcel Halstenberg; Benno Schmitz; Stefan Ilsanker; Will Orban;</HomeLineupDefense>
 	<HomeLineupMidfield> Emil Forsberg; Naby Keita; Diego Demme; Marcel Sabitzer;</HomeLineupMidfield>
@@ -7708,7 +7708,7 @@
 	<HomeShots>17</HomeShots>
 	<HomeShotsOnTarget>7</HomeShotsOnTarget>
 	<HomeFouls>8</HomeFouls>
-	<HomeGoalDetails>67':Own Jesús Vallejo;45': Timo Werner;6': Marvin Compper;</HomeGoalDetails>
+	<HomeGoalDetails>67':own Jesús Vallejo;45': Timo Werner;6': Marvin Compper;</HomeGoalDetails>
 	<HomeLineupGoalkeeper>Péter Gulácsi</HomeLineupGoalkeeper>
 	<HomeLineupDefense>Bernardo; Will Orban; Marvin Compper; Marcel Halstenberg;</HomeLineupDefense>
 	<HomeLineupMidfield>Stefan Ilsanker; Diego Demme; Marcel Sabitzer; Naby Keita;</HomeLineupMidfield>
@@ -7936,7 +7936,7 @@
 	<AwayShots>14</AwayShots>
 	<AwayShotsOnTarget>7</AwayShotsOnTarget>
 	<AwayFouls>20</AwayFouls>
-	<AwayGoalDetails>89': Artjoms Rudnevs;85': Milos Jojic;72': Yuya Osako;42': Anthony Modeste;37': Yuya Osako;32':Own Aytac Sulu;</AwayGoalDetails>
+	<AwayGoalDetails>89': Artjoms Rudnevs;85': Milos Jojic;72': Yuya Osako;42': Anthony Modeste;37': Yuya Osako;32':own Aytac Sulu;</AwayGoalDetails>
 	<AwayLineupGoalkeeper>Thomas Kessler</AwayLineupGoalkeeper>
 	<AwayLineupDefense>Pawel Olkowski; Konstantin Rausch; Frederik Soerensen; Dominique Heintz;</AwayLineupDefense>
 	<AwayLineupMidfield>Marco Hoeger; Christian Clemens; Leonardo Bittencourt; Jonas Hector;</AwayLineupMidfield>
@@ -9305,7 +9305,7 @@
 	<HomeShots>24</HomeShots>
 	<HomeShotsOnTarget>10</HomeShotsOnTarget>
 	<HomeFouls>17</HomeFouls>
-	<HomeGoalDetails>59': Ousmane Dembele;48': Lukasz Piszczek;20':Own Jeffrey Bruma;</HomeGoalDetails>
+	<HomeGoalDetails>59': Ousmane Dembele;48': Lukasz Piszczek;20':own Jeffrey Bruma;</HomeGoalDetails>
 	<HomeLineupGoalkeeper>Roman Bürki</HomeLineupGoalkeeper>
 	<HomeLineupDefense>Lukasz Piszczek; Matthias Ginter; Marc Bartra; Marcel Schmelzer;</HomeLineupDefense>
 	<HomeLineupMidfield>Marco Reus; Julian Weigl; André Schürrle; Gonzalo Castro; Ousmane Dembele;</HomeLineupMidfield>
@@ -9921,7 +9921,7 @@
 	<HomeShots>13</HomeShots>
 	<HomeShotsOnTarget>5</HomeShotsOnTarget>
 	<HomeFouls>15</HomeFouls>
-	<HomeGoalDetails>65': Timo Werner;34':Own Dominic Maroh;5': Emil Forsberg;</HomeGoalDetails>
+	<HomeGoalDetails>65': Timo Werner;34':own Dominic Maroh;5': Emil Forsberg;</HomeGoalDetails>
 	<HomeLineupGoalkeeper>Péter Gulácsi</HomeLineupGoalkeeper>
 	<HomeLineupDefense>Marvin Compper; Marcel Halstenberg; Benno Schmitz; Will Orban;</HomeLineupDefense>
 	<HomeLineupMidfield>Emil Forsberg; Naby Keita; Stefan Ilsanker; Diego Demme;</HomeLineupMidfield>
@@ -10251,7 +10251,7 @@
 	<AwayShots>8</AwayShots>
 	<AwayShotsOnTarget>4</AwayShotsOnTarget>
 	<AwayFouls>21</AwayFouls>
-	<AwayGoalDetails>60':Own Niklas Süle;38': Almog Cohen;</AwayGoalDetails>
+	<AwayGoalDetails>60':own Niklas Süle;38': Almog Cohen;</AwayGoalDetails>
 	<AwayLineupGoalkeeper>Martin Hansen</AwayLineupGoalkeeper>
 	<AwayLineupDefense>Marcel Tisserand; Romain Bregerie; Marvin Matip;</AwayLineupDefense>
 	<AwayLineupMidfield>Markus Suttner; Pascal Gross; Florent Hadergjonaj; Lukas Hinterseer; Almog Cohen; Alfredo Morales;</AwayLineupMidfield>
@@ -11947,7 +11947,7 @@
 	<AwayShots>10</AwayShots>
 	<AwayShotsOnTarget>1</AwayShotsOnTarget>
 	<AwayFouls>26</AwayFouls>
-	<AwayGoalDetails>71':Own Marvin Matip;</AwayGoalDetails>
+	<AwayGoalDetails>71':own Marvin Matip;</AwayGoalDetails>
 	<AwayLineupGoalkeeper>Jonas Loessl</AwayLineupGoalkeeper>
 	<AwayLineupDefense>Stefan Bell; Niko Bungert; Daniel Brosinski; Leon Balogun;</AwayLineupDefense>
 	<AwayLineupMidfield>Levin Mete Oztunali; Danny Latza; Pablo De Blasis; André Ramalho Silva; Jean-Philippe Gbamin;</AwayLineupMidfield>
@@ -13008,7 +13008,7 @@
 	<HomeShots>9</HomeShots>
 	<HomeShotsOnTarget>6</HomeShotsOnTarget>
 	<HomeFouls>14</HomeFouls>
-	<HomeGoalDetails>80': Mario Gomez;68': Yunus Malli;45':Own Markus Suttner;</HomeGoalDetails>
+	<HomeGoalDetails>80': Mario Gomez;68': Yunus Malli;45':own Markus Suttner;</HomeGoalDetails>
 	<HomeLineupGoalkeeper>Koen Casteels</HomeLineupGoalkeeper>
 	<HomeLineupDefense>Yannick Gerhardt; Jakub Blaszczykowski; Robin Knoche; Luiz Gustavo;</HomeLineupDefense>
 	<HomeLineupMidfield>Vieirinha; Riechedly Bazoer; Joshua Guilavogui; Daniel Didavi; Maximilian Arnold;</HomeLineupMidfield>
@@ -13161,7 +13161,7 @@
 	<HomeShots>17</HomeShots>
 	<HomeShotsOnTarget>3</HomeShotsOnTarget>
 	<HomeFouls>10</HomeFouls>
-	<HomeGoalDetails>45':Own John Anthony Brooks;</HomeGoalDetails>
+	<HomeGoalDetails>45':own John Anthony Brooks;</HomeGoalDetails>
 	<HomeLineupGoalkeeper>Jannik Huth</HomeLineupGoalkeeper>
 	<HomeLineupDefense>Stefan Bell; Alexander Hack; Daniel Brosinski; Giulio Donati;</HomeLineupDefense>
 	<HomeLineupMidfield>Fabian Frei; Danny Latza; Jairo; Robin Quaison;</HomeLineupMidfield>
@@ -13232,7 +13232,7 @@
 	<AwayShots>12</AwayShots>
 	<AwayShotsOnTarget>0</AwayShotsOnTarget>
 	<AwayFouls>17</AwayFouls>
-	<AwayGoalDetails>65':Own Philipp Max;</AwayGoalDetails>
+	<AwayGoalDetails>65':own Philipp Max;</AwayGoalDetails>
 	<AwayLineupGoalkeeper>Timo Horn</AwayLineupGoalkeeper>
 	<AwayLineupDefense>Frederik Soerensen; Dominique Heintz; Jonas Hector; Lukas Kluenter;</AwayLineupDefense>
 	<AwayLineupMidfield>Matthias Lehmann; Leonardo Bittencourt; Christian Clemens; Milos Jojic;</AwayLineupMidfield>
@@ -13675,7 +13675,7 @@
 	<HomeShots>13</HomeShots>
 	<HomeShotsOnTarget>6</HomeShotsOnTarget>
 	<HomeFouls>14</HomeFouls>
-	<HomeGoalDetails>90':Own Fabian Holland;</HomeGoalDetails>
+	<HomeGoalDetails>90':own Fabian Holland;</HomeGoalDetails>
 	<HomeLineupGoalkeeper>Christian Mathenia</HomeLineupGoalkeeper>
 	<HomeLineupDefense>Dennis Diekmeier; Kyriakos Papadopoulos; Mergim Mavraj; Douglas Santos;</HomeLineupDefense>
 	<HomeLineupMidfield>Gideon Jung; Aaron Hunt; Lewis Holtby; Filip Kostic; Gotoku Sakai;</HomeLineupMidfield>
@@ -13726,7 +13726,7 @@
 	<HomeShots>7</HomeShots>
 	<HomeShotsOnTarget>3</HomeShotsOnTarget>
 	<HomeFouls>8</HomeFouls>
-	<HomeGoalDetails>48':Own Marcel Schmelzer;43': Lars Stindl;</HomeGoalDetails>
+	<HomeGoalDetails>48':own Marcel Schmelzer;43': Lars Stindl;</HomeGoalDetails>
 	<HomeLineupGoalkeeper>Yann Sommer</HomeLineupGoalkeeper>
 	<HomeLineupDefense>Nico Elvedi; Andreas Christensen; Jannik Vestergaard; Oscar Wendt;</HomeLineupDefense>
 	<HomeLineupMidfield>Ibrahima Traore; Tobias Strobl; Mahmoud Dahoud; Jonas Hofmann;</HomeLineupMidfield>
@@ -14652,7 +14652,7 @@
 	<HomeShots>6</HomeShots>
 	<HomeShotsOnTarget>1</HomeShotsOnTarget>
 	<HomeFouls>15</HomeFouls>
-	<HomeGoalDetails>85':Own Rani Khedira;</HomeGoalDetails>
+	<HomeGoalDetails>85':own Rani Khedira;</HomeGoalDetails>
 	<HomeLineupGoalkeeper>Rune Almenning Jarstein</HomeLineupGoalkeeper>
 	<HomeLineupDefense>Jordan Torunarigha; Peter Pekarik; Sebastian Langkamp; John Anthony Brooks;</HomeLineupDefense>
 	<HomeLineupMidfield>Salomon Kalou; Per Ciljan Skjelbred; Vladimír Darida; Alexander Esswein; Valentin Stocker;</HomeLineupMidfield>

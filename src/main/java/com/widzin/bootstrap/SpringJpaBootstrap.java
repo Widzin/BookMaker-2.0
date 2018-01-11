@@ -116,13 +116,13 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-//        loadPlayers();
-//        loadMatches();
-//        loadLogos();
-//        saveToDatabase();
-//        loadUsers();
-//        loadRoles();
-//        assignUsersToDefaultRoles();
+        loadPlayers();
+        loadMatches();
+        loadLogos();
+        saveToDatabase();
+        loadUsers();
+        loadRoles();
+        assignUsersToDefaultRoles();
         setCalculationsOnLoad();
 	}
 
