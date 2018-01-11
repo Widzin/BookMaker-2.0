@@ -2,7 +2,9 @@ package com.widzin.services.implementations;
 
 import com.google.common.collect.Lists;
 import com.widzin.models.Calculations;
+import com.widzin.models.ClubSeason;
 import com.widzin.models.Match;
+import com.widzin.repositories.ClubSeasonRepository;
 import com.widzin.repositories.MatchRepository;
 import com.widzin.services.MatchService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +16,21 @@ import java.util.List;
 @Service
 public class MatchServiceImpl implements MatchService {
 
+    private final static Integer POINTS_FOR_WIN = 3;
+    private final static Integer POINTS_FOR_DRAW = 1;
+    private final static Integer POINTS_FOR_LOST = 0;
+
     private MatchRepository matchRepository;
+    private ClubSeasonRepository clubSeasonRepository;
 
     @Autowired
     public void setMatchRepository(MatchRepository matchRepository) {
         this.matchRepository = matchRepository;
+    }
+
+    @Autowired
+    public void setClubSeasonRepository(ClubSeasonRepository clubSeasonRepository) {
+        this.clubSeasonRepository = clubSeasonRepository;
     }
 
     @Override
@@ -111,6 +123,49 @@ public class MatchServiceImpl implements MatchService {
 
         }
         return nextMatches;
+    }
+
+    @Override
+    public void updateClubsAfterMatch(int matchId, int homeScore, int awayScore) {
+        Match match = matchRepository.findOne(matchId);
+        match.getHome().setGoals(homeScore);
+        match.getAway().setGoals(awayScore);
+        match.setPlayed(true);
+        //zapisz ilość strzałów
+        //update bets
+        saveMatch(match);
+
+        ClubSeason homeClub = match.getHome().getClubSeason();
+        ClubSeason awayClub = match.getAway().getClubSeason();
+        updateClubAfterMatch(homeClub, homeScore, awayScore);
+        updateClubAfterMatch(awayClub, awayScore, homeScore);
+
+        Calculations calculations = Calculations.getInstance();
+        calculations.addNumberOfAllMatches();
+        calculations.addAllGoalsScoredAtHome(homeScore);
+        calculations.addAllGoalsLostAtHome(awayScore);
+    }
+
+    @Override
+    public void updateClubAfterMatch(ClubSeason clubSeason, int hisScore, int enemyScore) {
+        if (hisScore > enemyScore) {
+            clubSeason.addWin();
+            clubSeason.addPoints(POINTS_FOR_WIN);
+        }
+        else if (hisScore < enemyScore) {
+            clubSeason.addLose();
+            clubSeason.addPoints(POINTS_FOR_LOST);
+        }
+        else {
+            clubSeason.addDraw();
+            clubSeason.addPoints(POINTS_FOR_DRAW);
+        }
+
+        clubSeason.addMatch();
+        clubSeason.addScoredGoals(hisScore);
+        clubSeason.addLostGoals(enemyScore);
+        clubSeason.setBilans();
+        clubSeasonRepository.save(clubSeason);
     }
 
     @Override

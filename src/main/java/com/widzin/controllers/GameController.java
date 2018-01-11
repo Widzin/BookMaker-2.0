@@ -86,13 +86,13 @@ public class GameController {
 		return "nextgames";
 	}*/
 
-	@RequestMapping("/match/play/{id}")
-	public String playGame(@PathVariable Integer id, Model model){
-		model.addAttribute("game", gameService.findById(id));
-		return "matchplay";
-	}
+	/*@RequestMapping("/match/play/{id}")
+    public String playGame(@PathVariable Integer id, Model model){
+        model.addAttribute("game", gameService.findById(id));
+        return "matchplay";
+    }*/
 
-	@RequestMapping(value = "/match/play/{id}", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/match/play/{id}", method = RequestMethod.POST)
 	public String setScoresInGame(@PathVariable Integer id, @RequestParam("homeScore") Integer homeScore,
 								  @RequestParam("awayScore") Integer awayScore) {
 		if (homeScore != null && awayScore != null) {
@@ -101,7 +101,7 @@ public class GameController {
 		} else {
 			return "redirect:/game/play/" + id + "?error";
 		}
-	}
+	}*/
 
 	private void updateClubsAfterMatch(Integer id, Integer homeScore, Integer awayScore){
 		Game game = gameService.findById(id);

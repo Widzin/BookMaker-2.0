@@ -9,6 +9,7 @@ import com.widzin.services.TeamMatchDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -108,5 +109,22 @@ public class MatchController {
         model.addAttribute("betting", false);
         //model.addAttribute("ticket", new Ticket());
         return "nextmatches";
+    }
+
+    @RequestMapping("/match/play/{id}")
+    public String playGame(@PathVariable Integer id, Model model){
+        model.addAttribute("match", matchService.getMatchById(id));
+        return "matchplay";
+    }
+
+    @RequestMapping(value = "/match/play/{id}", method = RequestMethod.POST)
+    public String setScoresInGame(@PathVariable Integer id, @RequestParam("homeScore") Integer homeScore,
+                                  @RequestParam("awayScore") Integer awayScore) {
+        if (homeScore != null && awayScore != null) {
+            matchService.updateClubsAfterMatch(id, homeScore, awayScore);
+            return "redirect:/?matchPlayed";
+        } else {
+            return "redirect:/game/play/" + id + "?error";
+        }
     }
 }
