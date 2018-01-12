@@ -3,6 +3,8 @@ package com.widzin.controllers;
 import com.google.common.collect.Lists;
 import com.widzin.models.ClubSeason;
 import com.widzin.models.Match;
+import com.widzin.models.Ticket;
+import com.widzin.models.User;
 import com.widzin.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,12 +25,16 @@ public class MatchController {
 
     private final static int LAST_ROUND = 34;
     private final static int MAX_MATCHES_IN_ROUND = 9;
+    private final static int ADMIN_ID = 1;
 
     private MatchService matchService;
     private TeamMatchDetailsService teamMatchDetailsService;
     private Club2Service club2Service;
     private ClubSeasonService clubSeasonService;
     private SeasonService seasonService;
+    private BetService betService;
+    private TicketService ticketService;
+    private UserService userService;
 
     @Autowired
     public void setMatchService(MatchService matchService) {
@@ -53,6 +59,21 @@ public class MatchController {
     @Autowired
     public void setSeasonService(SeasonService seasonService) {
         this.seasonService = seasonService;
+    }
+
+    @Autowired
+    public void setBetService(BetService betService) {
+        this.betService = betService;
+    }
+
+    @Autowired
+    public void setTicketService(TicketService ticketService) {
+        this.ticketService = ticketService;
+    }
+
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 
     @RequestMapping("/match/new")
@@ -126,9 +147,54 @@ public class MatchController {
                                   @RequestParam("awayScore") Integer awayScore) {
         if (homeScore != null && awayScore != null) {
             matchService.updateClubsAfterMatch(id, homeScore, awayScore);
+            List<Ticket> ticketsWithMatch = ticketService.getAllTicketsWithMatch
+                    (matchService.getMatchById(id));
+            betService.saveBetsAfterMatch(ticketsWithMatch,
+                    matchService.getMatchById(id));
+            saveTickets(ticketsWithMatch);
             return "redirect:/?matchPlayed";
         } else {
             return "redirect:/game/play/" + id + "?error";
+        }
+    }
+
+    private void saveTickets(List<Ticket> tickets) {
+        for(Ticket t: tickets){
+            int i = 0;
+            do {
+                if (t.getBets().get(i).isMatched() == null){
+                    break;
+                }
+                i++;
+            } while (i < t.getBets().size());
+            if (i == t.getBets().size()){
+                t.setFinished(true);
+                int j;
+                for (j = 0; j < t.getBets().size(); j++){
+                    if (!t.getBets().get(j).isMatched())
+                        break;
+                }
+                User user = userService.getById(t.getTicketOwner().getId());
+                User admin = userService.getById(ADMIN_ID);
+                if (j == t.getBets().size()){
+                    Double fullMoneyWon = t.getMoneyToWin();
+                    Double moneyForUser = 0.88 * fullMoneyWon;
+                    Double moneyForAdmin = 0.12 * fullMoneyWon;
+                    user.addWinMoney(moneyForUser);
+                    user.addMoneyNow(moneyForUser);
+                    admin.addLostMoney(moneyForUser - moneyForAdmin);
+                    admin.addMoneyNow(moneyForAdmin - moneyForUser);
+                    t.setWin(true);
+                } else {
+                    user.addLostMoney(t.getMoneyInserted());
+                    admin.addWinMoney(t.getMoneyInserted());
+                    admin.addMoneyNow(t.getMoneyInserted());
+                    t.setWin(false);
+                }
+                ticketService.saveTicket(t);
+                userService.saveOrUpdate(user);
+                userService.saveOrUpdate(admin);
+            }
         }
     }
 

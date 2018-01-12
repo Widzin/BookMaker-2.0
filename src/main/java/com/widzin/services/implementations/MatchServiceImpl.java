@@ -151,7 +151,6 @@ public class MatchServiceImpl implements MatchService {
         match.getAway().setGoals(awayScore);
         match.setPlayed(true);
         //zapisz ilość strzałów
-        //update bets
         saveMatch(match);
 
         ClubSeason homeClub = match.getHome().getClubSeason();

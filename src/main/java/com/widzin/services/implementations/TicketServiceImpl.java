@@ -2,10 +2,12 @@ package com.widzin.services.implementations;
 
 import com.widzin.models.*;
 import com.widzin.repositories.TicketRepository;
+import com.widzin.repositories.UserRepository;
 import com.widzin.services.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.MutableAttributeSet;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +21,7 @@ public class TicketServiceImpl implements TicketService {
 		this.ticketRepository = ticketRepository;
 	}
 
-	@Override
+    @Override
 	public Iterable<Result> getAllOptions () {
 		Result[] results = Result.values();
 		return Arrays.asList(results);
@@ -66,7 +68,7 @@ public class TicketServiceImpl implements TicketService {
 		return tickets;
 	}
 
-	@Override
+    @Override
 	public void deleteTicket (Ticket ticket) {
 		ticketRepository.delete(ticket);
 	}

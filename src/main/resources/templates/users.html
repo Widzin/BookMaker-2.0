@@ -31,10 +31,10 @@
                         <td sec:authorize="hasAuthority('ADMIN')" th:text="${#numbers.formatDecimal(user.moneyNow,1,2)}"/>
                         <td th:text="${user.mainRole}"/>
                         <td>
-                            <a th:href="${'/user/show/' + user.id}"/>
+                            <a th:href="${'/user/show/' + user.id}">View</a>
                         </td>
                         <td sec:authorize="hasAuthority('ADMIN')">
-                            <a th:href="${'/user/delete/' + user.id}"/>
+                            <a th:href="${'/user/delete/' + user.id}">Delete</a>
                         </td>
                     </tr>
                     </tbody>

@@ -37,7 +37,38 @@ public class BetServiceImpl implements BetService {
 		return bets;
 	}
 
-	@Override
+    @Override
+    public void saveBetsAfterMatch(List<Ticket> tickets, Match match) {
+        List<BetGame> bets = new ArrayList<>();
+        for (Ticket t: tickets) {
+            bets.addAll(getBetsFromGameAndTicket(match, t));
+        }
+        for (BetGame bg: bets) {
+            switch (bg.getResult()){
+                case home:
+                    if (match.getHome().getGoals() > match.getAway().getGoals())
+                        bg.setMatched(true);
+                    else
+                        bg.setMatched(false);
+                    break;
+                case guest:
+                    if (match.getHome().getGoals() < match.getAway().getGoals())
+                        bg.setMatched(true);
+                    else
+                        bg.setMatched(false);
+                    break;
+                case draw:
+                    if (match.getHome().getGoals() == match.getAway().getGoals())
+                        bg.setMatched(true);
+                    else
+                        bg.setMatched(false);
+                    break;
+            }
+            saveBet(bg);
+        }
+    }
+
+    @Override
 	public void deleteBet (BetGame betGame) {
 		betRepository.delete(betGame);
 	}
