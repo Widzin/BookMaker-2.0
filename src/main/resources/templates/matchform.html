@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head lang="en">
+
+    <title>Create match</title>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+    <div class="container" id="container">
+        <div id="main">
+            <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+            <div th:if="${param.errorId}" class="row text-center">
+                <label style="color:red">Can't make a match between the same teams.</label>
+            </div>
+            <div th:if="${param.errorDt}" class="row text-center">
+                <label style="color:red">Bad date input.</label>
+            </div>
+            <div class="row text-center">
+                <h2>Match Details</h2>
+            </div>
+            <div class="form-group">
+                <form class="form-horizontal" th:object="${match}" th:action="@{/match/create}" method="POST">
+                    <input type="hidden" th:field="*{id}"/>
+                    <input type="hidden" th:field="*{version}"/>
+                    <div class="col-sm-12">
+                        <div class="col-sm-6 row text-center">
+                            <h3>Choose home club</h3>
+                            <select th:name="homeTeam">
+                                <option th:each="clubSeason : ${clubSeasons}"
+                                        th:value="${clubSeason.id}" th:text="${clubSeason.club2.name}"/>
+                            </select>
+                        </div>
+                        <div class="col-sm-6 row text-center">
+                            <h3>Choose guest club</h3>
+                            <select th:name="awayTeam">
+                                <option th:each="clubSeason : ${clubSeasons}"
+                                        th:value="${clubSeason.id}" th:text="${clubSeason.club2.name}"/>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-6 row text-center">
+                            <h3>Write date</h3>
+                            <input type="text" th:name="dataText"/>
+                            <br />
+                            <br />
+                            <label>
+                                Please write date like this pattern: yyyy/mm/dd
+                            </label>
+                        </div>
+                        <div class="col-sm-6 row text-center">
+                            <br />
+                            <br />
+                            <button type="submit" class="btn btn-default">Create Match</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+        <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+    </footer>
+</body>
+</html>

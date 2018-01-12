@@ -1,6 +1,6 @@
 package com.widzin.controllers;
 
-import com.widzin.domain.Club;
+import com.widzin.models.Club;
 import com.widzin.services.ClubService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,54 +19,54 @@ public class ClubController {
 		this.clubService = clubService;
 	}
 
-	@RequestMapping(value = "/clubs", method = RequestMethod.GET)
-	public String list(Model model){
-		model.addAttribute("clubs", clubService.listAllClubs());
+	/*@RequestMapping(value = "/clubs", method = RequestMethod.GET)
+	public String list(Model models){
+		models.addAttribute("clubs", clubService.listAllClubs());
 		return "clubs";
-	}
+	}*/
 
-	@RequestMapping("/club/show/{id}")
-	public String showClub(@PathVariable Integer id, Model model) {
-		model.addAttribute("club", clubService.getClubById(id));
-		model.addAttribute("lastGames", clubService.getLastFiveMatches(clubService.getClubById(id)));
-		model.addAttribute("nextGames", clubService.getNextMatchesForClub(clubService.getClubById(id)));
+	/*@RequestMapping("/club/show/{id}")
+	public String showClub(@PathVariable Integer id, Model models) {
+		models.addAttribute("club", clubService.getClubById(id));
+		models.addAttribute("lastGames", clubService.getLastFiveMatches(clubService.getClubById(id)));
+		models.addAttribute("nextGames", clubService.getNextMatchesForClub(clubService.getClubById(id)));
 		return "clubshow";
-	}
+	}*/
 
-	@RequestMapping("/club/edit/{id}")
+	/*@RequestMapping("/club/edit/{id}")
 	public String edit(@PathVariable Integer id, Model model) {
 		model.addAttribute("club", clubService.getClubById(id));
 		return "clubform";
-	}
+	}*/
 
-	@RequestMapping("/club/new")
+	/*@RequestMapping("/club/new")
 	public String newClub(Model model) {
 		model.addAttribute("club", new Club());
 		return "clubform";
-	}
+	}*/
 
-	@RequestMapping(value = "/club", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/club", method = RequestMethod.POST)
 	public String saveClub(Club club) {
 		clubService.saveClub(club);
 		return "redirect:/club/show/" + club.getId();
-	}
+	}*/
 
-	@RequestMapping("/club/delete/{id}")
-	public String delete(@PathVariable Integer id) {
-		clubService.deleteClub(id);
-		return "redirect:/clubs";
-	}
+    /*@RequestMapping("/club/delete/{id}")
+    public String delete(@PathVariable Integer id) {
+        clubService.deleteClub(id);
+        return "redirect:/clubs";
+    }*/
 
-	@RequestMapping("/table")
+	/*@RequestMapping("/table")
 	public String showTable(Model model){
 		model.addAttribute("clubs", clubService.getForTableThisSeason());
 		return "table";
-	}
+	}*/
 
-	@RequestMapping(value = "/historyOfClub/{id}", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/club/{id}/history", method = RequestMethod.POST)
 	public String showHistory(@PathVariable Integer id, Model model){
 		model.addAttribute("club", clubService.getClubById(id));
 		model.addAttribute("allPastGames", clubService.getAllGames(clubService.getClubById(id)));
 		return "history";
-	}
+	}*/
 }

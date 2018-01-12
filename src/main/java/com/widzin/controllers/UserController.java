@@ -1,6 +1,6 @@
 package com.widzin.controllers;
 
-import com.widzin.domain.*;
+import com.widzin.models.*;
 import com.widzin.services.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -20,7 +21,8 @@ public class UserController {
 	private RoleService roleService;
 	private TicketService ticketService;
 	private BetService betService;
-	private GameService gameService;
+	//private GameService gameService;
+    private MatchService matchService;
 
 	@Autowired
 	public void setUserService (UserService userService) {
@@ -42,12 +44,17 @@ public class UserController {
 		this.betService = betService;
 	}
 
-	@Autowired
-	public void setGameService (GameService gameService) {
-		this.gameService = gameService;
-	}
+//	@Autowired
+//	public void setGameService (GameService gameService) {
+//		this.gameService = gameService;
+//	}
 
-	@RequestMapping(value = "/users", method = RequestMethod.GET)
+    @Autowired
+    public void setMatchService(MatchService matchService) {
+        this.matchService = matchService;
+    }
+
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
 	public String listUsers(Model model){
 		model.addAttribute("users", userService.listAll());
 		return "users";
@@ -111,7 +118,7 @@ public class UserController {
 
 	@RequestMapping(value = "/insertMoney/{id}", method = RequestMethod.POST)
 	public ModelAndView insertMoney(@RequestParam("insert") String text, @PathVariable Integer id){
-		ModelAndView model = new ModelAndView("redirect:/profile");
+		ModelAndView model = new ModelAndView("redirect:/profile?badInput");
 		try {
 			Double money = Double.parseDouble(text);
 			if (money > 0) {
@@ -119,41 +126,58 @@ public class UserController {
 				user.setInsertedMoney(money);
 				user.addMoneyNow(money);
 				userService.saveOrUpdate(user);
+                model = new ModelAndView("redirect:/profile");
 			}
 		} finally {
 			return model;
 		}
 	}
 
-	private Logger log = Logger.getLogger(GameController.class);
+    @RequestMapping("/user/{id}/tickets")
+    public String showUserTickets(@PathVariable("id") Integer id, Model model){
+        User user = userService.getById(id);
+        Iterable<Ticket> list;
+        if (user.getId() != 1) {
+            list = ticketService.getAllTicketsFromUser(user.getId());
+        } else {
+            list = ticketService.getAllTickets();
+        }
+        List<Ticket> tickets = new ArrayList<>();
+        for(Ticket t: list){
+            if(t.getRate() != 1.0)
+                tickets.add(t);
+            else {
+                for (BetGame bg: t.getBets()) {
+                    if (bg.getRate() == null)
+                        betService.deleteBet(bg);
+                }
+                ticketService.deleteTicket(t);
+            }
+        }
+        model.addAttribute("tickets", tickets);
+        model.addAttribute("user", user);
+        return "ticketshow";
+    }
 
-	@RequestMapping(value = "/ticket/makeFull/{id}", method = RequestMethod.POST)
-	public ModelAndView createTicket(@RequestParam("result") List<Result> results, @RequestParam("money") String text,
-									 Principal principal, @PathVariable("id") Integer id){
-		ModelAndView model = new ModelAndView("redirect:/?error");
-		try {
-			Double money = Double.parseDouble(text);
-			User user = userService.findByUsername(principal.getName()).get();
-			Ticket ticket = ticketService.findById(id);
-			if (money <= user.getMoneyNow()) {
-				ticket.setMoneyInserted(money);
-				for (int i = 0; i < ticket.getBets().size(); i++) {
-					ticket.getBets().get(i).setBet(results.get(i));
-					betService.saveBet(ticket.getBets().get(i));
-				}
-				for (Game g: ticketService.getAllGamesFromTicket(ticket)){
-					gameService.saveMatch(g);
-				}
-				ticket.calculateTicket();
-				ticket.setTicketOwner(user);
-				ticketService.saveTicket(ticket);
-				user.addMoneyNow((-1)*money);
-				user.addTickets(ticket);
-				userService.saveOrUpdate(user);
-				model = new ModelAndView("redirect:/?success");
-			}
-		} finally {
-			return model;
-		}
-	}
+    @RequestMapping("/user/{userId}/ticket/{ticketId}")
+    public String showUserBetsDetails(@PathVariable("userId") Integer userId,
+                                      @PathVariable("ticketId") Integer ticketId,
+                                      Model model,
+                                      Principal principal){
+        User user = userService.getById(userId);
+        for (Ticket t: user.getTickets()) {
+            if (t.getId() == ticketId) {
+                Ticket ticket = ticketService.findById(ticketId);
+                model.addAttribute("bets", ticket.getBets());
+                return "betshow";
+            }
+        }
+        User thisUser = userService.findByUsername(principal.getName()).get();
+        if (user.getId() == 1 && thisUser.getId() == 1) {
+            Ticket ticket = ticketService.findById(ticketId);
+            model.addAttribute("bets", ticket.getBets());
+            return "betshow";
+        }
+        return "redirect:/?notHisBets";
+    }
 }

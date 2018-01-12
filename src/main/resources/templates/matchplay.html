@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Play match</title>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+    <div class="container" id="container">
+        <div id="main">
+            <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+            <div class="row text-center">
+                <div th:if="${param.error}">
+                    <label style="color:red">Bad scores</label>
+                </div>
+                <div class="row text-center">
+                    <h1>Match:</h1>
+                    <h3><span th:text="${#dates.format(match.date, 'yyyy/MM/dd')}"></span></h3>
+                    <h3>
+                        <span th:text="${match.home.clubSeason.club2.name}"/> - <span th:text="${match.away.clubSeason.club2.name}"/>
+                    </h3>
+                    <form class="form-horizontal" th:object="${match}" th:action="@{/match/play/} + ${match.id}" method="post">
+                        <div class="col-lg-offset-3 col-lg-6 col-lg-offset-3">
+                            <h3>
+                                <input type="number" min="0" max="15" th:name="homeScore"/>
+                                -
+                                <input type="number" min="0" max="15" th:name="awayScore"/>
+                            </h3>
+                        </div>
+                        <br />
+                        <div class="col-lg-offset-4 col-lg-4 col-lg-offset-4">
+                            <button type="submit" class="btn btn-default">Set scores</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+        <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+    </footer>
+</body>
+</html>

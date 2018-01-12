@@ -1,20 +1,15 @@
 package com.widzin.services.jpaservices;
 
-import com.widzin.bootstrap.SpringJpaBootstrap;
-import com.widzin.domain.User;
+import com.widzin.models.User;
 import com.widzin.services.UserService;
 import com.widzin.services.security.EncryptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
-
-import org.apache.log4j.Logger;
 
 /**
  * Created by jt on 12/14/15.

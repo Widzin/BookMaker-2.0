@@ -1,15 +1,14 @@
 package com.widzin.controllers;
 
-import com.widzin.domain.*;
-import com.widzin.services.BetService;
-import com.widzin.services.GameService;
-import com.widzin.services.TicketService;
-import com.widzin.services.UserService;
+import com.google.common.collect.Lists;
+import com.widzin.models.*;
+import com.widzin.services.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -19,21 +18,28 @@ import java.util.List;
 public class TicketController {
 
 	private TicketService ticketService;
-	private GameService gameService;
+	//private GameService gameService;
+    private MatchService matchService;
 	private BetService betService;
 	private UserService userService;
+	private SeasonService seasonService;
 
 	@Autowired
 	public void setTicketService (TicketService ticketService) {
 		this.ticketService = ticketService;
 	}
 
-	@Autowired
-	public void setGameService (GameService gameService) {
-		this.gameService = gameService;
-	}
+//	@Autowired
+//	public void setGameService (GameService gameService) {
+//		this.gameService = gameService;
+//	}
 
-	@Autowired
+    @Autowired
+    public void setMatchService(MatchService matchService) {
+        this.matchService = matchService;
+    }
+
+    @Autowired
 	public void setBetService (BetService betService) {
 		this.betService = betService;
 	}
@@ -43,91 +49,86 @@ public class TicketController {
 		this.userService = userService;
 	}
 
-	@RequestMapping("/ticket/new")
+	@Autowired
+    public void setSeasonService(SeasonService seasonService) {
+        this.seasonService = seasonService;
+    }
+
+    @RequestMapping("/ticket/new")
 	public String showMatchesToBet(Model model){
-		model.addAttribute("games", gameService.getNextMatches());
+		model.addAttribute("matches", matchService.listAllNextMatches
+                (Lists.newArrayList(seasonService.listAllSeasons())));
 		model.addAttribute("betting", true);
-		Checked checked = new Checked();
-		List<Integer> list = new ArrayList<>();
-		list.add(0);
-		checked.setCheckedGames(list);
+		Checked checked = new Checked(new ArrayList<>());
+		//List<Integer> list = new ArrayList<>();
+		//list.add(0);
+		//checked.setCheckedGames();
 		model.addAttribute("checked", checked);
-		return "nextgames";
+		return "nextmatches";
 	}
 
 	private Logger log = Logger.getLogger(GameController.class);
 
-	@RequestMapping(value = "/ticket/make", method = RequestMethod.POST)
-	public String showChosenMatches(@ModelAttribute(value = "checked") Checked checked, Model model,
-									Principal principal){
-		List<Integer> checkedGames = checked.getCheckedGames();
+	@RequestMapping(value = "/ticket/prepare", method = RequestMethod.POST)
+	public String showChosenMatches(@ModelAttribute(value = "checked") Checked checked,
+                                    Model model, Principal principal){
+		List<Integer> chosenMatchesId = checked.getCheckedGames();
 		User user = userService.findByUsername(principal.getName()).get();
 		Ticket ticket = new Ticket();
-		for (Integer i: checkedGames) {
+		for (Integer id: chosenMatchesId) {
 			BetGame betGame = new BetGame();
-			betGame.setOneGame(gameService.findById(i));
-			gameService.findById(i).addBetGameList(betGame);
+			betGame.setMatch(matchService.getMatchById(id));
+            matchService.getMatchById(id).addBetGameToList(betGame);
 			betGame.setTicket(ticket);
-			ticket.addBets(betGame);
+			ticket.addBet(betGame);
 			ticket.setTicketOwner(user);
 		}
 		ticketService.saveTicket(ticket);
-		for (BetGame bg: ticket.getBets()){
-			betService.saveBet(bg);
-		}
-		model.addAttribute("ticket", ticket);
+        for (BetGame bg: ticket.getBets()){
+            betService.saveBet(bg);
+        }
 		model.addAttribute("bets", ticket.getBets());
+        model.addAttribute("ticket", ticket);
 		model.addAttribute("options", ticketService.getAllOptions());
 		model.addAttribute("user", user);
 		if (user.getMoneyNow() == 0.0)
 		    model.addAttribute("disabled", true);
 		else
             model.addAttribute("disabled", false);
-		return "chosengames";
+		return "chosenmatches";
 	}
 
-	@RequestMapping("/user/{id}/tickets")
-	public String showUserTickets(@PathVariable("id") Integer id, Model model){
-		User user = userService.getById(id);
-		Iterable<Ticket> list;
-		if (user.getId() != 1) {
-			list = ticketService.getAllTicketsFromUser(user.getId());
-		} else {
-			list = ticketService.getAllTickets();
-		}
-		List<Ticket> tickets = new ArrayList<>();
-		for(Ticket t: list){
-			if(t.getRate() != 1.0)
-				tickets.add(t);
-			else {
-				for (BetGame bg: t.getBets()) {
-					if (bg.getRate() == null)
-						betService.deleteBet(bg);
-				}
-				ticketService.deleteTicket(t);
-			}
-		}
-		model.addAttribute("tickets", tickets);
-		model.addAttribute("user", user);
-		return "ticketshow";
-	}
-
-	@RequestMapping("/user/{userId}/ticket/{ticketId}")
-	public String showUserBetsDetails(@PathVariable("userId") Integer userId,
-                                      @PathVariable("ticketId") Integer ticketId, Model model){
-		User user = userService.getById(userId);
-		for (Ticket t: user.getTickets()) {
-			if (t.getId() == ticketId) {
-				Ticket ticket = ticketService.findById(ticketId);
-				model.addAttribute("bets", ticket.getBets());
-				return "betshow";
-			}
-		}
-		if (user.getId() == 1) {
-			Ticket ticket = ticketService.findById(ticketId);
-			model.addAttribute("bets", ticket.getBets());
-			return "betshow";
-		}
-		return "redirect:/historyOfBets?error";
-	}
+    @RequestMapping(value = "/ticket/create/{id}", method = RequestMethod.POST)
+    public ModelAndView createTicket(@RequestParam("result") List<Result> results,
+                                     @RequestParam("money") String text,
+                                     @PathVariable Integer id,
+                                     Principal principal){
+        ModelAndView model = new ModelAndView("redirect:/?cannotParseMoney");
+        try {
+            Double money = Double.parseDouble(text);
+            User user = userService.findByUsername(principal.getName()).get();
+            Ticket ticket = ticketService.findById(id);
+            if (money <= user.getMoneyNow()) {
+                ticket.setMoneyInserted(money);
+                for (int i = 0; i < ticket.getBets().size(); i++) {
+                    ticket.getBets().get(i).setBet(results.get(i));
+                    betService.saveBet(ticket.getBets().get(i));
+                }
+                for (Match match: ticketService.getAllMatchesFromTicket(ticket)){
+                    matchService.saveMatch(match);
+                }
+                ticket.calculateTicket();
+                ticket.setTicketOwner(user);
+                ticketService.saveTicket(ticket);
+                user.addMoneyNow((-1)*money);
+                user.addTickets(ticket);
+                userService.saveOrUpdate(user);
+                model = new ModelAndView("redirect:/?success");
+            } else {
+                model = new ModelAndView("redirect:/?toMuchMoney");
+            }
+        } finally {
+            return model;
+        }
+    }
 }

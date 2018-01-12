@@ -1,6 +1,6 @@
 package com.widzin.services;
 
-import com.widzin.domain.User;
+import com.widzin.models.User;
 
 import java.util.Optional;
 
