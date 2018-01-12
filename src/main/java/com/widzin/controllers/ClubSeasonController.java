@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class ClubSeasonController {
@@ -85,6 +84,18 @@ public class ClubSeasonController {
         Season lastSeason = seasonService.getLastSeason();
         List<ClubSeason> clubSeasons = lastSeason.getClubs();
         model.addAttribute("clubs", clubSeasonService.sortListForTable(clubSeasons));
+        model.addAttribute("season", lastSeason.getPeriod());
+        return "table";
+    }
+
+    @RequestMapping("/table/{seasonId}")
+    public String showTableFromSeason(@PathVariable int seasonId, Model model){
+        Season season = seasonService.getSeasonById(seasonId);
+        Set<ClubSeason> clubSeasonsSet = new HashSet<>(season.getClubs());
+        List<ClubSeason> clubSeasons = new ArrayList<>(clubSeasonsSet);
+        System.out.println("");
+        model.addAttribute("clubs", clubSeasonService.sortListForTable(clubSeasons));
+        model.addAttribute("season", season.getPeriod());
         return "table";
     }
 

@@ -12,7 +12,7 @@
             <div th:if="${not #lists.isEmpty(clubs)}">
                 <div class="row text-center">
                     <h2>Table</h2>
-                    <h4>(for 2017/2018 season)</h4>
+                    <h4>(for <span th:text="${season}"/> season)</h4>
                 </div>
                 <div class="col-lg-offset-2 col-lg-8 col-lg-offset-2">
                     <table class="table table-striped">
@@ -33,6 +33,32 @@
                             <td th:text="${club.points}" class="row text-center"/>
                         </tr>
                     </table>
+                </div>
+                <div sec:authorize="isAuthenticated()">
+                    <div th:if="${season} == '2017/2018'" >
+                        <div class="col-lg-offset-3 col-lg-2">
+                            <a th:href="@{/table/2}">2016/2017 table</a>
+                        </div>
+                        <div class="col-lg-4 col-lg-offset-3">
+                            <a th:href="@{/table/1}">2015/2016 table</a>
+                        </div>
+                    </div>
+                    <div th:if="${season} == '2016/2017'" >
+                        <div class="col-lg-offset-3 col-lg-2">
+                            <a th:href="@{/table}">2017/2018 table</a>
+                        </div>
+                        <div class="col-lg-4 col-lg-offset-3">
+                            <a th:href="@{/table/1}">2015/2016 table</a>
+                        </div>
+                    </div>
+                    <div th:if="${season} == '2015/2016'" >
+                        <div class="col-lg-offset-3 col-lg-2">
+                            <a th:href="@{/table}">2017/2018 table</a>
+                        </div>
+                        <div class="col-lg-4 col-lg-offset-3">
+                            <a th:href="@{/table/2}">2016/2017 table</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
