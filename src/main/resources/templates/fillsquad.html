@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Fill squad</title>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container" id="container">
+    <div id="main">
+        <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+        <div class="row text-center">
+            <div class="row text-center">
+                <h1>Match:</h1>
+                <h3>
+                    <span th:text="${#dates.format(match.date, 'yyyy/MM/dd')}"/>: <span th:text="${match.home.clubSeason.club2.name}"/> - <span th:text="${match.away.clubSeason.club2.name}"/>
+                </h3>
+                <h3>Choose <span th:text="${this_club.club2.name} + ' ' + ${line}"/></h3>
+                <form class="form-horizontal" th:object="${match}" th:action="@{/match/} + ${match.id} + @{/addSquad/} + ${this_club.id} + @{/} + ${line}" method="post">
+                    <div>
+                        <select name="chosenPlayer">
+                            <option th:each="chosenPlayer : ${players}"
+                                    th:value="${chosenPlayer.id}" th:text="${chosenPlayer.player.name}"/>
+                        </select>
+                        <button type="submit" class="btn btn-default">Choose</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+</footer>
+</body>
+</html>

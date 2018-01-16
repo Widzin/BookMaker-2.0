@@ -19,7 +19,6 @@ import java.util.List;
 @Component
 public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
-    private ClubService clubService;
     private Club2Service club2Service;
     private ClubSeasonService clubSeasonService;
     private MatchService matchService;
@@ -28,7 +27,6 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     private SeasonService seasonService;
     private UserService userService;
     private RoleService roleService;
-    private GameService gameService;
     private PlayerService playerService;
     private PlayerSeasonService playerSeasonService;
     private Calculations calculations;
@@ -39,11 +37,6 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     private PlayersAndClubLoadService playersAndClubLoadService;
 
 	private Logger log = Logger.getLogger(SpringJpaBootstrap.class);
-
-    @Autowired
-	public void setClubService (ClubService clubService) {
-		this.clubService = clubService;
-	}
 
 	@Autowired
     public void setClub2Service(Club2Service club2Service) {
@@ -86,11 +79,6 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     }
 
     @Autowired
-	public void setGameService (GameService gameService) {
-		this.gameService = gameService;
-	}
-
-    @Autowired
     public void setPlayerService(PlayerService playerService) {
         this.playerService = playerService;
     }
@@ -117,13 +105,13 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-//        loadPlayers();
-//        loadMatches();
-//        loadLogos();
-//        saveToDatabase();
-//        loadUsers();
-//        loadRoles();
-//        assignUsersToDefaultRoles();
+        loadPlayers();
+        loadMatches();
+        loadLogos();
+        saveToDatabase();
+        loadUsers();
+        loadRoles();
+        assignUsersToDefaultRoles();
         setCalculationsOnLoad();
 	}
 
@@ -248,8 +236,6 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
                 }
             }
         }
-//		log.info("Wszystkie bramki strzelone: " + calculations.getAllGoalsScoredAtHome());
-//		log.info("Wszystkie bramki stracone: " + calculations.getAllGoalsLostAtHome());
     }
 }
 

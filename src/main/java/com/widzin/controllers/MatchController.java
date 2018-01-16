@@ -1,24 +1,20 @@
 package com.widzin.controllers;
 
 import com.google.common.collect.Lists;
-import com.widzin.models.ClubSeason;
-import com.widzin.models.Match;
-import com.widzin.models.Ticket;
-import com.widzin.models.User;
+import com.widzin.models.*;
 import com.widzin.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class MatchController {
@@ -206,5 +202,46 @@ public class MatchController {
         model.addAttribute("home", club2Service.getClub2ById(homeId));
         model.addAttribute("away", club2Service.getClub2ById(awayId));
         return "between";
+    }
+
+    @RequestMapping("/match/{matchId}/addSquad/{clubSeasonId}/{line}")
+    public String addPlayerSeasonToMatch(@PathVariable("matchId") Integer matchId,
+                                         @PathVariable("clubSeasonId") Integer clubSeasonId,
+                                         @PathVariable("line") String line,
+                                         Model model) {
+        model.addAttribute("match", matchService.getMatchById(matchId));
+        model.addAttribute("this_club", clubSeasonService.getClubSeasonById(clubSeasonId));
+        switch (line) {
+            case "goalkeeper":
+                Set<PlayerSeason> goalkeepersFromClub = new HashSet<>(clubSeasonService.getPlayersFromLine(clubSeasonId, line));
+                model.addAttribute("players", goalkeepersFromClub);
+                model.addAttribute("line", line);
+                return "fillsquad";
+        }
+        return "";
+    }
+
+    @RequestMapping(value = "/match/{matchId}/addSquad/{clubSeasonId}/{line}", method = RequestMethod.POST)
+    public String savePlayerSeasonToMatch(@PathVariable("matchId") Integer matchId,
+                                          @PathVariable("clubSeasonId") Integer clubSeasonId,
+                                          @PathVariable("line") String line,
+                                          @ModelAttribute("chosenPlayer") Integer playerSeasonId,
+                                          Model model) {
+        Match match = matchService.getMatchById(matchId);
+        PlayerSeason playerSeason = clubSeasonService.getPlayerSeasonFromClubSeason(clubSeasonId, playerSeasonId);
+        if (match.getHome().getId() == clubSeasonId) {
+            match.getHome().setLineupGoalkeeper(playerSeason);
+            teamMatchDetailsService.saveTeamMatchDetails(match.getHome());
+        } else {
+            match.getAway().setLineupGoalkeeper(playerSeason);
+            teamMatchDetailsService.saveTeamMatchDetails(match.getAway());
+        }
+        matchService.saveMatch(match);
+
+        switch (line) {
+            case "goalkeeper":
+                return "redirect:/";
+        }
+        return "";
     }
 }

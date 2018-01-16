@@ -93,7 +93,6 @@ public class ClubSeasonController {
         Season season = seasonService.getSeasonById(seasonId);
         Set<ClubSeason> clubSeasonsSet = new HashSet<>(season.getClubs());
         List<ClubSeason> clubSeasons = new ArrayList<>(clubSeasonsSet);
-        System.out.println("");
         model.addAttribute("clubs", clubSeasonService.sortListForTable(clubSeasons));
         model.addAttribute("season", season.getPeriod());
         return "table";

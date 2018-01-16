@@ -23,6 +23,7 @@
                             <th>1</th>
                             <th>X</th>
                             <th>2</th>
+                            <th sec:authorize="hasAuthority('ADMIN')">Add Squads</th>
                             <th sec:authorize="hasAuthority('ADMIN')">Play game</th>
                             <th sec:authorize="hasAnyAuthority('USER','ADMIN')">History</th>
                             <th sec:authorize="hasAuthority('USER')" th:if="${betting == true}">Add to bet</th>
@@ -36,6 +37,9 @@
                             <td th:text="${#numbers.formatDecimal(match.rates[0],1,2)}"/>
                             <td th:text="${#numbers.formatDecimal(match.rates[1],1,2)}"/>
                             <td th:text="${#numbers.formatDecimal(match.rates[2],1,2)}"/>
+                            <td sec:authorize="hasAuthority('ADMIN')">
+                                <a th:href="${'/match/' + match.id + '/addSquad/' + match.home.clubSeason.id + '/goalkeeper'}">Add squads</a>
+                            </td>
                             <td sec:authorize="hasAuthority('ADMIN')">
                                 <a th:href="${'/match/play/' + match.id}">Play</a>
                             </td>

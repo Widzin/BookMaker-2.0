@@ -1,7 +1,9 @@
 package com.widzin.services.implementations;
 
+import com.google.common.collect.Lists;
 import com.widzin.models.Club2;
 import com.widzin.models.ClubSeason;
+import com.widzin.models.PlayerSeason;
 import com.widzin.repositories.Club2Repository;
 import com.widzin.repositories.ClubSeasonRepository;
 import com.widzin.services.ClubSeasonService;
@@ -9,9 +11,7 @@ import com.widzin.services.ClubService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class ClubSeasonServiceImpl implements ClubSeasonService {
@@ -76,6 +76,7 @@ public class ClubSeasonServiceImpl implements ClubSeasonService {
         clubSeasonRepository.delete(id);
     }
 
+    @Override
     public List<ClubSeason> sortListForTable (List<ClubSeason> list) {
         Comparator<ClubSeason> c = (p, o) -> (-1)*p.getPoints().compareTo(o.getPoints());
         c = c.thenComparing((p, o) -> (-1)*p.getBilans().compareTo(o.getBilans()));
@@ -84,5 +85,29 @@ public class ClubSeasonServiceImpl implements ClubSeasonService {
 
         list.sort(c);
         return list;
+    }
+
+    @Override
+    public List<PlayerSeason> getPlayersFromLine(Integer clubSeasonId, String line) {
+        Set<PlayerSeason> playerSeasons = new HashSet<>();
+        switch (line) {
+            case "goalkeeper":
+                for (PlayerSeason pl: getClubSeasonById(clubSeasonId).getPlayers()) {
+                    if (pl.getPosition().equals("GK"))
+                        playerSeasons.add(pl);
+                }
+                break;
+        }
+        return Lists.newArrayList(playerSeasons);
+    }
+
+    @Override
+    public PlayerSeason getPlayerSeasonFromClubSeason(Integer clubSeasonId, Integer playerSeasonId) {
+        for (PlayerSeason pl: getClubSeasonById(clubSeasonId).getPlayers()) {
+            Integer id = pl.getId();
+            if (id.equals(playerSeasonId))
+                return pl;
+        }
+        return null;
     }
 }

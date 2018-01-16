@@ -60,9 +60,6 @@ public class TicketController {
                 (Lists.newArrayList(seasonService.listAllSeasons())));
 		model.addAttribute("betting", true);
 		Checked checked = new Checked(new ArrayList<>());
-		//List<Integer> list = new ArrayList<>();
-		//list.add(0);
-		//checked.setCheckedGames();
 		model.addAttribute("checked", checked);
 		return "nextmatches";
 	}
