@@ -38,13 +38,13 @@ public class PlayersAndClubLoadService implements LoadService{
     @Override
     public void parse(File file, final MainLoadService loadService) {
         ClubSeason clubSeason;
-        Club2 club2 = loadService.getClubFromService(clubParser.getClubName(file));
+        Club club = loadService.getClubFromService(clubParser.getClubName(file));
 
-        if (club2 == null) {
+        if (club == null) {
             clubSeason = new ClubSeason(clubParser.getClubName(file));
-            loadService.addClub(clubSeason.getClub2());
+            loadService.addClub(clubSeason.getClub());
         } else
-            clubSeason = new ClubSeason(club2);
+            clubSeason = new ClubSeason(club);
 
         try {
             JAXBContext jc = JAXBContext.newInstance(XMLClubSeason.class);

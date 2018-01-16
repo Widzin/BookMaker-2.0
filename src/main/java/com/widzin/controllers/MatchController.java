@@ -25,7 +25,7 @@ public class MatchController {
 
     private MatchService matchService;
     private TeamMatchDetailsService teamMatchDetailsService;
-    private Club2Service club2Service;
+    private ClubService clubService;
     private ClubSeasonService clubSeasonService;
     private SeasonService seasonService;
     private BetService betService;
@@ -43,8 +43,8 @@ public class MatchController {
     }
 
     @Autowired
-    public void setClub2Service(Club2Service club2Service) {
-        this.club2Service = club2Service;
+    public void setClubService(ClubService clubService) {
+        this.clubService = clubService;
     }
 
     @Autowired
@@ -199,8 +199,8 @@ public class MatchController {
                                      @PathVariable("idAway") Integer awayId,
                                      Model model){
         model.addAttribute("matches", matchService.listAllMatchesBetween(homeId, awayId));
-        model.addAttribute("home", club2Service.getClub2ById(homeId));
-        model.addAttribute("away", club2Service.getClub2ById(awayId));
+        model.addAttribute("home", clubService.getClubById(homeId));
+        model.addAttribute("away", clubService.getClubById(awayId));
         return "between";
     }
 

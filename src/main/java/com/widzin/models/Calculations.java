@@ -1,15 +1,7 @@
 package com.widzin.models;
 
-import com.widzin.services.ClubSeasonService;
-import com.widzin.services.MatchService;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.method.P;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Calculations {
@@ -116,7 +108,7 @@ public class Calculations {
                 setAwayDetails(seasons.get(seasons.size() - 3), away);
             }
         }
-		setMatchesBetween(home.getClub2(), away.getClub2());
+		setMatchesBetween(home.getClub(), away.getClub());
 	}
 
 	private void setHomeDetails(Season season, ClubSeason clubSeason) {
@@ -141,15 +133,15 @@ public class Calculations {
         }
 	}
 
-	private void setMatchesBetween(Club2 home, Club2 away) {
+	private void setMatchesBetween(Club home, Club away) {
 	    for (Season season: seasons) {
 	        for (Match match: season.getMatches()) {
                 if (match.isPlayed()) {
-                    if (match.getHome().getClubSeason().getClub2().getId() == home.getId()
-                            && match.getAway().getClubSeason().getClub2().getId() == away.getId())
+                    if (match.getHome().getClubSeason().getClub().getId() == home.getId()
+                            && match.getAway().getClubSeason().getClub().getId() == away.getId())
                         resolveEveryMatch(0, match.getHome().getGoals(), match.getAway().getGoals());
-                    else if (match.getHome().getClubSeason().getClub2().getId() == away.getId()
-                            && match.getAway().getClubSeason().getClub2().getId() == home.getId())
+                    else if (match.getHome().getClubSeason().getClub().getId() == away.getId()
+                            && match.getAway().getClubSeason().getClub().getId() == home.getId())
                         resolveEveryMatch(1, match.getAway().getGoals(), match.getHome().getGoals());
                 }
             }

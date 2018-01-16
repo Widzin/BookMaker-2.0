@@ -5,7 +5,7 @@ import java.util.List;
 
 @Entity
 @Table
-public class Club2 {
+public class Club {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,10 +17,10 @@ public class Club2 {
     private String name;
     private String imgUrl;
 
-    @OneToMany(mappedBy = "club2", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "club", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ClubSeason> clubSeasonList;
 
-    public Club2() {
+    public Club() {
     }
 
     public Integer getId() {
@@ -39,7 +39,7 @@ public class Club2 {
         this.version = version;
     }
 
-    public Club2(String name) {
+    public Club(String name) {
         this.name = name;
     }
 
@@ -69,7 +69,7 @@ public class Club2 {
 
     @Override
     public String toString() {
-        return "Club2{" +
+        return "Club{" +
                 "name='" + name + '\'' +
                 ", imgUrl='" + imgUrl + '\'' +
                 '}';

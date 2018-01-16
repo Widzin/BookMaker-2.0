@@ -9,7 +9,7 @@ import java.util.*;
 public class MainLoadService {
 
     private List<Season> seasons;
-    private List<Club2> clubs;
+    private List<Club> clubs;
     private List<Player> players;
 
     public MainLoadService() {
@@ -26,11 +26,11 @@ public class MainLoadService {
         seasons.add(season);
     }
 
-    public List<Club2> getClubs() {
+    public List<Club> getClubs() {
         return clubs;
     }
 
-    public void addClub(Club2 club) {
+    public void addClub(Club club) {
         clubs.add(club);
     }
 
@@ -51,8 +51,8 @@ public class MainLoadService {
         return null;
     }
 
-    public Club2 getClubFromService(String clubName) {
-        for (Club2 club: clubs) {
+    public Club getClubFromService(String clubName) {
+        for (Club club: clubs) {
             if (club.getName().contains(clubName))
                 return club;
         }
@@ -63,7 +63,7 @@ public class MainLoadService {
         for (Season season: seasons) {
             if (season.getPeriod().equalsIgnoreCase(period)) {
                 for (ClubSeason clubSeason: season.getClubs()) {
-                    if (clubSeason.getClub2().getName().contains(clubName))
+                    if (clubSeason.getClub().getName().contains(clubName))
                         return clubSeason.getPlayers();
                 }
             }
@@ -116,7 +116,7 @@ public class MainLoadService {
 
     public ClubSeason getClubSeasonByPeriodAndName (String period, String clubName) {
         for (ClubSeason clubSeason: getSeasonByPeriod(period).getClubs()) {
-            if (clubSeason.getClub2().getName().contains(clubName))
+            if (clubSeason.getClub().getName().contains(clubName))
                 return clubSeason;
         }
 

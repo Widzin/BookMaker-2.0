@@ -26,7 +26,7 @@
                         </tr>
                         <tr th:each="club, iterStat : ${clubs}" th:class="${iterStat.odd}? 'odd'">
                             <td th:text="${iterStat.count}"><a href="/club/@{club.id}"/></td>
-                            <td th:text="${club.club2.name}"/>
+                            <td th:text="${club.club.name}"/>
                             <td th:text="${club.matches}" class="row text-center"/>
                             <td th:text="${club.wins} + '-' + ${club.draws} + '-' + ${club.loses}"/>
                             <td th:text="${club.scoredGoals} + ' - ' + ${club.lostGoals}"/>

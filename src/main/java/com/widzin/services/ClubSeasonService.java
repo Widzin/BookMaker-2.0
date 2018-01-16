@@ -8,7 +8,7 @@ import java.util.List;
 public interface ClubSeasonService {
     Iterable<ClubSeason> listAllClubsSeason();
     ClubSeason getClubSeasonById(Integer id);
-    List<ClubSeason> getClubSeasonsByClub2Id(Integer id);
+    List<ClubSeason> getClubSeasonsByClubId(Integer id);
     ClubSeason getLastClubSeason(Integer id);
     ClubSeason saveClubSeason(ClubSeason clubSeason);
     List<ClubSeason> sortListForTable(List<ClubSeason> list);

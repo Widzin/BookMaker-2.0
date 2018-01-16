@@ -16,7 +16,7 @@ public class ClubSeason {
     private Integer version;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private Club2 club2;
+    private Club club;
 
     private Integer points;
     private Integer matches;
@@ -34,7 +34,7 @@ public class ClubSeason {
     }
 
     public ClubSeason(String name) {
-        club2 = new Club2(name);
+        club = new Club(name);
         players = new ArrayList<>();
         points = 0;
         matches = 0;
@@ -46,8 +46,8 @@ public class ClubSeason {
         bilans = 0;
     }
 
-    public ClubSeason(Club2 club2) {
-        this.club2 = club2;
+    public ClubSeason(Club club) {
+        this.club = club;
         players = new ArrayList<>();
         points = 0;
         matches = 0;
@@ -75,12 +75,12 @@ public class ClubSeason {
         this.version = version;
     }
 
-    public Club2 getClub2() {
-        return club2;
+    public Club getClub() {
+        return club;
     }
 
-    public void setClub(Club2 club2) {
-        this.club2 = club2;
+    public void setClub(Club club) {
+        this.club = club;
     }
 
     public Integer getPoints() {
@@ -158,7 +158,7 @@ public class ClubSeason {
     @Override
     public String toString() {
         return "ClubSeason{" +
-                "club=" + club2 +
+                "club=" + club +
                 ", players=" + players +
                 '}';
     }

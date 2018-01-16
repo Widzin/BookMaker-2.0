@@ -1,6 +1,5 @@
 package com.widzin.bootstrap;
 
-import com.google.common.collect.Lists;
 import com.widzin.bootstrap.loaders.Links;
 import com.widzin.bootstrap.loaders.services.MainLoadService;
 import com.widzin.bootstrap.loaders.services.MatchesLoadService;
@@ -19,7 +18,7 @@ import java.util.List;
 @Component
 public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
-    private Club2Service club2Service;
+    private ClubService clubService;
     private ClubSeasonService clubSeasonService;
     private MatchService matchService;
     private MatchEventService matchEventService;
@@ -39,8 +38,8 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 	private Logger log = Logger.getLogger(SpringJpaBootstrap.class);
 
 	@Autowired
-    public void setClub2Service(Club2Service club2Service) {
-        this.club2Service = club2Service;
+    public void setClubService(ClubService clubService) {
+        this.clubService = clubService;
     }
 
     @Autowired
@@ -132,9 +131,9 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     }
 
     private void saveToDatabase() {
-        for (Club2 club2: loadService.getClubs()) {
-            club2Service.saveClub2(club2);
-            log.info("Saved club id: " + club2.getId());
+        for (Club club : loadService.getClubs()) {
+            clubService.saveClub(club);
+            log.info("Saved club id: " + club.getId());
         }
         for (Player player: loadService.getPlayers()) {
             playerService.savePlayer(player);

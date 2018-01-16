@@ -3,7 +3,7 @@ package com.widzin.services.implementations;
 import com.google.common.collect.Lists;
 import com.widzin.models.ClubSeason;
 import com.widzin.models.PlayerSeason;
-import com.widzin.repositories.Club2Repository;
+import com.widzin.repositories.ClubRepository;
 import com.widzin.repositories.ClubSeasonRepository;
 import com.widzin.services.ClubSeasonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import java.util.*;
 public class ClubSeasonServiceImpl implements ClubSeasonService {
 
     private ClubSeasonRepository clubSeasonRepository;
-    private Club2Repository club2Repository;
+    private ClubRepository clubRepository;
 
     @Autowired
     public void setClubSeasonRepository(ClubSeasonRepository clubSeasonRepository) {
@@ -23,8 +23,8 @@ public class ClubSeasonServiceImpl implements ClubSeasonService {
     }
 
     @Autowired
-    public void setClub2Repository(Club2Repository club2Repository) {
-        this.club2Repository = club2Repository;
+    public void setClubRepository(ClubRepository clubRepository) {
+        this.clubRepository = clubRepository;
     }
 
     @Override
@@ -38,12 +38,12 @@ public class ClubSeasonServiceImpl implements ClubSeasonService {
     }
 
     @Override
-    public List<ClubSeason> getClubSeasonsByClub2Id(Integer id) {
+    public List<ClubSeason> getClubSeasonsByClubId(Integer id) {
         Iterable<ClubSeason> allClubSeasons = listAllClubsSeason();
         List<ClubSeason> clubSeasons = new ArrayList<>();
 
         for (ClubSeason clubSeason: allClubSeasons) {
-            if (clubSeason.getClub2().getId() == id)
+            if (clubSeason.getClub().getId() == id)
                 clubSeasons.add(clubSeason);
         }
 
@@ -52,9 +52,9 @@ public class ClubSeasonServiceImpl implements ClubSeasonService {
 
     @Override
     public ClubSeason getLastClubSeason(Integer id) {
-        List<ClubSeason> clubSeasons = getClubSeasonsByClub2Id(id);
+        List<ClubSeason> clubSeasons = getClubSeasonsByClubId(id);
         if (clubSeasons.size() == 0)
-            return new ClubSeason(club2Repository.findOne(id));
+            return new ClubSeason(clubRepository.findOne(id));
 
         Integer maxId = 0;
         for (ClubSeason clubSeason: clubSeasons) {

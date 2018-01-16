@@ -12,9 +12,9 @@
             <div class="row text-center">
                 <h1>Match:</h1>
                 <h3>
-                    <span th:text="${#dates.format(match.date, 'yyyy/MM/dd')}"/>: <span th:text="${match.home.clubSeason.club2.name}"/> - <span th:text="${match.away.clubSeason.club2.name}"/>
+                    <span th:text="${#dates.format(match.date, 'yyyy/MM/dd')}"/>: <span th:text="${match.home.clubSeason.club.name}"/> - <span th:text="${match.away.clubSeason.club.name}"/>
                 </h3>
-                <h3>Choose <span th:text="${this_club.club2.name} + ' ' + ${line}"/></h3>
+                <h3>Choose <span th:text="${this_club.club.name} + ' ' + ${line}"/></h3>
                 <form class="form-horizontal" th:object="${match}" th:action="@{/match/} + ${match.id} + @{/addSquad/} + ${this_club.id} + @{/} + ${line}" method="post">
                     <div>
                         <select name="chosenPlayer">
