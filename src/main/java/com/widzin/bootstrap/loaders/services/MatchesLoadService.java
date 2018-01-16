@@ -63,15 +63,11 @@ public class MatchesLoadService implements LoadService {
         match.getHome().setClubSeason(
                 service.getClubSeasonByPeriodAndName(match.getPeriod(), xmlMatch.getHomeTeam()));
         match.getHome().setGoals(xmlMatch.getHomeGoals());
-        match.getHome().setShots(xmlMatch.getHomeShots());
-        match.getHome().setShotsOnTarget(xmlMatch.getHomeShotsOnTarget());
 
         //------------- Setting away team details ------------
         match.getAway().setClubSeason(
                 service.getClubSeasonByPeriodAndName(match.getPeriod(), xmlMatch.getAwayTeam()));
         match.getAway().setGoals(xmlMatch.getAwayGoals());
-        match.getAway().setShots(xmlMatch.getAwayShots());
-        match.getAway().setShotsOnTarget(xmlMatch.getAwayShotsOnTarget());
 
         //------------- Setting home squad -------------------
         match.getHome().setLineupGoalkeeper(getPlayersInArray(service, xmlMatch.getHomeLineupGoalkeeper(),

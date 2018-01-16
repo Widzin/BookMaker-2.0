@@ -25,12 +25,6 @@ public class XMLMatch {
     @XmlElement(name = "HomeGoals")
     private Integer homeGoals;
 
-    @XmlElement(name = "HomeShots")
-    private Integer homeShots;
-
-    @XmlElement(name = "HomeShotsOnTarget")
-    private Integer homeShotsOnTarget;
-
     @XmlElement(name = "HomeGoalDetails")
     private String homeGoalDetails;
 
@@ -67,12 +61,6 @@ public class XMLMatch {
 
     @XmlElement(name = "AwayGoals")
     private Integer awayGoals;
-
-    @XmlElement(name = "AwayShots")
-    private Integer awayShots;
-
-    @XmlElement(name = "AwayShotsOnTarget")
-    private Integer awayShotsOnTarget;
 
     @XmlElement(name = "AwayGoalDetails")
     private String awayGoalDetails;
@@ -127,14 +115,6 @@ public class XMLMatch {
         return homeGoals;
     }
 
-    public Integer getHomeShots() {
-        return homeShots;
-    }
-
-    public Integer getHomeShotsOnTarget() {
-        return homeShotsOnTarget;
-    }
-
     public String getHomeGoalDetails() {
         return homeGoalDetails;
     }
@@ -181,14 +161,6 @@ public class XMLMatch {
 
     public Integer getAwayGoals() {
         return awayGoals;
-    }
-
-    public Integer getAwayShots() {
-        return awayShots;
-    }
-
-    public Integer getAwayShotsOnTarget() {
-        return awayShotsOnTarget;
     }
 
     public String getAwayGoalDetails() {
@@ -239,8 +211,6 @@ public class XMLMatch {
                 ", round=" + round +
                 ", homeTeam='" + homeTeam + '\'' +
                 ", homeGoals=" + homeGoals +
-                ", homeShots=" + homeShots +
-                ", homeShotsOnTarget=" + homeShotsOnTarget +
                 ", homeGoalDetails='" + homeGoalDetails + '\'' +
                 ", homeLineupGoalkeeper='" + homeLineupGoalkeeper + '\'' +
                 ", homeLineupDefense='" + homeLineupDefense + '\'' +
@@ -253,8 +223,6 @@ public class XMLMatch {
                 ", homeSubDetails='" + homeSubDetails + '\'' +
                 ", awayTeam='" + awayTeam + '\'' +
                 ", awayGoals=" + awayGoals +
-                ", awayShots=" + awayShots +
-                ", awayShotsOnTarget=" + awayShotsOnTarget +
                 ", awayGoalDetails='" + awayGoalDetails + '\'' +
                 ", awayLineupGoalkeeper='" + awayLineupGoalkeeper + '\'' +
                 ", awayLineupDefense='" + awayLineupDefense + '\'' +
