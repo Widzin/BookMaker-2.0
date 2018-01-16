@@ -1,13 +1,11 @@
 package com.widzin.services.implementations;
 
 import com.google.common.collect.Lists;
-import com.widzin.models.Club2;
 import com.widzin.models.ClubSeason;
 import com.widzin.models.PlayerSeason;
 import com.widzin.repositories.Club2Repository;
 import com.widzin.repositories.ClubSeasonRepository;
 import com.widzin.services.ClubSeasonService;
-import com.widzin.services.ClubService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

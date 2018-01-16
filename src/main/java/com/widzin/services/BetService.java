@@ -1,7 +1,6 @@
 package com.widzin.services;
 
 import com.widzin.models.BetGame;
-import com.widzin.models.Game;
 import com.widzin.models.Match;
 import com.widzin.models.Ticket;
 
