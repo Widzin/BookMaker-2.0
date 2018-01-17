@@ -10,9 +10,9 @@
     <div id="main">
         <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
         <div class="row text-center">
-            <h4><span th:text="${#dates.format(match.date, 'yyyy/Mm/dd')}"></span></h4>
+            <h4><span th:text="${#dates.format(match.date, 'yyyy/MM/dd')}"></span></h4>
             <h2><span th:text="${match.home.clubSeason.club.name} + ' - ' + ${match.away.clubSeason.club.name}"/> </h2>
-            <h3><span th:text="${match.home.goals} + ' - ' + ${match.away.goals}"/> </h3>
+            <h3 th:if="${match.played}"><span th:text="${match.home.goals} + ' - ' + ${match.away.goals}"/> </h3>
         </div>
         <div class="col-lg-6">
             <table class="table table-striper">
@@ -79,6 +79,9 @@
                     </td>
                 </tr>
             </table>
+            <div th:if="${#lists.isEmpty(homeGoals)}">
+                <h3 class="text-center">There was no goals</h3>
+            </div>
         </div>
         <div class="col-lg-6">
             <table class="table table-striper" th:if="${not #lists.isEmpty(awayGoals)}">
@@ -94,6 +97,9 @@
                     </td>
                 </tr>
             </table>
+            <div th:if="${#lists.isEmpty(awayGoals)}">
+                <h3 class="text-center">There was no goals</h3>
+            </div>
         </div>
     </div>
 </div>

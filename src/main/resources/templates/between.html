@@ -24,6 +24,7 @@
                         <th>Home team</th>
                         <th>Score</th>
                         <th>Away team</th>
+                        <th>Details</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -33,6 +34,9 @@
                         <td th:text="${match.home.clubSeason.club.name}"/>
                         <td th:text="${match.home.goals} + ':' + ${match.away.goals}"/>
                         <td th:text="${match.away.clubSeason.club.name}"/>
+                        <td>
+                            <a th:href="${'/match/' + match.id + '/details'}">Details</a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

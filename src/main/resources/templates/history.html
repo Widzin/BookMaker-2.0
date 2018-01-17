@@ -20,6 +20,7 @@
                             <th>Home club</th>
                             <th>Score</th>
                             <th>Away club</th>
+                            <th>Details</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,6 +34,9 @@
                             <td th:switch="${match.away.clubSeason.club.name}">
                                 <b th:case="${club.name}" th:text="${match.away.clubSeason.club.name}"/>
                                 <span th:case="*" th:text="${match.away.clubSeason.club.name}"/>
+                            </td>
+                            <td>
+                                <a th:href="${'/match/' + match.id + '/details'}">Details</a>
                             </td>
                         </tr>
                     </tbody>
