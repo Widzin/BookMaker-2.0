@@ -76,6 +76,7 @@ public class ClubSeasonController {
         }
 
         model.addAttribute("nextMatches", matchService.listAllNotPlayedMatchesWithClub(id));
+        model.addAttribute("players", lastClubSeason.getPlayers());
         return "clubshow";
     }
 

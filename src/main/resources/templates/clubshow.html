@@ -125,6 +125,35 @@
                             </td>
                         </tr>
                     </table>
+
+                </div>
+                <div class="col-lg-12" th:if="${not #lists.isEmpty(players)}">
+                    <div class="row text-center">
+                        <h3>Players</h3>
+                    </div>
+                    <table class="table table-striped">
+                        <tr style="background-color: #1c1818; color: #b9b5b5; font-size: 20px;">
+                            <th>Number</th>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Matches</th>
+                            <th>Goals</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr th:each="player : ${players}">
+                            <td th:text="${player.shirtNumber}"/>
+                            <td th:text="${player.player.name}"/>
+                            <td th:text="${player.position}"/>
+                            <td th:text="${player.matches}"/>
+                            <td th:text="${player.goals}"/>
+                            <td th:if="${player.value ge 1000000.0}">
+                                <span th:with="formattedValue=${player.value / 1000000}" th:text="${#numbers.formatDecimal(formattedValue, 1, 0)} + ' mln €'"/>
+                            </td>
+                            <td th:if="${player.value lt 1000000.0}">
+                                <span th:with="formattedValue=${player.value / 1000}" th:text="${#numbers.formatDecimal(formattedValue, 1, 0)} + ' tys €'"/>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
                 <form class="form-horizontal" th:object="${club}" th:action="@{/club/} + ${club.id} + @{/history}" method="POST">
                     <div class="form-group">
