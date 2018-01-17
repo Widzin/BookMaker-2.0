@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 public class MatchController {
@@ -202,6 +199,42 @@ public class MatchController {
         model.addAttribute("home", clubService.getClubById(homeId));
         model.addAttribute("away", clubService.getClubById(awayId));
         return "between";
+    }
+
+    @RequestMapping("/match/{matchId}/details")
+    public String showMatchDetails(@PathVariable("matchId") Integer matchId, Model model) {
+        Match match = matchService.getMatchById(matchId);
+        model.addAttribute("match", match);
+
+        Comparator<MatchEvent> c = (p, o) -> p.getMinute().compareTo(o.getMinute());
+
+        List<PlayerSeason> homePlayers = new ArrayList<>();
+        homePlayers.add(match.getHome().getLineupGoalkeeper());
+        homePlayers.addAll(match.getHome().getLineupDefense());
+        homePlayers.addAll(match.getHome().getLineupMidfield());
+        homePlayers.addAll(match.getHome().getLineupForward());
+        model.addAttribute("homePlayers", homePlayers);
+
+        model.addAttribute("homeSubs", match.getHome().getLineupSubstitutes());
+
+        match.getHome().getGoalDetails().sort(c);
+
+        model.addAttribute("homeGoals", match.getHome().getGoalDetails());
+
+        List<PlayerSeason> awayPlayers = new ArrayList<>();
+        awayPlayers.add(match.getAway().getLineupGoalkeeper());
+        awayPlayers.addAll(match.getAway().getLineupDefense());
+        awayPlayers.addAll(match.getAway().getLineupMidfield());
+        awayPlayers.addAll(match.getAway().getLineupForward());
+        model.addAttribute("awayPlayers", awayPlayers);
+
+        model.addAttribute("awaySubs", match.getAway().getLineupSubstitutes());
+
+        match.getAway().getGoalDetails().sort(c);
+
+        model.addAttribute("awayGoals", match.getAway().getGoalDetails());
+
+        return "matchdetails";
     }
 
     @RequestMapping("/match/{matchId}/addSquad/{clubSeasonId}/{line}")

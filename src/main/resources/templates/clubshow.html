@@ -87,7 +87,7 @@
                                 <b th:case="${club.name}" th:text="${match.away.clubSeason.club.name}"/>
                                 <span th:case="*" th:text="${match.away.clubSeason.club.name}"/>
                             </td>
-                            <td sec:authorize="hasAnyAuthority('USER','ADMIN')">
+                            <td>
                                 <a th:href="${'/game/between/' + match.home.clubSeason.club.id + '/' + match.away.clubSeason.club.id}">Show</a>
                             </td>
                         </tr>
@@ -106,6 +106,7 @@
                             <th>Home club</th>
                             <th>Score</th>
                             <th>Away club</th>
+                            <th>Details</th>
                             <th>Previous matches</th>
                         </tr>
                         <tr th:each="match : ${lastMatches}">
@@ -120,7 +121,10 @@
                                 <b th:case="${club.name}" th:text="${match.away.clubSeason.club.name}"/>
                                 <span th:case="*" th:text="${match.away.clubSeason.club.name}"/>
                             </td>
-                            <td sec:authorize="hasAnyAuthority('USER','ADMIN')">
+                            <td>
+                                <a th:href="${'/match/' + match.id + '/details'}">Details</a>
+                            </td>
+                            <td>
                                 <a th:href="${'/match/between/' + match.home.clubSeason.club.id + '/' + match.away.clubSeason.club.id}">Previous matches</a>
                             </td>
                         </tr>

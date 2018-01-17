@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head lang="en">
+
+    <title>Match details</title>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container" id="container">
+    <div id="main">
+        <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+        <div class="row text-center">
+            <h4><span th:text="${#dates.format(match.date, 'yyyy/Mm/dd')}"></span></h4>
+            <h2><span th:text="${match.home.clubSeason.club.name} + ' - ' + ${match.away.clubSeason.club.name}"/> </h2>
+            <h3><span th:text="${match.home.goals} + ' - ' + ${match.away.goals}"/> </h3>
+        </div>
+        <div class="col-lg-6">
+            <table class="table table-striper">
+                <tr style="background-color: #1c1818; color: #b9b5b5; font-size: 14px;">
+                    <th>Numer</th>
+                    <th>Name</th>
+                </tr>
+                <tr th:each="player : ${homePlayers}">
+                    <td th:text="${player.shirtNumber}"/>
+                    <td th:text="${player.player.name}"/>
+                </tr>
+            </table>
+        </div>
+        <div class="col-lg-6">
+            <table class="table table-striper">
+                <tr style="background-color: #1c1818; color: #b9b5b5; font-size: 14px;">
+                    <th>Numer</th>
+                    <th>Name</th>
+                </tr>
+                <tr th:each="player : ${awayPlayers}">
+                    <td th:text="${player.shirtNumber}"/>
+                    <td th:text="${player.player.name}"/>
+                </tr>
+            </table>
+        </div>
+        <h4 class="text-center">Substitutes</h4>
+        <div class="col-lg-6">
+            <table class="table table-striper">
+                <tr style="background-color: #1c1818; color: #b9b5b5; font-size: 14px;">
+                    <th>Numer</th>
+                    <th>Name</th>
+                </tr>
+                <tr th:each="player : ${homeSubs}">
+                    <td th:text="${player.shirtNumber}"/>
+                    <td th:text="${player.player.name}"/>
+                </tr>
+            </table>
+        </div>
+        <div class="col-lg-6">
+            <table class="table table-striper">
+                <tr style="background-color: #1c1818; color: #b9b5b5; font-size: 14px;">
+                    <th>Numer</th>
+                    <th>Name</th>
+                </tr>
+                <tr th:each="player : ${awaySubs}">
+                    <td th:text="${player.shirtNumber}"/>
+                    <td th:text="${player.player.name}"/>
+                </tr>
+            </table>
+        </div>
+        <h4 class="text-center">Goal details</h4>
+        <div class="col-lg-6">
+            <table class="table table-striper" th:if="${not #lists.isEmpty(homeGoals)}">
+                <tr style="background-color: #1c1818; color: #b9b5b5; font-size: 14px;">
+                    <th>Minute</th>
+                    <th>Name</th>
+                </tr>
+                <tr th:each="goal : ${homeGoals}">
+                    <td th:text="${goal.minute}"/>
+                    <td>
+                        <span th:if="${goal.additionalInformation == 'own'}" th:text="${goal.player.player.name} + ' (own)'"/>
+                        <span th:if="${goal.additionalInformation == 'penalty'}" th:text="${goal.player.player.name} + ' (penalty)'"/>
+                        <span th:if="${goal.additionalInformation == 'goal'}" th:text="${goal.player.player.name}"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-lg-6">
+            <table class="table table-striper" th:if="${not #lists.isEmpty(awayGoals)}">
+                <tr style="background-color: #1c1818; color: #b9b5b5; font-size: 14px;">
+                    <th>Minute</th>
+                    <th>Name</th>
+                </tr>
+                <tr th:each="goal : ${awayGoals}">
+                    <td th:text="${goal.minute}"/>
+                    <td th:text="${goal.player.player.name}">
+                        <span th:if="${goal.additionalInformation == 'own'}" th:text="' (own)'"/>
+                        <span th:if="${goal.additionalInformation == 'penalty'}" th:text="' (penalty)'"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+</footer>
+</body>
+</html>

@@ -58,7 +58,7 @@ public class SpringSecConfig extends WebSecurityConfigurerAdapter {
 				   .and()
 				   .authorizeRequests().antMatchers("/users", "/club/show/*",  "/insertMoney/*",
 				   					"/club/*/history", "/match/next", "/match/between/*/*","/profile",
-				   					"/user/*/tickets", "/user/*/ticket/*", "/table/*")
+				   					"/user/*/tickets", "/user/*/ticket/*", "/table/*", "/match/*/details")
 				   					.hasAnyAuthority("USER", "ADMIN")
 				   .and()
 				   .authorizeRequests().antMatchers("/ticket/new", "/ticket/make", "/ticket/makeFull/*")
