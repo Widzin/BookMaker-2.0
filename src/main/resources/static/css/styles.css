@@ -52,28 +52,3 @@ html, body {
     clear: both;
     text-align: center;
 }
-
-.champions_league {
-    background-color: #7bee51;
-}
-
-.eliminations_champions_league {
-    background-color: rgba(155,238,66,0.94);
-}
-
-.europe_league {
-    background-color: rgba(32,152,238,0.94);
-}
-
-.eliminations_europe_league {
-    background-color: rgba(86,197,238,0.94);
-}
-
-
-.eliminations_downgrade {
-    background-color: rgba(238,88,85,0.94);
-}
-
-.downgrade {
-    background-color: rgba(238,42,52,0.94);
-}

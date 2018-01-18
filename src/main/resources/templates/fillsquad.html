@@ -14,15 +14,43 @@
                 <h3>
                     <span th:text="${#dates.format(match.date, 'yyyy/MM/dd')}"/>: <span th:text="${match.home.clubSeason.club.name}"/> - <span th:text="${match.away.clubSeason.club.name}"/>
                 </h3>
-                <h3>Choose <span th:text="${this_club.club.name} + ' ' + ${line}"/></h3>
-                <form class="form-horizontal" th:object="${match}" th:action="@{/match/} + ${match.id} + @{/addSquad/} + ${this_club.id} + @{/} + ${line}" method="post">
-                    <div>
-                        <select name="chosenPlayer">
-                            <option th:each="chosenPlayer : ${players}"
-                                    th:value="${chosenPlayer.id}" th:text="${chosenPlayer.player.name}"/>
-                        </select>
-                        <button type="submit" class="btn btn-default">Choose</button>
-                    </div>
+                <h3>Choose <span th:text="${club.club.name} + ' goalkeeper'"/></h3>
+                <form class="form-horizontal" th:object="${checked}" th:action="@{/match/} + ${match.id} + @{/addSquad/} + ${club.id}" method="post">
+                    <select name="chosenGK">
+                        <option th:each="chosenPlayer : ${players}"
+                                th:value="${chosenPlayer.id}" th:text="${chosenPlayer.player.name}"/>
+                    </select>
+                    <h3>Choose exactly 10 other players for main squad of <span th:text="${club.club.name}"/></h3>
+                    <table class="table table-striped">
+                        <tr style="text-align:center; background-color: #1c1818; color: #b9b5b5; font-size: 17px;">
+                            <td>Number</td>
+                            <td>Name</td>
+                            <td>Position</td>
+                            <td>Matches</td>
+                            <td>Goals</td>
+                            <td>Value</td>
+                            <td>Choose</td>
+                        </tr>
+                        <tr th:each="op : ${otherPlayers}">
+                            <td th:text="${op.shirtNumber}"/>
+                            <td th:text="${op.player.name}"/>
+                            <td th:text="${op.position}"/>
+                            <td th:text="${op.matches}"/>
+                            <td th:text="${op.goals}"/>
+                            <td>
+                                <span th:if="${op.value ge 1000000.0}">
+                                    <span th:with="formattedValue=${op.value / 1000000}" th:text="${#numbers.formatDecimal(formattedValue, 1, 0)} + ' mln €'"/>
+                                </span>
+                                <span th:if="${op.value lt 1000000.0}">
+                                    <span th:with="formattedValue=${op.value / 1000}" th:text="${#numbers.formatDecimal(formattedValue, 1, 0)} + ' tys €'"/>
+                                </span>
+                            </td>
+                            <td>
+                                <input type="checkbox" th:field="*{checkedGames}" th:value="${op.id}"/>
+                            </td>
+                        </tr>
+                    </table>
+                    <button type="submit" class="btn btn-default">Choose</button>
                 </form>
             </div>
         </div>

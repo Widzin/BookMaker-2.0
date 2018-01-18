@@ -237,32 +237,42 @@ public class MatchController {
         return "matchdetails";
     }
 
-    @RequestMapping("/match/{matchId}/addSquad/{clubSeasonId}/{line}")
+    @RequestMapping("/match/{matchId}/addSquad/{clubSeasonId}")
     public String addPlayerSeasonToMatch(@PathVariable("matchId") Integer matchId,
                                          @PathVariable("clubSeasonId") Integer clubSeasonId,
-                                         @PathVariable("line") String line,
                                          Model model) {
         model.addAttribute("match", matchService.getMatchById(matchId));
-        model.addAttribute("this_club", clubSeasonService.getClubSeasonById(clubSeasonId));
-        switch (line) {
-            case "goalkeeper":
-                Set<PlayerSeason> goalkeepersFromClub = new HashSet<>(clubSeasonService.getPlayersFromLine(clubSeasonId, line));
-                model.addAttribute("players", goalkeepersFromClub);
-                model.addAttribute("line", line);
-                return "fillsquad";
-        }
-        return "";
+        model.addAttribute("club", clubSeasonService.getClubSeasonById(clubSeasonId));
+        Set<PlayerSeason> goalkeepersFromClub = new HashSet<>(clubSeasonService.getPlayersFromLine(clubSeasonId, "GK"));
+        model.addAttribute("players", goalkeepersFromClub);
+        List<PlayerSeason> otherPlayersFromClub = new ArrayList<>();
+        otherPlayersFromClub.addAll(clubSeasonService.getPlayersFromLine(clubSeasonId, "RB"));
+        otherPlayersFromClub.addAll(clubSeasonService.getPlayersFromLine(clubSeasonId, "CB"));
+        otherPlayersFromClub.addAll(clubSeasonService.getPlayersFromLine(clubSeasonId, "LB"));
+        otherPlayersFromClub.addAll(clubSeasonService.getPlayersFromLine(clubSeasonId, "CDM"));
+        otherPlayersFromClub.addAll(clubSeasonService.getPlayersFromLine(clubSeasonId, "RM"));
+        otherPlayersFromClub.addAll(clubSeasonService.getPlayersFromLine(clubSeasonId, "CM"));
+        otherPlayersFromClub.addAll(clubSeasonService.getPlayersFromLine(clubSeasonId, "LM"));
+        otherPlayersFromClub.addAll(clubSeasonService.getPlayersFromLine(clubSeasonId, "CAM"));
+        otherPlayersFromClub.addAll(clubSeasonService.getPlayersFromLine(clubSeasonId, "RW"));
+        otherPlayersFromClub.addAll(clubSeasonService.getPlayersFromLine(clubSeasonId, "LW"));
+        otherPlayersFromClub.addAll(clubSeasonService.getPlayersFromLine(clubSeasonId, "CF"));
+        otherPlayersFromClub.addAll(clubSeasonService.getPlayersFromLine(clubSeasonId, "ST"));
+        model.addAttribute("otherPlayers", otherPlayersFromClub);
+        Checked checked = new Checked(new ArrayList<>());
+        model.addAttribute("checked", checked);
+        return "fillsquad";
     }
 
-    @RequestMapping(value = "/match/{matchId}/addSquad/{clubSeasonId}/{line}", method = RequestMethod.POST)
+    @RequestMapping(value = "/match/{matchId}/addSquad/{clubSeasonId}", method = RequestMethod.POST)
     public String savePlayerSeasonToMatch(@PathVariable("matchId") Integer matchId,
                                           @PathVariable("clubSeasonId") Integer clubSeasonId,
-                                          @PathVariable("line") String line,
-                                          @ModelAttribute("chosenPlayer") Integer playerSeasonId,
-                                          Model model) {
+                                          @ModelAttribute("chosenGK") Integer goalkeeperSeasonId,
+                                          @ModelAttribute("checked") Checked checked) {
+        System.out.println("");
         Match match = matchService.getMatchById(matchId);
-        PlayerSeason playerSeason = clubSeasonService.getPlayerSeasonFromClubSeason(clubSeasonId, playerSeasonId);
-        if (match.getHome().getId() == clubSeasonId) {
+        PlayerSeason playerSeason = clubSeasonService.getPlayerSeasonFromClubSeason(clubSeasonId, goalkeeperSeasonId);
+        if (match.getHome().getId().equals(clubSeasonId)) {
             match.getHome().setLineupGoalkeeper(playerSeason);
             teamMatchDetailsService.saveTeamMatchDetails(match.getHome());
         } else {
@@ -271,10 +281,6 @@ public class MatchController {
         }
         matchService.saveMatch(match);
 
-        switch (line) {
-            case "goalkeeper":
-                return "redirect:/";
-        }
-        return "";
+        return "redirect:/match/next";
     }
 }

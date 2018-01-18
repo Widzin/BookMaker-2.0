@@ -87,16 +87,12 @@ public class ClubSeasonServiceImpl implements ClubSeasonService {
 
     @Override
     public List<PlayerSeason> getPlayersFromLine(Integer clubSeasonId, String line) {
-        Set<PlayerSeason> playerSeasons = new HashSet<>();
-        switch (line) {
-            case "goalkeeper":
-                for (PlayerSeason pl: getClubSeasonById(clubSeasonId).getPlayers()) {
-                    if (pl.getPosition().equals("GK"))
-                        playerSeasons.add(pl);
-                }
-                break;
+        List<PlayerSeason> playerSeasons = new ArrayList<>();
+        for (PlayerSeason pl: getClubSeasonById(clubSeasonId).getPlayers()) {
+            if (pl.getPosition().equals(line))
+                playerSeasons.add(pl);
         }
-        return Lists.newArrayList(playerSeasons);
+        return playerSeasons;
     }
 
     @Override
