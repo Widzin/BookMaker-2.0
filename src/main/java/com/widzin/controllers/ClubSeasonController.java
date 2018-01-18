@@ -1,7 +1,7 @@
 package com.widzin.controllers;
 
 import com.widzin.models.*;
-import com.widzin.services.Club2Service;
+import com.widzin.services.ClubService;
 import com.widzin.services.ClubSeasonService;
 import com.widzin.services.MatchService;
 import com.widzin.services.SeasonService;
@@ -12,14 +12,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class ClubSeasonController {
 
     private ClubSeasonService clubSeasonService;
-    private Club2Service club2Service;
+    private ClubService clubService;
     private MatchService matchService;
     private SeasonService seasonService;
 
@@ -29,8 +28,8 @@ public class ClubSeasonController {
     }
 
     @Autowired
-    public void setClub2Service(Club2Service club2Service) {
-        this.club2Service = club2Service;
+    public void setClubService(ClubService clubService) {
+        this.clubService = clubService;
     }
 
     @Autowired
@@ -45,8 +44,8 @@ public class ClubSeasonController {
 
     @RequestMapping("/club/show/{id}")
     public String showClub(@PathVariable Integer id, Model model) {
-        Club2 club2 = club2Service.getClub2ById(id);
-        model.addAttribute("club", club2);
+        Club club = clubService.getClubById(id);
+        model.addAttribute("club", club);
 
         ClubSeason lastClubSeason = clubSeasonService.getLastClubSeason(id);
         model.addAttribute("clubSeason", lastClubSeason);
@@ -77,6 +76,7 @@ public class ClubSeasonController {
         }
 
         model.addAttribute("nextMatches", matchService.listAllNotPlayedMatchesWithClub(id));
+        model.addAttribute("players", lastClubSeason.getPlayers());
         return "clubshow";
     }
 
@@ -85,6 +85,17 @@ public class ClubSeasonController {
         Season lastSeason = seasonService.getLastSeason();
         List<ClubSeason> clubSeasons = lastSeason.getClubs();
         model.addAttribute("clubs", clubSeasonService.sortListForTable(clubSeasons));
+        model.addAttribute("season", lastSeason.getPeriod());
+        return "table";
+    }
+
+    @RequestMapping("/table/{seasonId}")
+    public String showTableFromSeason(@PathVariable int seasonId, Model model){
+        Season season = seasonService.getSeasonById(seasonId);
+        Set<ClubSeason> clubSeasonsSet = new HashSet<>(season.getClubs());
+        List<ClubSeason> clubSeasons = new ArrayList<>(clubSeasonsSet);
+        model.addAttribute("clubs", clubSeasonService.sortListForTable(clubSeasons));
+        model.addAttribute("season", season.getPeriod());
         return "table";
     }
 
@@ -92,7 +103,7 @@ public class ClubSeasonController {
     public String showHistory(@PathVariable Integer id, Model model){
         List<Match> allThisClubMatches = matchService.listAllMatchesWithClub(id);
         Collections.reverse(allThisClubMatches);
-        model.addAttribute("club", club2Service.getClub2ById(id));
+        model.addAttribute("club", clubService.getClubById(id));
         model.addAttribute("allMatches", allThisClubMatches);
         return "history";
     }

@@ -85,8 +85,8 @@ public class BetGame {
 
 	@Override
 	public String toString(){
-		return match.getHome().getClubSeason().getClub2().getName()
-                + " - " + match.getAway().getClubSeason().getClub2().getName()
+		return match.getHome().getClubSeason().getClub().getName()
+                + " - " + match.getAway().getClubSeason().getClub().getName()
                 + "\tRate: " + rate + ", Result: " + result;
 	}
 }

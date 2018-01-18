@@ -9,7 +9,6 @@ import com.widzin.repositories.ClubSeasonRepository;
 import com.widzin.repositories.MatchRepository;
 import com.widzin.repositories.SeasonRepository;
 import com.widzin.services.MatchService;
-import com.widzin.services.SeasonService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -67,8 +66,8 @@ public class MatchServiceImpl implements MatchService {
         List<Match> allMatchesWithClub = new ArrayList<>();
 
         for (Match match: allMatches) {
-            if (match.getHome().getClubSeason().getClub2().getId() == clubId
-                    || match.getAway().getClubSeason().getClub2().getId() == clubId)
+            if (match.getHome().getClubSeason().getClub().getId() == clubId
+                    || match.getAway().getClubSeason().getClub().getId() == clubId)
                 allMatchesWithClub.add(match);
         }
 
@@ -190,8 +189,8 @@ public class MatchServiceImpl implements MatchService {
     public List<Match> listAllMatchesBetween(int homeId, int awayId) {
         List<Match> matches = new ArrayList<>();
         for (Match match: listAllPlayedMatchesWithClub(homeId)) {
-            if (match.getHome().getClubSeason().getClub2().getId() == awayId
-                    || match.getAway().getClubSeason().getClub2().getId() == awayId)
+            if (match.getHome().getClubSeason().getClub().getId() == awayId
+                    || match.getAway().getClubSeason().getClub().getId() == awayId)
                 matches.add(match);
         }
         return matches;

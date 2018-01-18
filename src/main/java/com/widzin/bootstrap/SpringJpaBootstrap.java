@@ -1,6 +1,5 @@
 package com.widzin.bootstrap;
 
-import com.google.common.collect.Lists;
 import com.widzin.bootstrap.loaders.Links;
 import com.widzin.bootstrap.loaders.services.MainLoadService;
 import com.widzin.bootstrap.loaders.services.MatchesLoadService;
@@ -20,7 +19,6 @@ import java.util.List;
 public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
     private ClubService clubService;
-    private Club2Service club2Service;
     private ClubSeasonService clubSeasonService;
     private MatchService matchService;
     private MatchEventService matchEventService;
@@ -28,7 +26,6 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     private SeasonService seasonService;
     private UserService userService;
     private RoleService roleService;
-    private GameService gameService;
     private PlayerService playerService;
     private PlayerSeasonService playerSeasonService;
     private Calculations calculations;
@@ -40,14 +37,9 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 
 	private Logger log = Logger.getLogger(SpringJpaBootstrap.class);
 
-    @Autowired
-	public void setClubService (ClubService clubService) {
-		this.clubService = clubService;
-	}
-
 	@Autowired
-    public void setClub2Service(Club2Service club2Service) {
-        this.club2Service = club2Service;
+    public void setClubService(ClubService clubService) {
+        this.clubService = clubService;
     }
 
     @Autowired
@@ -84,11 +76,6 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     public void setRoleService(RoleService roleService) {
         this.roleService = roleService;
     }
-
-    @Autowired
-	public void setGameService (GameService gameService) {
-		this.gameService = gameService;
-	}
 
     @Autowired
     public void setPlayerService(PlayerService playerService) {
@@ -144,9 +131,9 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     }
 
     private void saveToDatabase() {
-        for (Club2 club2: loadService.getClubs()) {
-            club2Service.saveClub2(club2);
-            log.info("Saved club id: " + club2.getId());
+        for (Club club : loadService.getClubs()) {
+            clubService.saveClub(club);
+            log.info("Saved club id: " + club.getId());
         }
         for (Player player: loadService.getPlayers()) {
             playerService.savePlayer(player);
@@ -248,8 +235,6 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
                 }
             }
         }
-//		log.info("Wszystkie bramki strzelone: " + calculations.getAllGoalsScoredAtHome());
-//		log.info("Wszystkie bramki stracone: " + calculations.getAllGoalsLostAtHome());
     }
 }
 

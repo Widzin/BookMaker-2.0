@@ -19,8 +19,6 @@ public class TeamMatchDetails {
     private ClubSeason clubSeason;
 
     private Integer goals;
-    private Integer shots;
-    private Integer shotsOnTarget;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private PlayerSeason lineupGoalkeeper;
@@ -92,22 +90,6 @@ public class TeamMatchDetails {
 
     public void setGoals(Integer goals) {
         this.goals = goals;
-    }
-
-    public Integer getShots() {
-        return shots;
-    }
-
-    public void setShots(Integer shots) {
-        this.shots = shots;
-    }
-
-    public Integer getShotsOnTarget() {
-        return shotsOnTarget;
-    }
-
-    public void setShotsOnTarget(Integer shotsOnTarget) {
-        this.shotsOnTarget = shotsOnTarget;
     }
 
     public List<MatchEvent> getGoalDetails() {
@@ -197,8 +179,6 @@ public class TeamMatchDetails {
                 ", version=" + version +
                 ", clubSeason=" + clubSeason +
                 ", goals=" + goals +
-                ", shots=" + shots +
-                ", shotsOnTarget=" + shotsOnTarget +
                 ", lineupGoalkeeper=" + lineupGoalkeeper +
                 ", lineupDefense=" + lineupDefense +
                 ", lineupMidfield=" + lineupMidfield +

@@ -17,8 +17,10 @@ public class MatchEvent {
     private String additionalInformation;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    //@JoinColumn(name = "player_season_id", insertable = false, updatable = false)
     private PlayerSeason playerSeason;
+
+    public MatchEvent() {
+    }
 
     public MatchEvent(Integer minute, PlayerSeason playerSeason, String additionalInformation) {
         this.minute = minute;

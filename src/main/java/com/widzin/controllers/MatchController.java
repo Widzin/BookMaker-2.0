@@ -1,24 +1,17 @@
 package com.widzin.controllers;
 
 import com.google.common.collect.Lists;
-import com.widzin.models.ClubSeason;
-import com.widzin.models.Match;
-import com.widzin.models.Ticket;
-import com.widzin.models.User;
+import com.widzin.models.*;
 import com.widzin.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class MatchController {
@@ -29,12 +22,13 @@ public class MatchController {
 
     private MatchService matchService;
     private TeamMatchDetailsService teamMatchDetailsService;
-    private Club2Service club2Service;
+    private ClubService clubService;
     private ClubSeasonService clubSeasonService;
     private SeasonService seasonService;
     private BetService betService;
     private TicketService ticketService;
     private UserService userService;
+    private PlayerSeasonService playerSeasonService;
 
     @Autowired
     public void setMatchService(MatchService matchService) {
@@ -47,8 +41,8 @@ public class MatchController {
     }
 
     @Autowired
-    public void setClub2Service(Club2Service club2Service) {
-        this.club2Service = club2Service;
+    public void setClubService(ClubService clubService) {
+        this.clubService = clubService;
     }
 
     @Autowired
@@ -74,6 +68,11 @@ public class MatchController {
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    @Autowired
+    public void setPlayerSeasonService(PlayerSeasonService playerSeasonService) {
+        this.playerSeasonService = playerSeasonService;
     }
 
     @RequestMapping("/match/new")
@@ -203,8 +202,135 @@ public class MatchController {
                                      @PathVariable("idAway") Integer awayId,
                                      Model model){
         model.addAttribute("matches", matchService.listAllMatchesBetween(homeId, awayId));
-        model.addAttribute("home", club2Service.getClub2ById(homeId));
-        model.addAttribute("away", club2Service.getClub2ById(awayId));
+        model.addAttribute("home", clubService.getClubById(homeId));
+        model.addAttribute("away", clubService.getClubById(awayId));
         return "between";
+    }
+
+    @RequestMapping("/match/{matchId}/details")
+    public String showMatchDetails(@PathVariable("matchId") Integer matchId, Model model) {
+        Match match = matchService.getMatchById(matchId);
+        model.addAttribute("match", match);
+
+        Comparator<MatchEvent> c = (p, o) -> p.getMinute().compareTo(o.getMinute());
+
+        List<PlayerSeason> homePlayers = new ArrayList<>();
+        homePlayers.add(match.getHome().getLineupGoalkeeper());
+        homePlayers.addAll(match.getHome().getLineupDefense());
+        homePlayers.addAll(match.getHome().getLineupMidfield());
+        homePlayers.addAll(match.getHome().getLineupForward());
+        model.addAttribute("homePlayers", homePlayers);
+
+        model.addAttribute("homeSubs", match.getHome().getLineupSubstitutes());
+
+        match.getHome().getGoalDetails().sort(c);
+
+        model.addAttribute("homeGoals", match.getHome().getGoalDetails());
+
+        List<PlayerSeason> awayPlayers = new ArrayList<>();
+        awayPlayers.add(match.getAway().getLineupGoalkeeper());
+        awayPlayers.addAll(match.getAway().getLineupDefense());
+        awayPlayers.addAll(match.getAway().getLineupMidfield());
+        awayPlayers.addAll(match.getAway().getLineupForward());
+        model.addAttribute("awayPlayers", awayPlayers);
+
+        model.addAttribute("awaySubs", match.getAway().getLineupSubstitutes());
+
+        match.getAway().getGoalDetails().sort(c);
+
+        model.addAttribute("awayGoals", match.getAway().getGoalDetails());
+
+        return "matchdetails";
+    }
+
+    @RequestMapping("/match/{matchId}/addSquad/{clubSeasonId}")
+    public String addPlayerSeasonToMatch(@PathVariable("matchId") Integer matchId,
+                                         @PathVariable("clubSeasonId") Integer clubSeasonId,
+                                         Model model) {
+        model.addAttribute("match", matchService.getMatchById(matchId));
+        model.addAttribute("club", clubSeasonService.getClubSeasonById(clubSeasonId));
+        Set<PlayerSeason> goalkeepersFromClub = new HashSet<>(clubSeasonService.getPlayersFromLine(clubSeasonId, "GK"));
+        model.addAttribute("goalkeepers", goalkeepersFromClub);
+        List<PlayerSeason> otherPlayersFromClub = new ArrayList<>();
+        otherPlayersFromClub.addAll(clubSeasonService.getPlayersFromLine(clubSeasonId, "RB"));
+        otherPlayersFromClub.addAll(clubSeasonService.getPlayersFromLine(clubSeasonId, "CB"));
+        otherPlayersFromClub.addAll(clubSeasonService.getPlayersFromLine(clubSeasonId, "LB"));
+        otherPlayersFromClub.addAll(clubSeasonService.getPlayersFromLine(clubSeasonId, "CDM"));
+        otherPlayersFromClub.addAll(clubSeasonService.getPlayersFromLine(clubSeasonId, "RM"));
+        otherPlayersFromClub.addAll(clubSeasonService.getPlayersFromLine(clubSeasonId, "CM"));
+        otherPlayersFromClub.addAll(clubSeasonService.getPlayersFromLine(clubSeasonId, "LM"));
+        otherPlayersFromClub.addAll(clubSeasonService.getPlayersFromLine(clubSeasonId, "CAM"));
+        otherPlayersFromClub.addAll(clubSeasonService.getPlayersFromLine(clubSeasonId, "RW"));
+        otherPlayersFromClub.addAll(clubSeasonService.getPlayersFromLine(clubSeasonId, "LW"));
+        otherPlayersFromClub.addAll(clubSeasonService.getPlayersFromLine(clubSeasonId, "CF"));
+        otherPlayersFromClub.addAll(clubSeasonService.getPlayersFromLine(clubSeasonId, "ST"));
+        model.addAttribute("otherPlayers", otherPlayersFromClub);
+        Checked checked = new Checked(new ArrayList<>());
+        model.addAttribute("checked", checked);
+        model.addAttribute("title", "Choose exactly 10 other players for main squad of " + clubSeasonService.getClubSeasonById(clubSeasonId).getClub().getName());
+        model.addAttribute("action", "addSquad");
+        return "fillsquad";
+    }
+
+    @RequestMapping(value = "/match/{matchId}/addSquad/{clubSeasonId}", method = RequestMethod.POST)
+    public String savePlayerSeasonToMatch(@PathVariable("matchId") Integer matchId,
+                                          @PathVariable("clubSeasonId") Integer clubSeasonId,
+                                          @ModelAttribute("chosenGK") Integer goalkeeperSeasonId,
+                                          @ModelAttribute("checked") Checked checked) {
+        Match match = matchService.getMatchById(matchId);
+        PlayerSeason playerSeason = clubSeasonService.getPlayerSeasonFromClubSeason(clubSeasonId, goalkeeperSeasonId);
+        if (match.getHome().getClubSeason().getId().equals(clubSeasonId)) {
+            match.getHome().setLineupGoalkeeper(playerSeason);
+            for (Integer i: checked.getCheckedGames()) {
+                playerSeasonService.setPositionOfPlayerSeasonId(i, match.getHome());
+            }
+            teamMatchDetailsService.saveTeamMatchDetails(match.getHome());
+        } else {
+            match.getAway().setLineupGoalkeeper(playerSeason);
+            for (Integer i: checked.getCheckedGames()) {
+                playerSeasonService.setPositionOfPlayerSeasonId(i, match.getAway());
+            }
+            teamMatchDetailsService.saveTeamMatchDetails(match.getAway());
+        }
+        matchService.saveMatch(match);
+
+        return "redirect:/match/next";
+    }
+
+    @RequestMapping("/match/{matchId}/addSubs/{clubSeasonId}")
+    public String addSubsToMatch(@PathVariable("matchId") Integer matchId,
+                                         @PathVariable("clubSeasonId") Integer clubSeasonId,
+                                         Model model) {
+        model.addAttribute("match", matchService.getMatchById(matchId));
+        model.addAttribute("club", clubSeasonService.getClubSeasonById(clubSeasonId));
+        model.addAttribute("goalkeepers", new ArrayList<>());
+        List<PlayerSeason> otherPlayers = clubSeasonService.getNotPickedPlayersForMatch(matchService.getMatchById(matchId), clubSeasonId);
+        model.addAttribute("otherPlayers", otherPlayers);
+        Checked checked = new Checked(new ArrayList<>());
+        model.addAttribute("checked", checked);
+        model.addAttribute("title", "Choose maximum 7 other players for substitutes of " + clubSeasonService.getClubSeasonById(clubSeasonId).getClub().getName());
+        model.addAttribute("action", "addSubs");
+        return "fillsquad";
+    }
+
+    @RequestMapping(value = "/match/{matchId}/addSubs/{clubSeasonId}", method = RequestMethod.POST)
+    public String saveSubsToMatch(@PathVariable("matchId") Integer matchId,
+                                          @PathVariable("clubSeasonId") Integer clubSeasonId,
+                                          @ModelAttribute("checked") Checked checked) {
+        Match match = matchService.getMatchById(matchId);
+        if (match.getHome().getClubSeason().getId().equals(clubSeasonId)) {
+            for (Integer i: checked.getCheckedGames()) {
+                match.getHome().getLineupSubstitutes().add(playerSeasonService.getPlayerSeasonById(i));
+            }
+            teamMatchDetailsService.saveTeamMatchDetails(match.getHome());
+        } else {
+            for (Integer i: checked.getCheckedGames()) {
+                match.getAway().getLineupSubstitutes().add(playerSeasonService.getPlayerSeasonById(i));
+            }
+            teamMatchDetailsService.saveTeamMatchDetails(match.getAway());
+        }
+        matchService.saveMatch(match);
+
+        return "redirect:/match/next";
     }
 }

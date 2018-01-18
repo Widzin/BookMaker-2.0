@@ -1,19 +1,19 @@
 package com.widzin.models;
 
 public enum Position {
-    BR("Bramkarz"),
+    GK("Bramkarz"),
     CF("Cofnięty napastnik"),
-    ŚPD("Defensywny pomocnik"),
-    LN("Lewy napastnik"),
-    LO("Lewy obrońca"),
-    LP("Lewy pomocnik"),
-    ŚPO("Ofensywny pomocnik"),
-    PN("Prawy napastnik"),
-    PO("Prawy obrońca"),
-    PP("Prawy pomocnik"),
-    ŚN("Środkowy napastnik"),
-    ŚO("Środkowy obrońca"),
-    ŚP("Środkowy pomocnik");
+    CDM("Defensywny pomocnik"),
+    LW("Lewy napastnik"),
+    LB("Lewy obrońca"),
+    LM("Lewy pomocnik"),
+    CAM("Ofensywny pomocnik"),
+    RW("Prawy napastnik"),
+    RB("Prawy obrońca"),
+    RM("Prawy pomocnik"),
+    ST("Środkowy napastnik"),
+    CB("Środkowy obrońca"),
+    CM("Środkowy pomocnik");
 
     private String pos;
 

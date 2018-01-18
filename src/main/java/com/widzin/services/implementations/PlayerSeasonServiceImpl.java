@@ -1,6 +1,7 @@
 package com.widzin.services.implementations;
 
 import com.widzin.models.PlayerSeason;
+import com.widzin.models.TeamMatchDetails;
 import com.widzin.repositories.PlayerSeasonRepository;
 import com.widzin.services.PlayerSeasonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,22 @@ public class PlayerSeasonServiceImpl implements PlayerSeasonService {
     @Override
     public PlayerSeason savePlayerSeason(PlayerSeason playerSeason) {
         return playerSeasonRepository.save(playerSeason);
+    }
+
+    @Override
+    public void setPositionOfPlayerSeasonId(Integer id, final TeamMatchDetails teamMatchDetails) {
+        if (getPlayerSeasonById(id).getPosition().equals("RB")
+                || getPlayerSeasonById(id).getPosition().equals("CB")
+                || getPlayerSeasonById(id).getPosition().equals("LB"))
+            teamMatchDetails.getLineupDefense().add(getPlayerSeasonById(id));
+        else if (getPlayerSeasonById(id).getPosition().equals("CDM")
+                || getPlayerSeasonById(id).getPosition().equals("RM")
+                || getPlayerSeasonById(id).getPosition().equals("CM")
+                || getPlayerSeasonById(id).getPosition().equals("LM")
+                || getPlayerSeasonById(id).getPosition().equals("CAM"))
+            teamMatchDetails.getLineupMidfield().add(getPlayerSeasonById(id));
+        else
+            teamMatchDetails.getLineupForward().add(getPlayerSeasonById(id));
     }
 
     @Override

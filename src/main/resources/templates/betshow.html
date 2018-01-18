@@ -27,8 +27,8 @@
                     <tbody>
                     <tr th:each="bet, iterStat : ${bets}" th:class="${iterStat.odd}? 'odd'">
                         <td th:text="${iterStat.count}"><a href="/bet/@{bet.id}" style="text-align: center"/></td>
-                        <td th:text="${bet.match.home.clubSeason.club2.name}" style="text-align: center"/>
-                        <td th:text="${bet.match.away.clubSeason.club2.name}" style="text-align: center"/>
+                        <td th:text="${bet.match.home.clubSeason.club.name}" style="text-align: center"/>
+                        <td th:text="${bet.match.away.clubSeason.club.name}" style="text-align: center"/>
                         <td th:text="${#numbers.formatDecimal(bet.rate,1,2)}" style="text-align: center"/>
                         <td th:text="${bet.result}" style="text-align: center"/>
                         <span th:switch="${bet.match.played}">

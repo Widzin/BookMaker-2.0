@@ -23,24 +23,68 @@
                             <th>1</th>
                             <th>X</th>
                             <th>2</th>
-                            <th sec:authorize="hasAuthority('ADMIN')">Play game</th>
-                            <th sec:authorize="hasAnyAuthority('USER','ADMIN')">History</th>
+                            <th sec:authorize="hasAuthority('ADMIN')">Home Squad</th>
+                            <th sec:authorize="hasAuthority('ADMIN')">Away Squad</th>
+                            <th sec:authorize="hasAuthority('ADMIN')">Play</th>
+                            <th>History</th>
+                            <th>Squads</th>
                             <th sec:authorize="hasAuthority('USER')" th:if="${betting == true}">Add to bet</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="match : ${matches}">
                             <td th:text="${#dates.format(match.date, 'yyyy/MM/dd')}"/>
-                            <td th:text="${match.home.clubSeason.club2.name}"/>
-                            <td th:text="${match.away.clubSeason.club2.name}"/>
+                            <td th:text="${match.home.clubSeason.club.name}"/>
+                            <td th:text="${match.away.clubSeason.club.name}"/>
                             <td th:text="${#numbers.formatDecimal(match.rates[0],1,2)}"/>
                             <td th:text="${#numbers.formatDecimal(match.rates[1],1,2)}"/>
                             <td th:text="${#numbers.formatDecimal(match.rates[2],1,2)}"/>
                             <td sec:authorize="hasAuthority('ADMIN')">
-                                <a th:href="${'/match/play/' + match.id}">Play</a>
+                                <span th:if="${match.home.lineupGoalkeeper == null}">
+                                    <a th:href="${'/match/' + match.id + '/addSquad/' + match.home.clubSeason.id}">Add squads</a>
+                                </span>
+                                <span th:if="${match.home.lineupGoalkeeper != null}">
+                                    <span th:if="${#lists.isEmpty(match.home.lineupSubstitutes)}">
+                                        <a th:href="${'/match/' + match.id + '/addSubs/' + match.home.clubSeason.id}">Add subs</a>
+                                    </span>
+                                    <span th:unless="${#lists.isEmpty(match.home.lineupSubstitutes)}">
+                                        Ready
+                                    </span>
+                                </span>
+
+                            </td>
+                            <td sec:authorize="hasAuthority('ADMIN')">
+                                <span th:if="${match.away.lineupGoalkeeper == null}">
+                                    <a th:href="${'/match/' + match.id + '/addSquad/' + match.away.clubSeason.id}">Add squads</a>
+                                </span>
+                                <span th:if="${match.away.lineupGoalkeeper != null}">
+                                    <span th:if="${#lists.isEmpty(match.away.lineupSubstitutes)}">
+                                        <a th:href="${'/match/' + match.id + '/addSubs/' + match.away.clubSeason.id}">Add subs</a>
+                                    </span>
+                                    <span th:unless="${#lists.isEmpty(match.away.lineupSubstitutes)}">
+                                        Ready
+                                    </span>
+                                </span>
+                            </td>
+                            <td sec:authorize="hasAuthority('ADMIN')">
+                                <span th:if="${#lists.isEmpty(match.away.lineupSubstitutes) or #lists.isEmpty(match.home.lineupSubstitutes)}">
+                                    Not yet
+                                </span>
+                                <span th:unless="${#lists.isEmpty(match.away.lineupSubstitutes) or #lists.isEmpty(match.home.lineupSubstitutes)}">
+                                    <a th:href="${'/match/play/' + match.id}">Play</a>
+                                </span>
+
                             </td>
                             <td sec:authorize="hasAnyAuthority('USER','ADMIN')">
-                                <a th:href="${'/match/between/' + match.home.clubSeason.club2.id + '/' + match.away.clubSeason.club2.id}">Show</a>
+                                <a th:href="${'/match/between/' + match.home.clubSeason.club.id + '/' + match.away.clubSeason.club.id}">Show</a>
+                            </td>
+                            <td>
+                                <span th:if="${#lists.isEmpty(match.away.lineupSubstitutes) or #lists.isEmpty(match.home.lineupSubstitutes)}">
+                                    Not yet
+                                </span>
+                                <span th:unless="${#lists.isEmpty(match.away.lineupSubstitutes) or #lists.isEmpty(match.home.lineupSubstitutes)}">
+                                    <a th:href="${'/match/' + match.id + '/details'}">Details</a>
+                                </span>
                             </td>
                             <td sec:authorize="hasAuthority('USER')" th:if="${betting == true}">
                                 <input type="checkbox" th:field="*{checkedGames}" th:value="${match.id}"/>

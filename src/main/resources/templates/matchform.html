@@ -27,14 +27,14 @@
                             <h3>Choose home club</h3>
                             <select th:name="homeTeam">
                                 <option th:each="clubSeason : ${clubSeasons}"
-                                        th:value="${clubSeason.id}" th:text="${clubSeason.club2.name}"/>
+                                        th:value="${clubSeason.id}" th:text="${clubSeason.club.name}"/>
                             </select>
                         </div>
                         <div class="col-sm-6 row text-center">
                             <h3>Choose guest club</h3>
                             <select th:name="awayTeam">
                                 <option th:each="clubSeason : ${clubSeasons}"
-                                        th:value="${clubSeason.id}" th:text="${clubSeason.club2.name}"/>
+                                        th:value="${clubSeason.id}" th:text="${clubSeason.club.name}"/>
                             </select>
                         </div>
                     </div>

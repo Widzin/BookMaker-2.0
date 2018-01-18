@@ -18,7 +18,6 @@ import java.util.List;
 public class TicketController {
 
 	private TicketService ticketService;
-	//private GameService gameService;
     private MatchService matchService;
 	private BetService betService;
 	private UserService userService;
@@ -28,11 +27,6 @@ public class TicketController {
 	public void setTicketService (TicketService ticketService) {
 		this.ticketService = ticketService;
 	}
-
-//	@Autowired
-//	public void setGameService (GameService gameService) {
-//		this.gameService = gameService;
-//	}
 
     @Autowired
     public void setMatchService(MatchService matchService) {
@@ -60,14 +54,11 @@ public class TicketController {
                 (Lists.newArrayList(seasonService.listAllSeasons())));
 		model.addAttribute("betting", true);
 		Checked checked = new Checked(new ArrayList<>());
-		//List<Integer> list = new ArrayList<>();
-		//list.add(0);
-		//checked.setCheckedGames();
 		model.addAttribute("checked", checked);
 		return "nextmatches";
 	}
 
-	private Logger log = Logger.getLogger(GameController.class);
+	private Logger log = Logger.getLogger(TicketController.class);
 
 	@RequestMapping(value = "/ticket/prepare", method = RequestMethod.POST)
 	public String showChosenMatches(@ModelAttribute(value = "checked") Checked checked,
