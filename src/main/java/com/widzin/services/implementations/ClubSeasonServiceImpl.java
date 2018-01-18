@@ -2,6 +2,7 @@ package com.widzin.services.implementations;
 
 import com.google.common.collect.Lists;
 import com.widzin.models.ClubSeason;
+import com.widzin.models.Match;
 import com.widzin.models.PlayerSeason;
 import com.widzin.repositories.ClubRepository;
 import com.widzin.repositories.ClubSeasonRepository;
@@ -103,5 +104,29 @@ public class ClubSeasonServiceImpl implements ClubSeasonService {
                 return pl;
         }
         return null;
+    }
+
+    @Override
+    public List<PlayerSeason> getNotPickedPlayersForMatch(Match match, Integer clubSeasonId) {
+        List<PlayerSeason> pickedPlayers = new ArrayList<>();
+        List<PlayerSeason> notPickedPlayers = new ArrayList<>();
+        if (match.getHome().getClubSeason().getId().equals(clubSeasonId)) {
+            pickedPlayers.add(match.getHome().getLineupGoalkeeper());
+            pickedPlayers.addAll(match.getHome().getLineupDefense());
+            pickedPlayers.addAll(match.getHome().getLineupMidfield());
+            pickedPlayers.addAll(match.getHome().getLineupForward());
+        } else {
+            pickedPlayers.add(match.getAway().getLineupGoalkeeper());
+            pickedPlayers.addAll(match.getAway().getLineupDefense());
+            pickedPlayers.addAll(match.getAway().getLineupMidfield());
+            pickedPlayers.addAll(match.getAway().getLineupForward());
+        }
+
+        for (PlayerSeason pl: getClubSeasonById(clubSeasonId).getPlayers()) {
+            if (!pickedPlayers.contains(pl))
+                notPickedPlayers.add(pl);
+        }
+
+        return notPickedPlayers;
     }
 }

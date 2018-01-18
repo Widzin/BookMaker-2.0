@@ -250,7 +250,7 @@ public class MatchController {
         model.addAttribute("match", matchService.getMatchById(matchId));
         model.addAttribute("club", clubSeasonService.getClubSeasonById(clubSeasonId));
         Set<PlayerSeason> goalkeepersFromClub = new HashSet<>(clubSeasonService.getPlayersFromLine(clubSeasonId, "GK"));
-        model.addAttribute("players", goalkeepersFromClub);
+        model.addAttribute("goalkeepers", goalkeepersFromClub);
         List<PlayerSeason> otherPlayersFromClub = new ArrayList<>();
         otherPlayersFromClub.addAll(clubSeasonService.getPlayersFromLine(clubSeasonId, "RB"));
         otherPlayersFromClub.addAll(clubSeasonService.getPlayersFromLine(clubSeasonId, "CB"));
@@ -267,6 +267,8 @@ public class MatchController {
         model.addAttribute("otherPlayers", otherPlayersFromClub);
         Checked checked = new Checked(new ArrayList<>());
         model.addAttribute("checked", checked);
+        model.addAttribute("title", "Choose exactly 10 other players for main squad of " + clubSeasonService.getClubSeasonById(clubSeasonId).getClub().getName());
+        model.addAttribute("action", "addSquad");
         return "fillsquad";
     }
 
@@ -293,5 +295,21 @@ public class MatchController {
         matchService.saveMatch(match);
 
         return "redirect:/match/next";
+    }
+
+    @RequestMapping("/match/{matchId}/addSubs/{clubSeasonId}")
+    public String addSubsToMatch(@PathVariable("matchId") Integer matchId,
+                                         @PathVariable("clubSeasonId") Integer clubSeasonId,
+                                         Model model) {
+        model.addAttribute("match", matchService.getMatchById(matchId));
+        model.addAttribute("club", clubSeasonService.getClubSeasonById(clubSeasonId));
+        model.addAttribute("goalkeepers", new ArrayList<>());
+        List<PlayerSeason> otherPlayers = clubSeasonService.getNotPickedPlayersForMatch(matchService.getMatchById(matchId), clubSeasonId);
+        model.addAttribute("otherPlayers", otherPlayers);
+        Checked checked = new Checked(new ArrayList<>());
+        model.addAttribute("checked", checked);
+        model.addAttribute("title", "Choose maximum 7 other players for substitutes of " + clubSeasonService.getClubSeasonById(clubSeasonId).getClub().getName());
+        model.addAttribute("action", "addSubs");
+        return "fillsquad";
     }
 }

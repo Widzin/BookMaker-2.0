@@ -14,13 +14,15 @@
                 <h3>
                     <span th:text="${#dates.format(match.date, 'yyyy/MM/dd')}"/>: <span th:text="${match.home.clubSeason.club.name}"/> - <span th:text="${match.away.clubSeason.club.name}"/>
                 </h3>
-                <h3>Choose <span th:text="${club.club.name} + ' goalkeeper'"/></h3>
-                <form class="form-horizontal" th:object="${checked}" th:action="@{/match/} + ${match.id} + @{/addSquad/} + ${club.id}" method="post">
-                    <select name="chosenGK">
-                        <option th:each="chosenPlayer : ${players}"
-                                th:value="${chosenPlayer.id}" th:text="${chosenPlayer.player.name}"/>
-                    </select>
-                    <h3>Choose exactly 10 other players for main squad of <span th:text="${club.club.name}"/></h3>
+                <form class="form-horizontal" th:object="${checked}" th:action="@{/match/} + ${match.id} + @{/} + ${action} + @{/} + ${club.id}" method="post">
+                    <div th:if="${not #lists.isEmpty(goalkeepers)}">
+                        <h3>Choose <span th:text="${club.club.name} + ' goalkeeper'"/></h3>
+                        <select name="chosenGK">
+                            <option th:each="chosenPlayer : ${goalkeepers}"
+                                    th:value="${chosenPlayer.id}" th:text="${chosenPlayer.player.name}"/>
+                        </select>
+                    </div>
+                    <h3><span th:text="${title}"/></h3>
                     <table class="table table-striped">
                         <tr style="text-align:center; background-color: #1c1818; color: #b9b5b5; font-size: 17px;">
                             <td>Number</td>
