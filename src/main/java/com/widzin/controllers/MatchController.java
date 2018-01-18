@@ -28,6 +28,7 @@ public class MatchController {
     private BetService betService;
     private TicketService ticketService;
     private UserService userService;
+    private PlayerSeasonService playerSeasonService;
 
     @Autowired
     public void setMatchService(MatchService matchService) {
@@ -67,6 +68,11 @@ public class MatchController {
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    @Autowired
+    public void setPlayerSeasonService(PlayerSeasonService playerSeasonService) {
+        this.playerSeasonService = playerSeasonService;
     }
 
     @RequestMapping("/match/new")
@@ -269,14 +275,19 @@ public class MatchController {
                                           @PathVariable("clubSeasonId") Integer clubSeasonId,
                                           @ModelAttribute("chosenGK") Integer goalkeeperSeasonId,
                                           @ModelAttribute("checked") Checked checked) {
-        System.out.println("");
         Match match = matchService.getMatchById(matchId);
         PlayerSeason playerSeason = clubSeasonService.getPlayerSeasonFromClubSeason(clubSeasonId, goalkeeperSeasonId);
-        if (match.getHome().getId().equals(clubSeasonId)) {
+        if (match.getHome().getClubSeason().getId().equals(clubSeasonId)) {
             match.getHome().setLineupGoalkeeper(playerSeason);
+            for (Integer i: checked.getCheckedGames()) {
+                playerSeasonService.setPositionOfPlayerSeasonId(i, match.getHome());
+            }
             teamMatchDetailsService.saveTeamMatchDetails(match.getHome());
         } else {
             match.getAway().setLineupGoalkeeper(playerSeason);
+            for (Integer i: checked.getCheckedGames()) {
+                playerSeasonService.setPositionOfPlayerSeasonId(i, match.getAway());
+            }
             teamMatchDetailsService.saveTeamMatchDetails(match.getAway());
         }
         matchService.saveMatch(match);

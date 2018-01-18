@@ -42,7 +42,7 @@
                                 <span th:if="${match.home.lineupGoalkeeper == null}">
                                     <a th:href="${'/match/' + match.id + '/addSquad/' + match.home.clubSeason.id}">Add squads</a>
                                 </span>
-                                <span th:unless="${match.home.lineupGoalkeeper == null}">
+                                <span th:if="${match.home.lineupGoalkeeper != null}">
                                     <span th:if="${#lists.isEmpty(match.home.lineupSubstitutes)}">
                                         <a th:href="${'/match/' + match.id + '/addSubs/' + match.home.clubSeason.id}">Add subs</a>
                                     </span>
@@ -56,8 +56,8 @@
                                 <span th:if="${match.away.lineupGoalkeeper == null}">
                                     <a th:href="${'/match/' + match.id + '/addSquad/' + match.away.clubSeason.id}">Add squads</a>
                                 </span>
-                                <span th:if="${match.away.lineupGoalkeeper == null}">
-                                    <span th:unless="${#lists.isEmpty(match.away.lineupSubstitutes)}">
+                                <span th:if="${match.away.lineupGoalkeeper != null}">
+                                    <span th:if="${#lists.isEmpty(match.away.lineupSubstitutes)}">
                                         <a th:href="${'/match/' + match.id + '/addSubs/' + match.away.clubSeason.id}">Add subs</a>
                                     </span>
                                     <span th:unless="${#lists.isEmpty(match.away.lineupSubstitutes)}">
