@@ -3,7 +3,6 @@ package com.widzin.controllers;
 import com.google.common.collect.Lists;
 import com.widzin.models.*;
 import com.widzin.services.*;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,8 +56,6 @@ public class TicketController {
 		model.addAttribute("checked", checked);
 		return "nextmatches";
 	}
-
-	private Logger log = Logger.getLogger(TicketController.class);
 
 	@RequestMapping(value = "/ticket/prepare", method = RequestMethod.POST)
 	public String showChosenMatches(@ModelAttribute(value = "checked") Checked checked,

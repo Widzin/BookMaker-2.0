@@ -18,6 +18,10 @@ import java.util.List;
 @Component
 public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
+    private final static Integer POINTS_FOR_WIN = 3;
+    private final static Integer POINTS_FOR_DRAW = 1;
+    private final static Integer POINTS_FOR_LOST = 0;
+
     private ClubService clubService;
     private ClubSeasonService clubSeasonService;
     private MatchService matchService;
@@ -28,7 +32,9 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     private RoleService roleService;
     private PlayerService playerService;
     private PlayerSeasonService playerSeasonService;
+    //-----------Singletons ----------------------
     private Calculations calculations;
+    private MyNeuralNetwork myNeuralNetwork;
 
     //----------- Loading services ---------------
     private MainLoadService loadService;
@@ -104,13 +110,13 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-//        loadPlayers();
-//        loadMatches();
-//        loadLogos();
-//        saveToDatabase();
-//        loadUsers();
-//        loadRoles();
-//        assignUsersToDefaultRoles();
+        loadPlayers();
+        loadMatches();
+        loadLogos();
+        saveToDatabaseAndTeachNetwork();
+        loadUsers();
+        loadRoles();
+        assignUsersToDefaultRoles();
         setCalculationsOnLoad();
 	}
 
@@ -130,7 +136,9 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         playersAndClubLoadService.addLogos(Links.LOGOS, loadService);
     }
 
-    private void saveToDatabase() {
+    private void saveToDatabaseAndTeachNetwork() {
+	    myNeuralNetwork = MyNeuralNetwork.getInstance();
+
         for (Club club : loadService.getClubs()) {
             clubService.saveClub(club);
             log.info("Saved club id: " + club.getId());
@@ -149,14 +157,62 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
                 log.info("Saved clubSeason id: " + clubSeason.getId());
             }
             for (Match match : season.getMatches()) {
+                myNeuralNetwork.addDataRow(match);
+                resolveMatch(match);
                 saveTeamMatchDetailsToDatabase(match.getHome());
                 saveTeamMatchDetailsToDatabase(match.getAway());
                 matchService.saveMatch(match);
                 log.info("Saved match id: " + match.getId());
             }
+            for (ClubSeason clubSeason: season.getClubs()) {
+                clubSeasonService.saveClubSeason(clubSeason);
+                log.info("Saved again clubSeason id: " + clubSeason.getId());
+            }
             seasonService.saveSeason(season);
             log.info("Saved season id: " + season.getId());
         }
+    }
+
+    private void resolveMatch(Match match) {
+        //-------------- Adding stats to goalkeepers ---------
+        if (match.getHome().getGoals() == 0)
+            match.getAway().getLineupGoalkeeper().addCleanSheets();
+        if (match.getAway().getGoals() == 0)
+            match.getHome().getLineupGoalkeeper().addCleanSheets();
+
+        //-------------- Adding stats to clubs ---------------
+
+        if (match.getHome().getGoals() > match.getAway().getGoals()) {
+            match.getHome().getClubSeason().addWin();
+            match.getAway().getClubSeason().addLose();
+
+            match.getHome().getClubSeason().addPoints(POINTS_FOR_WIN);
+            match.getAway().getClubSeason().addPoints(POINTS_FOR_LOST);
+        } else if (match.getHome().getGoals() < match.getAway().getGoals()) {
+            match.getHome().getClubSeason().addLose();
+            match.getAway().getClubSeason().addWin();
+
+            match.getHome().getClubSeason().addPoints(POINTS_FOR_LOST);
+            match.getAway().getClubSeason().addPoints(POINTS_FOR_WIN);
+        } else {
+            match.getHome().getClubSeason().addDraw();
+            match.getAway().getClubSeason().addDraw();
+
+            match.getHome().getClubSeason().addPoints(POINTS_FOR_DRAW);
+            match.getAway().getClubSeason().addPoints(POINTS_FOR_DRAW);
+        }
+
+        match.getHome().getClubSeason().addMatch();
+        match.getAway().getClubSeason().addMatch();
+
+        match.getHome().getClubSeason().addScoredGoals(match.getHome().getGoals());
+        match.getAway().getClubSeason().addScoredGoals(match.getAway().getGoals());
+
+        match.getHome().getClubSeason().addLostGoals(match.getAway().getGoals());
+        match.getAway().getClubSeason().addLostGoals(match.getHome().getGoals());
+
+        match.getHome().getClubSeason().setBilans();
+        match.getAway().getClubSeason().setBilans();
     }
 
     private void saveTeamMatchDetailsToDatabase (TeamMatchDetails teamMatchDetails) {
