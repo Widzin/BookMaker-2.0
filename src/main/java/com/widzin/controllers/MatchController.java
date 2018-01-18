@@ -312,4 +312,25 @@ public class MatchController {
         model.addAttribute("action", "addSubs");
         return "fillsquad";
     }
+
+    @RequestMapping(value = "/match/{matchId}/addSubs/{clubSeasonId}", method = RequestMethod.POST)
+    public String saveSubsToMatch(@PathVariable("matchId") Integer matchId,
+                                          @PathVariable("clubSeasonId") Integer clubSeasonId,
+                                          @ModelAttribute("checked") Checked checked) {
+        Match match = matchService.getMatchById(matchId);
+        if (match.getHome().getClubSeason().getId().equals(clubSeasonId)) {
+            for (Integer i: checked.getCheckedGames()) {
+                match.getHome().getLineupSubstitutes().add(playerSeasonService.getPlayerSeasonById(i));
+            }
+            teamMatchDetailsService.saveTeamMatchDetails(match.getHome());
+        } else {
+            for (Integer i: checked.getCheckedGames()) {
+                match.getAway().getLineupSubstitutes().add(playerSeasonService.getPlayerSeasonById(i));
+            }
+            teamMatchDetailsService.saveTeamMatchDetails(match.getAway());
+        }
+        matchService.saveMatch(match);
+
+        return "redirect:/match/next";
+    }
 }
