@@ -6029,7 +6029,7 @@
 	<Referee>Bibiana Steinhaus</Referee>
 	<HasBeenRescheduled>true</HasBeenRescheduled>
 	</Match>
-	<Match>
+	<!--<Match>
 	<Id>115644</Id>
 	<FixtureMatch_Id>380056</FixtureMatch_Id>
 	<Date>2017-12-01T19:30:00+00:00</Date>
@@ -7886,5 +7886,5 @@
 	<AwayTeamRedCardDetails>7': Jordan Torunarigha;</AwayTeamRedCardDetails>
 	<Referee>Frank Willenborg</Referee>
 	<HasBeenRescheduled>true</HasBeenRescheduled>
-	</Match>
+	</Match>-->
 </XMLSOCCER.COM>

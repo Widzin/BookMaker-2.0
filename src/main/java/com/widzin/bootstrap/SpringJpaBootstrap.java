@@ -113,11 +113,13 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         loadPlayers();
         loadMatches();
         loadLogos();
-        saveToDatabaseAndTeachNetwork();
+        saveToDatabaseAndGiveDataToNetwork();
         loadUsers();
         loadRoles();
         assignUsersToDefaultRoles();
         setCalculationsOnLoad();
+        log.info("Amount of dataRows: " + myNeuralNetwork.getAllMatches().getRows().size());
+        myNeuralNetwork.teachNetwork();
 	}
 
     private void loadPlayers() {
@@ -136,7 +138,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         playersAndClubLoadService.addLogos(Links.LOGOS, loadService);
     }
 
-    private void saveToDatabaseAndTeachNetwork() {
+    private void saveToDatabaseAndGiveDataToNetwork() {
 	    myNeuralNetwork = MyNeuralNetwork.getInstance();
 
         for (Club club : loadService.getClubs()) {
@@ -157,7 +159,8 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
                 log.info("Saved clubSeason id: " + clubSeason.getId());
             }
             for (Match match : season.getMatches()) {
-                myNeuralNetwork.addDataRow(match);
+                if (!season.getPeriod().startsWith("2015"))
+                    myNeuralNetwork.addDataRow(match);
                 resolveMatch(match);
                 saveTeamMatchDetailsToDatabase(match.getHome());
                 saveTeamMatchDetailsToDatabase(match.getAway());
@@ -282,7 +285,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         for (Season season: loadService.getSeasons()) {
             if (!season.getPeriod().startsWith("2015")) {
                 for (Match match: season.getMatches()) {
-                    log.info("Sprawdzam mecz nr. " + match.getId());
+                    log.info("Calculating match nr. " + match.getId());
                     if (match.isPlayed()) {
                         calculations.addAllGoalsScoredAtHome(match.getHome().getGoals());
                         calculations.addAllGoalsLostAtHome(match.getAway().getGoals());

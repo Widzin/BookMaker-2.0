@@ -3,7 +3,11 @@ package com.widzin.models;
 import org.apache.log4j.Logger;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
+import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.nnet.learning.MomentumBackpropagation;
+import org.neuroph.util.TransferFunctionType;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -30,12 +34,44 @@ public class MyNeuralNetwork {
     private Logger log = Logger.getLogger(MyNeuralNetwork.class);
 
     private DataSet allMatches;
+    private MultiLayerPerceptron neuralNet;
+    private MomentumBackpropagation learningRule;
 
     public MyNeuralNetwork() {
         allMatches = new DataSet(10, 3);
+        neuralNet = new MultiLayerPerceptron(TransferFunctionType.SIGMOID, 10, 20, 3);
+
+        learningRule = (MomentumBackpropagation) neuralNet.getLearningRule();
+        learningRule.setLearningRate(0.3);
+        learningRule.setMomentum(0.7);
+
+        neuralNet.setLearningRule(learningRule);
+    }
+
+    public void teachNetwork() {
+        log.info("Training my network...");
+        long startTime = System.nanoTime();
+        neuralNet.learn(allMatches);
+        long elapsedTime = System.nanoTime() - startTime;
+        double seconds = BigDecimal.valueOf(elapsedTime / 1000000000.0).doubleValue();
+        log.info("Done! Time of learing: " + seconds + " seconds");
+    }
+
+    public double[] calculateAndReceiveOutputs(Match match) {
+        DataSetRow dsr = new DataSetRow(normalizeInputMatch(match));
+        neuralNet.setInput(dsr.getInput());
+        neuralNet.calculate();
+        return neuralNet.getOutput();
     }
 
     public void addDataRow(Match match) {
+        if (allMatches.size() == 60) {
+            List<DataSetRow> oldRows = allMatches.getRows().subList(0, 59);
+            allMatches = new DataSet(10, 3);
+            for (DataSetRow dsr: oldRows) {
+                allMatches.addRow(dsr);
+            }
+        }
         allMatches.addRow(new DataSetRow(normalizeInputMatch(match), normalizeOutputMatch(match)));
     }
 
@@ -131,8 +167,13 @@ public class MyNeuralNetwork {
 
     private double bonusForPlayer(PlayerSeason playerSeason, double bonus) {
         if (playerSeason.getMatches() > 5) {
-            if (playerSeason.getCleanSheets()/playerSeason.getMatches() > bonus)
-                return 5000000.0;
+            if (playerSeason.getPosition().equals("GK")) {
+                if (playerSeason.getCleanSheets()/playerSeason.getMatches() > bonus)
+                    return 5000000.0;
+            } else {
+                if (playerSeason.getGoals()/playerSeason.getMatches() > bonus)
+                    return 5000000.0;
+            }
         }
         return 0.0;
     }
@@ -191,5 +232,9 @@ public class MyNeuralNetwork {
             outputs[2] = 0.0;
         }
         return outputs;
+    }
+
+    public DataSet getAllMatches() {
+        return allMatches;
     }
 }

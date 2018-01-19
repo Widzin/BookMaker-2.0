@@ -12,6 +12,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Controller
 public class MatchController {
@@ -21,6 +22,7 @@ public class MatchController {
     private final static int ADMIN_ID = 1;
 
     private MatchService matchService;
+    private MatchEventService matchEventService;
     private TeamMatchDetailsService teamMatchDetailsService;
     private ClubService clubService;
     private ClubSeasonService clubSeasonService;
@@ -30,9 +32,16 @@ public class MatchController {
     private UserService userService;
     private PlayerSeasonService playerSeasonService;
 
+    private MyNeuralNetwork myNeuralNetwork;
+
     @Autowired
     public void setMatchService(MatchService matchService) {
         this.matchService = matchService;
+    }
+
+    @Autowired
+    public void setMatchEventService(MatchEventService matchEventService) {
+        this.matchEventService = matchEventService;
     }
 
     @Autowired
@@ -142,18 +151,120 @@ public class MatchController {
     }
 
     @RequestMapping(value = "/match/play/{id}", method = RequestMethod.POST)
-    public String setScoresInGame(@PathVariable Integer id, @RequestParam("homeScore") Integer homeScore,
-                                  @RequestParam("awayScore") Integer awayScore) {
-        if (homeScore != null && awayScore != null) {
-            matchService.updateClubsAfterMatch(id, homeScore, awayScore);
-            List<Ticket> ticketsWithMatch = ticketService.getAllTicketsWithMatch
-                    (matchService.getMatchById(id));
-            betService.saveBetsAfterMatch(ticketsWithMatch,
-                    matchService.getMatchById(id));
-            saveTickets(ticketsWithMatch);
-            return "redirect:/?matchPlayed";
+    public String setScoresInGame(@PathVariable Integer id) {
+        myNeuralNetwork = MyNeuralNetwork.getInstance();
+        Match match = matchService.getMatchById(id);
+        double[] outputs = myNeuralNetwork.calculateAndReceiveOutputs(match);
+        int[] results = generateResults(outputs);
+        generateEvents(results, match);
+        matchService.updateClubsAfterMatch(id, results[0], results[1]);
+        List<Ticket> ticketsWithMatch = ticketService.getAllTicketsWithMatch
+                (matchService.getMatchById(id));
+        betService.saveBetsAfterMatch(ticketsWithMatch,
+                matchService.getMatchById(id));
+        saveTickets(ticketsWithMatch);
+        return "redirect:/match/" + id + "/details";
+    }
+
+    private int[] generateResults(double[] outputs) {
+        int[] results = new int[2];
+        double fullAmount = 0.0, temp = 0.0;
+        for (double d: outputs) {
+            fullAmount += d;
+        }
+
+        int option = -1;
+        double randValue = Math.random() * fullAmount;
+        for (int i = 0; i < outputs.length; i++) {
+            temp += outputs[i];
+            if (temp >= randValue) {
+                option = i;
+                break;
+            }
+        }
+
+        if (option == 0) {
+            results[1] = ThreadLocalRandom.current().nextInt(0, 3);
+            results[0] = ThreadLocalRandom.current().nextInt(results[1] + 1, 5);
+        } else if (option == 2) {
+            results[0] = ThreadLocalRandom.current().nextInt(0, 3);
+            results[1] = ThreadLocalRandom.current().nextInt(results[0] + 1, 5);
         } else {
-            return "redirect:/game/play/" + id + "?error";
+            results[0] = ThreadLocalRandom.current().nextInt(0, 4);
+            results[1] = results[0];
+        }
+
+        return results;
+    }
+
+    private void generateEvents(int[] results, Match match) {
+        for (int i = 0; i < results.length; i++) {
+            int minute = 0;
+            if (results[i] > 0) {
+                for (int j = 0; j < results[i]; j++) {
+                    double line = Math.random();
+                    if (minute < 89)
+                        minute = ThreadLocalRandom.current().nextInt(minute + 1, 90);
+                    else
+                        minute = 90;
+
+                    int playerId;
+                    MatchEvent matchEvent = new MatchEvent();
+                    matchEvent.setAdditionalInformation("goal");
+                    matchEvent.setMinute(minute);
+
+                    PlayerSeason playerSeason;
+
+                    if (line < 0.2) {
+                        if (i == 0) {
+                            playerId = ThreadLocalRandom.current().nextInt(0, match.getHome().getLineupDefense().size());
+                            playerSeason = match.getHome().getLineupDefense().get(playerId);
+                            matchEvent.setPlayerSeason(playerSeason);
+                            matchEventService.saveMatchEvent(matchEvent);
+                            match.getHome().getGoalDetails().add(matchEvent);
+                        } else {
+                            playerId = ThreadLocalRandom.current().nextInt(0, match.getAway().getLineupDefense().size());
+                            playerSeason = match.getAway().getLineupDefense().get(playerId);
+                            matchEvent.setPlayerSeason(playerSeason);
+                            matchEventService.saveMatchEvent(matchEvent);
+                            match.getAway().getGoalDetails().add(matchEvent);
+                        }
+                    } else if (line < 0.55) {
+                        if (i == 0) {
+                            playerId = ThreadLocalRandom.current().nextInt(0, match.getHome().getLineupMidfield().size());
+                            playerSeason = match.getHome().getLineupMidfield().get(playerId);
+                            matchEvent.setPlayerSeason(playerSeason);
+                            matchEventService.saveMatchEvent(matchEvent);
+                            match.getHome().getGoalDetails().add(matchEvent);
+                        } else {
+                            playerId = ThreadLocalRandom.current().nextInt(0, match.getAway().getLineupMidfield().size());
+                            playerSeason = match.getAway().getLineupMidfield().get(playerId);
+                            matchEvent.setPlayerSeason(playerSeason);
+                            matchEventService.saveMatchEvent(matchEvent);
+                            match.getAway().getGoalDetails().add(matchEvent);
+                        }
+                    } else {
+                        if (i == 0) {
+                            playerId = ThreadLocalRandom.current().nextInt(0, match.getHome().getLineupForward().size());
+                            playerSeason = match.getHome().getLineupForward().get(playerId);
+                            matchEvent.setPlayerSeason(playerSeason);
+                            matchEventService.saveMatchEvent(matchEvent);
+                            match.getHome().getGoalDetails().add(matchEvent);
+                        } else {
+                            playerId = ThreadLocalRandom.current().nextInt(0, match.getAway().getLineupForward().size());
+                            playerSeason = match.getAway().getLineupForward().get(playerId);
+                            matchEvent.setPlayerSeason(playerSeason);
+                            matchEventService.saveMatchEvent(matchEvent);
+                            match.getAway().getGoalDetails().add(matchEvent);
+                        }
+                    }
+                }
+            }
+
+            if (i == 0)
+                teamMatchDetailsService.saveTeamMatchDetails(match.getHome());
+            else
+                teamMatchDetailsService.saveTeamMatchDetails(match.getAway());
         }
     }
 

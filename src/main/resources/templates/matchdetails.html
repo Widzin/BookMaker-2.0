@@ -54,7 +54,7 @@
         <div class="col-lg-6">
             <table class="table table-striper">
                 <tr style="background-color: #1c1818; color: #b9b5b5; font-size: 14px;">
-                    <th>Numer</th>
+                    <th>Number</th>
                     <th>Name</th>
                 </tr>
                 <tr th:each="player : ${awaySubs}">
@@ -73,9 +73,9 @@
                 <tr th:each="goal : ${homeGoals}">
                     <td th:text="${goal.minute}"/>
                     <td>
-                        <span th:if="${goal.additionalInformation == 'own'}" th:text="${goal.player.player.name} + ' (own)'"/>
-                        <span th:if="${goal.additionalInformation == 'penalty'}" th:text="${goal.player.player.name} + ' (penalty)'"/>
-                        <span th:if="${goal.additionalInformation == 'goal'}" th:text="${goal.player.player.name}"/>
+                        <span th:if="${goal.additionalInformation == 'own'}" th:text="${goal.playerSeason.player.name} + ' (own)'"/>
+                        <span th:if="${goal.additionalInformation == 'penalty'}" th:text="${goal.playerSeason.player.name} + ' (penalty)'"/>
+                        <span th:if="${goal.additionalInformation == 'goal'}" th:text="${goal.playerSeason.player.name}"/>
                     </td>
                 </tr>
             </table>
@@ -91,9 +91,10 @@
                 </tr>
                 <tr th:each="goal : ${awayGoals}">
                     <td th:text="${goal.minute}"/>
-                    <td th:text="${goal.player.player.name}">
-                        <span th:if="${goal.additionalInformation == 'own'}" th:text="' (own)'"/>
-                        <span th:if="${goal.additionalInformation == 'penalty'}" th:text="' (penalty)'"/>
+                    <td>
+                        <span th:if="${goal.additionalInformation == 'own'}" th:text="${goal.playerSeason.player.name} + ' (own)'"/>
+                        <span th:if="${goal.additionalInformation == 'penalty'}" th:text="${goal.playerSeason.player.name} + ' (penalty)'"/>
+                        <span th:if="${goal.additionalInformation == 'goal'}" th:text="${goal.playerSeason.player.name}"/>
                     </td>
                 </tr>
             </table>
