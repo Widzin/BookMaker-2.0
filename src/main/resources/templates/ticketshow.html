@@ -20,10 +20,9 @@
                 <thead>
                 <tr style="background-color: #1c1818; color: #b9b5b5; font-size: 20px;">
                     <th>Nr</th>
-                    <th style="text-align: center">Money inserted</th>
+                    <th style="text-align: center">Money inserted (without tax)</th>
                     <th>Rate</th>
-                    <th style="text-align: center">Full prize</th>
-                    <th style="text-align: center">Prize without tax</th>
+                    <th style="text-align: center">Prize</th>
                     <th style="text-align: center">Finished</th>
                     <th style="text-align: center">Win</th>
                     <th style="text-align: center">Show details</th>
@@ -35,7 +34,6 @@
                     <td th:text="${#numbers.formatDecimal(ticket.moneyInserted,1,2)}" style="text-align: center"/>
                     <td th:text="${#numbers.formatDecimal(ticket.rate,1,2)}"/>
                     <td th:text="${#numbers.formatDecimal(ticket.moneyToWin,1,2)}" style="text-align: center"/>
-                    <td th:text="${#numbers.formatDecimal(ticket.moneyToWin * 0.88,1,2)}" style="text-align: center"/>
                     <span th:switch="${ticket.finished}">
                     <td th:case="true" style="text-align: center">Finished</td>
                     <td th:case="false" style="text-align: center">Not finished yet</td>

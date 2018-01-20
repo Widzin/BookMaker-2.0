@@ -93,6 +93,12 @@
             <version>23.6-jre</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.beykery</groupId>
+            <artifactId>neuroph</artifactId>
+            <version>2.92</version>
+        </dependency>
+
 	</dependencies>
 	
 	<build>

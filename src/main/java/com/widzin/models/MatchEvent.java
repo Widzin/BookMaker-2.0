@@ -52,11 +52,11 @@ public class MatchEvent {
         this.minute = minute;
     }
 
-    public PlayerSeason getPlayer() {
+    public PlayerSeason getPlayerSeason() {
         return playerSeason;
     }
 
-    public void setPlayer(PlayerSeason player) {
+    public void setPlayerSeason(PlayerSeason playerSeason) {
         this.playerSeason = playerSeason;
     }
 

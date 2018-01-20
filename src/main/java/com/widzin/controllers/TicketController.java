@@ -3,7 +3,6 @@ package com.widzin.controllers;
 import com.google.common.collect.Lists;
 import com.widzin.models.*;
 import com.widzin.services.*;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +15,8 @@ import java.util.List;
 
 @Controller
 public class TicketController {
+
+    private final static int ADMIN_ID = 1;
 
 	private TicketService ticketService;
     private MatchService matchService;
@@ -58,8 +59,6 @@ public class TicketController {
 		return "nextmatches";
 	}
 
-	private Logger log = Logger.getLogger(TicketController.class);
-
 	@RequestMapping(value = "/ticket/prepare", method = RequestMethod.POST)
 	public String showChosenMatches(@ModelAttribute(value = "checked") Checked checked,
                                     Model model, Principal principal){
@@ -100,7 +99,10 @@ public class TicketController {
             User user = userService.findByUsername(principal.getName()).get();
             Ticket ticket = ticketService.findById(id);
             if (money <= user.getMoneyNow()) {
-                ticket.setMoneyInserted(money);
+                User admin = userService.getById(ADMIN_ID);
+                ticket.setMoneyInserted(money * 0.88);
+                admin.addMoneyNow(money * 0.12);
+                userService.saveOrUpdate(admin);
                 for (int i = 0; i < ticket.getBets().size(); i++) {
                     ticket.getBets().get(i).setBet(results.get(i));
                     betService.saveBet(ticket.getBets().get(i));
