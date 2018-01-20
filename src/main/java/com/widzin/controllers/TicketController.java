@@ -16,6 +16,8 @@ import java.util.List;
 @Controller
 public class TicketController {
 
+    private final static int ADMIN_ID = 1;
+
 	private TicketService ticketService;
     private MatchService matchService;
 	private BetService betService;
@@ -97,7 +99,10 @@ public class TicketController {
             User user = userService.findByUsername(principal.getName()).get();
             Ticket ticket = ticketService.findById(id);
             if (money <= user.getMoneyNow()) {
-                ticket.setMoneyInserted(money);
+                User admin = userService.getById(ADMIN_ID);
+                ticket.setMoneyInserted(money * 0.88);
+                admin.addMoneyNow(money * 0.12);
+                userService.saveOrUpdate(admin);
                 for (int i = 0; i < ticket.getBets().size(); i++) {
                     ticket.getBets().get(i).setBet(results.get(i));
                     betService.saveBet(ticket.getBets().get(i));

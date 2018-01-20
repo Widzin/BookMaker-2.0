@@ -1,10 +1,7 @@
 package com.widzin.services.implementations;
 
 import com.google.common.collect.Lists;
-import com.widzin.models.Calculations;
-import com.widzin.models.ClubSeason;
-import com.widzin.models.Match;
-import com.widzin.models.Season;
+import com.widzin.models.*;
 import com.widzin.repositories.ClubSeasonRepository;
 import com.widzin.repositories.MatchRepository;
 import com.widzin.repositories.SeasonRepository;
@@ -149,7 +146,7 @@ public class MatchServiceImpl implements MatchService {
         match.getHome().setGoals(homeScore);
         match.getAway().setGoals(awayScore);
         match.setPlayed(true);
-        //zapisz ilość strzałów
+
         saveMatch(match);
 
         ClubSeason homeClub = match.getHome().getClubSeason();

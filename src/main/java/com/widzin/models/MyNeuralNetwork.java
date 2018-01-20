@@ -65,12 +65,9 @@ public class MyNeuralNetwork {
     }
 
     public void addDataRow(Match match) {
-        if (allMatches.size() == 60) {
-            List<DataSetRow> oldRows = allMatches.getRows().subList(0, 59);
+        if (allMatches.size() == 1) {
+            //teachNetwork();
             allMatches = new DataSet(10, 3);
-            for (DataSetRow dsr: oldRows) {
-                allMatches.addRow(dsr);
-            }
         }
         allMatches.addRow(new DataSetRow(normalizeInputMatch(match), normalizeOutputMatch(match)));
     }

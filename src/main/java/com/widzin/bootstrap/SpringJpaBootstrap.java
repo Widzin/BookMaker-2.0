@@ -110,6 +110,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
+        myNeuralNetwork = MyNeuralNetwork.getInstance();
         loadPlayers();
         loadMatches();
         loadLogos();
@@ -139,8 +140,6 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
     }
 
     private void saveToDatabaseAndGiveDataToNetwork() {
-	    myNeuralNetwork = MyNeuralNetwork.getInstance();
-
         for (Club club : loadService.getClubs()) {
             clubService.saveClub(club);
             log.info("Saved club id: " + club.getId());

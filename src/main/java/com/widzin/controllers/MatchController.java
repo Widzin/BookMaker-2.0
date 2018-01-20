@@ -157,6 +157,7 @@ public class MatchController {
         double[] outputs = myNeuralNetwork.calculateAndReceiveOutputs(match);
         int[] results = generateResults(outputs);
         generateEvents(results, match);
+        playerSeasonService.updatePlayersAfterMatch(match, results[0], results[1]);
         matchService.updateClubsAfterMatch(id, results[0], results[1]);
         List<Ticket> ticketsWithMatch = ticketService.getAllTicketsWithMatch
                 (matchService.getMatchById(id));
@@ -288,8 +289,8 @@ public class MatchController {
                 User admin = userService.getById(ADMIN_ID);
                 if (j == t.getBets().size()){
                     Double fullMoneyWon = t.getMoneyToWin();
-                    Double moneyForUser = 0.88 * fullMoneyWon;
-                    Double moneyForAdmin = 0.12 * fullMoneyWon;
+                    Double moneyForUser = fullMoneyWon;
+                    Double moneyForAdmin = fullMoneyWon;
                     user.addWinMoney(moneyForUser);
                     user.addMoneyNow(moneyForUser);
                     admin.addLostMoney(moneyForUser - moneyForAdmin);
